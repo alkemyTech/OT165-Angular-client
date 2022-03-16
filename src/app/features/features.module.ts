@@ -10,6 +10,9 @@ import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { SlidesComponent } from './pages/slides/slides.component';
+import { SlideCardComponent } from './pages/slides/slide-card/slide-card.component';
+import { HomeComponent } from "./pages/home/home.component";
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
+    SlidesComponent,
+    SlideCardComponent,
+    HomeComponent
   ],
   exports: [
     ActivityFormComponent,

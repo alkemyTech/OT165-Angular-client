@@ -1,0 +1,31 @@
+$carousel-transition-duration:       .5s;
+$carousel-control-prev-icon-bg:      url("../../../../assets/icons/arrow-left-circle.svg");
+$carousel-control-next-icon-bg: 	 url("../../../../assets/icons/arrow-right-circle.svg");
+
+.carousel-control-next-icon {
+	background-image: $carousel-control-next-icon-bg;
+}
+
+.carousel-control-prev-icon {
+	background-image: $carousel-control-prev-icon-bg;
+}
+
+.carousel-control-prev, .carousel-control-next {
+	top: -35px;
+    bottom: 320px;
+}
+
+.scrolling-wrapper{
+	overflow-x: unset;
+    overflow-y: hidden;
+    max-width: 1200px;
+	.container{
+		display: flex;
+		justify-content: center;
+		$size: 800px;
+		.col-3{
+			width: $size/4;
+            margin-right: 20px;
+		  }
+	}
+}
