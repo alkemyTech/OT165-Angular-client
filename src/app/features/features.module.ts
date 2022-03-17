@@ -21,6 +21,7 @@ import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from 'ckeditor4-angular';
 
 
+
 @NgModule({
   declarations: [
     ActivityFormComponent,
