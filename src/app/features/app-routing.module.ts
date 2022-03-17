@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
+import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
   {
     path: "registro",
     component: RegisterFormComponent,
+    pathMatch: "full",
+  },
+  {
+    path: "login",
+    component: LoginFormComponent,
     pathMatch: "full",
   },
   {
