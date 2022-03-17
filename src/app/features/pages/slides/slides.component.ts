@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CardContent } from './interface/ContentCard,interface';
 
 @Component({
   selector: 'app-slides',
@@ -8,7 +7,7 @@ import { CardContent } from './interface/ContentCard,interface';
 })
 export class SlidesComponent implements OnInit {
 
-  @Input() items!: CardContent[]
+  @Input() item: any
 
   constructor() { }
 

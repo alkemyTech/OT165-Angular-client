@@ -11,8 +11,8 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { SlidesComponent } from './pages/slides/slides.component';
-import { SlideCardComponent } from './pages/slides/slide-card/slide-card.component';
 import { HomeComponent } from "./pages/home/home.component";
+import { CarouselComponent } from './pages/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +25,8 @@ import { HomeComponent } from "./pages/home/home.component";
     TestimonialFormComponent,
     UserFormComponent,
     SlidesComponent,
-    SlideCardComponent,
-    HomeComponent
+    HomeComponent,
+    CarouselComponent
   ],
   exports: [
     ActivityFormComponent,

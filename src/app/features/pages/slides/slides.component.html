@@ -1,53 +1,5 @@
-<section class="pt-5 pb-5 ms-5 me-5">
-    <div class="container">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-
-                <div class="carousel-item active">
-                    <div class="container-fluid">
-                        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
-                            <div class="container">
-                                <div class="col-3" *ngFor="let item of [0,1,2,3,4,5]">
-                                    <app-slide-card></app-slide-card>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="container-fluid">
-                        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
-                            <div class="container">
-                                <div class="col-3" *ngFor="let item of [0,1,2]">
-                                    <app-slide-card></app-slide-card>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="container-fluid">
-                        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
-                            <div class="container">
-                                <div class="col-3" *ngFor="let item of [0,1,2]">
-                                    <app-slide-card></app-slide-card>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div><!-- End carousel-->
-        </div>
-    </div>
-</section>
-<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-</button>
+<img src="{{item.img}}" class="d-block img-fluid" alt="Random first slide">
+<div class="carousel-caption  d-block img-fluid">
+    <h2>{{item['title']}}</h2>
+    <p>{{item['description']}}</p>
+</div>
