@@ -1,7 +1,11 @@
+<app-image-curved
+  url="https://i.imgur.com/Et0jFGl.jpg"
+  title="Colaborá con Somos Más"
+  [text]="msj"
+  [opacity]="0.2"
+>
+</app-image-curved>
 <div class="container-fluid">
-  <aside>
-    <img src="https://i.imgur.com/Et0jFGl.jpg" alt="photo-5">
-  </aside>
   <main>
     <h2>
       Seleccione el monto a donar.
@@ -17,12 +21,12 @@
     </section>
     <section class="confirmation">
       <div class="confirmation-text">
-        <p>Te redireccionaremos a la página de Mercado Pago para que puedas donar 
-          {{amounts[selected].amount | currency:'ARS':'symbol-narrow':'1.0'}}.
+        <p>Te redireccionaremos a la página de Mercado Pago para que puedas completar  
+          tu donación de {{amounts[selected].amount | currency:'ARS':'symbol-narrow':'1.0'}}.
         </p>
       </div>
       <div class="confirmation-button">
-        <a pButton pRipple type="button" href="{{amounts[selected].url}}" target="_blank" label="Doná" class="primary"></a>
+        <a pButton pRipple type="button" (click)="donar($event)" href="{{amounts[selected].url}}" target="_blank" label="Donar" class="primary"></a>
       </div>
     </section>
   </main>

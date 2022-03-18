@@ -10,13 +10,15 @@ import { DonationComponent } from './pages/donations/donation/donation.component
 import { ThanksComponent } from './pages/donations/thanks/thanks.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DonationAmountComponent } from './pages/donations/donation-amount/donation-amount.component';
+import { ImageCurvedComponent } from './components/image-curved/image-curved.component';
 
 @NgModule({
   declarations: [
     LogoComponent,
     DonationComponent,
     ThanksComponent,
-    DonationAmountComponent
+    DonationAmountComponent,
+    ImageCurvedComponent
   ],
   imports: [
     CommonModule,
