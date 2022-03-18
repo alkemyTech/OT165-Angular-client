@@ -1,0 +1,29 @@
+.container {
+  width: 450px;
+  max-width: 95%;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  width: 60%;
+}
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+button {
+  margin-top: 20px;
+}
