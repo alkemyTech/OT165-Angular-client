@@ -9,12 +9,14 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DonationComponent } from './pages/donations/donation/donation.component';
 import { ThanksComponent } from './pages/donations/thanks/thanks.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DonationAmountComponent } from './pages/donations/donation-amount/donation-amount.component';
 
 @NgModule({
   declarations: [
     LogoComponent,
     DonationComponent,
-    ThanksComponent
+    ThanksComponent,
+    DonationAmountComponent
   ],
   imports: [
     CommonModule,
