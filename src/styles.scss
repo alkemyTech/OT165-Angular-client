@@ -22,4 +22,32 @@
 .card{
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --primary: #9AC9FB;
+  --warning: #FAFA88;
+  --danger: #DB5752;
+}
+
+.primary {
+  background-color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
+  color: rgb(60, 60, 60) !important;
+}
+
+.danger {
+  background-color: var(--danger) !important;
+  border: 1px solid var(--danger) !important;
+  color: white !important;
+}
+.warning {
+  background-color: var(--warning) !important;
+  border: 1px solid var(--warning) !important;
+  color: var(--text-color-secondary) !important;
 }
