@@ -1,7 +1,7 @@
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { AppRoutingModule } from "./back-office-routing.module";
+import { BackOfficeRoutingModule } from "./backoffice-routing.module";
 
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
@@ -32,26 +32,9 @@ import { CKEditorModule } from 'ckeditor4-angular';
     UserFormComponent,
     OrganizationFormComponent
   ],
-  exports: [
-    ActivityFormComponent,
-    LoginFormComponent,
-    RegisterFormComponent,
-    CategoriesFormComponent,
-    NewsFormComponent,
-    SlidesFormComponent,
-    TestimonialFormComponent,
-    UserFormComponent,
-    OrganizationFormComponent,
-    RouterModule,
-    ReactiveFormsModule,
-    FormsModule,
-    InputTextModule,
-    RxReactiveFormsModule,
-    CKEditorModule
-  ],
   imports: [
     CommonModule,
-    AppRoutingModule,
+    BackOfficeRoutingModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
