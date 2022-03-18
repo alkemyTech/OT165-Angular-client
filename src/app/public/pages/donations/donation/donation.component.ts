@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
   templateUrl: "./donation.component.html",
   styleUrls: ["./donation.component.scss"],
 })
-export class DonationComponent implements OnInit {
+export class DonationComponent {
   amounts: any[] = [
     {
       id: 0,
@@ -45,8 +45,6 @@ export class DonationComponent implements OnInit {
     "Tu donación ayuda a que los niños y niñas logren sus sueños";
 
   constructor(private router: Router) {}
-
-  ngOnInit(): void {}
 
   changeSelected(id: number) {
     this.selected = id;

@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './donation-amount.component.html',
   styleUrls: ['./donation-amount.component.scss']
 })
-export class DonationAmountComponent implements OnInit {
+export class DonationAmountComponent {
 
   @Input() selected:boolean = false;
   @Input() item:any = {
@@ -17,9 +17,6 @@ export class DonationAmountComponent implements OnInit {
   @Output() onSelect: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   toggleSelect(id: number) {
     this.onSelect.emit(id);

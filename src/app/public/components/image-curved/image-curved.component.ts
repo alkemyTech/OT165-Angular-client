@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from "@angular/core";
   templateUrl: "./image-curved.component.html",
   styleUrls: ["./image-curved.component.scss"],
 })
-export class ImageCurvedComponent implements OnInit {
+export class ImageCurvedComponent {
   @Input() url: string = "";
   @Input() title: string = "";
   @Input() text: string = "";
@@ -14,5 +14,4 @@ export class ImageCurvedComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
 }
