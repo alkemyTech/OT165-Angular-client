@@ -74,7 +74,13 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   sendCategory() {    
-    const category = this.catForm.value;
+    let category = this.catForm.value;
+    if(this.uploadedFile == null) {
+      category = {
+        name: this.catForm.get('name'),
+        description: this.catForm.get('description')
+      }
+    }
     if(this.category.id){
       this.categoryService.updateCategoryById(this.category.id, category).subscribe({
         next: res => {
