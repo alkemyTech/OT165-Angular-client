@@ -24,12 +24,4 @@ export class ActivityFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onUpload(event:any) {
-        for(let file of event.files) {
-            this.uploadedFiles.push(file);
-        }
-
-        // this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-    }
-
 }
