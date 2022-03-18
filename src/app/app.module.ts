@@ -1,4 +1,4 @@
-import { FeaturesModule } from './features/features.module';
+import { FeaturesModule } from './backoffice/features.module';
 import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
