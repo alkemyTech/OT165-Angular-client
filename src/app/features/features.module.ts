@@ -1,3 +1,6 @@
+import {InputTextModule} from 'primeng/inputtext';
+import {FileUploadModule} from 'primeng/fileupload';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -10,6 +13,9 @@ import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { ButtonModule } from 'primeng/button';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +39,15 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
     UserFormComponent,
     RouterModule
   ],
-  imports: [CommonModule, AppRoutingModule, RouterModule],
+  imports: [
+    CommonModule, 
+    AppRoutingModule, 
+    RouterModule, 
+    ReactiveFormsModule,
+    CKEditorModule,
+    FileUploadModule,
+    InputTextModule,
+    ButtonModule
+  ],
 })
 export class FeaturesModule {}

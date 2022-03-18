@@ -1,1 +1,76 @@
-<p>categories-form works!</p>
+<div class="container">
+  <header>
+      <h1>{{actionType}} categoría</h1>
+  </header>   
+  <main>
+    <form [formGroup]="catForm">
+
+        <!-- NAME -->
+      <div class="field">
+        <label for="name" class="block">Nombre</label>
+        <input 
+            id="name" 
+            type="name" 
+            aria-describedby="name-help"             
+            formControlName="name"             
+            [ngClass]="{'ng-invalid ng-dirty': catForm.get('name')?.touched && catForm.get('name')?.errors}"
+            pInputText/>
+        <small 
+            *ngIf="catForm.get('name')?.touched && catForm.get('name')?.errors?.minlength"
+            id="name-help" 
+            class="p-error block">
+            El nombre debe tener como mínimo {{catForm.get('name')?.errors?.minlength.requiredLength}} caracteres.
+        </small>
+        <small 
+            *ngIf="catForm.get('name')?.touched && catForm.get('name')?.hasError('required')"
+            class="p-error block">
+            Debe ingresar un nombre
+        </small>
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="field">
+        <label for="description">Descripción</label>  
+        <ckeditor 
+            pInputText
+            [config]="{ toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList']}"  
+            [ngClass]="{'ng-invalid ng-dirty': catForm.get('description')?.touched && catForm.get('description')?.errors}"
+            [editor]="Editor" data="<p>Hello, world!</p>"             
+            formControlName="description">
+        </ckeditor>
+        <small
+            *ngIf="catForm.get('description')?.touched && catForm.get('description')?.hasError('required')" 
+            id="description-help" 
+            class="p-error block">
+            Debe ingresar una descripción.
+        </small>    
+      </div>
+
+      <!-- IMAGE -->
+      <div class="field">
+          <label for="image">Imagen</label>   
+          <div *ngIf="category.id">
+            <img src="{{category.image}}" style="height: 100px; width: 100px;" alt="{{category.name}}">
+          </div>       
+          <p-fileUpload id="image" [customUpload]="true" name="category-image" (uploadHandler)="onUpload($event)"
+            [multiple]="false" accept="image/*.jpg image/*.png" [maxFileSize]="maxFileSize">
+            <ng-template pTemplate="content">
+                <ul>
+                    <li *ngIf="uploadedFile != null && !category.image">{{uploadedFile.name}} - {{uploadedFile.size}} bytes</li>                    
+                </ul>
+            </ng-template>
+            </p-fileUpload>
+            <small
+            *ngIf="catForm.get('image')?.touched && catForm.get('image')?.hasError('required')" 
+            id="image-help" 
+            class="p-error block">
+            Debe añadir una imagen.
+        </small>  
+      </div>
+
+      <!-- SUBMIT BUTTON -->
+      <button class="primary" pButton pRipple type="button" (click)="sendCategory()" [disabled]="catForm.invalid">Guardar</button>
+
+    </form>
+  </main>
+</div>

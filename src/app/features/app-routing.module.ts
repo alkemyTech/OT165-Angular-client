@@ -1,3 +1,4 @@
+import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -11,6 +12,11 @@ const routes: Routes = [
     path: "",
     redirectTo: "actividades",
     pathMatch: "full",
+  },
+  {
+    path: "categoria",
+    component: CategoriesFormComponent,
+    pathMatch: "full"
   },
   {
     path: "**",
