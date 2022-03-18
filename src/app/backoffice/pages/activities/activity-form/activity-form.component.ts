@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./activity-form.component.scss']
 })
 export class ActivityFormComponent implements OnInit {
-  title = 'base-ong-angular-client';
-
   constructor() { }
 
   ngOnInit(): void {
