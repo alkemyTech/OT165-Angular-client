@@ -6,10 +6,11 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 //Own Modules
+import {PagesModule} from "./public/pages/pages.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule,PagesModule],
   providers: [],
   bootstrap: [AppComponent],
 })
