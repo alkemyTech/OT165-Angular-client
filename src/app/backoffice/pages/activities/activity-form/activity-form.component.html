@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="p-grid p-p-4" style="border: solid 1px green">
+    <div class="p-mx-auto">
+      <h5>Invalid with Float Label</h5>
+      <span class="p-float-label">
+        <input
+          id="float-input-invalid"
+          type="text"
+          pInputText
+          class="ng-invalid ng-dirty"
+        />
+        <label for="float-input-invalid">Username</label>
+      </span>
+
+      <h5>Upload Images</h5>
+      <p-fileUpload
+        name="demo[]"
+        url="./upload.php"
+        (onUpload)="onUpload($event)"
+        accept="image/*"
+      >
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">
+              {{ file.name }} - {{ file.size }} bytes
+            </li>
+          </ul>
+        </ng-template>
+      </p-fileUpload>
+    </div>
+  </div>
+</div>
