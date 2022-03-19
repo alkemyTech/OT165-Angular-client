@@ -1,1 +1,74 @@
-<p>register-form works!</p>
+<div class="container">
+  <header class="header">
+    <img class="logo" src="../../../../../assets/images/logo.png" alt="logo">
+    <h1>Registro de usuario</h1>
+  </header>
+  <main>
+    <form [formGroup]="form">
+      <div class="field">
+        <label for="email" class="block">Email</label>
+        <input
+          formControlName="email"
+          id="email"
+          type="email"
+          aria-describedby="email-help"
+          [ngClass]="{'ng-invalid ng-dirty': email?.touched && email?.errors}"
+          pInputText />
+        <small
+          *ngIf="email?.touched && email?.errors"
+          id="email-help"
+          class="p-error block"
+        >Debe ingresar un email válido.</small>
+      </div>
+
+      <div class="field">
+        <label for="password1" class="block">Contraseña</label>
+        <input
+          formControlName="password1"
+          id="password1"
+          type="password"
+          aria-describedby="password1-help" 
+          [ngClass]="{'ng-invalid ng-dirty': password1?.touched && password1?.errors}"
+          pInputText />
+        <small
+          *ngIf="password1?.touched && password1?.hasError('required')"
+          id="password1-help"
+          class="p-error block"
+        >Debe ingresar una contraseña.</small>
+        <small
+          *ngIf="password1?.touched && !password1?.hasError('required') && password1?.errors?.minlength"
+          id="password1-help"
+          class="p-error block"
+        >La contraseña debe tener como mínimo 6 caracteres.</small>
+        <small
+          *ngIf="password1?.touched && !password1?.hasError('required') && password1?.errors?.notPattern"
+          id="password1-help"
+          class="p-error block"
+        >La contraseña debe contener al menos 1 letra, 1 número y 1 símbolo.</small>
+      </div>
+
+      <div class="field">
+        <label for="password2" class="block">Confirmar contraseña</label>
+        <input
+          formControlName="password2"
+          id="password2"
+          type="password"
+          aria-describedby="password2-help"
+          [ngClass]="{'ng-invalid ng-dirty': password2?.touched && password2?.errors}"
+          pInputText />
+        <small
+          *ngIf="password2?.touched && password2?.hasError('required')"
+          id="password2-help"
+          class="p-error block"
+        >Debe repetir la contraseña.</small>
+        <small
+          *ngIf="password2?.touched && password2?.errors?.notEqual"
+          id="password2-help"
+          class="p-error block"
+        >Las contraseñas no coinciden.</small>
+      </div>
+
+      <button (click)="register($event)" pButton pRipple type="button" label="Registrarse" class="primary"></button>
+    </form>
+  </main>
+</div>

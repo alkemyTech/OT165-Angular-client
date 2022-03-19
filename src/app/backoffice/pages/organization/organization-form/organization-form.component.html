@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="header">
+        <img class="logo" src="../../../../../assets/images/logo.png" alt="logo">
+        <h1>Organización</h1>
+    </div>
+
+    <div class="col-md-6 mb-5 mx-auto">
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+
+            <div class="field">
+                <label for="name" class="block">Nombre</label>
+                <input [ngClass]="{'ng-invalid ng-dirty': form.get('name')?.touched && form.get('name')?.errors}" formControlName="name" id="name" type="text" aria-describedby="name-help" pInputText/>
+                <small *ngIf="form.get('name')?.touched && form.get('name')?.errors" id="name-help" class="p-error block">El nombre es obligatorio.</small>
+            </div>
+
+            <div class="field">
+                <label for="logo" class="block">Logo</label>
+                <input id="logo" formControlName="logo" type="file" class="form-control-file">
+                <small *ngIf="form.get('logo')?.touched && form.get('logo')?.errors" id="logo-help" class="p-error block">La imagen debe tener una extensión válida (.png ó .jpg). </small>
+            </div>
+            <div class="field">
+                <label for="shortDescription" class="block">Detalles</label>
+                <ckeditor formControlName="shortDescription" data="<p>Breve descripción!</p>"></ckeditor>
+                <small *ngIf="form.get('shortDescription')?.touched && form.get('shortDescription')?.errors" id="logo-help" class="p-error block">El detalle es obligatorio.</small>
+            </div>
+
+
+            <div class="field">
+                <label for="longDescription" class="block">Descripción</label>
+                <input [ngClass]="{'ng-invalid ng-dirty': form.get('longDescription')?.touched && form.get('longDescription')?.errors}" formControlName="longDescription" id="longDescription" type="text" aria-describedby="longDescription-help" pInputText />
+                <small *ngIf="form.get('longDescription')?.touched && form.get('longDescription')?.errors" id="longDescription-help" class="p-error block">La descripción es obligatoria.</small>
+            </div>
+
+            <div class="field">
+                <label for="facebook" class="block">Facebook</label>
+                <input [ngClass]="{'ng-invalid ng-dirty': form.get('facebook')?.touched && form.get('facebook')?.errors}" formControlName="facebook" id="facebook" type="text" aria-describedby="facebook-help" pInputText />
+                <small *ngIf="form.get('facebook')?.touched && form.get('facebook')?.errors" id="facebook-help" class="p-error block">La Url debe ser válida.</small>
+            </div>
+
+            <div class="field">
+                <label for="linkedin" class="block">LinkedIn</label>
+                <input [ngClass]="{'ng-invalid ng-dirty': form.get('linkedin')?.touched && form.get('linkedin')?.errors}" formControlName="linkedin" id="linkedin" type="text" aria-describedby="linkedin-help" pInputText />
+                <small *ngIf="form.get('linkedin')?.touched && form.get('linkedin')?.errors" id="facebook-help" id="linkedin-help" class="p-error block">La Url debe ser válida.</small>
+            </div>
+
+            <div class="field">
+                <label for="instagram" class="block">Instagram</label>
+                <input [ngClass]="{'ng-invalid ng-dirty': form.get('instagram')?.touched && form.get('instagram')?.errors}" formControlName="instagram" id="instagram" type="text" aria-describedby="instagram-help" pInputText />
+                <small *ngIf="form.get('instagram')?.touched && form.get('instagram')?.errors" id="instagram-help" class="p-error block">La Url debe ser válida.</small>
+            </div>
+
+
+            <div class="field">
+                <label for="twitter" class="block">Twitter</label>
+                <input [ngClass]="{'ng-invalid ng-dirty': form.get('instagram')?.touched && form.get('instagram')?.errors}" formControlName="twitter" id="twitter" type="text" aria-describedby="twitter-help" pInputText />
+                <small *ngIf="form.get('twitter')?.touched && form.get('twitter')?.errors" id="twitter-help" class="p-error block">La Url debe ser válida.</small>
+            </div>
+
+            <button pButton pRipple type="button" label="Guardar cambios" class="primary" (click)="submit()"></button>
+
+        </form>
+
+    </div>
+</div>
