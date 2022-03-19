@@ -13,3 +13,4 @@ import { PublicComponent } from './public.component';
   imports: [CommonModule, RouterModule, PublicRoutingModule],
 })
 export class PublicModule {}
+
