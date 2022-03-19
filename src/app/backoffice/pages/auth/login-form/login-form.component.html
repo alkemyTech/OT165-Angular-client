@@ -1,1 +1,54 @@
-<p>login-form works!</p>
+<div class="container">
+  <header class="header">
+    <img class="logo" src="../../../../../assets/images/logo.png" alt="logo">
+    <h1>Login</h1>
+  </header>
+  <main>
+    <form [formGroup]="form">
+      <div class="field">
+        <label for="email" class="block">Email</label>
+        <input
+          formControlName="email"
+          id="email"
+          type="email"
+          aria-describedby="email-help"
+          [ngClass]="{'ng-invalid ng-dirty': email?.touched && email?.errors}"
+          pInputText />
+        <small
+          *ngIf="email?.touched && email?.errors"
+          id="email-help"
+          class="p-error block"
+        >Debe ingresar un email válido.</small>
+      </div>
+
+      <div class="field">
+        <label for="password" class="block">Contraseña</label>
+        <input
+          formControlName="password"
+          id="password"
+          type="password"
+          aria-describedby="password-help" 
+          [ngClass]="{'ng-invalid ng-dirty': password?.touched && password?.errors}"
+          pInputText />
+        <small
+          *ngIf="password?.touched && password?.hasError('required')"
+          id="password-help"
+          class="p-error block"
+        >Debe ingresar una contraseña.</small>
+        <small
+          *ngIf="password?.touched && !password?.hasError('required') && password?.errors?.minlength"
+          id="password-help"
+          class="p-error block"
+        >La contraseña debe tener como mínimo 6 caracteres.</small>
+        <small
+          *ngIf="password?.touched && !password?.hasError('required') && password?.errors?.notPattern"
+          id="password-help"
+          class="p-error block"
+        >La contraseña debe contener al menos 1 letra, 1 número y 1 símbolo.</small>
+      </div>
+
+      <button (click)="login($event)" pButton pRipple type="button" label="Ingresar" class="primary"></button>
+      <a routerLink="/registro">Registrarse</a>
+    </form>
+  </main>
+</div>
