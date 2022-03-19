@@ -2,7 +2,6 @@ import { CategoryService } from './../../../../shared/services/category.service'
 import { Category } from './../../../../shared/models/Category';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-categories-form',
@@ -33,7 +32,7 @@ export class CategoriesFormComponent implements OnInit {
       Validators.required
     ]] 
   })
-  public Editor = ClassicEditor;  
+    
   maxFileSize: number = 2000000;
   uploadedFile: any = null;
 

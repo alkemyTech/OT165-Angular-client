@@ -2,6 +2,7 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
+import { BackOfficeRoutingModule } from "./backoffice-routing.module";
 
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
@@ -13,16 +14,18 @@ import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 
 import {FileUploadModule} from 'primeng/fileupload';
+import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
+
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
-import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
 import { AppRoutingModule } from "../app-routing.module";
-import { BackOfficeRoutingModule } from "./backoffice-routing.module";
 
 
-
+import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
+import { CKEditorModule } from 'ckeditor4-angular';
+import { PublicModule } from "../public/public.module";
 
 @NgModule({
   declarations: [
@@ -33,33 +36,20 @@ import { BackOfficeRoutingModule } from "./backoffice-routing.module";
     NewsFormComponent,
     SlidesFormComponent,
     TestimonialFormComponent,
-    UserFormComponent    
-  ],
-  exports: [
-    ActivityFormComponent,
-    LoginFormComponent,
-    RegisterFormComponent,
-    CategoriesFormComponent,
-    NewsFormComponent,
-    SlidesFormComponent,
-    TestimonialFormComponent,
-    UserFormComponent,    
-    RouterModule,
-    ReactiveFormsModule,
-    FormsModule,
-    InputTextModule,    
-    CKEditorModule
+    UserFormComponent,
+    OrganizationFormComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    RouterModule,
     BackOfficeRoutingModule,
+    RouterModule,
     ReactiveFormsModule,
     FormsModule,
     InputTextModule,
-    ButtonModule,    
+    ButtonModule,
+    RxReactiveFormsModule,
     CKEditorModule,
+    PublicModule,
     FileUploadModule
   ]
 })

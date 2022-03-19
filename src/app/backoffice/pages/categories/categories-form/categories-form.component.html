@@ -35,7 +35,7 @@
             pInputText
             [config]="{ toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList']}"  
             [ngClass]="{'ng-invalid ng-dirty': catForm.get('description')?.touched && catForm.get('description')?.errors}"
-            [editor]="Editor" data="<p>Hello, world!</p>"             
+            data="<p>Hello, world!</p>"             
             formControlName="description">
         </ckeditor>
         <small
