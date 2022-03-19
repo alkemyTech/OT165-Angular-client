@@ -19,7 +19,6 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from 'ckeditor4-angular';
-import { LogoComponent } from "../public/components/logo/logo.component";
 import { PublicModule } from "../public/public.module";
 
 @NgModule({
