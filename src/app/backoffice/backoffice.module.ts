@@ -19,6 +19,7 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from 'ckeditor4-angular';
+import { PublicModule } from "../public/public.module";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     InputTextModule,
     ButtonModule,
     RxReactiveFormsModule,
-    CKEditorModule
+    CKEditorModule,
+    PublicModule
   ]
 })
 export class BackOfficeModule {}
