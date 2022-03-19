@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class DonationAmountComponent {
 
+  @Input() index:number = 0;
   @Input() selected:boolean = false;
   @Input() item:any = {
     id: 0,
@@ -18,8 +19,8 @@ export class DonationAmountComponent {
 
   constructor() { }
 
-  toggleSelect(id: number) {
-    this.onSelect.emit(id);
+  toggleSelect(index: number) {
+    this.onSelect.emit(index);
   }
 
 }
