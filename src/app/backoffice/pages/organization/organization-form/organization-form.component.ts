@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 
@@ -9,7 +9,7 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators';
   templateUrl: './organization-form.component.html',
   styleUrls: ['./organization-form.component.scss']
 })
-export class OrganizationFormComponent implements OnInit {
+export class OrganizationFormComponent {
 
   reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
@@ -30,13 +30,8 @@ export class OrganizationFormComponent implements OnInit {
     })
    }
 
-  ngOnInit(): void {
-  }
 
   submit(){
-    if(this.form.valid){
-      console.log(this.form)
-    }
   }
 
 }

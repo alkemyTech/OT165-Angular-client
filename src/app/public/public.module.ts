@@ -32,4 +32,4 @@ import { ImageCurvedComponent } from './components/image-curved/image-curved.com
     LogoComponent
   ]
 })
-export class PublicModule { }
+export class PublicModule {}
