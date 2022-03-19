@@ -5,16 +5,51 @@ import { PublicRoutingModule } from "./public-routing.module";
 
 //Own Component
 import { HomeComponent } from "./pages/home/home.component";
-import { PublicComponent } from './public.component';
-import { NavComponent } from './shared/nav/nav.component';
-import { ListnewsComponent } from './components/listnews/listnews.component';
-import { SliderComponent } from './components/slider/slider.component';
-import { FooterComponent } from './shared/footer/footer.component';
+import { PublicComponent } from "./public.component";
+import { NavComponent } from "./shared/nav/nav.component";
+import { ListnewsComponent } from "./components/listnews/listnews.component";
+import { SliderComponent } from "./components/slider/slider.component";
+import { FooterComponent } from "./shared/footer/footer.component";
+// import { LogoComponent } from "./components/logo/logo.component";
+import { ButtonModule } from "primeng/button";
+import { InputTextModule } from "primeng/inputtext";
+import { InputNumberModule } from "primeng/inputnumber";
+import { DonationComponent } from "./pages/donations/donation/donation.component";
+import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { DonationAmountComponent } from "./pages/donations/donation-amount/donation-amount.component";
+import { ImageCurvedComponent } from "./components/image-curved/image-curved.component";
 
 @NgModule({
-  declarations: [HomeComponent, PublicComponent, NavComponent, ListnewsComponent, SliderComponent, FooterComponent],
-  exports:[HomeComponent,NavComponent,ListnewsComponent, SliderComponent, FooterComponent],
-  imports: [CommonModule, RouterModule, PublicRoutingModule],
+  declarations: [
+    HomeComponent,
+    PublicComponent,
+    NavComponent,
+    ListnewsComponent,
+    SliderComponent,
+    FooterComponent,
+    // LogoComponent,
+    DonationComponent,
+    ThanksComponent,
+    DonationAmountComponent,
+    ImageCurvedComponent,
+  ],
+  exports: [
+    HomeComponent,
+    NavComponent,
+    ListnewsComponent,
+    SliderComponent,
+    FooterComponent,
+    // LogoComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    PublicRoutingModule,
+    ReactiveFormsModule,
+    InputNumberModule,
+    InputTextModule,
+    ButtonModule,
+  ],
 })
 export class PublicModule {}
-

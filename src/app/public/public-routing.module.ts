@@ -1,10 +1,11 @@
-
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 //Own Component
+import { DonationComponent } from "./pages/donations/donation/donation.component";
+import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { HomeComponent } from "./pages/home/home.component";
-import {PublicComponent} from "./public.component";
+import { PublicComponent } from "./public.component";
 
 const routes: Routes = [
   {
@@ -13,10 +14,20 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "/home", pathMatch: "full" },
       { path: "home", component: HomeComponent },
+
+      {
+        path: "donar",
+        component: DonationComponent,
+        pathMatch: "full",
+      },
+      {
+        path: "gracias",
+        component: ThanksComponent,
+        pathMatch: "full",
+      },
     ],
   },
 ];
-
 
 @NgModule({
   declarations: [],

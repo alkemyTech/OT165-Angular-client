@@ -5,7 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 const routes: Routes = [
   {
     path: 'backoffice',
-    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackOfficeModule)
+    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
   },
   {
     path: '',

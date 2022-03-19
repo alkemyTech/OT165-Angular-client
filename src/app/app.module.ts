@@ -7,15 +7,20 @@ import { AppComponent } from "./app.component";
 
 //Own Modules
 
-import {PublicModule} from "./public/public.module";
+import { PublicModule } from "./public/public.module";
+import { BackofficeModule } from "./backoffice/backoffice.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule,PublicModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    PublicModule,
+    BackofficeModule,
+  ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-
-

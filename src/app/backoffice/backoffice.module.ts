@@ -13,12 +13,13 @@ import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
 
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from "primeng/inputtext";
+import { ButtonModule } from "primeng/button";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
-import { CKEditorModule } from 'ckeditor4-angular';
+import { CKEditorModule } from "ckeditor4-angular";
+import { LogoComponent } from "../public/components/logo/logo.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     SlidesFormComponent,
     TestimonialFormComponent,
     UserFormComponent,
-    OrganizationFormComponent
+    OrganizationFormComponent,
+    LogoComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,25 @@ import { CKEditorModule } from 'ckeditor4-angular';
     InputTextModule,
     ButtonModule,
     RxReactiveFormsModule,
-    CKEditorModule
-  ]
+    CKEditorModule,
+  ],
+  exports: [
+    ActivityFormComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
+    CategoriesFormComponent,
+    NewsFormComponent,
+    SlidesFormComponent,
+    TestimonialFormComponent,
+    UserFormComponent,
+    OrganizationFormComponent,
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    InputTextModule,
+    RxReactiveFormsModule,
+    CKEditorModule,
+    LogoComponent,
+  ],
 })
-export class BackOfficeModule {}
+export class BackofficeModule {}
