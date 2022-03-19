@@ -15,8 +15,8 @@ export class CategoryService {
     return this.http.post<Category>(this.baseURL, category);
   }
 
-  getCategoryById(id: number): Observable<Category> {
-    return this.http.get<Category>(`${this.baseURL}/${id}`)
+  getCategoryById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseURL}/${id}`)
   }
 
   updateCategoryById(id: number, category: any): Observable<Category> {

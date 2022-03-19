@@ -32,8 +32,7 @@
       <div class="field">
         <label for="description">Descripción</label>  
         <ckeditor 
-            pInputText
-            [config]="{ toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList']}"  
+            pInputText              
             [ngClass]="{'ng-invalid ng-dirty': catForm.get('description')?.touched && catForm.get('description')?.errors}"
             data="<p>Hello, world!</p>"             
             formControlName="description">
@@ -50,7 +49,7 @@
       <div class="field">
           <label for="image">Imagen</label>   
           <div *ngIf="category.id">
-            <img src="{{category.image}}" style="height: 100px; width: 100px;" alt="{{category.name}}">
+            <img src="{{category.image}}" style="height: auto; max-width: 100px;" alt="{{category.name}}">
           </div>       
           <p-fileUpload id="image" [customUpload]="true" name="category-image" (uploadHandler)="onUpload($event)"
             [multiple]="false" accept="image/*.jpg image/*.png" [maxFileSize]="maxFileSize">
@@ -61,7 +60,7 @@
             </ng-template>
             </p-fileUpload>
             <small
-            *ngIf="catForm.get('image')?.touched && catForm.get('image')?.hasError('required')" 
+            *ngIf="catForm.get('image')?.hasError('required')" 
             id="image-help" 
             class="p-error block">
             Debe añadir una imagen.
@@ -69,7 +68,7 @@
       </div>
 
       <!-- SUBMIT BUTTON -->
-      <button class="primary" pButton pRipple type="button" (click)="sendCategory()" [disabled]="catForm.invalid">Guardar</button>
+      <button class="primary" pButton pRipple type="button" (click)="sendCategory()" [disabled]="catForm.invalid || !catForm.touched">{{buttonAction}}</button>
 
     </form>
   </main>

@@ -13,6 +13,7 @@ const routes: Routes = [
     path: '',
     children: [
       { path: 'actividades', component: ActivityFormComponent },
+      { path: 'categorias/:id', component: CategoriesFormComponent},
       { path: 'categorias', component: CategoriesFormComponent},      
       { path: 'registro', component: RegisterFormComponent },
       { path: 'organization/edit', component: OrganizationFormComponent },
