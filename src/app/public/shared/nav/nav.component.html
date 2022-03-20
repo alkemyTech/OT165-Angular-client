@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-xl navbar-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" routerLink="home">
       <img src="../../../../../assets/images/logo.png" alt="logo" />
     </a>
     <button
@@ -17,30 +17,37 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" type="button" routerLink="home">Inicio</a>
+          <a class="me-2 danger" pButton pRipple label="Inicio" type="button" routerLink="home"></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Nosotros</a>
+          <a  class="me-2 danger" pButton pRipple label="Nosotros" type="button" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Actividades</a>
+          <a class="me-2 danger" pButton pRipple label="Actividades" type="button" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Novedades</a>
+          <a class="me-2 danger" pButton pRipple label="Novedades" type="button" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Testimonios</a>
+          <a class="me-2 danger" pButton pRipple label="Testimonios" type="button" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contacto</a>
+          <a class="me-2 danger" pButton pRipple label="Contacto" type="button" href="#"></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="donar">Contribuye</a>
+          <a class="me-2 danger" pButton pRipple label="Contribuye" type="button" routerLink="donar"></a>
         </li>
       </ul>
       <div class="d-flex">
-        <a class="btn btn-outline-success me-2" type="button">Log in</a>
-        <a class="btn btn-outline-success" type="button" routerLink="backoffice/registro">Registrate</a>
+        <a class="me-2 warning" label="Log in" pButton pRipple type="button"></a>
+        <a
+          class="primary"
+          label="Registrate"
+          pButton pRipple 
+          type="button"
+          routerLink="backoffice/registro"
+          ></a
+        >
       </div>
     </div>
   </div>

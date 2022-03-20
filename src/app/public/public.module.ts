@@ -10,7 +10,6 @@ import { NavComponent } from "./shared/nav/nav.component";
 import { ListnewsComponent } from "./components/listnews/listnews.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { FooterComponent } from "./shared/footer/footer.component";
-// import { LogoComponent } from "./components/logo/logo.component";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { InputNumberModule } from "primeng/inputnumber";
@@ -28,7 +27,6 @@ import { ImageCurvedComponent } from "./components/image-curved/image-curved.com
     ListnewsComponent,
     SliderComponent,
     FooterComponent,
-    // LogoComponent,
     DonationComponent,
     ThanksComponent,
     DonationAmountComponent,
@@ -40,7 +38,6 @@ import { ImageCurvedComponent } from "./components/image-curved/image-curved.com
     ListnewsComponent,
     SliderComponent,
     FooterComponent,
-    // LogoComponent,
   ],
   imports: [
     CommonModule,
