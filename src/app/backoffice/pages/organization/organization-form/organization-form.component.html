@@ -25,7 +25,7 @@
                 <small *ngIf="form.get('shortDescription')?.touched && form.get('shortDescription')?.errors" id="logo-help" class="p-error block">El detalle es obligatorio.</small>
             </div>
 
-
+            
             <div class="field">
                 <label for="longDescription" class="block">Descripción</label>
                 <input [ngClass]="{'ng-invalid ng-dirty': form.get('longDescription')?.touched && form.get('longDescription')?.errors}" formControlName="longDescription" id="longDescription" type="text" aria-describedby="longDescription-help" pInputText />
