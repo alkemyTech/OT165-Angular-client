@@ -6,10 +6,11 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 import { BackOfficeModule } from './backoffice/backoffice.module';
+import { TitleComponent } from './shared/components/title/title.component';
 //Own Modules
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TitleComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, BackOfficeModule],
   providers: [],
   bootstrap: [AppComponent],

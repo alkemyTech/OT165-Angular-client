@@ -1,0 +1,23 @@
+.title__container {
+   display: flex;
+   justify-content: center;
+   width: 100%;  
+   height: 250px;
+   max-height: 300px; 
+   overflow: hidden; 
+   background-position: 50%;
+}
+/*#title__background__image {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: auto;
+    justify-content: center;   
+}*/
+.title__container h1 {
+    backdrop-filter: blur(4px);   
+    color: white;    
+    text-shadow: 5px 5px 2px #000000;
+    font-weight: 600;  
+    margin: auto;  
+}
