@@ -1,0 +1,26 @@
+/* STRUCTURE */
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 100px 20px 20px 20px;
+}
+
+form {
+  padding: 30px;
+  span {
+    margin-top: 30px;
+    input {
+      width: -webkit-fill-available;
+    }
+  }
+}
+.field {
+  label {
+    margin: 10px;
+  }
+}
