@@ -1,0 +1,81 @@
+<div class="container mt-4">
+    <div class="row">
+        <h2 class="text-center">Formulario Edición Home</h2>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <form class="col-12 col-sm-8 col-md-6 col-lg-6" [formGroup]="formWelcomeText">
+            <div class="mb-1 mt-3">
+                <h5 class="form-label">Texto de Bienvenida</h5>
+                <textarea class="form-control" rows="2" pInputTextarea formControlName="welcomeText" [class.is-invalid]="welcomeText.invalid && welcomeText.touched"></textarea>
+                <div *ngIf="welcomeText.invalid && welcomeText.touched" class="alert alert-danger mt-2" role="alert">
+                    <small>El texto de bienvenida debe tener un mínimo de 20 caracteres</small>
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-4 mx-auto mt-2">
+                <button pButton pRipple type="button" (click)="updateWelcomeText()" label="Modificar" class="primary" [disabled]="!formWelcomeText.valid"></button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <h5>Slide 1</h5>
+            <p-dropdown [options]="listSlides" [(ngModel)]="selectedSlide1" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Seleccionar un Slide">
+                <ng-template pTemplate="selectedItem">
+                    <div *ngIf="selectedSlide1">
+                        <img [src]="selectedSlide1.image" width="100"/> {{selectedSlide1.name}}                        
+                    </div>
+                </ng-template>
+                <ng-template let-selectedSlide1 pTemplate="item">
+                    <div class="country-item">
+                        <img [src]="selectedSlide1.image" width="100"/> {{selectedSlide1.name}}            
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <h5>Slide 2</h5>
+            <p-dropdown [options]="listSlides" [(ngModel)]="selectedSlide2" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Seleccionar un Slide">
+                <ng-template pTemplate="selectedItem">
+                    <div *ngIf="selectedSlide2">
+                        <img [src]="selectedSlide2.image" width="100"/> {{selectedSlide2.name}}                        
+                    </div>
+                </ng-template>
+                <ng-template let-selectedSlide2 pTemplate="item">
+                    <div class="country-item">
+                        <img [src]="selectedSlide2.image" width="100"/> {{selectedSlide2.name}}            
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <h5>Slide 3</h5>
+            <p-dropdown [options]="listSlides" [(ngModel)]="selectedSlide3" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Seleccionar un Slide">
+                <ng-template pTemplate="selectedItem">
+                    <div *ngIf="selectedSlide3">
+                        <img [src]="selectedSlide3.image" width="100"/> {{selectedSlide3.name}}                        
+                    </div>
+                </ng-template>
+                <ng-template let-selectedSlide3 pTemplate="item">
+                    <div class="country-item">
+                        <img [src]="selectedSlide3.image" width="100"/> {{selectedSlide3.name}}            
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <form class="col-12 col-sm-8 col-md-6 col-lg-6">
+            <div class="d-grid gap-2 col-4 mx-auto mt-2">
+                <button pButton pRipple type="button" (click)="updateWelcomeText()" label="Guardar cambios" class="primary"></button>
+            </div>
+        </form>
+    </div>
+</div>
