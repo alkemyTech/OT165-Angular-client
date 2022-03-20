@@ -6,9 +6,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 //Own Modules
-
+import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
-import { BackofficeModule } from "./backoffice/backoffice.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +16,7 @@ import { BackofficeModule } from "./backoffice/backoffice.module";
     AppRoutingModule,
     HttpClientModule,
     PublicModule,
-    BackofficeModule,
+    BackOfficeModule,
   ],
   exports: [],
   providers: [],

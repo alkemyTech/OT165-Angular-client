@@ -14,7 +14,6 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "/home", pathMatch: "full" },
       { path: "home", component: HomeComponent },
-
       {
         path: "donar",
         component: DonationComponent,
@@ -32,5 +31,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class PublicRoutingModule {}

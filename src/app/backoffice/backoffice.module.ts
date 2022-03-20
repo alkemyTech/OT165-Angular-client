@@ -64,4 +64,4 @@ import { LogoComponent } from "../public/components/logo/logo.component";
     LogoComponent,
   ],
 })
-export class BackofficeModule {}
+export class BackOfficeModule {}

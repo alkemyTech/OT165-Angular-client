@@ -106,47 +106,27 @@
       </div>
 
       <div class="field">
-        <label for="linkedin" class="block">LinkedIn</label>
+        <label for="longDescription" class="block">Descripción</label>
         <input
           [ngClass]="{
             'ng-invalid ng-dirty':
-              form.get('linkedin')?.touched && form.get('linkedin')?.errors
+              form.get('longDescription')?.touched &&
+              form.get('longDescription')?.errors
           }"
-          formControlName="linkedin"
-          id="linkedin"
+          formControlName="longDescription"
+          id="longDescription"
           type="text"
-          aria-describedby="linkedin-help"
-          pInputText
-        />
-        <small
-          *ngIf="form.get('linkedin')?.touched && form.get('linkedin')?.errors"
-          id="facebook-help"
-          id="linkedin-help"
-          class="p-error block"
-          >La Url debe ser válida.</small
-        >
-      </div>
-
-      <div class="field">
-        <label for="instagram" class="block">Instagram</label>
-        <input
-          [ngClass]="{
-            'ng-invalid ng-dirty':
-              form.get('instagram')?.touched && form.get('instagram')?.errors
-          }"
-          formControlName="instagram"
-          id="instagram"
-          type="text"
-          aria-describedby="instagram-help"
+          aria-describedby="longDescription-help"
           pInputText
         />
         <small
           *ngIf="
-            form.get('instagram')?.touched && form.get('instagram')?.errors
+            form.get('longDescription')?.touched &&
+            form.get('longDescription')?.errors
           "
-          id="instagram-help"
+          id="longDescription-help"
           class="p-error block"
-          >La Url debe ser válida.</small
+          >La descripción es obligatoria.</small
         >
       </div>
 
@@ -182,4 +162,3 @@
     </form>
   </div>
 </div>
-
