@@ -38,6 +38,16 @@ export class HomeFormComponent implements OnInit {
   });
 
   get welcomeText(){ return this.formWelcomeText.get('welcomeText')!; }
+  
+  formSlides = new FormGroup({
+    slide1: new FormControl('', [Validators.required]),
+    slide2: new FormControl('', [Validators.required]),
+    slide3: new FormControl('', [Validators.required]),
+  })
+
+  get slide1(){ return this.formSlides.get('slide1')!; }
+  get slide2(){ return this.formSlides.get('slide2')!; }
+  get slide3(){ return this.formSlides.get('slide3')!; }
 
   showOrganization(response: any){
     this.organization = <Organization>(response.data); 
@@ -60,18 +70,25 @@ export class HomeFormComponent implements OnInit {
 
     this.indexSlide1 = this.listSlides.findIndex(slide=>{
       return slide.order == 1;
-    })
+    })    
     this.selectedSlide1 = this.listSlides[this.indexSlide1];
+    this.formSlides.get('slide1')?.patchValue(this.selectedSlide1);
 
     this.indexSlide2 = this.listSlides.findIndex(slide=>{
       return slide.order == 2;
     })
     this.selectedSlide2 = this.listSlides[this.indexSlide2];
+    this.formSlides.get('slide2')?.patchValue(this.selectedSlide2);
 
     this.indexSlide3 = this.listSlides.findIndex(slide=>{
       return slide.order == 3;
     })
     this.selectedSlide3 = this.listSlides[this.indexSlide3];
+    this.formSlides.get('slide3')?.patchValue(this.selectedSlide3);
+  }
+
+  updateSlide1(){    
+    console.log(this.selectedSlide1)
   }
 
   ngOnInit(): void {

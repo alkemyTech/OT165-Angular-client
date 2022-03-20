@@ -21,40 +21,46 @@
     </div>
 </div>
 <div class="container">
-    <div class="row mt-4">
+    <div class="row mt-4" [formGroup]="formSlides">
         <div class="col-12 col-sm-12 col-md-6 col-lg-4">
             <h5>Slide 1</h5>
-            <p-dropdown [options]="listSlides" [(ngModel)]="selectedSlide1" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Seleccionar un Slide">
+            <p-dropdown [options]="listSlides" [(ngModel)]="selectedSlide1" formControlName="slide1" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Seleccionar un Slide">
                 <ng-template pTemplate="selectedItem">
                     <div *ngIf="selectedSlide1">
-                        <img [src]="selectedSlide1.image" width="100"/> {{selectedSlide1.name}}                        
+                        <img [src]="selectedSlide1.image" width="100"/> {{selectedSlide1.name}}                  
                     </div>
                 </ng-template>
                 <ng-template let-selectedSlide1 pTemplate="item">
                     <div class="country-item">
-                        <img [src]="selectedSlide1.image" width="100"/> {{selectedSlide1.name}}            
+                        <img [src]="selectedSlide1.image" width="100"/> {{selectedSlide1.name}}                                      
                     </div>
                 </ng-template>
             </p-dropdown>
+            <div *ngIf="slide1.invalid && slide1.dirty" class="alert alert-danger mt-2" role="alert">
+                <small>Debe seleccionar el Slide 1</small>
+            </div>
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4">
             <h5>Slide 2</h5>
-            <p-dropdown [options]="listSlides" [(ngModel)]="selectedSlide2" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Seleccionar un Slide">
+            <p-dropdown [options]="listSlides" [(ngModel)]="selectedSlide2" formControlName="slide2" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Seleccionar un Slide">
                 <ng-template pTemplate="selectedItem">
                     <div *ngIf="selectedSlide2">
-                        <img [src]="selectedSlide2.image" width="100"/> {{selectedSlide2.name}}                        
+                        <img [src]="selectedSlide2.image" width="100"/> {{selectedSlide2.name}}              
                     </div>
                 </ng-template>
                 <ng-template let-selectedSlide2 pTemplate="item">
                     <div class="country-item">
                         <img [src]="selectedSlide2.image" width="100"/> {{selectedSlide2.name}}            
-                    </div>
+                    </div>                    
                 </ng-template>
             </p-dropdown>
+            <div *ngIf="slide2.invalid && slide2.dirty" class="alert alert-danger mt-2" role="alert">
+                <small>Debe seleccionar el Slide 2</small>
+            </div>    
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4">
             <h5>Slide 3</h5>
-            <p-dropdown [options]="listSlides" [(ngModel)]="selectedSlide3" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Seleccionar un Slide">
+            <p-dropdown [options]="listSlides" [(ngModel)]="selectedSlide3" formControlName="slide3" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Seleccionar un Slide">
                 <ng-template pTemplate="selectedItem">
                     <div *ngIf="selectedSlide3">
                         <img [src]="selectedSlide3.image" width="100"/> {{selectedSlide3.name}}                        
@@ -66,6 +72,9 @@
                     </div>
                 </ng-template>
             </p-dropdown>
+            <div *ngIf="slide3.invalid && slide3.dirty" class="alert alert-danger mt-2" role="alert">
+                <small>Debe seleccionar el Slide 3</small>
+            </div>  
         </div>
     </div>
 </div>
@@ -74,7 +83,7 @@
     <div class="row justify-content-center">
         <form class="col-12 col-sm-8 col-md-6 col-lg-6">
             <div class="d-grid gap-2 col-4 mx-auto mt-2">
-                <button pButton pRipple type="button" (click)="updateWelcomeText()" label="Guardar cambios" class="primary"></button>
+                <button pButton pRipple type="button" (click)="updateWelcomeText()" label="Guardar cambios" class="primary" [disabled]="!formSlides.valid"></button>
             </div>
         </form>
     </div>
