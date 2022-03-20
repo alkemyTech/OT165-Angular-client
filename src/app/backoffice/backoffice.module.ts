@@ -46,3 +46,4 @@ import { PublicModule } from "../public/public.module";
     PublicModule
   ]
 })
+export class BackOfficeModule {}
