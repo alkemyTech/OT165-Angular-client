@@ -41,11 +41,11 @@ export class DonationComponent {
 
   constructor(private router: Router) {}
 
-  changeSelected(id: number) {
-    this.selected = id;
+  changeSelected(index: number) {
+    this.selected = index;
   }
 
-  donar(e: Event) {
+  donate(e: Event) {
     e.preventDefault();
     this.router.navigate(["/gracias"]);
     window.open(this.amounts[this.selected].url);
