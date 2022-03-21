@@ -24,7 +24,6 @@
                 <ckeditor formControlName="shortDescription" data="<p>Breve descripción!</p>"></ckeditor>
                 <small *ngIf="form.get('shortDescription')?.touched && form.get('shortDescription')?.errors" id="logo-help" class="p-error block">El detalle es obligatorio.</small>
             </div>
-
             
             <div class="field">
                 <label for="longDescription" class="block">Descripción</label>
@@ -49,7 +48,6 @@
                 <input [ngClass]="{'ng-invalid ng-dirty': form.get('instagram')?.touched && form.get('instagram')?.errors}" formControlName="instagram" id="instagram" type="text" aria-describedby="instagram-help" pInputText />
                 <small *ngIf="form.get('instagram')?.touched && form.get('instagram')?.errors" id="instagram-help" class="p-error block">La Url debe ser válida.</small>
             </div>
-
 
             <div class="field">
                 <label for="twitter" class="block">Twitter</label>
