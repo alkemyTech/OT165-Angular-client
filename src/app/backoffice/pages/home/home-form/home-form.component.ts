@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Organization } from 'src/app/backoffice/entity/organization';
-import { Slide } from 'src/app/backoffice/entity/slide';
+import { Organization } from 'src/app/backoffice/models/organization';
+import { Slide } from 'src/app/backoffice/models/slide';
 import { OrganizationService } from 'src/app/backoffice/services/organization.service';
 import { SlideService } from 'src/app/backoffice/services/slide.service';
 
@@ -10,7 +10,7 @@ import { SlideService } from 'src/app/backoffice/services/slide.service';
   templateUrl: './home-form.component.html',
   styleUrls: ['./home-form.component.scss']
 })
-export class HomeFormComponent implements OnInit {
+export class HomeFormComponent{
   listSlides!:Array<Slide>;  
   organization!:Organization;
   selectedSlide1!:Slide;
@@ -172,8 +172,4 @@ export class HomeFormComponent implements OnInit {
       this.getSlidesList();
     }, 1000);  
   }
-
-  ngOnInit(): void {
-  }
-
 }
