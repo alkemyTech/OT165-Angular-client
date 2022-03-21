@@ -24,7 +24,7 @@ export class SlideService {
     return this.http.get(this.api + "slides");
   }
 
-  updateOrderOfSlide(slide: Slide){                
+  updateOrderOfSlide(slide: any){                
     return this.http.put(this.api + "slides/" + slide.id, slide);
   }
 }

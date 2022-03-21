@@ -11,8 +11,7 @@ import { SlideService } from 'src/app/backoffice/services/slide.service';
   styleUrls: ['./home-form.component.scss']
 })
 export class HomeFormComponent implements OnInit {
-  listSlides!:Array<Slide>;
-  slidesOfHome!:Array<Slide>;
+  listSlides!:Array<Slide>;  
   organization!:Organization;
   selectedSlide1!:Slide;
   selectedSlide2!:Slide;
@@ -20,14 +19,26 @@ export class HomeFormComponent implements OnInit {
   indexSlide1!:number;
   indexSlide2!:number;
   indexSlide3!:number;
+  previousSlide1!:any;
+  currentSlide1!:any;
+  previousSlide2!:any;
+  currentSlide2!:any;
+  previousSlide3!:any;
+  currentSlide3!:any;
+  updateMessageModal!:boolean;
 
   constructor(private serviceOrganization:OrganizationService, private serviceSlide:SlideService) { 
-    this.organization = new Organization();    
+    this.organization = new Organization();
+    this.updateMessageModal = false;
 
     this.serviceOrganization.getOrganization().subscribe(
       response => { this.showOrganization(response)}
     )
 
+    this.getSlidesList();
+  }
+
+  getSlidesList(){
     this.serviceSlide.getListOfSlides().subscribe(
       response => { this.showSlides(response) },  
     )
@@ -38,16 +49,6 @@ export class HomeFormComponent implements OnInit {
   });
 
   get welcomeText(){ return this.formWelcomeText.get('welcomeText')!; }
-  
-  formSlides = new FormGroup({
-    slide1: new FormControl('', [Validators.required]),
-    slide2: new FormControl('', [Validators.required]),
-    slide3: new FormControl('', [Validators.required]),
-  })
-
-  get slide1(){ return this.formSlides.get('slide1')!; }
-  get slide2(){ return this.formSlides.get('slide2')!; }
-  get slide3(){ return this.formSlides.get('slide3')!; }
 
   showOrganization(response: any){
     this.organization = <Organization>(response.data); 
@@ -71,24 +72,105 @@ export class HomeFormComponent implements OnInit {
     this.indexSlide1 = this.listSlides.findIndex(slide=>{
       return slide.order == 1;
     })    
-    this.selectedSlide1 = this.listSlides[this.indexSlide1];
-    this.formSlides.get('slide1')?.patchValue(this.selectedSlide1);
+    this.selectedSlide1 = this.listSlides[this.indexSlide1];    
 
     this.indexSlide2 = this.listSlides.findIndex(slide=>{
       return slide.order == 2;
     })
-    this.selectedSlide2 = this.listSlides[this.indexSlide2];
-    this.formSlides.get('slide2')?.patchValue(this.selectedSlide2);
+    this.selectedSlide2 = this.listSlides[this.indexSlide2];    
 
     this.indexSlide3 = this.listSlides.findIndex(slide=>{
       return slide.order == 3;
     })
-    this.selectedSlide3 = this.listSlides[this.indexSlide3];
-    this.formSlides.get('slide3')?.patchValue(this.selectedSlide3);
+    this.selectedSlide3 = this.listSlides[this.indexSlide3];    
   }
 
   updateSlide1(){    
-    console.log(this.selectedSlide1)
+    if(this.selectedSlide1 != null){
+      this.previousSlide1 = {
+        id: this.listSlides[this.indexSlide1].id,
+        name: this.listSlides[this.indexSlide1].name,
+        order: 0
+      }      
+
+      this.currentSlide1 = {
+        id: this.selectedSlide1.id,
+        name: this.selectedSlide1.name,
+        order: 1
+      }      
+    }
+  }
+
+  updateSlide2(){    
+    if(this.selectedSlide2 != null){
+      this.previousSlide2 = {
+        id: this.listSlides[this.indexSlide2].id,
+        name: this.listSlides[this.indexSlide2].name,
+        order: 0
+      }      
+
+      this.currentSlide2 = {
+        id: this.selectedSlide2.id,
+        name: this.selectedSlide2.name,
+        order: 2
+      }      
+    }
+  }
+
+  updateSlide3(){    
+    if(this.selectedSlide3 != null){
+      this.previousSlide3 = {
+        id: this.listSlides[this.indexSlide3].id,
+        name: this.listSlides[this.indexSlide3].name,
+        order: 0
+      }      
+
+      this.currentSlide3 = {
+        id: this.selectedSlide3.id,
+        name: this.selectedSlide3.name,
+        order: 3
+      }      
+    }
+  }
+
+  updateSlides(){
+    this.updateMessageModal = false;
+
+    if(this.selectedSlide1.id == this.selectedSlide2.id || this.selectedSlide1.id == this.selectedSlide3.id || this.selectedSlide2.id == this.selectedSlide3.id){
+      this.updateMessageModal = true;
+      return;
+    }
+    
+    if(this.previousSlide1 != null && this.currentSlide1 != null){
+      this.serviceSlide.updateOrderOfSlide(this.previousSlide1).subscribe(
+        response => { response },
+      );
+      this.serviceSlide.updateOrderOfSlide(this.currentSlide1).subscribe(
+        response => { response },
+      );
+    }
+    
+    if(this.previousSlide2 != null && this.currentSlide2 != null){
+      this.serviceSlide.updateOrderOfSlide(this.previousSlide2).subscribe(
+        response => { response },
+      );
+      this.serviceSlide.updateOrderOfSlide(this.currentSlide2).subscribe(
+        response => { response },
+      );
+    }
+    
+    if(this.previousSlide3 != null && this.currentSlide3 != null){
+      this.serviceSlide.updateOrderOfSlide(this.previousSlide3).subscribe(
+        response => { response },
+      );
+      this.serviceSlide.updateOrderOfSlide(this.currentSlide3).subscribe(
+        response => { response },
+      );
+    }
+
+    setTimeout(() => {
+      this.getSlidesList();
+    }, 1000);  
   }
 
   ngOnInit(): void {
