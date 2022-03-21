@@ -24,7 +24,6 @@ import { PublicModule } from "../public/public.module";
 import {FileUploadModule} from 'primeng/fileupload';
 import {DialogModule} from 'primeng/dialog';
 import {HttpClientModule} from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -40,7 +39,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     OrganizationFormComponent
   ],
   imports: [
-    BrowserAnimationsModule,
     DialogModule,
     FileUploadModule,
     HttpClientModule,
