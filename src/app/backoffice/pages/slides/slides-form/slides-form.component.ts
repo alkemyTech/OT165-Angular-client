@@ -27,7 +27,7 @@ export class SlidesFormComponent implements OnInit {
     name: ["", [Validators.required, Validators.minLength(4)]],
     description: ["", [Validators.required, Validators.minLength(6)]],
     order: ["", [Validators.required]],
-    img: [[], [Validators.required]],
+    image: ["", [Validators.required]],
   });
 
   constructor(
@@ -41,7 +41,7 @@ export class SlidesFormComponent implements OnInit {
       this.datos.controls["name"].setValue(this.slide.data.name);
       this.datos.controls["description"].setValue(this.slide.data.description);
       this.datos.controls["order"].setValue(this.slide.data.order);
-      this.datos.controls["img"].setValue(this.slide.data.img);
+      this.datos.controls["image"].setValue(this.slide.data.image);
       this.edit = true;
       this.title = "Editar";
     } else {
@@ -119,6 +119,6 @@ export class SlidesFormComponent implements OnInit {
   private _handleReaderLoaded(e: any) {
     let reader = e.target;
     this.uploadedFile = reader.result;
-    this.datos.patchValue({ img: this.uploadedFile });
+    this.datos.patchValue({ image: this.uploadedFile });
   }
 }
