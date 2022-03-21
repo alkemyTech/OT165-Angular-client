@@ -22,7 +22,10 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { PublicModule } from "../public/public.module";
 
 import {FileUploadModule} from 'primeng/fileupload';
+import {DialogModule} from 'primeng/dialog';
 import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import {HttpClientModule} from '@angular/common/http';
     OrganizationFormComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    DialogModule,
     FileUploadModule,
     HttpClientModule,
     CommonModule,

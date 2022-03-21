@@ -1,11 +1,18 @@
 export interface Slide {
-  name: string;
-  description: string;
-  order: string;
-  img: file[];
+  message: string;
+  success: boolean;
+  data: Data;
 }
 
-interface file {
+export interface Data {
+  id: number,
+  name: string,
+  description: string,
+  order: number,
+  img: File[],
+}
+
+export interface File {
   lastModified: number;
   lastModifiedDate: Date;
   name: string;

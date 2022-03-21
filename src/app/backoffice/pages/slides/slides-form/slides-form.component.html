@@ -1,39 +1,112 @@
 <div class="wrapper fadeInDown">
-    <div id="formContent">
-
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <img class="logo" src="../../../../../assets/images/logo.png" alt="logo">
-        <h4>{{title}} Slides</h4>
-      </div>
-  
-      <!-- Slide Form -->
-      <form [formGroup]="datos">
-
-        <span class="p-float-label">
-            <input [ngClass]="{'ng-invalid ng-dirty': datos.get('name')?.touched && datos.get('name')?.errors}" id="name" type="text" pInputText formControlName="name"> 
-            <label for="name">Nombre</label>
-            <small *ngIf="datos.get('name')?.touched && datos.get('name')?.errors" id="name" class="p-error block">El nombre debe tener más de 4 caracteres</small>
-        </span>
-
-        <span class="p-float-label">
-            <input [ngClass]="{'ng-invalid ng-dirty': datos.get('order')?.touched && datos.get('order')?.errors}" id="order" type="text" pInputText formControlName="order" aria-describedby="order-help" class="ng-invalid ng-dirty" pInputText> 
-            <label for="order">Orden</label>
-            <small *ngIf="datos.get('order')?.touched && datos.get('order')?.errors" id="order-help" class="p-error block">El orden debe ser únicp</small>
-        </span>
-
-        <div class="field">
-            <label for="description">Descripción</label>
-            <ckeditor formControlName="description"></ckeditor>
-            <small *ngIf="datos.get('description')?.touched && datos.get('description')?.errors" id="description" class="p-error block">La descreipción debe tener más de 6 caracteres</small>
-        </div>
-
-        <div class="field">
-            <label for="img">Subir Imagen</label>
-            <p-fileUpload name="myfile[]" [customUpload]="true" (uploadHandler)="myUploader($event)" url="./upload.php" accept="image/*"></p-fileUpload>
-        </div>
-        
-      </form>
-    
+  <div id="formContent">
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img
+        class="logo"
+        src="../../../../../assets/images/logo.png"
+        alt="logo"
+      />
+      <h4>{{ title }} Slides</h4>
     </div>
+
+    <!-- Slide Form -->
+    <form [formGroup]="datos" (ngSubmit)="edit ? editSlide() : createSlide()">
+      <span class="p-float-label">
+        <input
+          class="fadeIn second"
+          [ngClass]="{
+            'ng-invalid ng-dirty':
+              datos.get('name')?.touched && datos.get('name')?.errors
+          }"
+          id="name"
+          type="text"
+          pInputText
+          formControlName="name"
+        />
+        <label for="name">Nombre</label>
+        <small
+          *ngIf="datos.get('name')?.touched && datos.get('name')?.errors"
+          id="name"
+          class="p-error block"
+          >El nombre debe tener más de 4 caracteres</small
+        >
+      </span>
+
+      <span class="p-float-label">
+        <input
+          class="fadeIn third"
+          [ngClass]="{
+            'ng-invalid ng-dirty':
+              datos.get('order')?.touched && datos.get('order')?.errors
+          }"
+          id="order"
+          type="text"
+          pInputText
+          formControlName="order"
+          aria-describedby="order-help"
+          pInputText
+        />
+        <label for="order">Orden</label>
+        <small
+          *ngIf="datos.get('order')?.touched && datos.get('order')?.errors"
+          id="order-help"
+          class="p-error block"
+          >El orden debe ser único</small
+        >
+      </span>
+
+      <div class="field">
+        <label for="description">Descripción</label>
+        <ckeditor
+          class="fadeIn fourth"
+          formControlName="description"
+        ></ckeditor>
+        <small
+          *ngIf="
+            datos.get('description')?.touched &&
+            datos.get('description')?.errors
+          "
+          id="description"
+          class="p-error block"
+          >La descreipción debe tener más de 6 caracteres</small
+        >
+      </div>
+
+      <div class="field">
+        <label for="img">Subir Imagen</label>
+        <p-fileUpload
+          name="myfile[]"
+          [customUpload]="true"
+          (uploadHandler)="myUploader($event)"
+          url="./upload.php"
+          accept="image/*"
+        ></p-fileUpload>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg">{{ title }}</button>
+    </form>
   </div>
+</div>
+
+
+<p-dialog
+  header={{header}}
+  [(visible)]="display"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <p class="m-0">
+    {{textModal}}
+  </p>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="modalDismiss(stateRes)"
+      label="Ok"
+      styleClass="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>
