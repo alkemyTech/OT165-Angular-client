@@ -21,6 +21,12 @@ import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from 'ckeditor4-angular';
 import { PublicModule } from "../public/public.module";
 
+import {FileUploadModule} from 'primeng/fileupload';
+import {DialogModule} from 'primeng/dialog';
+import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     ActivityFormComponent,
@@ -34,6 +40,10 @@ import { PublicModule } from "../public/public.module";
     OrganizationFormComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    DialogModule,
+    FileUploadModule,
+    HttpClientModule,
     CommonModule,
     BackOfficeRoutingModule,
     RouterModule,

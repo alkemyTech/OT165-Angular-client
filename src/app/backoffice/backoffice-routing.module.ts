@@ -6,6 +6,7 @@ import { LoginFormComponent } from "./pages/auth/login-form/login-form.component
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { HomeFormComponent } from "./pages/home/home-form/home-form.component";
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
+import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 
 const routes: Routes = [
   { 
@@ -14,9 +15,10 @@ const routes: Routes = [
       { path: 'actividades', component: ActivityFormComponent },
       { path: 'registro', component: RegisterFormComponent, pathMatch: 'full' },
       { path: 'login', component: LoginFormComponent, pathMatch: 'full' },
-      { path: 'organization/edit', component: OrganizationFormComponent },
-      { path: '**', redirectTo: 'actividades'},
-      { path: 'home-form', component: HomeFormComponent}
+      { path: 'organization/edit', component: OrganizationFormComponent },      
+      { path: 'home-form', component: HomeFormComponent},
+      { path: 'slides', component: SlidesFormComponent},
+      { path: '**', redirectTo: 'actividades'}
     ]
   }
 ];
