@@ -36,11 +36,7 @@ export class CategoriesFormComponent implements OnInit {
     this.paramID = this.route.snapshot.params['id'] != undefined ? this.route.snapshot.params['id'] : 0;    
   }
 
-  ngOnInit(): void {
-    /* if(this.category.id) {
-      this.setCategoryForm(this.category)
-      this.actionType = 'Editar'
-    } */
+  ngOnInit(): void {    
     if(this.paramID != 0) {
       this.getCategory(this.paramID);
       this.actionType = 'Editar';
@@ -54,13 +50,7 @@ export class CategoriesFormComponent implements OnInit {
       next: async (res) => {
         this.category = await res.data;
         this.setCategoryForm(this.category)        
-      },
-      error: (err) => {
-        console.log(err)
-      },
-      complete: () => {
-        
-      }
+      }     
     })
   }
 
@@ -87,8 +77,7 @@ export class CategoriesFormComponent implements OnInit {
   // set base64 string to image field at formulary
   _handleReaderLoaded(e: any) {
     let reader = e.target;
-    this.uploadedFile = reader.result;
-    console.log('image Src', this.uploadedFile);
+    this.uploadedFile = reader.result;    
     this.catForm.patchValue({image: this.uploadedFile})          
   }
 
@@ -105,32 +94,11 @@ export class CategoriesFormComponent implements OnInit {
         name: this.catForm.get('name')?.value,
         description: this.catForm.get('description')?.value
       } 
-    }
-    console.log(updateCategory)
+    }    
     if(this.category.id){
-      this.categoryService.updateCategoryById(this.category.id, updateCategory).subscribe({
-        next: res => {
-          console.log(res)
-        },
-        error: err => {
-          console.log(err)
-        },
-        complete: () => {
-
-        }
-      })
+      this.categoryService.updateCategoryById(this.category.id, updateCategory).subscribe();
     } else {
-      this.categoryService.storeNewCategory(this.catForm.value).subscribe({
-        next: res => {
-          console.log(res)
-        },
-        error: err => {
-
-        },
-        complete: () => {
-
-        }
-      })
+      this.categoryService.storeNewCategory(this.catForm.value).subscribe();
     } 
     
   }
