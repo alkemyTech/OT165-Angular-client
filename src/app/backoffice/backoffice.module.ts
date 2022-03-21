@@ -12,36 +12,40 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
+import { OrganizationComponent } from "./pages/organization/organization-view/organization.component";
 
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from "primeng/inputtext";
+import { ButtonModule } from "primeng/button";
+import { FileUploadModule } from "primeng/fileupload";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
-import { CKEditorModule } from 'ckeditor4-angular';
+import { CKEditorModule } from "ckeditor4-angular";
 
 @NgModule({
-  declarations: [
-    ActivityFormComponent,
-    LoginFormComponent,
-    RegisterFormComponent,
-    CategoriesFormComponent,
-    NewsFormComponent,
-    SlidesFormComponent,
-    TestimonialFormComponent,
-    UserFormComponent,
-    OrganizationFormComponent
-  ],
-  imports: [
-    CommonModule,
-    BackOfficeRoutingModule,
-    RouterModule,
-    ReactiveFormsModule,
-    FormsModule,
-    InputTextModule,
-    ButtonModule,
-    RxReactiveFormsModule,
-    CKEditorModule
-  ]
+    declarations: [
+        ActivityFormComponent,
+        LoginFormComponent,
+        RegisterFormComponent,
+        CategoriesFormComponent,
+        NewsFormComponent,
+        SlidesFormComponent,
+        TestimonialFormComponent,
+        UserFormComponent,
+        OrganizationFormComponent,
+        OrganizationComponent,
+    ],
+    imports: [
+        CommonModule,
+        BackOfficeRoutingModule,
+        RouterModule,
+        ReactiveFormsModule,
+        FormsModule,
+        InputTextModule,
+        ButtonModule,
+        RxReactiveFormsModule,
+        CKEditorModule,
+        FileUploadModule,
+    ],
 })
 export class BackOfficeModule {}

@@ -1,5 +1,5 @@
 .container-fluid {
-    padding: 0 30px;
+    padding: 0 20px;
 }
 
 .header {
@@ -29,6 +29,37 @@ form {
     flex-direction: column;
 }
 
-button {
-    margin-top: 20px;
+h5 {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(33, 37, 41);
+    font-weight: 400;
+}
+
+.text-container {
+    border: 1px solid #00000047;
+    padding: 10px;
+    border-radius: 6px;
+    min-height: 46px;
+}
+
+.text-container p {
+    margin: 0;
+}
+
+.text-container img {
+    border: 1px solid #00000047;
+    width: 60%;
+}
+
+#logo-text {
+    color: #0000008c;
+    font-size: 13px;
+}
+
+@media (min-width: 768px) {
+    .container-fluid {
+        padding: 0 30px;
+    }
 }
