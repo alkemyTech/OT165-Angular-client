@@ -5,6 +5,7 @@ import { ActivityFormComponent } from "./pages/activities/activity-form/activity
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
+import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 
 const routes: Routes = [
   { 
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'registro', component: RegisterFormComponent, pathMatch: 'full' },
       { path: 'login', component: LoginFormComponent, pathMatch: 'full' },
       { path: 'organization/edit', component: OrganizationFormComponent },
+      { path: 'slides', component: SlidesFormComponent},
       { path: '**', redirectTo: 'actividades'}
     ]
   }
