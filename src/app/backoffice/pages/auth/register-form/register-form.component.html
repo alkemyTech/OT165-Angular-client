@@ -1,6 +1,9 @@
 <div class="container">
   <header class="header">
-    <img class="logo" src="../../../../../assets/images/logo.png" alt="logo">
+    <app-logo
+      [width]="200"
+      [margin]="60"
+    ></app-logo>
     <h1>Registro de usuario</h1>
   </header>
   <main>
@@ -69,6 +72,4 @@
       </div>
 
       <button (click)="register($event)" pButton pRipple type="button" label="Registrarse" class="primary"></button>
-    </form>
-  </main>
-</div>
+      <a routerLink="/login">Ingresar</a>
