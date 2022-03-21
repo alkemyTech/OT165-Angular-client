@@ -69,7 +69,7 @@
           "
           id="description"
           class="p-error block"
-          >La descreipción debe tener más de 6 caracteres</small
+          >La descripción debe tener más de 6 caracteres</small
         >
       </div>
 
@@ -82,6 +82,15 @@
           url="./upload.php"
           accept="image/*"
         ></p-fileUpload>
+        <small
+          *ngIf="
+            datos.get('img')?.touched ||
+            datos.get('img')?.errors
+          "
+          id="img"
+          class="p-error block"
+          >Debe cargar una imagen (Upload)</small
+        >
       </div>
 
       <button type="submit" class="btn btn-primary btn-lg">{{ title }}</button>
