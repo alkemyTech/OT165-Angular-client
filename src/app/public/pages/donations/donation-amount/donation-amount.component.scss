@@ -1,0 +1,36 @@
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 4px var(--primary);
+  cursor: pointer;
+}
+.content {
+  width: 60%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+h3, p {
+  text-align: center;
+}
+h3 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+p {
+  width: 100%;
+  font-size: 11px;
+  margin: 0;
+}
+.circle-selected {
+  background-color: var(--danger);
+  border: solid 4px var(--danger);
+  color: white;
+}
