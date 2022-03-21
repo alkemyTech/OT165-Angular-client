@@ -17,10 +17,12 @@ const routes: Routes = [
       {
         path: "donar",
         component: DonationComponent,
+        pathMatch: "full",
       },
       {
         path: "gracias",
         component: ThanksComponent,
+        pathMatch: "full",
       },
     ],
   },

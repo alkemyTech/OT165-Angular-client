@@ -1,6 +1,7 @@
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { PublicRoutingModule } from "./public-routing.module";
 
 //Own Component
 import { HomeComponent } from "./pages/home/home.component";
@@ -19,8 +20,6 @@ import { DonationAmountComponent } from "./pages/donations/donation-amount/donat
 import { ImageCurvedComponent } from "./components/image-curved/image-curved.component";
 
 //Own Modules
-import { PublicRoutingModule } from "./public-routing.module";
-import { BackOfficeModule } from "../backoffice/backoffice.module";
 import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
@@ -42,11 +41,10 @@ import { SharedModule } from "../shared/shared.module";
     ListnewsComponent,
     SliderComponent,
     FooterComponent,
-    SharedModule,
   ],
   imports: [
-    BackOfficeModule,
     CommonModule,
+    SharedModule,
     RouterModule,
     PublicRoutingModule,
     ReactiveFormsModule,

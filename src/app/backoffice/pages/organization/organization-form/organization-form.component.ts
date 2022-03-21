@@ -36,7 +36,6 @@ export class OrganizationFormComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      console.log(this.form);
     }
   }
 }

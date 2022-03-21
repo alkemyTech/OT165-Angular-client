@@ -19,7 +19,11 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from "ckeditor4-angular";
-import {SharedModule} from "../shared/shared.module";
+import { SharedModule } from "../shared/shared.module";
+
+import { FileUploadModule } from "primeng/fileupload";
+import { DialogModule } from "primeng/dialog";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -34,6 +38,9 @@ import {SharedModule} from "../shared/shared.module";
     OrganizationFormComponent,
   ],
   imports: [
+    DialogModule,
+    FileUploadModule,
+    HttpClientModule,
     CommonModule,
     BackOfficeRoutingModule,
     RouterModule,
@@ -43,7 +50,7 @@ import {SharedModule} from "../shared/shared.module";
     ButtonModule,
     RxReactiveFormsModule,
     CKEditorModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [
     ActivityFormComponent,
