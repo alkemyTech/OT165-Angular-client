@@ -19,7 +19,7 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from "ckeditor4-angular";
-import { LogoComponent } from "../public/components/logo/logo.component";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -32,7 +32,6 @@ import { LogoComponent } from "../public/components/logo/logo.component";
     TestimonialFormComponent,
     UserFormComponent,
     OrganizationFormComponent,
-    LogoComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +43,7 @@ import { LogoComponent } from "../public/components/logo/logo.component";
     ButtonModule,
     RxReactiveFormsModule,
     CKEditorModule,
+    SharedModule
   ],
   exports: [
     ActivityFormComponent,
@@ -61,7 +61,6 @@ import { LogoComponent } from "../public/components/logo/logo.component";
     InputTextModule,
     RxReactiveFormsModule,
     CKEditorModule,
-    LogoComponent,
   ],
 })
 export class BackOfficeModule {}
