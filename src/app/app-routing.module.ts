@@ -1,19 +1,16 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import {AppComponent} from "./app.component";
-import { HomeFormComponent } from "./backoffice/pages/home/home-form/home-form.component";
 
 const routes: Routes = [
   {
-    path:"home",
-    component: AppComponent,
+    path: 'backoffice',
+    loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackOfficeModule)
   },
   {
-    path:"home-form",
-    component: HomeFormComponent,
+    path: '',
+    loadChildren: () => import('./public/public.module').then(m => m.PublicModule)
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

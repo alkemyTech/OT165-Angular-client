@@ -18,7 +18,6 @@ export class ActivityFormComponent implements OnInit {
 
   @Input() activity!: any
 
-  uploadedFiles: any[] = [];
   constructor() { }
 
   ngOnInit(): void {

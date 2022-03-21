@@ -12,6 +12,7 @@ import { InputNumberModule} from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { BackOfficeModule } from './backoffice/backoffice.module';
 //Own Modules
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     [
       BrowserModule, 
       AppRoutingModule, 
-      HttpClientModule, 
+      HttpClientModule,
+      BackOfficeModule,
       ButtonModule, 
       InputTextareaModule, 
       FormsModule, 
@@ -37,3 +39,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+
+
