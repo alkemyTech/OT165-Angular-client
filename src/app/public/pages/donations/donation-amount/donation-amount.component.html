@@ -1,0 +1,9 @@
+<div
+  [ngClass]="{'circle': true, 'circle-selected': selected}"
+  (click)="toggleSelect(index)"
+>
+  <div class="content">
+    <h3>{{item.amount | currency:'ARS':'symbol-narrow':'1.0'}}</h3>
+    <p>{{item.text}}</p>
+  </div>
+</div>
