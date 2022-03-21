@@ -1,0 +1,60 @@
+.container-fluid {
+  padding: 0;
+}
+
+main {
+  width: 100%;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+}
+
+.amounts {
+  width: 100%;
+  margin: 12px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.amount-item {
+  margin: 5px;
+}
+
+.confirmation {
+  width: 100%;
+  display: flex;
+  margin: 24px 0;
+}
+
+.confirmation-text p {
+  margin: 0;
+}
+
+.confirmation-button {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media screen and (min-width:600px) {
+  .confirmation {
+    margin: 48px 0;
+    justify-content: center;
+  }
+  .confirmation-text {
+    width: 300px;
+  }
+  .confirmation-button {
+    width: 150px;
+  }
+}
