@@ -1,3 +1,5 @@
+import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
+
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -12,6 +14,8 @@ const routes: Routes = [
     path: '',
     children: [
       { path: 'actividades', component: ActivityFormComponent },
+      { path: 'categorias/:id', component: CategoriesFormComponent},
+      { path: 'categorias', component: CategoriesFormComponent},      
       { path: 'registro', component: RegisterFormComponent, pathMatch: 'full' },
       { path: 'login', component: LoginFormComponent, pathMatch: 'full' },
       { path: 'organization/edit', component: OrganizationFormComponent },
