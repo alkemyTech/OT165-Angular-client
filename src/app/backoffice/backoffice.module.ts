@@ -13,7 +13,6 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 
-import {FileUploadModule} from 'primeng/fileupload';
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
 import { OrganizationComponent } from "./pages/organization/organization-view/organization.component";
 
@@ -22,19 +21,14 @@ import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
-import { AppRoutingModule } from "../app-routing.module";
-
 
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from "ckeditor4-angular";
 import { PublicModule } from "../public/public.module";
-
-import {FileUploadModule} from 'primeng/fileupload';
-import {DialogModule} from 'primeng/dialog';
-import {HttpClientModule} from '@angular/common/http';
-import { BackofficeComponent } from './pages/backoffice/backoffice.component';
-import { ControlComponent } from './pages/backoffice/control/control.component';
-
+import { DialogModule } from "primeng/dialog";
+import { HttpClientModule } from "@angular/common/http";
+import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
+import { ControlComponent } from "./pages/backoffice/control/control.component";
 
 @NgModule({
     declarations: [
@@ -49,7 +43,7 @@ import { ControlComponent } from './pages/backoffice/control/control.component';
         OrganizationFormComponent,
         OrganizationComponent,
         BackofficeComponent,
-        ControlComponent
+        ControlComponent,
     ],
     imports: [
         CommonModule,
@@ -65,6 +59,6 @@ import { ControlComponent } from './pages/backoffice/control/control.component';
         PublicModule,
         DialogModule,
         HttpClientModule,
-    ]
+    ],
 })
 export class BackOfficeModule {}
