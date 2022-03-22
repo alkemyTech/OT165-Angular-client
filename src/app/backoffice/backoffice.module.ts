@@ -18,10 +18,8 @@ import { OrganizationComponent } from "./pages/organization/organization-view/or
 
 import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from "primeng/button";
-import { FileUploadModule } from "primeng/fileupload";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
-import { AppRoutingModule } from "../app-routing.module";
 
 
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
