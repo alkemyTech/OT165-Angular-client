@@ -2,7 +2,6 @@ import { CategoriesFormComponent } from './backoffice/pages/categories/categorie
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-
 const routes: Routes = [
   {
     path: 'backoffice',
