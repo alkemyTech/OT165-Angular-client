@@ -7,9 +7,7 @@
 </app-image-curved>
 <div class="container-fluid">
   <main>
-    <h2>
-      Seleccione el monto a donar.
-    </h2>
+    <h2>Seleccione el monto a donar.</h2>
     <section class="amounts">
       <app-donation-amount
         *ngFor="let item of amounts; let i = index"
@@ -22,13 +20,27 @@
     </section>
     <section class="confirmation">
       <div class="confirmation-text">
-        <p>Te redireccionaremos a la página de Mercado Pago para que puedas completar  
-          tu donación de {{amounts[selected].amount | currency:'ARS':'symbol-narrow':'1.0'}}.
+        <p>
+          Te redireccionaremos a la página de Mercado Pago para que puedas
+          completar tu donación de
+          {{
+            amounts[selected].amount | currency: "ARS":"symbol-narrow":"1.0"
+          }}.
         </p>
       </div>
       <div class="confirmation-button">
-        <a pButton pRipple type="button" (click)="donate($event)" href="{{amounts[selected].url}}" target="_blank" label="Donar" class="primary"></a>
+        <a
+          pButton
+          pRipple
+          type="button"
+          (click)="donate($event)"
+          href="{{ amounts[selected].url }}"
+          target="_blank"
+          label="Donar"
+          class="primary"
+        ></a>
       </div>
     </section>
   </main>
 </div>
+

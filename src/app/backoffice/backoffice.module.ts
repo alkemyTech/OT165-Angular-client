@@ -24,11 +24,12 @@ import { FileUploadModule } from "primeng/fileupload";
 
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from "ckeditor4-angular";
+import { SharedModule } from "../shared/shared.module";
+import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
+import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { PublicModule } from "../public/public.module";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
-import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
-import { ControlComponent } from "./pages/backoffice/control/control.component";
 
 @NgModule({
     declarations: [
@@ -59,6 +60,24 @@ import { ControlComponent } from "./pages/backoffice/control/control.component";
         PublicModule,
         DialogModule,
         HttpClientModule,
+        SharedModule,
+    ],
+    exports: [
+        ActivityFormComponent,
+        LoginFormComponent,
+        RegisterFormComponent,
+        CategoriesFormComponent,
+        NewsFormComponent,
+        SlidesFormComponent,
+        TestimonialFormComponent,
+        UserFormComponent,
+        OrganizationFormComponent,
+        RouterModule,
+        ReactiveFormsModule,
+        FormsModule,
+        InputTextModule,
+        RxReactiveFormsModule,
+        CKEditorModule,
     ],
 })
 export class BackOfficeModule {}
