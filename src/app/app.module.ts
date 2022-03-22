@@ -8,19 +8,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeFormComponent } from './backoffice/pages/home/home-form/home-form.component';
+import { TitleComponent } from './shared/components/title/title.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule} from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-//Own Modules
 
 @NgModule({
   declarations: 
     [
       AppComponent, 
-      HomeFormComponent      
+      HomeFormComponent,
+      TitleComponent
     ],
   imports: 
     [
