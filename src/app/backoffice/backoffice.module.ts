@@ -13,7 +13,6 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 
-import {FileUploadModule} from 'primeng/fileupload';
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
 import { OrganizationComponent } from "./pages/organization/organization-view/organization.component";
 
@@ -21,48 +20,64 @@ import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from "primeng/button";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
-import { AppRoutingModule } from "../app-routing.module";
-
+import { FileUploadModule } from "primeng/fileupload";
 
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from "ckeditor4-angular";
+import { SharedModule } from "../shared/shared.module";
+import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
+import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { PublicModule } from "../public/public.module";
-
-import {DialogModule} from 'primeng/dialog';
-import {HttpClientModule} from '@angular/common/http';
-import { BackofficeComponent } from './pages/backoffice/backoffice.component';
-import { ControlComponent } from './pages/backoffice/control/control.component';
-
+import { HttpClientModule } from "@angular/common/http";
+import { DialogModule } from "primeng/dialog";
 
 @NgModule({
-    declarations: [
-        ActivityFormComponent,
-        LoginFormComponent,
-        RegisterFormComponent,
-        CategoriesFormComponent,
-        NewsFormComponent,
-        SlidesFormComponent,
-        TestimonialFormComponent,
-        UserFormComponent,
-        OrganizationFormComponent,
-        OrganizationComponent,
-        BackofficeComponent,
-        ControlComponent
-    ],
-    imports: [
-        CommonModule,
-        BackOfficeRoutingModule,
-        RouterModule,
-        ReactiveFormsModule,
-        FormsModule,
-        InputTextModule,
-        ButtonModule,
-        RxReactiveFormsModule,
-        CKEditorModule,
-        FileUploadModule,
-        PublicModule,
-        DialogModule,
-        HttpClientModule,
-    ]
+  declarations: [
+    ActivityFormComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
+    CategoriesFormComponent,
+    NewsFormComponent,
+    SlidesFormComponent,
+    TestimonialFormComponent,
+    UserFormComponent,
+    OrganizationFormComponent,
+    OrganizationComponent,
+    BackofficeComponent,
+    ControlComponent,
+  ],
+  imports: [
+    CommonModule,
+    BackOfficeRoutingModule,
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    InputTextModule,
+    ButtonModule,
+    RxReactiveFormsModule,
+    CKEditorModule,
+    FileUploadModule,
+    PublicModule,
+    DialogModule,
+    HttpClientModule,
+    SharedModule,
+  ],
+  exports: [
+    ActivityFormComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
+    CategoriesFormComponent,
+    NewsFormComponent,
+    SlidesFormComponent,
+    TestimonialFormComponent,
+    UserFormComponent,
+    OrganizationFormComponent,
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    InputTextModule,
+    RxReactiveFormsModule,
+    CKEditorModule,
+  ],
 })
 export class BackOfficeModule {}

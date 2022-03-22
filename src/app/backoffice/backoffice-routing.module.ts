@@ -1,4 +1,4 @@
-import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
+import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
@@ -13,24 +13,28 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { OrganizationComponent } from "./pages/organization/organization-view/organization.component";
 
 const routes: Routes = [
-  { 
-    path: '',    
+  {
+    path: "",
     children: [
-      { path: 'actividades', component: ActivityFormComponent },
-      { path: 'categorias/:id', component: CategoriesFormComponent},
-      { path: 'categorias', component: CategoriesFormComponent},      
-      { path: 'registro', component: RegisterFormComponent, pathMatch: 'full' },
-      { path: 'login', component: LoginFormComponent, pathMatch: 'full' },
-      { path: 'organization/edit', component: OrganizationFormComponent }, 
-      { path: "organization", component: OrganizationComponent, pathMatch: 'full' },
-      { path: 'home-form', component: HomeFormComponent},
-      { path: 'slides', component: SlidesFormComponent},
-      { path: '', component: BackofficeComponent}
-    ]
-  }
+      { path: "actividades", component: ActivityFormComponent },
+      { path: "categorias/:id", component: CategoriesFormComponent },
+      { path: "categorias", component: CategoriesFormComponent },
+      { path: "registro", component: RegisterFormComponent, pathMatch: "full" },
+      { path: "login", component: LoginFormComponent, pathMatch: "full" },
+      { path: "organization/edit", component: OrganizationFormComponent },
+      {
+        path: "organization",
+        component: OrganizationComponent,
+        pathMatch: "full",
+      },
+      { path: "home-form", component: HomeFormComponent },
+      { path: "slides", component: SlidesFormComponent },
+      { path: "", component: BackofficeComponent },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes)],
 })
 export class BackOfficeRoutingModule {}
