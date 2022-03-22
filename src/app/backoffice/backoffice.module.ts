@@ -25,6 +25,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {DialogModule} from 'primeng/dialog';
 import {HttpClientModule} from '@angular/common/http';
 import { BackofficeComponent } from './pages/backoffice/backoffice.component';
+import { ControlComponent } from './pages/backoffice/control/control.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { BackofficeComponent } from './pages/backoffice/backoffice.component';
     TestimonialFormComponent,
     UserFormComponent,
     OrganizationFormComponent,
-    BackofficeComponent
+    BackofficeComponent,
+    ControlComponent
   ],
   imports: [
     DialogModule,
