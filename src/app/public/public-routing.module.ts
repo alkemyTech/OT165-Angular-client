@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { ActivityFormComponent } from "./pages/activities/activity-form.component";
 
 //Own Component
 import { DonationComponent } from "./pages/donations/donation/donation.component";
@@ -14,6 +15,7 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "/home", pathMatch: "full" },
       { path: "home", component: HomeComponent },
+      { path: "actividad", component: ActivityFormComponent },
       {
         path: "donar",
         component: DonationComponent,
