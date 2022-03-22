@@ -13,7 +13,6 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 
-import {FileUploadModule} from 'primeng/fileupload';
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
 
 import { InputTextModule } from 'primeng/inputtext';
