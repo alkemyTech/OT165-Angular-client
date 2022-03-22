@@ -134,6 +134,8 @@ export class HomeFormComponent{
   }
 
   updateSlides(){
+    this.updateWelcomeText();
+    
     this.updateMessageModal = false;
 
     if(this.selectedSlide1.id == this.selectedSlide2.id || this.selectedSlide1.id == this.selectedSlide3.id || this.selectedSlide2.id == this.selectedSlide3.id){
