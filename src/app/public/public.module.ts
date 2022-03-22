@@ -21,6 +21,7 @@ import { ImageCurvedComponent } from "./components/image-curved/image-curved.com
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
+import { CarouselModule } from "./components/carousel/carousel.module";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SharedModule } from "../shared/shared.module";
     FooterComponent,
   ],
   imports: [
+    CarouselModule,
     CommonModule,
     SharedModule,
     RouterModule,
