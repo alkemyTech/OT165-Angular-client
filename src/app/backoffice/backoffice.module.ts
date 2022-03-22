@@ -29,7 +29,6 @@ import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from "ckeditor4-angular";
 import { PublicModule } from "../public/public.module";
 
-import {FileUploadModule} from 'primeng/fileupload';
 import {DialogModule} from 'primeng/dialog';
 import {HttpClientModule} from '@angular/common/http';
 import { BackofficeComponent } from './pages/backoffice/backoffice.component';
