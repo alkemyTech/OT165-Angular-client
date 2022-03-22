@@ -1,0 +1,6 @@
+<section class="title__container">
+  <img id="title__background__image" src="{{imagePath}}" (error)="setDefaultImage()" alt="{{title}}">
+  <div class="title__text">
+    <h1 [ngStyle]="{'color': textColor, 'text-shadow': '3px 4px 2px '+shadowColor}">{{title | uppercase}}</h1>
+  </div>  
+</section>
