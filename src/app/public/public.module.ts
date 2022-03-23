@@ -1,3 +1,5 @@
+import { ActivitiesListComponent } from './pages/activities/activities-list/activities-list.component';
+import { ActivityCardComponent } from './pages/activities/activity-card/activity-card.component';
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -37,7 +39,10 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     ThanksComponent,
     DonationAmountComponent,
     ImageCurvedComponent,
-    DetailComponent
+    DetailComponent,
+    AboutComponent,
+    ActivityCardComponent,
+    ActivitiesListComponent
   ],
   exports: [
     HomeComponent,
