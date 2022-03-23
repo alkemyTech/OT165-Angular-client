@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { Slide } from "./interface/slide.interface";
-import { ServiceSlide } from "./service/service-slide.service";
+import { Slide } from "../../../models/slide.interface";
+import { SlideService } from "../../../services/slide.service";
 import { Location } from "@angular/common";
+import { ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-slides-form",
@@ -10,9 +12,11 @@ import { Location } from "@angular/common";
   styleUrls: ["./slides-form.component.scss"],
 })
 export class SlidesFormComponent implements OnInit {
-  @Input() slide!: Slide;
+
   public title: string = "";
   public edit: boolean = false;
+  public slide$!: Observable<Slide>;
+  public id!: number
 
   /* Modal */
   public display: boolean = false;
@@ -32,18 +36,24 @@ export class SlidesFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private slideService: ServiceSlide,
-    public location: Location
+    private slideService: SlideService,
+    public location: Location,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    if (this.slide) {
-      this.datos.controls["name"].setValue(this.slide.data.name);
-      this.datos.controls["description"].setValue(this.slide.data.description);
-      this.datos.controls["order"].setValue(this.slide.data.order);
-      this.datos.controls["image"].setValue(this.slide.data.image);
-      this.edit = true;
-      this.title = "Editar";
+    this.id = this.route.snapshot.params.id;
+    if ( this.id) {
+      this.slide$ =  this.slideService.getSingleSlide(this.id)
+      this.slide$.subscribe( res => {
+        this.setSlideById(res);
+        this.edit = true;
+        this.title = "Editar";
+      },err => {
+        if (!err.success) {
+          this.title = "Crear";
+        }
+      })
     } else {
       this.title = "Crear";
     }
@@ -54,7 +64,7 @@ export class SlidesFormComponent implements OnInit {
   }
 
   public editSlide() {
-    this.slideService.upDateSlides(this.datos.value).subscribe(
+    this.slideService.upDateSlides(this.id, this.datos.value).subscribe(
       (res) => {
         if (res.success) {
           this.stateRes = true;
@@ -64,6 +74,7 @@ export class SlidesFormComponent implements OnInit {
         }
       },
       (error) => {
+        console.log(error)
         this.stateRes = false;
         this.header = "Error";
         this.textModal = "Ha ocurrido un error, vuelve a intentarlo";
@@ -100,6 +111,14 @@ export class SlidesFormComponent implements OnInit {
 
   public showModalDialog() {
     this.display = true;
+  }
+
+  private setSlideById(slide: Slide): Slide{
+    this.datos.controls["name"].setValue(slide.data.name);
+    this.datos.controls["description"].setValue(slide.data.description);
+    this.datos.controls["order"].setValue(slide.data.order);
+    this.datos.controls["image"].setValue(slide.data.image);
+    return slide
   }
 
   // onClick upload button convert image file to base64 string

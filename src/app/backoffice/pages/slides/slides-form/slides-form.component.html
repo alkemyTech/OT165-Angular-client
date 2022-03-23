@@ -73,6 +73,11 @@
         >
       </div>
 
+      <label *ngIf="id > 0">Imagen actual</label>   
+          <div *ngIf="id > 0">
+            <img src="{{this.datos.get('image')?.value}}" style="height: auto; max-width: 100px;" alt="not found">
+          </div>  
+
       <div class="field">
         <label for="img">Subir Imagen</label>
         <p-fileUpload
@@ -84,8 +89,7 @@
         ></p-fileUpload>
         <small
           *ngIf="
-            datos.get('img')?.touched ||
-            datos.get('img')?.errors
+            datos.get('image')?.errors
           "
           id="img"
           class="p-error block"
