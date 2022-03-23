@@ -21,6 +21,7 @@ import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DonationAmountComponent } from "./pages/donations/donation-amount/donation-amount.component";
 import { ImageCurvedComponent } from "./components/image-curved/image-curved.component";
+import { ContactComponent } from './pages/contact/contact.component';
 import { DetailComponent } from "./pages/activities/details/detail.component";
 
 //Own Modules
@@ -41,6 +42,7 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     ImageCurvedComponent,
     DetailComponent,
     AboutComponent,
+    ContactComponent,
     ActivityCardComponent,
     ActivitiesListComponent
 
