@@ -17,25 +17,24 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
 
-
 @NgModule({
-  declarations: [AppComponent, HomeFormComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BackOfficeModule,
-    PublicModule,
-    ButtonModule,
-    InputTextareaModule,
-    FormsModule,
-    InputNumberModule,
-    ReactiveFormsModule,
-    DropdownModule,
-    BrowserAnimationsModule,
-  ],
-  providers: [HttpClient],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, HomeFormComponent],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BackOfficeModule,
+        PublicModule,
+        ButtonModule,
+        InputTextareaModule,
+        FormsModule,
+        InputNumberModule,
+        ReactiveFormsModule,
+        DropdownModule,
+        BrowserAnimationsModule,
+    ],
+    providers: [HttpClient],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

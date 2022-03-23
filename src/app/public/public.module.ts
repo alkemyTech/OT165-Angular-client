@@ -10,6 +10,7 @@ import { NavComponent } from "./shared/nav/nav.component";
 import { ListnewsComponent } from "./components/listnews/listnews.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { FooterComponent } from "./shared/footer/footer.component";
+import { AboutComponent } from "./pages/aboutUs/about.component";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { InputNumberModule } from "primeng/inputnumber";
@@ -24,35 +25,37 @@ import { SharedModule } from "../shared/shared.module";
 import { DetailComponent } from "./pages/activities/details/detail.component";
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    PublicComponent,
-    NavComponent,
-    ListnewsComponent,
-    SliderComponent,
-    FooterComponent,
-    DonationComponent,
-    ThanksComponent,
-    DonationAmountComponent,
-    ImageCurvedComponent,
-    DetailComponent
-  ],
-  exports: [
-    HomeComponent,
-    NavComponent,
-    ListnewsComponent,
-    SliderComponent,
-    FooterComponent,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule,
-    PublicRoutingModule,
-    ReactiveFormsModule,
-    InputNumberModule,
-    InputTextModule,
-    ButtonModule,
-  ],
+    declarations: [
+        HomeComponent,
+        PublicComponent,
+        NavComponent,
+        ListnewsComponent,
+        SliderComponent,
+        FooterComponent,
+        DonationComponent,
+        ThanksComponent,
+        DonationAmountComponent,
+        ImageCurvedComponent,
+        AboutComponent,
+        DetailComponent
+    ],
+    exports: [
+        HomeComponent,
+        NavComponent,
+        ListnewsComponent,
+        SliderComponent,
+        FooterComponent,
+        AboutComponent,
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        RouterModule,
+        PublicRoutingModule,
+        ReactiveFormsModule,
+        InputNumberModule,
+        InputTextModule,
+        ButtonModule,
+    ],
 })
 export class PublicModule {}

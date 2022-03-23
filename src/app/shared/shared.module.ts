@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 //Own Components
-import {LogoComponent} from './logo/logo.component';
-import { TitleComponent } from './components/title/title.component';
+import { LogoComponent } from "./logo/logo.component";
+import { TitleComponent } from "./components/title/title.component";
 
 @NgModule({
   declarations: [
@@ -18,4 +18,4 @@ import { TitleComponent } from './components/title/title.component';
     TitleComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {}
