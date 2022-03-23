@@ -8,6 +8,7 @@ import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { PublicComponent } from "./public.component";
 import { AboutComponent } from "./pages/aboutUs/about.component";
+import { ContactComponent } from "./pages/contact/contact.component";
 
 const routes: Routes = [
     {
@@ -40,6 +41,11 @@ const routes: Routes = [
             {
                 path: "nosotros",
                 component: AboutComponent,
+                pathMatch: "full",
+            },
+            {
+                path: "contacto",
+                component: ContactComponent,
                 pathMatch: "full",
             },
         ],
