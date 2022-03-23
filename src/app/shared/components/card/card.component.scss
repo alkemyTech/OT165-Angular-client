@@ -1,6 +1,14 @@
 .card-container {
   width: 100%;
-  padding: 12px;
+  padding: 24px;
+  border-radius: 10px;
+  display: inline-block;
+  text-decoration: none;
+  color: #212529;
+  transition: 0.5s background-color;
+}
+.card-container:hover {
+  background-color: rgb(227, 227, 227);
 }
 .image-container {
   width: 100%;
@@ -32,6 +40,6 @@ p {
   .card-container {
     width: 260px;
     height: 280px;
-    padding: 7px;
+    padding: 12px;
   }
 }
