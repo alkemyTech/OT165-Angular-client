@@ -7,7 +7,6 @@ import { PublicRoutingModule } from "./public-routing.module";
 import { HomeComponent } from "./pages/home/home.component";
 import { PublicComponent } from "./public.component";
 import { NavComponent } from "./shared/nav/nav.component";
-import { ListnewsComponent } from "./components/listNews/listnews.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { AboutComponent } from "./pages/aboutUs/about.component";
@@ -20,13 +19,16 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { DonationAmountComponent } from "./pages/donations/donation-amount/donation-amount.component";
 import { ImageCurvedComponent } from "./components/image-curved/image-curved.component";
 import { DetailComponent } from "./pages/activities/details/detail.component";
+import { ListnewsComponent } from "./components/listnews/listnews.component";
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
 import { CarouselModule } from "./components/carousel/carousel.module";
+import { ActivityFormComponent } from "./pages/activities/activity-form.component";
 
 @NgModule({
   declarations: [
+    ActivityFormComponent,
     HomeComponent,
     PublicComponent,
     NavComponent,
@@ -40,13 +42,7 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     DetailComponent,
     AboutComponent,
   ],
-  exports: [
-    HomeComponent,
-    NavComponent,
-    ListnewsComponent,
-    SliderComponent,
-    FooterComponent,
-  ],
+  exports: [],
   imports: [
     CarouselModule,
     CommonModule,
@@ -58,6 +54,5 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     InputTextModule,
     ButtonModule,
   ],
-
 })
 export class PublicModule {}

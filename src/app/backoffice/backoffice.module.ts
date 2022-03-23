@@ -21,19 +21,21 @@ import { ButtonModule } from "primeng/button";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule } from "primeng/fileupload";
+import { DropdownModule } from "primeng/dropdown";
 
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from "ckeditor4-angular";
 import { SharedModule } from "../shared/shared.module";
 import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
 import { ControlComponent } from "./pages/backoffice/control/control.component";
-import { PublicModule } from "../public/public.module";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
+import {HomeFormComponent} from "./pages/home/home-form/home-form.component";
 
 @NgModule({
     declarations: [
         ActivityFormComponent,
+        HomeFormComponent,
         LoginFormComponent,
         RegisterFormComponent,
         CategoriesFormComponent,
@@ -52,32 +54,17 @@ import { HttpClientModule } from "@angular/common/http";
         RouterModule,
         ReactiveFormsModule,
         FormsModule,
+        DropdownModule,
         InputTextModule,
         ButtonModule,
         RxReactiveFormsModule,
         CKEditorModule,
         FileUploadModule,
-        PublicModule,
         DialogModule,
         HttpClientModule,
         SharedModule,
     ],
     exports: [
-        ActivityFormComponent,
-        LoginFormComponent,
-        RegisterFormComponent,
-        CategoriesFormComponent,
-        NewsFormComponent,
-        SlidesFormComponent,
-        TestimonialFormComponent,
-        UserFormComponent,
-        OrganizationFormComponent,
-        RouterModule,
-        ReactiveFormsModule,
-        FormsModule,
-        InputTextModule,
-        RxReactiveFormsModule,
-        CKEditorModule,
     ],
 })
 export class BackOfficeModule {}
