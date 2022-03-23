@@ -1,7 +1,7 @@
-<div class="card-container">
+<a class="card-container" [href]="href" (click)="onClick($event)">
   <div class="image-container">
     <img class="image" [src]="imageSrc" alt="not-found" (error)="errorImageSrc()">
   </div>
   <h3>{{title}}</h3>
   <p>{{description}}</p>
-</div>
+</a>
