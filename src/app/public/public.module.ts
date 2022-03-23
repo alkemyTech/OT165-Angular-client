@@ -7,7 +7,7 @@ import { PublicRoutingModule } from "./public-routing.module";
 import { HomeComponent } from "./pages/home/home.component";
 import { PublicComponent } from "./public.component";
 import { NavComponent } from "./shared/nav/nav.component";
-import { ListnewsComponent } from "./components/listnews/listnews.component";
+import { ListnewsComponent } from "./components/listNews/listnews.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { AboutComponent } from "./pages/aboutUs/about.component";
@@ -38,7 +38,7 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     DonationAmountComponent,
     ImageCurvedComponent,
     DetailComponent,
-    AboutComponent
+    AboutComponent,
   ],
   exports: [
     HomeComponent,
