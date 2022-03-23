@@ -37,7 +37,8 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     ThanksComponent,
     DonationAmountComponent,
     ImageCurvedComponent,
-    DetailComponent
+    DetailComponent,
+    AboutComponent
   ],
   exports: [
     HomeComponent,
