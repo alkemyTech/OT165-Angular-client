@@ -7,7 +7,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 import { HomeFormComponent } from "./backoffice/pages/home/home-form/home-form.component";
-import { TitleComponent } from "./shared/components/title/title.component";
 import { ButtonModule } from "primeng/button";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputNumberModule } from "primeng/inputnumber";
@@ -20,7 +19,7 @@ import { PublicModule } from "./public/public.module";
 
 
 @NgModule({
-  declarations: [AppComponent, HomeFormComponent, TitleComponent],
+  declarations: [AppComponent, HomeFormComponent],
   imports: [
     BrowserModule,
     CommonModule,
