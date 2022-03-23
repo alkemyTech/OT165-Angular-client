@@ -6,22 +6,15 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <form class="col-12 col-sm-8 col-md-6 col-lg-6" [formGroup]="formWelcomeText">
+        <form class="col-12 col-sm-8 col-md-6 col-lg-6 mb-4" [formGroup]="formWelcomeText">
             <div class="mb-1 mt-3">
                 <h5 class="form-label">Texto de Bienvenida</h5>
-                <textarea class="form-control" rows="2" pInputTextarea formControlName="welcomeText" [class.is-invalid]="welcomeText.invalid && welcomeText.touched"></textarea>
-                <div *ngIf="welcomeText.invalid && welcomeText.touched" class="alert alert-danger mt-2" role="alert">
+                <textarea class="form-control" rows="2" pInputTextarea formControlName="welcomeText"></textarea>
+                <div *ngIf="welcomeText.invalid && welcomeText.touched" class="p-error block mt-2">
                     <small>El texto de bienvenida debe tener un mínimo de 20 caracteres</small>
                 </div>
             </div>
-            <div class="d-grid gap-2 col-4 mx-auto mt-2">
-                <button pButton pRipple type="button" (click)="updateWelcomeText()" label="Modificar" class="primary" [disabled]="!formWelcomeText.valid"></button>
-            </div>
         </form>
-    </div>
-</div>
-<div class="container">
-    <div class="row justify-content-center mt-4">
         <div class="col-12 col-sm-12 col-md-12 col-lg-8 mb-4 mt-2 offset-lg-2">
             <h5>Slide 1</h5>
             <p-dropdown [options]="listSlides" [(ngModel)]="selectedSlide1" name="slide1" (onChange)="updateSlide1()" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Seleccionar un Slide">
@@ -36,7 +29,7 @@
                     </div>
                 </ng-template>
             </p-dropdown>
-            <div *ngIf="selectedSlide1 == null" class="alert alert-danger mt-2" role="alert">
+            <div *ngIf="selectedSlide1 == null" class="p-error block mt-2">
                 <small>Debe seleccionar el Slide 1</small>
             </div>
         </div>
@@ -54,7 +47,7 @@
                     </div>                    
                 </ng-template>
             </p-dropdown>
-            <div *ngIf="selectedSlide2 == null" class="alert alert-danger mt-2" role="alert">
+            <div *ngIf="selectedSlide2 == null" class="p-error block mt-2">
                 <small>Debe seleccionar el Slide 2</small>
             </div>    
         </div>
@@ -72,7 +65,7 @@
                     </div>
                 </ng-template>
             </p-dropdown>
-            <div *ngIf="selectedSlide3 == null" class="alert alert-danger mt-2" role="alert">
+            <div *ngIf="selectedSlide3 == null" class="p-error block mt-2">
                 <small>Debe seleccionar el Slide 3</small>
             </div>  
         </div>
@@ -83,7 +76,7 @@
     <div class="row justify-content-center">
         <form class="col-12 col-sm-8 col-md-6 col-lg-6">
             <div class="d-grid gap-2 col-4 mx-auto mt-2">
-                <button pButton pRipple type="button" (click)="updateSlides()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" label="Guardar cambios" class="primary" [disabled]="selectedSlide1 == null || selectedSlide2 == null || selectedSlide3 == null"></button>
+                <button pButton pRipple type="button" (click)="updateSlides()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" label="Guardar cambios" class="primary" [disabled]="selectedSlide1 == null || selectedSlide2 == null || selectedSlide3 == null || !formWelcomeText.valid"></button>
             </div>
         </form>
     </div>
@@ -100,7 +93,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div *ngIf="!updateMessageModal" class="modal-body">
-                Slides modificados correctamente
+                Texto de bienvenida y slides modificados correctamente
             </div>
             <div *ngIf="updateMessageModal" class="modal-body">
                 Tiene slides duplicados

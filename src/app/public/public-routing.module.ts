@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { DetailComponent } from "./pages/activities/details/detail.component";
 
 //Own Component
 import { DonationComponent } from "./pages/donations/donation/donation.component";
@@ -13,8 +14,19 @@ const routes: Routes = [
         path: "",
         component: PublicComponent,
         children: [
-            { path: "", redirectTo: "/home", pathMatch: "full" },
-            { path: "home", component: HomeComponent },
+            { 
+              path: "",
+              redirectTo: "/home", 
+              pathMatch: "full" 
+            },
+            { 
+              path: "home", 
+              component: HomeComponent 
+            },
+            { 
+              path: "actividades/:id",
+              component: DetailComponent
+            },
             {
                 path: "donar",
                 component: DonationComponent,

@@ -22,6 +22,7 @@ import { ImageCurvedComponent } from "./components/image-curved/image-curved.com
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
+import { DetailComponent } from "./pages/activities/details/detail.component";
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { SharedModule } from "../shared/shared.module";
         DonationAmountComponent,
         ImageCurvedComponent,
         AboutComponent,
+        DetailComponent
     ],
     exports: [
         HomeComponent,

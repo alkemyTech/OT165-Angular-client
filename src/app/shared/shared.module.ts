@@ -6,8 +6,16 @@ import { LogoComponent } from "./logo/logo.component";
 import { TitleComponent } from "./components/title/title.component";
 
 @NgModule({
-    declarations: [LogoComponent, TitleComponent],
-    imports: [CommonModule],
-    exports: [LogoComponent, TitleComponent],
+  declarations: [
+    LogoComponent,
+    TitleComponent
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    LogoComponent,
+    TitleComponent
+  ]
 })
 export class SharedModule {}
