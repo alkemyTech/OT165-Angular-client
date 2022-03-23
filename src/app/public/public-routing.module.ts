@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { ActivityFormComponent } from "./pages/activities/activity-form.component";
 import { DetailComponent } from "./pages/activities/details/detail.component";
+
 
 //Own Component
 import { DonationComponent } from "./pages/donations/donation/donation.component";
@@ -23,6 +25,10 @@ const routes: Routes = [
             { 
               path: "home", 
               component: HomeComponent 
+            },
+            { 
+              path: "actividad",
+              component: ActivityFormComponent
             },
             { 
               path: "actividades/:id",

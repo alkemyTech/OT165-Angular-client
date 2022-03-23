@@ -17,7 +17,6 @@ section.heading-page {
 section {
   .title {
     text-align: center;
-    padding-top: 100px;
     h6 {
       margin-top: 0px;
       font-size: 15px;
@@ -38,10 +37,9 @@ section {
   }
 }
 
-section.meetings-page {
+section.activity-page {
   max-width: 1200px;
   margin: auto;
-  padding-top: 100px;
   padding-bottom: 0px;
   .down-content {
     background-color: #fff;

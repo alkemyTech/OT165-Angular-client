@@ -28,7 +28,7 @@ const routes: Routes = [
         pathMatch: "full",
       },
       { path: "home-form", component: HomeFormComponent },
-      { path: "slides", component: SlidesFormComponent },
+      { path: "slides/:id", component: SlidesFormComponent },
       { path: "", component: BackofficeComponent },
     ],
   },
