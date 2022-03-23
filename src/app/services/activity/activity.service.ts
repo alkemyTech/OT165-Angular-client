@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Activity } from "src/app/shared/models/activity";
+import { Activity } from "src/app/shared/models/Activity";
 import { environment } from "src/environments/environment.prod";
 
 @Injectable({
@@ -11,7 +11,15 @@ import { environment } from "src/environments/environment.prod";
 export class ActivityService {
   constructor(private http: HttpClient) {}
 
-  getActivities() {}
+  getActivities(): Observable<Activity[]> {
+    return <Observable<Activity[]>>(
+      this.http
+        .get(`${environment.BASE_URL_API}activities`)
+        .pipe(map((res: any) => {
+          return res.data;
+        }))
+    );
+  }
 
   getActivity(id: number): Observable<Activity> {
     return <Observable<Activity>>(

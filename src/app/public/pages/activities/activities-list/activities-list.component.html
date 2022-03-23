@@ -1,0 +1,16 @@
+<app-title title="Actividades" imagePath="/assets/images/image11.jpg"></app-title>
+<div class="container-fluid">
+    <section>
+        <div class="activities-info">
+            <h2>Conocé nuestras actividades</h2>
+        </div>
+    </section>
+    <section>
+        <div class="activities-list">
+            <app-activity-card *ngFor="let activity of filteredActivities" [activity]="activity"></app-activity-card>
+        </div>
+        <div class="activities-loadmore" *ngIf="itemCount <= activities.length">
+           <button class="btn btn-primary" (click)="fillArray()">Ver más</button> 
+        </div>                
+    </section>    
+</div>
