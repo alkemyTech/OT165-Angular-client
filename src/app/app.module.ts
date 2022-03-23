@@ -7,7 +7,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 import { HomeFormComponent } from "./backoffice/pages/home/home-form/home-form.component";
-import { TitleComponent } from "./shared/components/title/title.component";
 import { ButtonModule } from "primeng/button";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputNumberModule } from "primeng/inputnumber";
@@ -18,25 +17,24 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
 
-
 @NgModule({
-  declarations: [AppComponent, HomeFormComponent, TitleComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BackOfficeModule,
-    PublicModule,
-    ButtonModule,
-    InputTextareaModule,
-    FormsModule,
-    InputNumberModule,
-    ReactiveFormsModule,
-    DropdownModule,
-    BrowserAnimationsModule,
-  ],
-  providers: [HttpClient],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, HomeFormComponent],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BackOfficeModule,
+        PublicModule,
+        ButtonModule,
+        InputTextareaModule,
+        FormsModule,
+        InputNumberModule,
+        ReactiveFormsModule,
+        DropdownModule,
+        BrowserAnimationsModule,
+    ],
+    providers: [HttpClient],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
