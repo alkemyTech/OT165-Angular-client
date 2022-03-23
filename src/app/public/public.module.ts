@@ -18,6 +18,7 @@ import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DonationAmountComponent } from "./pages/donations/donation-amount/donation-amount.component";
 import { ImageCurvedComponent } from "./components/image-curved/image-curved.component";
+import { ContactComponent } from './pages/contact/contact.component';
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
@@ -34,6 +35,7 @@ import { SharedModule } from "../shared/shared.module";
     ThanksComponent,
     DonationAmountComponent,
     ImageCurvedComponent,
+    ContactComponent,
   ],
   exports: [
     HomeComponent,
