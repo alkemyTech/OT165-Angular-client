@@ -1,65 +1,71 @@
 .container-fluid {
-  padding: 0 20px;
+    padding: 0 10px;
 }
-
+#formContent {
+    padding: 15px;
+    box-shadow: 0 30px 60px 0 rgb(0 0 0 / 16%);
+}
 .header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 40px;
-  width: 60%;
+    text-align: center;
+    margin-bottom: 40px;
+    width: 60%;
 }
 
 form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .field {
-  margin-top: 15px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 h5 {
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  color: rgb(33, 37, 41);
-  font-weight: 400;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(33, 37, 41);
+    font-weight: 400;
 }
 
 .text-container {
-  border: 1px solid #00000047;
-  padding: 10px;
-  border-radius: 6px;
-  min-height: 46px;
+    border: 1px solid #00000047;
+    padding: 10px;
+    border-radius: 6px;
+    min-height: 46px;
 }
 
 .text-container p {
-  margin: 0;
+    margin: 0;
 }
 
 .text-container img {
-  border: 1px solid #00000047;
-  width: 60%;
+    border: 1px solid #00000047;
+    width: 60%;
 }
 
 #logo-text {
-  color: #0000008c;
-  font-size: 13px;
+    color: #0000008c;
+    font-size: 13px;
 }
 
 @media (min-width: 768px) {
-  .container-fluid {
-    padding: 0 30px;
-  }
+    .container-fluid {
+        padding: 0 30px;
+    }
+    #formContent {
+        padding: 30px;
+    }
 }

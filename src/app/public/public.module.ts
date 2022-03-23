@@ -10,6 +10,7 @@ import { NavComponent } from "./shared/nav/nav.component";
 import { ListnewsComponent } from "./components/listnews/listnews.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { FooterComponent } from "./shared/footer/footer.component";
+import { AboutComponent } from "./pages/aboutUs/about.component";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
 import { InputNumberModule } from "primeng/inputnumber";
@@ -18,6 +19,7 @@ import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DonationAmountComponent } from "./pages/donations/donation-amount/donation-amount.component";
 import { ImageCurvedComponent } from "./components/image-curved/image-curved.component";
+import { DetailComponent } from "./pages/activities/details/detail.component";
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
@@ -35,6 +37,7 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     ThanksComponent,
     DonationAmountComponent,
     ImageCurvedComponent,
+    DetailComponent
   ],
   exports: [
     HomeComponent,
@@ -54,5 +57,6 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     InputTextModule,
     ButtonModule,
   ],
+
 })
 export class PublicModule {}

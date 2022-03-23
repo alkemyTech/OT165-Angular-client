@@ -1,0 +1,10 @@
+.about-text {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+@media (min-width: 768px) {
+    .about-text {
+        font-size: 30px;
+    }
+}
