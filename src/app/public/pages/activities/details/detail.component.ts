@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { ActivityService } from "src/app/services/activity/activity.service";
-import { Activity } from "src/app/shared/models/activity";
+import { Activity } from "src/app/shared/models/Activity";
 
 @Component({
   selector: "app-detail",

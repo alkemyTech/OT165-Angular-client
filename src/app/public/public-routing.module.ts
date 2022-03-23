@@ -1,3 +1,4 @@
+import { ActivitiesListComponent } from './pages/activities/activities-list/activities-list.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ActivityFormComponent } from "./pages/activities/activity-form.component";
@@ -10,6 +11,7 @@ import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { PublicComponent } from "./public.component";
 import { AboutComponent } from "./pages/aboutUs/about.component";
+import { ContactComponent } from "./pages/contact/contact.component";
 
 const routes: Routes = [
     {
@@ -26,8 +28,8 @@ const routes: Routes = [
               component: HomeComponent 
             },
             { 
-              path: "actividad",
-              component: ActivityFormComponent
+              path: "actividades",
+              component: ActivitiesListComponent
             },
             { 
               path: "actividades/:id",
@@ -46,6 +48,11 @@ const routes: Routes = [
             {
                 path: "nosotros",
                 component: AboutComponent,
+                pathMatch: "full",
+            },
+            {
+                path: "contacto",
+                component: ContactComponent,
                 pathMatch: "full",
             },
         ],
