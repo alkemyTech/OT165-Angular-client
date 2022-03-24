@@ -1,4 +1,4 @@
-<a class="card-container" [href]="href" (click)="onClick($event)">
+<a class="card-container" [routerLink]="navigateTo">
   <div class="image-container">
     <img class="image" [src]="imageSrc" alt="not-found" (error)="errorImageSrc()">
   </div>

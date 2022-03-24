@@ -5,6 +5,7 @@ import { CommonModule } from "@angular/common";
 import { LogoComponent } from "./components/logo/logo.component";
 import { TitleComponent } from "./components/title/title.component";
 import { CardComponent } from './components/card/card.component';
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { CardComponent } from './components/card/card.component';
     CardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     LogoComponent,
