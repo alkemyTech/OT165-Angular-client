@@ -16,6 +16,9 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
 import { OrganizationComponent } from "./pages/organization/organization-view/organization.component";
 
+import { ToolbarModule } from "primeng/toolbar";
+import { ToastModule } from "primeng/toast";
+import { TableModule } from "primeng/table";
 import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from "primeng/button";
 import { FormsModule } from "@angular/forms";
@@ -30,6 +33,7 @@ import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { PublicModule } from "../public/public.module";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
+import { SlidesListComponent } from './pages/slides/slides-list/slides-list.component';
 
 @NgModule({
     declarations: [
@@ -45,8 +49,12 @@ import { HttpClientModule } from "@angular/common/http";
         OrganizationComponent,
         BackofficeComponent,
         ControlComponent,
+        SlidesListComponent,
     ],
     imports: [
+        TableModule,
+        ToastModule,
+        ToolbarModule,
         CommonModule,
         BackOfficeRoutingModule,
         RouterModule,
