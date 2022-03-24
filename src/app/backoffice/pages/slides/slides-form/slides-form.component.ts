@@ -12,11 +12,10 @@ import { Observable } from "rxjs";
   styleUrls: ["./slides-form.component.scss"],
 })
 export class SlidesFormComponent implements OnInit {
-
   public title: string = "";
   public edit: boolean = false;
   public slide$!: Observable<Slide>;
-  public id!: number
+  public id!: number;
 
   /* Modal */
   public display: boolean = false;
@@ -38,22 +37,25 @@ export class SlidesFormComponent implements OnInit {
     private fb: FormBuilder,
     private slideService: SlideService,
     public location: Location,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
-    if ( this.id) {
-      this.slide$ =  this.slideService.getSingleSlide(this.id)
-      this.slide$.subscribe( res => {
-        this.setSlideById(res);
-        this.edit = true;
-        this.title = "Editar";
-      },err => {
-        if (!err.success) {
-          this.title = "Crear";
+    if (this.id) {
+      this.slide$ = this.slideService.getSingleSlide(this.id);
+      this.slide$.subscribe(
+        (res) => {
+          this.setSlideById(res);
+          this.edit = true;
+          this.title = "Editar";
+        },
+        (err) => {
+          if (!err.success) {
+            this.title = "Crear";
+          }
         }
-      })
+      );
     } else {
       this.title = "Crear";
     }
@@ -74,7 +76,6 @@ export class SlidesFormComponent implements OnInit {
         }
       },
       (error) => {
-        console.log(error)
         this.stateRes = false;
         this.header = "Error";
         this.textModal = "Ha ocurrido un error, vuelve a intentarlo";
@@ -113,12 +114,16 @@ export class SlidesFormComponent implements OnInit {
     this.display = true;
   }
 
-  private setSlideById(slide: Slide): Slide{
+  private setSlideById(slide: Slide): Slide {
     this.datos.controls["name"].setValue(slide.data.name);
     this.datos.controls["description"].setValue(slide.data.description);
     this.datos.controls["order"].setValue(slide.data.order);
     this.datos.controls["image"].setValue(slide.data.image);
-    return slide
+    return slide;
+  }
+
+  public isNumber(val: number): boolean { 
+    return typeof val === 'number'; 
   }
 
   // onClick upload button convert image file to base64 string

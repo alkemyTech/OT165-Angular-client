@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-//import { Slide } from '../models/slide';
 import { Slide, Data } from "../models/slide.interface";
 import { environment } from "../../../environments/environment";
 
