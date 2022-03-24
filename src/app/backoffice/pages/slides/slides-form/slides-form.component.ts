@@ -46,7 +46,6 @@ export class SlidesFormComponent implements OnInit {
       this.slide$ = this.slideService.getSingleSlide(this.id);
       this.slide$.subscribe(
         (res) => {
-          console.log(res)
           this.setSlideById(res.data);
           this.edit = true;
           this.title = "Editar";
