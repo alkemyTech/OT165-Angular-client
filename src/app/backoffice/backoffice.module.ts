@@ -17,6 +17,7 @@ import { OrganizationFormComponent } from "./pages/organization/organization-for
 import { OrganizationComponent } from "./pages/organization/organization-view/organization.component";
 
 import { ToolbarModule } from "primeng/toolbar";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { ToastModule } from "primeng/toast";
 import { TableModule } from "primeng/table";
 import { InputTextModule } from "primeng/inputtext";
@@ -52,6 +53,7 @@ import { SlidesListComponent } from './pages/slides/slides-list/slides-list.comp
         SlidesListComponent,
     ],
     imports: [
+        ConfirmDialogModule,
         TableModule,
         ToastModule,
         ToolbarModule,

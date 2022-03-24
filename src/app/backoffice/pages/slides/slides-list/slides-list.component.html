@@ -30,12 +30,12 @@
             <ng-template pTemplate="body" let-slide>
                 <tr >
                     <td class="name">{{slide.name}}</td>
-                    <td class="img"><img [src]="slide.image" [alt]="slide.name" width="100" class="shadow-4" /></td>
+                    <td class="img"><img *ngIf="slide.image" [src]="slide.image" [alt]="slide.name"/></td>
                     <td><p class="description">{{slide.description}}</p></td>
                     <td>{{slide.order}}</td>
                     <td>
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['/backoffice/slides/', slide.id]" ></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSlides()" ></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSlides(slide)" ></button>
                     </td>
                 </tr>
             </ng-template>
@@ -43,66 +43,4 @@
     </div>
 </div>
 
-<!-- <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content">
-        <img [src]="'assets/showcase/images/demo/product/' + product.image" [alt]="product.image" class="product-image" *ngIf="product.image">
-        <div class="field">
-            <label for="name">Name</label>
-            <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
-            <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small>
-        </div>
-        <div class="field">
-            <label for="description">Description</label>
-            <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3" cols="20"></textarea>
-        </div>
-        <div class="field">
-            <label for="inventoryStatus">Inventory Status</label>
-            <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses" placeholder="Select">
-                <ng-template let-option pTemplate="item">
-                    <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
-                </ng-template>
-            </p-dropdown>
-        </div>
-
-        <div class="field">
-            <label class="mb-3">Category</label>
-            <div class="formgrid grid">
-                <div class="field-radiobutton col-6">
-                    <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="product.category"></p-radioButton>
-                    <label for="category1">Accessories</label>
-                </div>
-                <div class="field-radiobutton col-6">
-                    <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="product.category"></p-radioButton>
-                    <label for="category2">Clothing</label>
-                </div>
-                <div class="field-radiobutton col-6">
-                    <p-radioButton id="category3" name="category" value="Electronics" [(ngModel)]="product.category"></p-radioButton>
-                    <label for="category3">Electronics</label>
-                </div>
-                <div class="field-radiobutton col-6">
-                    <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="product.category"></p-radioButton>
-                    <label for="category4">Fitness</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="formgrid grid">
-            <div class="field col">
-                <label for="price">Price</label>
-                <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
-            </div>
-            <div class="field col">
-                <label for="quantity">Quantity</label>
-                <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
-            </div>
-        </div>
-    </ng-template>
-
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
-    </ng-template>
-</p-dialog> -->
-
-<!-- <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
- -->
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

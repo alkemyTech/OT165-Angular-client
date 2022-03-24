@@ -10,7 +10,8 @@ import { SlideService } from "src/app/backoffice/services/slide.service";
   providers: [MessageService, ConfirmationService],
 })
 export class SlidesListComponent implements OnInit {
-  productDialog!: boolean;
+
+  modalDialog!: boolean;
 
   slides!: Data[];
 
@@ -30,20 +31,24 @@ export class SlidesListComponent implements OnInit {
     });
   }
 
-  public deleteSlides() {
+  public deleteSlides(slide: Data) {
     this.confirmationService.confirm({
-      message: "Are you sure you want to delete the selected Slides?",
-      header: "Confirm",
-      icon: "pi pi-exclamation-triangle",
+      message: 'Seguro que desea eliminar el slide ' + slide.name + '?',
+      header: 'Confirmar',
+      icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        
-        this.messageService.add({
-          severity: "success",
-          summary: "Successful",
-          detail: "Slides Deleted",
-          life: 3000,
-        });
-      },
-    });
+          this.slideService.deleteSlide(slide.id).subscribe( res => {
+            if (res.success) {
+              this.slides = this.slides.filter(val => val.id !== slide.id);
+              this.messageService.add({severity:'success', summary: 'Eliminado', detail: 'Slide eliminado!', life: 3000});
+            }else{
+              this.messageService.add({severity:'warn', summary: 'error', detail: 'error al intentar eliminar', life: 3000});
+            }
+          },error => {
+            this.messageService.add({severity:'error', summary: 'error', detail: 'error al intentar eliminar', life: 3000});
+          })
+         
+      }
+  });
   }
 }

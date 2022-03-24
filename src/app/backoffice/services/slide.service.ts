@@ -38,6 +38,10 @@ export class SlideService {
     //return this.http.get<AllSlides>(`${this.BASE_URL}slides?skip=${skip}&limit=${limit}`)
     return this.http.get<AllSlides>(`${this.BASE_URL}slides`)
   }
+
+  public deleteSlide(id: number): Observable<any>{
+    return this.http.delete<any>(`${this.BASE_URL}slides/${id}`)
+  }
   
   getListOfSlides(){
     return this.http.get(this.BASE_URL + "slides");
