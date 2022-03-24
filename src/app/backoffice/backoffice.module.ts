@@ -18,6 +18,7 @@ import { OrganizationComponent } from "./pages/organization/organization-view/or
 
 import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from "primeng/button";
+import { DropdownModule } from "primeng/dropdown";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule } from "primeng/fileupload";
@@ -61,6 +62,7 @@ import { HttpClientModule } from "@angular/common/http";
         DialogModule,
         HttpClientModule,
         SharedModule,
+        DropdownModule,
     ],
     exports: [
         ActivityFormComponent,
@@ -78,6 +80,7 @@ import { HttpClientModule } from "@angular/common/http";
         InputTextModule,
         RxReactiveFormsModule,
         CKEditorModule,
+        DropdownModule,
     ],
 })
 export class BackOfficeModule {}

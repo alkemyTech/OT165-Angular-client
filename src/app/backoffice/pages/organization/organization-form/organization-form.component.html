@@ -1,15 +1,14 @@
 <div class="container-fluid">
-    <div class="header fadeIn first">
-        <img
-            class="logo"
-            src="../../../../../assets/images/logo.png"
-            alt="logo"
-        />
-        <h1>Organización</h1>
-    </div>
-
-    <div class="col-md-6 mb-5 mx-auto fadeIn second">
+    <div class="col-md-6 mt-5 mb-5 mx-auto fadeIn second">
         <div id="formContent">
+            <div class="header fadeIn first mb-4">
+                <img
+                    class="logo"
+                    src="../../../../../assets/images/logo.png"
+                    alt="logo"
+                />
+                <h4>Editar organización</h4>
+            </div>
             <form [formGroup]="form" (ngSubmit)="submit()">
                 <div class="field">
                     <label for="name" class="block">Nombre</label>

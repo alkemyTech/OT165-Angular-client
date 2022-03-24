@@ -1,1 +1,40 @@
-<p>user-form works!</p>
+<div class="container-fluid">
+    <div class="col-md-6 mt-5 mb-5 mx-auto fadeIn second">
+        <div id="formContent">
+            <div class="header fadeIn first mb-4">
+                <img
+                    class="logo"
+                    src="../../../../../assets/images/logo.png"
+                    alt="logo"
+                />
+                <h4>Editar usuario</h4>
+            </div>
+            <form>
+                <div class="field">
+                    <label for="name" class="block">Nombre</label>
+                    <input
+                        id="name"
+                        type="username"
+                        aria-describedby="username1-help"
+                        pInputText
+                    />
+                    <small id="username1-help" class="block"
+                        >El nombre de usuario es obligatorio.</small
+                    >
+                </div>
+
+                <p-dropdown
+                    placeholder="Seleccione una opción"
+                    optionLabel="name"
+                ></p-dropdown>
+                <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Guardar cambios"
+                    class="primary mt-3"
+                ></button>
+            </form>
+        </div>
+    </div>
+</div>
