@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Slide, Data } from "../models/slide.interface";
+import { Slide, Data, AllSlides } from "../models/slide.interface";
 import { environment } from "../../../environments/environment";
 
 
@@ -32,6 +32,10 @@ export class SlideService {
 
   public upDateSlides(id: number, slide: Data): Observable<Slide>{
     return this.http.put<Slide>(`${this.BASE_URL}slides/${id}`, slide)
+  }
+
+  public getAllSildes(): Observable<AllSlides>{
+    return this.http.get<AllSlides>(`${this.BASE_URL}slides`)
   }
   
   getListOfSlides(){

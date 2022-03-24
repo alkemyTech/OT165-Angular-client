@@ -11,3 +11,9 @@ export interface Data {
   order: number,
   image: string,
 }
+
+export interface AllSlides {
+  message: string;
+  success: boolean;
+  data: Data[];
+}

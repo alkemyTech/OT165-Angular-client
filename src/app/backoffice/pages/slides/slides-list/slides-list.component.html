@@ -30,14 +30,14 @@
                 <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-slide>
-            <tr>
+        <ng-template pTemplate="body">
+            <tr *ngFor="let slide of slides">
                 <td>
                     <p-tableCheckbox [value]="slide"></p-tableCheckbox>
                 </td>
                 <td>{{slide.name}}</td>
                 <td><img [src]="slide.image" [alt]="slide.name" width="100" class="shadow-4" /></td>
-                <td>{{slide.description}</td>
+                <td>{{slide.description}}</td>
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['/backoffice/slides/', slide.id]" ></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" ></button>

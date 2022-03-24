@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { Slide } from "../../../models/slide.interface";
+import { Data, Slide } from "../../../models/slide.interface";
 import { SlideService } from "../../../services/slide.service";
 import { Location } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
@@ -46,7 +46,8 @@ export class SlidesFormComponent implements OnInit {
       this.slide$ = this.slideService.getSingleSlide(this.id);
       this.slide$.subscribe(
         (res) => {
-          this.setSlideById(res);
+          console.log(res)
+          this.setSlideById(res.data);
           this.edit = true;
           this.title = "Editar";
         },
@@ -114,11 +115,11 @@ export class SlidesFormComponent implements OnInit {
     this.display = true;
   }
 
-  private setSlideById(slide: Slide): Slide {
-    this.datos.controls["name"].setValue(slide.data.name);
-    this.datos.controls["description"].setValue(slide.data.description);
-    this.datos.controls["order"].setValue(slide.data.order);
-    this.datos.controls["image"].setValue(slide.data.image);
+  private setSlideById(slide: Data): Data {
+    this.datos.controls["name"].setValue(slide.name);
+    this.datos.controls["description"].setValue(slide.description);
+    this.datos.controls["order"].setValue(slide.order);
+    this.datos.controls["image"].setValue(slide.image);
     return slide;
   }
 
