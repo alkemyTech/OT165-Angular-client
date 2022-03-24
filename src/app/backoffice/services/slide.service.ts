@@ -34,7 +34,8 @@ export class SlideService {
     return this.http.put<Slide>(`${this.BASE_URL}slides/${id}`, slide)
   }
 
-  public getAllSildes(): Observable<AllSlides>{
+  public getAllSildes(skip?: number, limit?: number): Observable<AllSlides>{
+    //return this.http.get<AllSlides>(`${this.BASE_URL}slides?skip=${skip}&limit=${limit}`)
     return this.http.get<AllSlides>(`${this.BASE_URL}slides`)
   }
   

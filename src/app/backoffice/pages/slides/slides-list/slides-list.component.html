@@ -1,50 +1,46 @@
 <p-toast></p-toast>
 
-<div class="card">
-    <p-toolbar styleClass="mb-4">
-        <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" [routerLink]="['/backoffice/slides/', '']"></button>
-        </ng-template>
-    </p-toolbar>
+<div class="wrapper">
+    <div class="card">
+        <p-toolbar styleClass="mb-4">
+            <ng-template pTemplate="left">
+                <button pButton pRipple label="Nuevo Slide" icon="pi pi-plus" class="p-button-success mr-2" [routerLink]="['/backoffice/slides/', '']"></button>
+            </ng-template>
+        </p-toolbar>
+    
+        <p-table #dt [value]="slides" [rows]="5" [paginator]="true" [globalFilterFields]="['name','slide.name','order', 'slide.order']" responsiveLayout="scroll"
+             [rowHover]="true" dataKey="id"
+            currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords} Slides" [showCurrentPageReport]="true">
+    
+            <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                    <h5 class="m-0">Todos los Slides</h5>
+                </div>
+            </ng-template>
 
-    <p-table #dt [value]="slides" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
-        [(selection)]="selectedSlides" [rowHover]="true" dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-        <ng-template pTemplate="caption">
-            <div class="flex align-items-center justify-content-between">
-                <h5 class="m-0">Todos los Slides</h5>
-                <span class="p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target, 'contains')" placeholder="Search..." />
-                </span>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 3rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-                <th>Image</th>
-                <th pSortableColumn="desc">Descripción <p-sortIcon field="desc"></p-sortIcon></th>
-                <th></th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body">
-            <tr *ngFor="let slide of slides">
-                <td>
-                    <p-tableCheckbox [value]="slide"></p-tableCheckbox>
-                </td>
-                <td>{{slide.name}}</td>
-                <td><img [src]="slide.image" [alt]="slide.name" width="100" class="shadow-4" /></td>
-                <td>{{slide.description}}</td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['/backoffice/slides/', slide.id]" ></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" ></button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th>Imagen</th>
+                    <th >Descripción</th>
+                    <th pSortableColumn="order">Orden <p-sortIcon field="order"></p-sortIcon></th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-slide>
+                <tr >
+                    <td class="name">{{slide.name}}</td>
+                    <td class="img"><img [src]="slide.image" [alt]="slide.name" width="100" class="shadow-4" /></td>
+                    <td><p class="description">{{slide.description}}</p></td>
+                    <td>{{slide.order}}</td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['/backoffice/slides/', slide.id]" ></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSlides()" ></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
 </div>
 
 <!-- <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
