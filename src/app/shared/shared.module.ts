@@ -6,6 +6,8 @@ import { LogoComponent } from "./components/logo/logo.component";
 import { TitleComponent } from "./components/title/title.component";
 import { CardComponent } from './components/card/card.component';
 import { RouterModule } from "@angular/router";
+import { ButtonModule } from "primeng/button";
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { RouterModule } from "@angular/router";
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ButtonModule,
+    RadioButtonModule
   ],
   exports: [
     LogoComponent,

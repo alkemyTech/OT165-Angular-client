@@ -8,47 +8,123 @@
   display: inline-block;
   text-decoration: none;
   color: var(--text-color);
+  cursor: pointer;
   transition: 0.5s background-color;
+  & .image-container {
+    width: 100%;
+    aspect-ratio: 5/3;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  & .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  & h3 {
+    font-size: 18px;
+    margin: 12px 0 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  & .description {
+    font-size: 18px;
+    height: 3em;
+    overflow: hidden;
+  }
+  & p {
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 .card-container:hover {
   background-color: rgb(240, 240, 240);
   color: var(--text-color);
 }
-.image-container {
+
+.table-container {
   width: 100%;
-  aspect-ratio: 5/3;
-  border-radius: 10px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   overflow: hidden;
-}
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-h3 {
-  font-size: 18px;
-  margin: 12px 0 8px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.description {
-  font-size: 18px;
-  height: 3em;
-  overflow: hidden;
-}
-p {
-  font-size: 12px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  padding: 12px;
+  border-top: 1px #d3d3d3 solid;
+  border-bottom: 1px #d3d3d3 solid;
+  & .image-container {
+    width: 100px;
+    height: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  & .information {
+    width: 200px;
+    height: 100%;
+    padding: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    & h3 {
+      font-size: 18px;
+      margin: 12px 0 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    & .description {
+      font-size: 18px;
+      height: 3em;
+      overflow: hidden;
+    }
+    & p {
+      font-size: 12px;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    & br {
+      content: "";
+      margin: 0;
+      display: block;
+      font-size: 0;
+    }
+  }
+  & .buttons {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
 }
 @media screen and (min-width: 550px) {
   .card-container {
     width: 260px;
     height: 280px;
     padding: 12px;
+  }
+  .table-container {
+    & .image-container {
+      width: 200px;
+      height: 120px;
+    }
+    & .information {
+      width: 60%;
+    }
   }
 }
