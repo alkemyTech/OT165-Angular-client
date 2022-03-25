@@ -1,7 +1,7 @@
-<a class="card-container" [routerLink]="navigateTo">
+<a class="card-container" [routerLink]="detailsLink">
   <div class="image-container">
     <img class="image" [src]="imageSrc" alt="not-found" (error)="errorImageSrc()">
   </div>
   <h3>{{title}}</h3>
-  <p>{{description}}</p>
+  <div class="description" [innerHTML]="description"></div>
 </a>
