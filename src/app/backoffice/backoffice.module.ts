@@ -35,6 +35,7 @@ import { PublicModule } from "../public/public.module";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
 import { SlidesListComponent } from './pages/slides/slides-list/slides-list.component';
+import { TableComponent } from './shared/components/table/table.component';
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import { SlidesListComponent } from './pages/slides/slides-list/slides-list.comp
         BackofficeComponent,
         ControlComponent,
         SlidesListComponent,
+        TableComponent,
     ],
     imports: [
         ConfirmDialogModule,

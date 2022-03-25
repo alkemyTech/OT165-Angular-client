@@ -1,0 +1,45 @@
+<div *ngIf="items" class="wrapper">
+    <div class="card">
+        <p-toolbar styleClass="mb-4">
+            <ng-template pTemplate="left">
+                <button pButton pRipple label="Nuevo {{items.title}}" icon="pi pi-plus" class="p-button-success mr-2" [routerLink]="[items.path, '']"></button>
+            </ng-template>
+        </p-toolbar>
+    
+        <p-table #dt [value]="items.data" [rows]="5" [paginator]="true" responsiveLayout="scroll"
+             [rowHover]="true" dataKey="id"
+            currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords} {{items.title}}" [showCurrentPageReport]="true">
+    
+            <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                    <h5 class="m-0">Todos los {{items.title}}</h5>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th *ngFor="let title of titleCol">{{title}}</th>
+                </tr>
+            
+            </ng-template>
+
+            <ng-template pTemplate="body" let-item>
+                <tr >
+                    <td *ngIf="item.name" class="name">{{item.name}}</td>
+                    <td class="img"><img *ngIf="item.image" [src]="item.image" [alt]="item.name"/></td>
+                    <td *ngIf="item.description"><p class="description">{{item.description}}</p></td>
+                    <td *ngIf="item.order || item.order === 0">{{item.order}}</td>
+                    <td *ngIf="item.email">{{item.email}}</td>
+                    <td *ngIf="item.createdAt">{{item.createdAt}}</td>
+                    <td></td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="[items.path, item.id]" ></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteItem(item.id, item.name)" ></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
