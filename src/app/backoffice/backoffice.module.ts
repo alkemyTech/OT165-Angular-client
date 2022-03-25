@@ -31,6 +31,7 @@ import { PublicModule } from "../public/public.module";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
 import { DropdownModule } from "primeng/dropdown";
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import { DropdownModule } from "primeng/dropdown";
         OrganizationComponent,
         BackofficeComponent,
         ControlComponent,
+        UsersListComponent,
     ],
     imports: [
         CommonModule,
