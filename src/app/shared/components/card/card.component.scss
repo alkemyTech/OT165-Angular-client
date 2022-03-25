@@ -57,6 +57,7 @@
   padding: 12px;
   border-top: 1px #d3d3d3 solid;
   border-bottom: 1px #d3d3d3 solid;
+  transition: 0.2s background-color;
   & .image-container {
     width: 100px;
     height: 60px;
@@ -111,6 +112,9 @@
     align-items: center;
     justify-content: space-evenly;
   }
+}
+.table-container:hover {
+  background-color: rgb(240, 240, 240);
 }
 @media screen and (min-width: 550px) {
   .card-container {
