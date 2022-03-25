@@ -8,10 +8,8 @@ import { PublicRoutingModule } from "./public-routing.module";
 //Own Component
 import { HomeComponent } from "./pages/home/home.component";
 import { PublicComponent } from "./public.component";
-import { NavComponent } from "./shared/nav/nav.component";
 import { ListnewsComponent } from "./components/listNews/listnews.component";
 import { SliderComponent } from "./components/slider/slider.component";
-import { FooterComponent } from "./shared/footer/footer.component";
 import { AboutComponent } from "./pages/aboutUs/about.component";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
@@ -32,10 +30,8 @@ import { CarouselModule } from "./components/carousel/carousel.module";
   declarations: [
     HomeComponent,
     PublicComponent,
-    NavComponent,
     ListnewsComponent,
     SliderComponent,
-    FooterComponent,
     DonationComponent,
     ThanksComponent,
     DonationAmountComponent,
@@ -49,10 +45,8 @@ import { CarouselModule } from "./components/carousel/carousel.module";
   ],
   exports: [
     HomeComponent,
-    NavComponent,
     ListnewsComponent,
     SliderComponent,
-    FooterComponent,
   ],
   imports: [
     CarouselModule,

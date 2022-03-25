@@ -1,7 +1,13 @@
-<div class="card-container">
+<div [ngClass]="{'card-container': !isTable, 'table-container': isTable}" class="card-container" (click)="navigateToDetails($event)">
   <div class="image-container">
     <img class="image" [src]="imageSrc" alt="not-found" (error)="errorImageSrc()">
   </div>
-  <h3>{{title}}</h3>
-  <p>{{description}}</p>
+  <div class="information">
+    <h3>{{title}}</h3>
+    <div class="description" [innerHTML]="description"></div>
+  </div>
+  <div class="buttons" *ngIf="isTable">
+    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editToggle()"></button>
+    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteToggle()"></button>
+  </div>
 </div>
