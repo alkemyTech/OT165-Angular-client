@@ -23,6 +23,7 @@ import { CategoriesFormComponent } from "./pages/categories/categories-form/cate
 import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { HomeFormComponent } from "./pages/home/home-form/home-form.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
+import { MembersComponent } from "./pages/members/members.component";
 import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { OrganizationComponent } from "./pages/organization/organization-view/organization.component";
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
@@ -33,7 +34,6 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
-import { MembersComponent } from './pages/members/members.component';
 
 @NgModule({
   declarations: [
