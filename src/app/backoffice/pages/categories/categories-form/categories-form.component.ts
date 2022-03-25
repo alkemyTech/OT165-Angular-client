@@ -1,4 +1,4 @@
-import { CategoryService } from './../../../../shared/services/category.service';
+import { CategoryService } from '../../../../services/category/category.service';
 import { Category } from './../../../../shared/models/Category';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
