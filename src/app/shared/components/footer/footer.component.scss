@@ -1,0 +1,8 @@
+li > a {
+  color: var(--app-text-color);
+  opacity: 0.8;
+}
+li > a:hover {
+  color: var(--app-text-color);
+  opacity: 1;
+}
