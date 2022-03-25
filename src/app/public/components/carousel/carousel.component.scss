@@ -18,21 +18,6 @@ $carousel-control-next-icon-bg: 	 url("../../../../assets/icons/arrow-right-circ
 	background-image: $carousel-control-prev-icon-bg;
 }
 
-.scrolling-wrapper{
-	overflow-x: unset;
-    overflow-y: hidden;
-    max-width: 1200px;
-	.container{
-		display: flex;
-		justify-content: center;
-		$size: 800px;
-		.col-3{
-			width: $size/4;
-            margin-right: 20px;
-		  }
-	}
-}
-
 .content_wrapper {
     align-items: flex-start;
     align-content: flex-start;

@@ -16,6 +16,10 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
 import { OrganizationComponent } from "./pages/organization/organization-view/organization.component";
 
+import { ToolbarModule } from "primeng/toolbar";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { ToastModule } from "primeng/toast";
+import { TableModule } from "primeng/table";
 import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from "primeng/button";
 import { FormsModule } from "@angular/forms";
@@ -31,6 +35,8 @@ import { PublicModule } from "../public/public.module";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
 import { DropdownModule } from "primeng/dropdown";
+import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
+import { TableComponent } from "./shared/components/table/table.component";
 
 @NgModule({
     declarations: [
@@ -46,8 +52,14 @@ import { DropdownModule } from "primeng/dropdown";
         OrganizationComponent,
         BackofficeComponent,
         ControlComponent,
+        SlidesListComponent,
+        TableComponent,
     ],
     imports: [
+        ConfirmDialogModule,
+        TableModule,
+        ToastModule,
+        ToolbarModule,
         CommonModule,
         BackOfficeRoutingModule,
         RouterModule,
