@@ -30,6 +30,7 @@ import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { PublicModule } from "../public/public.module";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
+import { DropdownModule } from "primeng/dropdown";
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import { HttpClientModule } from "@angular/common/http";
         DialogModule,
         HttpClientModule,
         SharedModule,
+        DropdownModule
     ],
     exports: [
         ActivityFormComponent,

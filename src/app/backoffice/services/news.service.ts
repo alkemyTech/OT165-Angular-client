@@ -21,19 +21,19 @@ export class NewsService {
     return this.http.get<T>(url, activateHeader ? { headers: this._headers }: {});
   }
 
-  getNews(){
-    return this.http.get(this.api + "news");
+  getNews(id: number){
+    return this.http.get(this.api + "news/" + id);
   }
 
   createNews(news: any){
     return this.http.post(this.api + "news", news);
   }
 
-  updateNews(news: any): Observable<News>{
-    return this.http.put<News>(this.api + "news/" + news.id, news);
+  updateNews(id:number, news: any): Observable<News>{
+    return this.http.put<News>(this.api + "news/" + id, news);
   }
 
-  getCategories(): Observable<Category>{
-    return this.http.get<Category>(this.api + "categories");
+  getCategories(): Observable<Array<Category>>{
+    return this.http.get<Array<Category>>(this.api + "categories");
   }
 }
