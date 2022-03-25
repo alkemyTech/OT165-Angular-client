@@ -31,6 +31,7 @@ import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
 import {HomeFormComponent} from "./pages/home/home-form/home-form.component";
+import { DropdownModule } from "primeng/dropdown";
 
 @NgModule({
     declarations: [
@@ -63,6 +64,7 @@ import {HomeFormComponent} from "./pages/home/home-form/home-form.component";
         DialogModule,
         HttpClientModule,
         SharedModule,
+        DropdownModule
     ],
     exports: [
     ],

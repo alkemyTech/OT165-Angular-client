@@ -1,0 +1,57 @@
+<app-title title="Formulario de Contacto" imagePath="/assets/images/image11.jpg"></app-title>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <form class="col-12 col-sm-8 col-md-6 col-lg-6 mb-4" [formGroup]="contactForm">
+            <div class="mb-1 mt-3">
+                <div class="field mb-2">
+                    <label for="name" class="block">Nombre</label>                    
+                    <input id="name" type="text" formControlName="name" aria-describedby="name-help" [ngClass]="{ 'ng-invalid ng-dirty': name?.touched && name?.invalid }" pInputText />
+                    <small *ngIf="name?.touched && name?.invalid" id="name" class="p-error block">Debe ingresar un nombre válido.</small>
+                </div>
+                <div class="field mb-2">
+                    <label for="email" class="block">Email</label>                    
+                    <input id="email" type="email" formControlName="email" aria-describedby="email-help" [ngClass]="{ 'ng-invalid ng-dirty': email?.touched && email?.invalid }" pInputText />
+                    <small *ngIf="email?.touched && email?.invalid" id="email" class="p-error block">Debe ingresar un email válido.</small>
+                </div>
+                <div class="field mb-2">
+                    <label for="phone" class="block">Teléfono</label>               
+                    <input id="phone" type="number" formControlName="phone" aria-describedby="phone-help" [ngClass]="{ 'ng-invalid ng-dirty': phone?.touched && phone?.invalid }" pInputText />
+                    <small *ngIf="phone?.touched && phone?.invalid" id="phone" class="p-error block">Debe ingresar un teléfono válido.</small>
+                </div>
+                <div class="field mb-2">
+                    <label for="message" class="block">Mensaje</label>
+                    <textarea class="form-control" formControlName="message" rows="2" pInputText  [ngClass]="{ 'ng-invalid ng-dirty': message?.touched && message?.invalid }"></textarea>
+                    <div *ngIf="message.invalid && message.touched" class="p-error block">
+                        <small>Debe ingresar un mensaje válido.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-4 mx-auto mt-2">
+                <button pButton pRipple type="button" (click)="sendMessage()" label="Enviar" class="primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" [disabled]="!contactForm.valid"></button>
+            </div>       
+        </form>
+    </div>
+</div>
+
+<!-- Modal con formulario completo -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Su mensaje se envió correctamente</h5>                
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Nombre: {{name.value}} </p>
+                <p>Correo: {{email.value}} </p>
+                <p>Teléfono: {{phone.value}} </p>
+                <p>Mensaje: {{message.value}} </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="clearContactForm()" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>                
+            </div>
+        </div>
+    </div>
+</div>
