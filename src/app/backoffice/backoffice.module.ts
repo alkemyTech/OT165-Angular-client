@@ -34,8 +34,9 @@ import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { PublicModule } from "../public/public.module";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
-import { SlidesListComponent } from './pages/slides/slides-list/slides-list.component';
-import { TableComponent } from './shared/components/table/table.component';
+import { DropdownModule } from "primeng/dropdown";
+import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
+import { TableComponent } from "./shared/components/table/table.component";
 
 @NgModule({
     declarations: [
@@ -73,6 +74,7 @@ import { TableComponent } from './shared/components/table/table.component';
         DialogModule,
         HttpClientModule,
         SharedModule,
+        DropdownModule
     ],
     exports: [
         ActivityFormComponent,
