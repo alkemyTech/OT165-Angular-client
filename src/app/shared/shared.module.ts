@@ -8,12 +8,16 @@ import { CardComponent } from './components/card/card.component';
 import { RouterModule } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { NavComponent } from "./components/nav/nav.component";
+import { FooterComponent } from "./components/footer/footer.component";
 
 @NgModule({
   declarations: [
     LogoComponent,
     TitleComponent,
-    CardComponent
+    CardComponent,
+    NavComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
   exports: [
     LogoComponent,
     TitleComponent,
-    CardComponent
+    CardComponent,
+    NavComponent,
+    FooterComponent,
   ]
 })
 export class SharedModule {}
