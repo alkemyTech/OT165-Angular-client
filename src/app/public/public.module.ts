@@ -1,5 +1,5 @@
-import { ActivitiesListComponent } from './pages/activities/activities-list/activities-list.component';
-import { ActivityCardComponent } from './pages/activities/activity-card/activity-card.component';
+import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
+import { ActivityCardComponent } from "./pages/activities/activity-card/activity-card.component";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -9,7 +9,7 @@ import { PublicRoutingModule } from "./public-routing.module";
 import { HomeComponent } from "./pages/home/home.component";
 import { PublicComponent } from "./public.component";
 import { NavComponent } from "./shared/nav/nav.component";
-import { ListnewsComponent } from "./components/listNews/listnews.component";
+import { ListnewsComponent } from "./components/listnews/listnews.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { AboutComponent } from "./pages/aboutUs/about.component";
@@ -21,7 +21,7 @@ import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DonationAmountComponent } from "./pages/donations/donation-amount/donation-amount.component";
 import { ImageCurvedComponent } from "./components/image-curved/image-curved.component";
-import { ContactComponent } from './pages/contact/contact.component';
+import { ContactComponent } from "./pages/contact/contact.component";
 import { DetailComponent } from "./pages/activities/details/detail.component";
 
 //Own Modules
@@ -44,16 +44,9 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     AboutComponent,
     ContactComponent,
     ActivityCardComponent,
-    ActivitiesListComponent
-
+    ActivitiesListComponent,
   ],
-  exports: [
-    HomeComponent,
-    NavComponent,
-    ListnewsComponent,
-    SliderComponent,
-    FooterComponent,
-  ],
+  exports: [],
   imports: [
     CarouselModule,
     CommonModule,
@@ -65,6 +58,5 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     InputTextModule,
     ButtonModule,
   ],
-
 })
 export class PublicModule {}
