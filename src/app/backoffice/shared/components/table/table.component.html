@@ -2,7 +2,7 @@
     <div class="card">
         <p-toolbar styleClass="mb-4">
             <ng-template pTemplate="left">
-                <button pButton pRipple label="{{items.title}}" icon="pi pi-plus" class="p-button-success mr-2" [routerLink]="[items.path, '']"></button>
+                <button pButton pRipple label="Nuevo {{items.title}}" icon="pi pi-plus" class="p-button-success mr-2" [routerLink]="[items.path, '']"></button>
             </ng-template>
         </p-toolbar>
     
@@ -12,7 +12,7 @@
     
             <ng-template pTemplate="caption">
                 <div class="flex align-items-center justify-content-between">
-                    <h5 class="m-0">Todos los {{items.title}}</h5>
+                    <h5 class="m-0">{{items.title}}</h5>
                 </div>
             </ng-template>
 
