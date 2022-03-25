@@ -14,25 +14,76 @@
                     <label for="name" class="block">Nombre</label>
                     <input
                         id="name"
-                        type="username"
-                        aria-describedby="username1-help"
+                        type="text"
+                        aria-describedby="name-help"
                         pInputText
                     />
-                    <small id="username1-help" class="block"
+                    <small id="name-help" class="block"
                         >El nombre de usuario es obligatorio.</small
                     >
                 </div>
-
-                <p-dropdown
-                    placeholder="Seleccione una opción"
-                    optionLabel="name"
-                ></p-dropdown>
+                <div class="field">
+                    <label for="email" class="block">Email</label>
+                    <input
+                        id="email"
+                        type="text"
+                        aria-describedby="email-help"
+                        pInputText
+                    />
+                    <small id="email-help" class="block"
+                        >El email de usuario es obligatorio.</small
+                    >
+                </div>
+                <div class="field">
+                    <label for="logo" class="block">Foto de perfil</label>
+                    <div>
+                        <div class="text-container">
+                            <img
+                                class="img-thumbnail"
+                                src="./../../../../../assets/images/logo.png"
+                                alt=""
+                            />
+                        </div>
+                        <small id="logo-text" class="block">
+                            Para modificar la imagen seleccione un nuevo
+                            archivo.
+                        </small>
+                    </div>
+                    <p-fileUpload
+                        id="logo"
+                        [customUpload]="true"
+                        name="logo"
+                        #fileUploader
+                        (uploadHandler)="onUpload($event, fileUploader)"
+                        [multiple]="false"
+                        accept="image/*.jpg image/*.png"
+                        class="mt-3"
+                    ></p-fileUpload>
+                </div>
+                <div class="field">
+                    <label for="desc" class="block">Descripción</label>
+                    <textarea
+                        id="desc"
+                        [rows]="5"
+                        [cols]="30"
+                        pInputTextarea
+                        [autoResize]="true"
+                    ></textarea>
+                </div>
+                <div class="field">
+                    <label for="name" class="block">Role</label>
+                    <p-dropdown
+                        placeholder="Seleccione una opción"
+                        optionLabel="name"
+                        [options]="role"
+                    ></p-dropdown>
+                </div>
                 <button
                     pButton
                     pRipple
                     type="button"
                     label="Guardar cambios"
-                    class="primary mt-3"
+                    class="primary mt-5"
                 ></button>
             </form>
         </div>

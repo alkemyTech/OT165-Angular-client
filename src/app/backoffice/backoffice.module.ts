@@ -22,6 +22,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FileUploadModule } from "primeng/fileupload";
+import { InputTextareaModule } from "primeng/inputtextarea";
 
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { CKEditorModule } from "ckeditor4-angular";
@@ -63,6 +64,7 @@ import { HttpClientModule } from "@angular/common/http";
         HttpClientModule,
         SharedModule,
         DropdownModule,
+        InputTextareaModule,
     ],
     exports: [
         ActivityFormComponent,
@@ -81,6 +83,7 @@ import { HttpClientModule } from "@angular/common/http";
         RxReactiveFormsModule,
         CKEditorModule,
         DropdownModule,
+        InputTextareaModule,
     ],
 })
 export class BackOfficeModule {}
