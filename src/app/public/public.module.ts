@@ -20,14 +20,16 @@ import { DonationAmountComponent } from "./pages/donations/donation-amount/donat
 import { ImageCurvedComponent } from "./components/image-curved/image-curved.component";
 import { ContactComponent } from './pages/contact/contact.component';
 import { DetailComponent } from "./pages/activities/details/detail.component";
+import { ListnewsComponent } from "./components/listnews/listnews.component";
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
 import { CarouselModule } from "./components/carousel/carousel.module";
-import {ListnewsComponent} from './components/listnews/listnews.component';
+import { ActivityFormComponent } from "./pages/activities/activity-form.component";
 
 @NgModule({
   declarations: [
+    ActivityFormComponent,
     HomeComponent,
     PublicComponent,
     ListnewsComponent,
@@ -43,11 +45,7 @@ import {ListnewsComponent} from './components/listnews/listnews.component';
     ActivitiesListComponent
 
   ],
-  exports: [
-    HomeComponent,
-    ListnewsComponent,
-    SliderComponent,
-  ],
+  exports: [],
   imports: [
     CarouselModule,
     CommonModule,
@@ -59,6 +57,5 @@ import {ListnewsComponent} from './components/listnews/listnews.component';
     InputTextModule,
     ButtonModule,
   ],
-
 })
 export class PublicModule {}

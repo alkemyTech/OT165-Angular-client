@@ -18,6 +18,7 @@ const routes: Routes = [
   {
     path: "",
     children: [
+      { path: "actividades/:id", component: ActivityFormComponent },
       { path: "actividades", component: ActivityFormComponent },
       { path: "categorias/:id", component: CategoriesFormComponent },
       { path: "categorias", component: CategoriesFormComponent },
