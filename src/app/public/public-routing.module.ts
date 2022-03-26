@@ -1,9 +1,8 @@
-import { ActivitiesListComponent } from './pages/activities/activities-list/activities-list.component';
+import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ActivityFormComponent } from "./pages/activities/activity-form.component";
 import { DetailComponent } from "./pages/activities/details/detail.component";
-
 
 //Own Component
 import { DonationComponent } from "./pages/donations/donation/donation.component";
@@ -16,24 +15,23 @@ import { ContactComponent } from "./pages/contact/contact.component";
 const routes: Routes = [
     {
         path: "",
-        component: PublicComponent,
         children: [
-            { 
-              path: "",
-              redirectTo: "/home", 
-              pathMatch: "full" 
+            {
+                path: "",
+                redirectTo: "/home",
+                pathMatch: "full",
             },
-            { 
-              path: "home", 
-              component: HomeComponent 
+            {
+                path: "home",
+                component: HomeComponent,
             },
-            { 
-              path: "actividades",
-              component: ActivitiesListComponent
+            {
+                path: "actividades",
+                component: ActivitiesListComponent,
             },
-            { 
-              path: "actividades/:id",
-              component: DetailComponent
+            {
+                path: "actividades/:id",
+                component: DetailComponent,
             },
             {
                 path: "donar",

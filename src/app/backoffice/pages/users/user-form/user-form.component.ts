@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { RxwebValidators } from "@rxweb/reactive-form-validators";
 
 @Component({
     selector: "app-user-form",
@@ -6,6 +8,20 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./user-form.component.scss"],
 })
 export class UserFormComponent implements OnInit {
+    userForm = this.fb.group({
+        name: ["", [Validators.required, Validators.minLength(4)]],
+        email: ["", [Validators.required, RxwebValidators.email()]],
+        profilePic: [
+            "",
+            [
+                Validators.required,
+                RxwebValidators.extension({ extensions: ["png", "jpg"] }),
+            ],
+        ],
+        desc: ["", [Validators.required, Validators.minLength(10)]],
+        role: ["", [Validators.required]],
+    });
+
     role = [
         { name: "Administrador", code: "admin" },
         { name: "Usuario", code: "user" },
@@ -13,9 +29,13 @@ export class UserFormComponent implements OnInit {
 
     file: string = "";
 
-    constructor() {}
+    constructor(private fb: FormBuilder) {}
 
     ngOnInit(): void {}
+
+    submit() {
+        console.log(this.userForm);
+    }
 
     onUpload(event: any, fileUploader: any) {
         let file = event.files[0];
@@ -34,6 +54,6 @@ export class UserFormComponent implements OnInit {
         let reader = e.target;
         this.file = reader.result;
         console.log("image Src", this.file);
-        //this.form.patchValue({ image: this.file });
+        this.userForm.patchValue({ profilePic: this.file });
     }
 }

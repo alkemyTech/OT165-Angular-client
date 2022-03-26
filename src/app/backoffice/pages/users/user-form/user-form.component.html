@@ -9,29 +9,53 @@
                 />
                 <h4>Editar usuario</h4>
             </div>
-            <form>
+            <form [formGroup]="userForm" (ngSubmit)="submit()">
                 <div class="field">
                     <label for="name" class="block">Nombre</label>
                     <input
+                        [ngClass]="{
+                            'ng-invalid ng-dirty':
+                                userForm.get('name')?.touched &&
+                                userForm.get('name')?.errors
+                        }"
+                        formControlName="name"
                         id="name"
                         type="text"
                         aria-describedby="name-help"
                         pInputText
                     />
-                    <small id="name-help" class="block"
-                        >El nombre de usuario es obligatorio.</small
+                    <small
+                        *ngIf="
+                            userForm.get('name')?.touched &&
+                            userForm.get('name')?.errors
+                        "
+                        id="name-help"
+                        class="p-error block"
+                        >El nombre debe tener un mínimo de 4 caracteres.</small
                     >
                 </div>
                 <div class="field">
                     <label for="email" class="block">Email</label>
                     <input
+                        [ngClass]="{
+                            'ng-invalid ng-dirty':
+                                userForm.get('email')?.touched &&
+                                userForm.get('email')?.errors
+                        }"
+                        formControlName="email"
                         id="email"
                         type="text"
                         aria-describedby="email-help"
                         pInputText
                     />
-                    <small id="email-help" class="block"
-                        >El email de usuario es obligatorio.</small
+                    <small
+                        *ngIf="
+                            userForm.get('email')?.touched &&
+                            userForm.get('email')?.errors
+                        "
+                        id="email-help"
+                        class="p-error block"
+                        >Ingrese un email válido.</small
                     >
                 </div>
                 <div class="field">
@@ -63,20 +87,53 @@
                 <div class="field">
                     <label for="desc" class="block">Descripción</label>
                     <textarea
+                        [ngClass]="{
+                            'ng-invalid ng-dirty':
+                                userForm.get('desc')?.touched &&
+                                userForm.get('desc')?.errors
+                        }"
+                        formControlName="desc"
                         id="desc"
                         [rows]="5"
                         [cols]="30"
                         pInputTextarea
                         [autoResize]="true"
                     ></textarea>
+                    <small
+                        *ngIf="
+                            userForm.get('desc')?.touched &&
+                            userForm.get('desc')?.errors
+                        "
+                        id="desc-text"
+                        class="p-error block"
+                    >
+                        La descripcion debe tener un mínimo de 10 caracteres.
+                    </small>
                 </div>
                 <div class="field">
-                    <label for="name" class="block">Role</label>
+                    <label for="role" class="block">Role</label>
                     <p-dropdown
+                        [ngClass]="{
+                            'ng-invalid ng-dirty':
+                                userForm.get('role')?.touched &&
+                                userForm.get('role')?.errors
+                        }"
+                        formControlName="role"
                         placeholder="Seleccione una opción"
                         optionLabel="name"
+                        optionValue="code"
                         [options]="role"
                     ></p-dropdown>
+                    <small
+                        *ngIf="
+                            userForm.get('role')?.touched &&
+                            userForm.get('role')?.errors
+                        "
+                        id="role-text"
+                        class="p-error block"
+                    >
+                        Seleccione un rol.
+                    </small>
                 </div>
                 <button
                     pButton
@@ -84,6 +141,7 @@
                     type="button"
                     label="Guardar cambios"
                     class="primary mt-5"
+                    (click)="submit()"
                 ></button>
             </form>
         </div>
