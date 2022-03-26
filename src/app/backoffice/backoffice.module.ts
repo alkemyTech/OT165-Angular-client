@@ -35,7 +35,6 @@ import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
 import {HomeFormComponent} from "./pages/home/home-form/home-form.component";
-import { DropdownModule } from "primeng/dropdown";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { TableComponent } from "./shared/components/table/table.component";
 

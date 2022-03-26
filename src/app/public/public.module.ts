@@ -8,7 +8,6 @@ import { PublicRoutingModule } from "./public-routing.module";
 //Own Component
 import { HomeComponent } from "./pages/home/home.component";
 import { PublicComponent } from "./public.component";
-import { NavComponent } from "./shared/nav/nav.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { AboutComponent } from "./pages/aboutUs/about.component";
 import { ButtonModule } from "primeng/button";

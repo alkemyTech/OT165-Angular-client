@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component,  OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
@@ -14,11 +14,10 @@ export class ActivityFormComponent implements OnInit {
   public id!: string | null;
   public image: string | null | SafeResourceUrl = "";
 
-  @Input() activity: { name: string; description: string; image: string } = {
-    name: "Futurama",
-    description: "Actividad para el día del niño",
-    image:
-      "https://media.vandal.net/i/200x200/32136/futurama-game-of-drones-201622585947_6.jpg",
+   activity!: {
+    name: string;
+    description: string;
+    image: string;
   };
 
   activityForm = this.fb.group({
@@ -49,13 +48,21 @@ export class ActivityFormComponent implements OnInit {
   setFieldsData(id: string | null) {
     if (id) {
       this.edit = true;
-      this.activityForm.setValue({
-        name: this.activity.name,
-        description: this.activity.description,
-        image: this.activity.image,
-      });
-      this.image = this.activityForm.value.image;
-      return;
+      //See if obtain an activity data from endpoint.
+      if (!!this.activity) {
+        //Endpoint response with data, fill to activityForm
+        this.activityForm.setValue({
+          name: this.activity.name,
+          description: this.activity.description,
+          image: this.activity.image,
+        });
+        this.image = this.activityForm.value.image;
+        return;
+      } else {
+        //Endpoint response with null data, show form create activity.
+        this.edit = false;
+        this.activity = { name: "", description: "", image: "" };
+      }
     }
   }
 
@@ -73,7 +80,7 @@ export class ActivityFormComponent implements OnInit {
   createActivity() {
     if (this.activityForm.valid) {
       //Endpoint POST /activities/create
-      
+      this.activityForm.value;
       this.image = "";
       this.activityForm.reset();
       return;
@@ -83,7 +90,8 @@ export class ActivityFormComponent implements OnInit {
   editActivity() {
     if (this.activityForm.valid) {
       //Endpoint PATCH /activities/:id
-      alert('Your activity was updated succesfully')
+      this.activityForm.value;
+      alert("Your activity was updated succesfully");
       return;
     }
   }
