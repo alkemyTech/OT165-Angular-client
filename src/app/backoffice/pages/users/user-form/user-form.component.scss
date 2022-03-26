@@ -4,9 +4,12 @@
     align-items: center;
     justify-content: center;
 }
+#formContent {
+    padding: 15px;
+}
 
 .container-fluid {
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 .field {
@@ -14,11 +17,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 15px 30px;
-}
-
-#formContent {
-    padding: 30px;
+    padding: 15px 10px;
 }
 
 .text-container {
@@ -31,5 +30,13 @@
 @media (min-width: 768px) {
     .container-fluid {
         padding: 0 30px;
+    }
+
+    #formContent {
+        padding: 30px;
+    }
+
+    .field {
+        padding: 15px 30px;
     }
 }

@@ -40,6 +40,11 @@ const routes: Routes = [
                 component: UserFormComponent,
                 pathMatch: "full",
             },
+            {
+                path: "usuarios/:id",
+                component: UserFormComponent,
+                pathMatch: "full",
+            },
             { path: "home-form", component: HomeFormComponent },
             { path: "slides/:id", component: SlidesFormComponent },
             { path: "slides", component: SlidesListComponent },

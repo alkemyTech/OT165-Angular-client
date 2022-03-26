@@ -7,7 +7,7 @@
                     src="../../../../../assets/images/logo.png"
                     alt="logo"
                 />
-                <h4>Editar usuario</h4>
+                <h4>{{ title }} usuario</h4>
             </div>
             <form [formGroup]="userForm" (ngSubmit)="submit()">
                 <div class="field">
@@ -60,11 +60,11 @@
                 </div>
                 <div class="field">
                     <label for="logo" class="block">Foto de perfil</label>
-                    <div>
+                    <div *ngIf="file">
                         <div class="text-container">
                             <img
                                 class="img-thumbnail"
-                                src="./../../../../../assets/images/logo.png"
+                                src="{{ file }}"
                                 alt=""
                             />
                         </div>
@@ -85,29 +85,29 @@
                     ></p-fileUpload>
                 </div>
                 <div class="field">
-                    <label for="desc" class="block">Descripción</label>
+                    <label for="adress" class="block">Dirección</label>
                     <textarea
                         [ngClass]="{
                             'ng-invalid ng-dirty':
-                                userForm.get('desc')?.touched &&
-                                userForm.get('desc')?.errors
+                                userForm.get('adress')?.touched &&
+                                userForm.get('adress')?.errors
                         }"
-                        formControlName="desc"
-                        id="desc"
-                        [rows]="5"
+                        formControlName="adress"
+                        id="adress"
+                        [rows]="2"
                         [cols]="30"
                         pInputTextarea
                         [autoResize]="true"
                     ></textarea>
                     <small
                         *ngIf="
-                            userForm.get('desc')?.touched &&
-                            userForm.get('desc')?.errors
+                            userForm.get('adress')?.touched &&
+                            userForm.get('adress')?.errors
                         "
-                        id="desc-text"
+                        id="adress-text"
                         class="p-error block"
                     >
-                        La descripcion debe tener un mínimo de 10 caracteres.
+                        La dirección debe tener un mínimo de 4 caracteres.
                     </small>
                 </div>
                 <div class="field">
@@ -139,7 +139,7 @@
                     pButton
                     pRipple
                     type="button"
-                    label="Guardar cambios"
+                    label="{{ button }}"
                     class="primary mt-5"
                     (click)="submit()"
                 ></button>
