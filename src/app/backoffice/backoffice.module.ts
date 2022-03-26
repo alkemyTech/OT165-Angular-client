@@ -33,15 +33,17 @@ import { CKEditorModule } from "ckeditor4-angular";
 import { SharedModule } from "../shared/shared.module";
 import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
 import { ControlComponent } from "./pages/backoffice/control/control.component";
-import { PublicModule } from "../public/public.module";
 import { DialogModule } from "primeng/dialog";
 import { HttpClientModule } from "@angular/common/http";
+
+import { HomeFormComponent } from "./pages/home/home-form/home-form.component";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { TableComponent } from "./shared/components/table/table.component";
 
 @NgModule({
     declarations: [
         ActivityFormComponent,
+        HomeFormComponent,
         LoginFormComponent,
         RegisterFormComponent,
         CategoriesFormComponent,
@@ -66,36 +68,18 @@ import { TableComponent } from "./shared/components/table/table.component";
         RouterModule,
         ReactiveFormsModule,
         FormsModule,
+        DropdownModule,
         InputTextModule,
         ButtonModule,
         RxReactiveFormsModule,
         CKEditorModule,
         FileUploadModule,
-        PublicModule,
         DialogModule,
         HttpClientModule,
         SharedModule,
         DropdownModule,
         InputTextareaModule,
     ],
-    exports: [
-        ActivityFormComponent,
-        LoginFormComponent,
-        RegisterFormComponent,
-        CategoriesFormComponent,
-        NewsFormComponent,
-        SlidesFormComponent,
-        TestimonialFormComponent,
-        UserFormComponent,
-        OrganizationFormComponent,
-        RouterModule,
-        ReactiveFormsModule,
-        FormsModule,
-        InputTextModule,
-        RxReactiveFormsModule,
-        CKEditorModule,
-        DropdownModule,
-        InputTextareaModule,
-    ],
+    exports: [],
 })
 export class BackOfficeModule {}

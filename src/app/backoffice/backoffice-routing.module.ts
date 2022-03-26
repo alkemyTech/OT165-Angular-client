@@ -19,6 +19,7 @@ const routes: Routes = [
     {
         path: "",
         children: [
+            { path: "actividades/:id", component: ActivityFormComponent },
             { path: "actividades", component: ActivityFormComponent },
             { path: "categorias/:id", component: CategoriesFormComponent },
             { path: "categorias", component: CategoriesFormComponent },
@@ -35,6 +36,9 @@ const routes: Routes = [
                 component: OrganizationComponent,
                 pathMatch: "full",
             },
+            { path: "home-form", component: HomeFormComponent },
+            { path: "slides/:id", component: SlidesFormComponent },
+            { path: "slides", component: SlidesListComponent },
             {
                 path: "usuarios",
                 component: UserFormComponent,
@@ -45,9 +49,6 @@ const routes: Routes = [
                 component: UserFormComponent,
                 pathMatch: "full",
             },
-            { path: "home-form", component: HomeFormComponent },
-            { path: "slides/:id", component: SlidesFormComponent },
-            { path: "slides", component: SlidesListComponent },
             { path: "", component: BackofficeComponent },
         ],
     },
