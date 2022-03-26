@@ -8,7 +8,6 @@ import { PublicRoutingModule } from "./public-routing.module";
 //Own Component
 import { HomeComponent } from "./pages/home/home.component";
 import { PublicComponent } from "./public.component";
-import { ListnewsComponent } from "./components/listNews/listnews.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { AboutComponent } from "./pages/aboutUs/about.component";
 import { ButtonModule } from "primeng/button";
@@ -25,6 +24,7 @@ import { DetailComponent } from "./pages/activities/details/detail.component";
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
 import { CarouselModule } from "./components/carousel/carousel.module";
+import {ListnewsComponent} from './components/listnews/listnews.component';
 
 @NgModule({
   declarations: [
