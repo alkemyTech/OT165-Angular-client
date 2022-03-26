@@ -12,31 +12,40 @@ import { OrganizationFormComponent } from "./pages/organization/organization-for
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { OrganizationComponent } from "./pages/organization/organization-view/organization.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
+import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
+import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 
 const routes: Routes = [
-    { path: "actividades", component: ActivityFormComponent },
-    { path: "categorias/:id", component: CategoriesFormComponent },
-    { path: "categorias", component: CategoriesFormComponent },
     {
-        path: "registro",
-        component: RegisterFormComponent,
-        pathMatch: "full",
+        path: "",
+        children: [
+            { path: "actividades", component: ActivityFormComponent },
+            { path: "categorias/:id", component: CategoriesFormComponent },
+            { path: "categorias", component: CategoriesFormComponent },
+            { path: "novedades", component: NewsFormComponent },
+            {
+                path: "registro",
+                component: RegisterFormComponent,
+                pathMatch: "full",
+            },
+            { path: "login", component: LoginFormComponent, pathMatch: "full" },
+            { path: "organization/edit", component: OrganizationFormComponent },
+            {
+                path: "organization",
+                component: OrganizationComponent,
+                pathMatch: "full",
+            },
+            {
+                path: "usuarios",
+                component: UserFormComponent,
+                pathMatch: "full",
+            },
+            { path: "home-form", component: HomeFormComponent },
+            { path: "slides/:id", component: SlidesFormComponent },
+            { path: "slides", component: SlidesListComponent },
+            { path: "", component: BackofficeComponent },
+        ],
     },
-    { path: "login", component: LoginFormComponent, pathMatch: "full" },
-    { path: "organization/edit", component: OrganizationFormComponent },
-    {
-        path: "organization",
-        component: OrganizationComponent,
-        pathMatch: "full",
-    },
-    {
-        path: "usuarios",
-        component: UserFormComponent,
-        pathMatch: "full",
-    },
-    { path: "home-form", component: HomeFormComponent },
-    { path: "slides/:id", component: SlidesFormComponent },
-    { path: "", component: BackofficeComponent },
 ];
 
 @NgModule({
