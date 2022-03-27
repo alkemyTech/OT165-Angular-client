@@ -1,1 +1,6 @@
-<p>users-list works!</p>
+<app-table
+    [items]="tableUsers" 
+    [titleCol]="titlesCol" 
+    (deleteItemById)="(deleteUser($event))"
+>    
+</app-table>
