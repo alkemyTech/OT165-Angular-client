@@ -32,42 +32,56 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 
-//Own Modules
+import { ToolbarModule } from "primeng/toolbar";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { ToastModule } from "primeng/toast";
+import { TableModule } from "primeng/table";
+
 import { SharedModule } from "../shared/shared.module";
+import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
+import { TableComponent } from "./shared/components/table/table.component";
 
 @NgModule({
-  declarations: [
-    ActivityFormComponent,
-    BackofficeComponent,
-    CategoriesFormComponent,
-    ControlComponent,
-    LoginFormComponent,
-    NewsFormComponent,
-    OrganizationComponent,
-    OrganizationFormComponent,
-    RegisterFormComponent,
-    SlidesFormComponent,
-    TestimonialFormComponent,
-    HomeFormComponent,
-    UserFormComponent,
-    MembersComponent,
-  ],
-  imports: [
-    BackOfficeRoutingModule,
-    ButtonModule,
-    CKEditorModule,
-    CommonModule,
-    DialogModule,
-    DropdownModule,
-    FileUploadModule,
-    FormsModule,
-    HttpClientModule,
-    InputTextModule,
-    ReactiveFormsModule,
-    RouterModule,
-    RxReactiveFormsModule,
-    SharedModule,
-  ],
-  exports: [],
+    declarations: [
+        ActivityFormComponent,
+        HomeFormComponent,
+        LoginFormComponent,
+        RegisterFormComponent,
+        CategoriesFormComponent,
+        NewsFormComponent,
+        SlidesFormComponent,
+        MembersComponent,
+        TestimonialFormComponent,
+        UserFormComponent,
+        OrganizationFormComponent,
+        OrganizationComponent,
+        BackofficeComponent,
+        ControlComponent,
+        SlidesListComponent,
+        TableComponent,
+    ],
+    imports: [
+        ConfirmDialogModule,
+        TableModule,
+        ToastModule,
+        ToolbarModule,
+        CommonModule,
+        BackOfficeRoutingModule,
+        RouterModule,
+        ReactiveFormsModule,
+        FormsModule,
+        DropdownModule,
+        InputTextModule,
+        ButtonModule,
+        RxReactiveFormsModule,
+        CKEditorModule,
+        FileUploadModule,
+        DialogModule,
+        HttpClientModule,
+        SharedModule,
+        DropdownModule
+    ],
+    exports: [
+    ],
 })
 export class BackOfficeModule {}

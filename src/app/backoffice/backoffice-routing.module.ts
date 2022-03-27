@@ -12,11 +12,13 @@ import { OrganizationComponent } from "./pages/organization/organization-view/or
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
+import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 
 const routes: Routes = [
   {
     path: "",
     children: [
+      { path: "actividades/:id", component: ActivityFormComponent },
       { path: "actividades", component: ActivityFormComponent },
       { path: "categorias/:id", component: CategoriesFormComponent },
       { path: "categorias", component: CategoriesFormComponent },
@@ -32,6 +34,7 @@ const routes: Routes = [
       { path: "home-form", component: HomeFormComponent },
       { path: "slides/:id", component: SlidesFormComponent },
       { path: "members/edit", component: MembersComponent },
+      { path: "slides", component: SlidesListComponent },
       { path: "", component: BackofficeComponent },
     ],
   },

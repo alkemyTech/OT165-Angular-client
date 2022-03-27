@@ -1,4 +1,8 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component,  OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { ActivatedRoute } from "@angular/router";
+import { RxwebValidators } from "@rxweb/reactive-form-validators";
 
 @Component({
   selector: "app-activity-form",
@@ -6,19 +10,89 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["./activity-form.component.scss"],
 })
 export class ActivityFormComponent implements OnInit {
-  title = "Apoyo Escolar Nivel Secundaria";
-  description = `Del mismo modo que en primaria, este taller es el corazón del área secundaria.
-  Serealizan talleres de lunes a viernes de 10 a 12 horas y de 16 a 18 horas en el
-  contraturno. Actualmente se encuentran inscriptos en el taller 50 adolescentes entre
-  13 y 20 años. Aquí los jóvenes se presentan con el material que traen del colegio y
-  una docente de la institución y un grupo de voluntarios los recibe para ayudarlos a
-  estudiar o hacer la tarea. Este espacio también es utilizado por los jóvenes como un
-  punto de encuentro y relación entre ellos y la institución.`;
+  public edit: boolean = false;
+  public id!: string | null;
+  public image: string | null | SafeResourceUrl = "";
 
-  @Input() activity!: any;
+   activity!: {
+    name: string;
+    description: string;
+    image: string;
+  };
 
-  uploadedFiles: any[] = [];
-  constructor() {}
+  activityForm = this.fb.group({
+    name: ["", [Validators.required]],
+    description: ["", Validators.required],
+    image: [
+      "",
+      [
+        Validators.required,
+        RxwebValidators.extension({
+          extensions: ["jpg", "png"],
+        }),
+      ],
+    ],
+  });
 
-  ngOnInit(): void {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private sanatizer: DomSanitizer
+  ) {}
+
+  ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.paramMap.get("id");
+    this.setFieldsData(this.id);
+  }
+
+  setFieldsData(id: string | null) {
+    if (id) {
+      this.edit = true;
+      //See if obtain an activity data from endpoint.
+      if (!!this.activity) {
+        //Endpoint response with data, fill to activityForm
+        this.activityForm.setValue({
+          name: this.activity.name,
+          description: this.activity.description,
+          image: this.activity.image,
+        });
+        this.image = this.activityForm.value.image;
+        return;
+      } else {
+        //Endpoint response with null data, show form create activity.
+        this.edit = false;
+        this.activity = { name: "", description: "", image: "" };
+      }
+    }
+  }
+
+  onUpload(event: any, fileUploader: any) {
+    this.activityForm.patchValue({
+      image: event.files,
+    });
+    //Show image after click  upload button
+    let files = event.files[0].objectURL.changingThisBreaksApplicationSecurity;
+    this.image = this.sanatizer.bypassSecurityTrustResourceUrl(files);
+
+    fileUploader.clear();
+  }
+
+  createActivity() {
+    if (this.activityForm.valid) {
+      //Endpoint POST /activities/create
+      this.activityForm.value;
+      this.image = "";
+      this.activityForm.reset();
+      return;
+    }
+  }
+
+  editActivity() {
+    if (this.activityForm.valid) {
+      //Endpoint PATCH /activities/:id
+      this.activityForm.value;
+      alert("Your activity was updated succesfully");
+      return;
+    }
+  }
 }
