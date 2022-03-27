@@ -1,5 +1,5 @@
-import { ActivitiesListComponent } from './pages/activities/activities-list/activities-list.component';
-import { ActivityCardComponent } from './pages/activities/activity-card/activity-card.component';
+import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
+import { ActivityCardComponent } from "./pages/activities/activity-card/activity-card.component";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -18,7 +18,7 @@ import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DonationAmountComponent } from "./pages/donations/donation-amount/donation-amount.component";
 import { ImageCurvedComponent } from "./components/image-curved/image-curved.component";
-import { ContactComponent } from './pages/contact/contact.component';
+import { ContactComponent } from "./pages/contact/contact.component";
 import { DetailComponent } from "./pages/activities/details/detail.component";
 import { ListnewsComponent } from "./components/listnews/listnews.component";
 
@@ -42,8 +42,7 @@ import { ActivityFormComponent } from "./pages/activities/activity-form.componen
     AboutComponent,
     ContactComponent,
     ActivityCardComponent,
-    ActivitiesListComponent
-
+    ActivitiesListComponent,
   ],
   exports: [],
   imports: [
