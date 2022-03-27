@@ -59,24 +59,27 @@
                     >
                 </div>
                 <div class="field">
-                    <label for="logo" class="block">Foto de perfil</label>
+                    <label for="profile_image" class="block"
+                        >Foto de perfil</label
+                    >
                     <div *ngIf="file">
                         <div class="text-container">
                             <img
+                                style="width: 200px"
                                 class="img-thumbnail"
                                 src="{{ file }}"
                                 alt=""
                             />
                         </div>
-                        <small id="logo-text" class="block">
+                        <small id="image-text" class="block">
                             Para modificar la imagen seleccione un nuevo
                             archivo.
                         </small>
                     </div>
                     <p-fileUpload
-                        id="logo"
+                        id="profile_image"
                         [customUpload]="true"
-                        name="logo"
+                        name="profile_image"
                         #fileUploader
                         (uploadHandler)="onUpload($event, fileUploader)"
                         [multiple]="false"
@@ -85,15 +88,15 @@
                     ></p-fileUpload>
                 </div>
                 <div class="field">
-                    <label for="adress" class="block">Dirección</label>
+                    <label for="address" class="block">Dirección</label>
                     <textarea
                         [ngClass]="{
                             'ng-invalid ng-dirty':
-                                userForm.get('adress')?.touched &&
-                                userForm.get('adress')?.errors
+                                userForm.get('address')?.touched &&
+                                userForm.get('address')?.errors
                         }"
-                        formControlName="adress"
-                        id="adress"
+                        formControlName="address"
+                        id="address"
                         [rows]="2"
                         [cols]="30"
                         pInputTextarea
@@ -101,24 +104,24 @@
                     ></textarea>
                     <small
                         *ngIf="
-                            userForm.get('adress')?.touched &&
-                            userForm.get('adress')?.errors
+                            userForm.get('address')?.touched &&
+                            userForm.get('address')?.errors
                         "
-                        id="adress-text"
+                        id="address-text"
                         class="p-error block"
                     >
                         La dirección debe tener un mínimo de 4 caracteres.
                     </small>
                 </div>
                 <div class="field">
-                    <label for="role" class="block">Role</label>
+                    <label for="role_id" class="block">Role</label>
                     <p-dropdown
                         [ngClass]="{
                             'ng-invalid ng-dirty':
-                                userForm.get('role')?.touched &&
-                                userForm.get('role')?.errors
+                                userForm.get('role_id')?.touched &&
+                                userForm.get('role_id')?.errors
                         }"
-                        formControlName="role"
+                        formControlName="role_id"
                         placeholder="Seleccione una opción"
                         optionLabel="name"
                         optionValue="code"
@@ -126,8 +129,8 @@
                     ></p-dropdown>
                     <small
                         *ngIf="
-                            userForm.get('role')?.touched &&
-                            userForm.get('role')?.errors
+                            userForm.get('role_id')?.touched &&
+                            userForm.get('role_id')?.errors
                         "
                         id="role-text"
                         class="p-error block"

@@ -20,15 +20,15 @@ export class UserFormComponent implements OnInit {
     userForm = this.fb.group({
         name: ["", [Validators.required, Validators.minLength(4)]],
         email: ["", [Validators.required, RxwebValidators.email()]],
-        profilePic: [
+        profile_image: [
             "",
             [
                 Validators.required,
                 RxwebValidators.extension({ extensions: ["png", "jpg"] }),
             ],
         ],
-        adress: ["", [Validators.required, Validators.minLength(4)]],
-        role: ["", [Validators.required, Validators.pattern(/[1-2]/)]],
+        address: ["", [Validators.required, Validators.minLength(4)]],
+        role_id: ["", [Validators.required, Validators.pattern(/[1-2]/)]],
     });
 
     role = [
@@ -71,9 +71,9 @@ export class UserFormComponent implements OnInit {
         this.userForm.setValue({
             name: user.name,
             email: user.email,
-            profilePic: user.profile_image,
-            role: user.role_id,
-            adress: user.address,
+            profile_image: user.profile_image,
+            role_id: user.role_id,
+            address: user.address,
         });
     }
 
@@ -101,6 +101,9 @@ export class UserFormComponent implements OnInit {
                     },
                     (error: any) => {
                         alert("Ha ocurrido un problema!");
+                        console.log(error.message);
+                        console.log(error.errors);
+                        console.log(this.userForm.value);
                     }
                 );
             }
