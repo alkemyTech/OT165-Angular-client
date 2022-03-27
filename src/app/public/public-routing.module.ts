@@ -1,19 +1,22 @@
-import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { ActivityFormComponent } from "./pages/activities/activity-form.component";
-import { DetailComponent } from "./pages/activities/details/detail.component";
 
 //Own Component
+import { AboutComponent } from "./pages/aboutUs/about.component";
+import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
+import { ContactComponent } from "./pages/contact/contact.component";
+import { DetailComponent } from "./pages/activities/details/detail.component";
 import { DonationComponent } from "./pages/donations/donation/donation.component";
-import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { PublicComponent } from "./public.component";
-import { AboutComponent } from "./pages/aboutUs/about.component";
-import { ContactComponent } from "./pages/contact/contact.component";
+import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 
 const routes: Routes = [
-    {
+  {
+    path: "",
+    component: PublicComponent,
+    children: [
+      {
         path: "",
         children: [
             {
@@ -54,12 +57,12 @@ const routes: Routes = [
                 pathMatch: "full",
             },
         ],
-    },
-];
+    }
+]
 
 @NgModule({
-    declarations: [],
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  declarations: [],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class PublicRoutingModule {}
