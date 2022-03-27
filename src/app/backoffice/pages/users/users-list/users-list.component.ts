@@ -22,7 +22,7 @@ export class UsersListComponent{
   showUsers(response: any){
     this.users = <Array<User>>response.data;    
     this.tableUsers = {
-      path: '/backoffice/user-form',
+      path: '/backoffice/usuarios/',
       title: 'Usuario',
       data: this.users
     }    
