@@ -1,4 +1,3 @@
-import { CategoriesFormComponent } from './backoffice/pages/categories/categories-form/categories-form.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
