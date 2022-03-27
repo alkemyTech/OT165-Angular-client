@@ -12,12 +12,9 @@ import { PublicComponent } from "./public.component";
 import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 
 const routes: Routes = [
-  {
-    path: "",
-    component: PublicComponent,
-    children: [
-      {
+    {
         path: "",
+        component: PublicComponent,
         children: [
             {
                 path: "",
@@ -57,12 +54,12 @@ const routes: Routes = [
                 pathMatch: "full",
             },
         ],
-    }
-]
+    },
+];
 
 @NgModule({
-  declarations: [],
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    declarations: [],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class PublicRoutingModule {}
