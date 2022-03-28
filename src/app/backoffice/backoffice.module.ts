@@ -40,6 +40,7 @@ import { TableModule } from "primeng/table";
 import { SharedModule } from "../shared/shared.module";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { TableComponent } from "./shared/components/table/table.component";
+import { ActivitiesListComponent } from './pages/activities/activities-list/activities-list.component';
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import { TableComponent } from "./shared/components/table/table.component";
         ControlComponent,
         SlidesListComponent,
         TableComponent,
+        ActivitiesListComponent,
     ],
     imports: [
         ConfirmDialogModule,
