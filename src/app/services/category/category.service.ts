@@ -33,5 +33,5 @@ export class CategoryService {
 
   updateCategoryById(id: number, category: any): Observable<Category> {
     return this.http.put<Category>(`${this.baseURL}/${id}`, category);
-  }
+  }  
 }

@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { CategoryService } from "./../../../../services/category/category.service";
 import { Component, OnInit } from "@angular/core";
 import { Category } from "src/app/shared/models/Category";
@@ -6,44 +7,28 @@ import { Category } from "src/app/shared/models/Category";
   selector: "app-category-list",
   templateUrl: "./category-list.component.html",
   styleUrls: ["./category-list.component.scss"],
+  providers: [MessageService]
 })
 export class CategoryListComponent implements OnInit {
-  categories: Category[] = [];
+  categories!: Category[];
   first: number = 0;
-  rows: number = 10;
+  rows: number = 10;  
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService,
+              private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.getCategories();
   }
 
   getCategories() {
-    this.categoryService.getCategories().subscribe(async (categories) => {
+    this.categoryService.getCategories().subscribe(async (categories: any) => {
       this.categories = await categories;
     });
   }
   newCategory() {}
   editCategory(cat: Category) {}
-  deleteCategory(cat: Category) {}
-
-  next() {
-    this.first = this.first + this.rows;
-  }
-
-  prev() {
-    this.first = this.first - this.rows;
-  }
-
-  reset() {
-    this.first = 0;
-  }
-
-  isLastPage(): boolean {
-    return this.categories ? this.first === this.categories.length - this.rows : true;
-  }
-
-  isFirstPage(): boolean {
-    return this.categories ? this.first === 0 : true;
-  }
+  deleteCategory(e: number) {
+    this.messageService.add({severity:'success', summary: 'Eliminado', detail: 'Categoria eliminada!', life: 3000});
+  }  
 }
