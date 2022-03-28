@@ -29,14 +29,4 @@ export class TableComponent  {
       },
     });
   }
-
-  customSort(event: SortEvent) {
-    //event.data = Data to sort
-    //event.mode = 'single' or 'multiple' sort mode
-    //event.field = Sort field in single sort
-    //event.order = Sort order in single sort
-    //event.multiSortMeta = SortMeta array in multiple sort
-
-    console.log(event)
-  }
 }
