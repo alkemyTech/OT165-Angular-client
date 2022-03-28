@@ -1,8 +1,9 @@
-import { CategoryService } from './../../../../shared/services/category.service';
+
 import { Category } from './../../../../shared/models/Category';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
   selector: 'app-categories-form',
@@ -46,7 +47,7 @@ export class CategoriesFormComponent implements OnInit {
  
 
   getCategory(id: number) {
-    this.categoryService.getCategoryById(id).subscribe({
+    this.categoryService.getById(id).subscribe({
       next: async (res) => {
         this.category = await res.data;
         this.setCategoryForm(this.category)        
@@ -96,7 +97,7 @@ export class CategoriesFormComponent implements OnInit {
       } 
     }    
     if(this.category.id){
-      this.categoryService.updateCategoryById(this.category.id, updateCategory).subscribe();
+      this.categoryService.getCategoryById(this.category.id, updateCategory).subscribe();
     } else {
       this.categoryService.storeNewCategory(this.catForm.value).subscribe();
     } 
