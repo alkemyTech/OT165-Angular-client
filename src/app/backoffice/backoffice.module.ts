@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
@@ -41,6 +41,7 @@ import { ToastModule } from "primeng/toast";
 import { TableModule } from "primeng/table";
 
 import { SharedModule } from "../shared/shared.module";
+import { TokenInterceptorService } from "./services/token-interceptor.service";
 
 @NgModule({
     declarations: [
@@ -85,5 +86,8 @@ import { SharedModule } from "../shared/shared.module";
     ],
     exports: [
     ],
+    providers: [
+      {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}
+    ]
 })
 export class BackOfficeModule {}
