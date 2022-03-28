@@ -2,9 +2,19 @@
 <div class="row mt-5 justify-content-center">
     <div class="col-9">
         <div class="about-text text-center mt-5 mb-5">
-            <p>
-                {{ organizationData.short_description }}
-            </p>
+            {{ organizationData.short_description }}
         </div>
+    </div>
+</div>
+<div class="row mt-2 justify-content-center">
+    <div class="col-3" *ngFor="let member of membersData">
+        <app-card
+            [title]="member.name"
+            [imageSrc]="member.image"
+            [description]="member.description || ''"
+            [detailsLink]="member.facebookUrl || ''"
+        ></app-card>
+        <button type="button" class="btn primary mr-3">LinkedIn</button>
+        <button type="button" class="btn primary">Facebook</button>
     </div>
 </div>
