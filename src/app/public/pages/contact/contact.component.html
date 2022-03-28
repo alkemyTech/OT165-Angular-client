@@ -21,7 +21,7 @@
                 </div>
                 <div class="field mb-2">
                     <label for="message" class="block">Mensaje</label>
-                    <textarea class="form-control" formControlName="message" rows="2" pInputTextarea  [ngClass]="{ 'ng-invalid ng-dirty': message?.touched && message?.invalid }"></textarea>
+                    <textarea class="form-control" formControlName="message" rows="2" pInputText  [ngClass]="{ 'ng-invalid ng-dirty': message?.touched && message?.invalid }"></textarea>
                     <div *ngIf="message.invalid && message.touched" class="p-error block">
                         <small>Debe ingresar un mensaje válido.</small>
                     </div>

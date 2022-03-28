@@ -73,9 +73,9 @@
         >
       </div>
 
-      <label *ngIf="id > 0">Imagen actual</label>   
-          <div *ngIf="id > 0">
-            <img src="{{this.datos.get('image')?.value}}" style="height: auto; max-width: 100px;" alt="not found">
+      <label *ngIf="isNumber(id) || this.datos.get('image')?.value">Imagen actual</label>   
+          <div *ngIf="this.datos.get('image')?.value">
+            <img class="img-actual" src="{{this.datos.get('image')?.value}}" alt="not found">
           </div>  
 
       <div class="field">
