@@ -20,7 +20,7 @@ const routes: Routes = [
       { path: "actividades", component: ActivityFormComponent },
       { path: "categorias/editar/:id", component: CategoriesFormComponent },
       { path: "categorias/crear", component: CategoriesFormComponent},
-      { path: "categorias", component: CategoryListComponent },
+      { path: "categorias", component: CategoryListComponent, pathMatch: "full" },
       { path: "registro", component: RegisterFormComponent, pathMatch: "full" },
       { path: "login", component: LoginFormComponent, pathMatch: "full" },
       { path: "organization/edit", component: OrganizationFormComponent },
