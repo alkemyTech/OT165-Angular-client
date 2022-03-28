@@ -49,7 +49,7 @@ export class CategoriesFormComponent implements OnInit {
   getCategory(id: number) {
     this.categoryService.getById(id).subscribe({
       next: async (res) => {
-        this.category = await res.data;
+        this.category = await res;
         this.setCategoryForm(this.category)        
       }     
     })
@@ -83,13 +83,13 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   sendCategory() {
-    let updateCategory = {}    
+    let updateCategory: Category = {} as Category    
     if(this.uploadedFile != null) {
       updateCategory = {
         name: this.catForm.get('name')?.value,
         description: this.catForm.get('description')?.value,
         image: this.catForm.get('image')?.value
-      }
+      } as Category
     } else {
       updateCategory = {
         name: this.catForm.get('name')?.value,
@@ -97,9 +97,9 @@ export class CategoriesFormComponent implements OnInit {
       } 
     }    
     if(this.category.id){
-      this.categoryService.getCategoryById(this.category.id, updateCategory).subscribe();
+      this.categoryService.putById(this.category.id, updateCategory).subscribe();
     } else {
-      this.categoryService.storeNewCategory(this.catForm.value).subscribe();
+      this.categoryService.post(this.catForm.value).subscribe();
     } 
     
   }
