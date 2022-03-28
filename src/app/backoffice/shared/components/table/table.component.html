@@ -32,7 +32,7 @@
                     <td *ngIf="item.description"><p class="description">{{item.description}}</p></td>
                     <td *ngIf="item.order || item.order === 0">{{item.order}}</td>
                     <td *ngIf="item.email">{{item.email}}</td>
-                    <td *ngIf="item.createdAt">{{item.createdAt}}</td>
+                    <td *ngIf="item.createdAt">{{item.createdAt}} | date: 'd/M/yy, h:mm a'</td>
                     <td></td>
                     <td>
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="[items.path, item.id]" ></button>
