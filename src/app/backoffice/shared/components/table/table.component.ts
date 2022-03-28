@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { ConfirmationService } from "primeng/api";
-import { TableData } from "src/app/backoffice/models/TableData.interface";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from "@angular/core";
+import { ConfirmationService, SortEvent } from "primeng/api";
+import { Columns, TableData } from "src/app/backoffice/models/TableData.interface";
 
 @Component({
   selector: "app-table",
@@ -8,11 +8,11 @@ import { TableData } from "src/app/backoffice/models/TableData.interface";
   styleUrls: ["./table.component.scss"],
   providers: [ConfirmationService],
 })
-export class TableComponent {
+export class TableComponent  {
   /* De manera generica este componente recibe un objeto generalizando Usuarios, Actividades, Slides */
   @Input() items!: TableData;
   /* Recibe un arreglo de string que seran los titulos de las columnas */
-  @Input() titleCol!: string[];
+  @Input() columns!: Columns[];
   /* Al hacer click en eliminar un item se envia el ID del item al componente que implemente la tabla */
   @Output() deleteItemById = new EventEmitter<number>();
 
@@ -28,5 +28,15 @@ export class TableComponent {
         this.deleteItemById.emit(id);
       },
     });
+  }
+
+  customSort(event: SortEvent) {
+    //event.data = Data to sort
+    //event.mode = 'single' or 'multiple' sort mode
+    //event.field = Sort field in single sort
+    //event.order = Sort order in single sort
+    //event.multiSortMeta = SortMeta array in multiple sort
+
+    console.log(event)
   }
 }

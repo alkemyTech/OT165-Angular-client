@@ -7,7 +7,7 @@
         </p-toolbar>
     
         <p-table #dt [value]="items.data" [rows]="5" [paginator]="true" responsiveLayout="scroll"
-             [rowHover]="true" dataKey="id"
+             [rowHover]="true" dataKey="id" 
             currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords} {{items.title}}" [showCurrentPageReport]="true">
     
             <ng-template pTemplate="caption">
@@ -18,7 +18,9 @@
 
             <ng-template pTemplate="header">
                 <tr>
-                    <th *ngFor="let title of titleCol">{{title}}</th>
+                    <th *ngFor="let col of columns" pSortableColumn="{{col.field}}">{{col.header}}<p-sortIcon *ngIf="col.field" field="{{col.field}}"></p-sortIcon></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             
             </ng-template>
