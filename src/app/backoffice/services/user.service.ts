@@ -13,7 +13,7 @@ export class UserService {
 
     constructor(private http: HttpClient) {
         this._headers = new HttpHeaders({ Group: this._groupId });
-        this.api = "https://ongapi.alkemy.org/api";
+        this.api = "https://ongapi.alkemy.org/api/users";
     }
 
     public get<T>(url: string, activateHeader: boolean = false): Observable<T> {
@@ -23,15 +23,23 @@ export class UserService {
         );
     }
 
-    getUser(id: number): any {
-        return this.http.get(`${this.api}/users/${id}`);
+    getUsers(): Observable<Array<User>> {
+        return this.http.get<Array<User>>(this.api);
+    }
+
+    getUser(id: number): Observable<any> {
+        return this.http.get(`${this.api}/${id}`);
+    }
+
+    deleteUser(id: number): Observable<any> {
+        return this.http.delete(this.api + "/" + id);
     }
 
     createUser(user: User): any {
-        return this.http.post(`${this.api}/users`, user);
+        return this.http.post(this.api, user);
     }
 
     saveUser(id: number, user: User): any {
-        return this.http.put(`${this.api}/users/${id}`, user);
+        return this.http.put(`${this.api}/${id}`, user);
     }
 }
