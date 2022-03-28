@@ -25,7 +25,6 @@ export class UserFormComponent implements OnInit {
             [RxwebValidators.extension({ extensions: ["png", "jpg"] })],
         ],
         address: ["", [Validators.required, Validators.minLength(4)]],
-        password: ["", [Validators.required, Validators.minLength(6)]],
         role_id: ["", [Validators.required, Validators.pattern(/[1-2]/)]],
     });
 
@@ -72,7 +71,6 @@ export class UserFormComponent implements OnInit {
             profile_image: user.profile_image,
             role_id: user.role_id,
             address: user.address,
-            password: user.password,
         });
     }
 
