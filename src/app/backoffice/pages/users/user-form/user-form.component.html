@@ -35,6 +35,31 @@
                     >
                 </div>
                 <div class="field">
+                    <label for="password" class="block">Contraseña</label>
+                    <input
+                        [ngClass]="{
+                            'ng-invalid ng-dirty':
+                                userForm.get('password')?.touched &&
+                                userForm.get('password')?.errors
+                        }"
+                        formControlName="password"
+                        id="password"
+                        type="text"
+                        aria-describedby="password-help"
+                        pInputText
+                    />
+                    <small
+                        *ngIf="
+                            userForm.get('password')?.touched &&
+                            userForm.get('password')?.errors
+                        "
+                        id="password-help"
+                        class="p-error block"
+                        >La contraseña debe tener un mínimo de 6
+                        caracteres.</small
+                    >
+                </div>
+                <div class="field">
                     <label for="email" class="block">Email</label>
                     <input
                         [ngClass]="{

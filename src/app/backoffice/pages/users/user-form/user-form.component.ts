@@ -22,12 +22,10 @@ export class UserFormComponent implements OnInit {
         email: ["", [Validators.required, RxwebValidators.email()]],
         profile_image: [
             "",
-            [
-                Validators.required,
-                RxwebValidators.extension({ extensions: ["png", "jpg"] }),
-            ],
+            [RxwebValidators.extension({ extensions: ["png", "jpg"] })],
         ],
         address: ["", [Validators.required, Validators.minLength(4)]],
+        password: ["", [Validators.required, Validators.minLength(6)]],
         role_id: ["", [Validators.required, Validators.pattern(/[1-2]/)]],
     });
 
@@ -74,19 +72,19 @@ export class UserFormComponent implements OnInit {
             profile_image: user.profile_image,
             role_id: user.role_id,
             address: user.address,
+            password: user.password,
         });
     }
 
     submit() {
         if (this.userForm.valid) {
             if (this.id != 0) {
+                console.log(this.id, this.userForm.value);
                 this.userService
                     .saveUser(this.id, this.userForm.value)
                     .subscribe(
                         (res: any) => {
-                            if (res.success) {
-                                alert("Usuario guardado correctamente");
-                            }
+                            alert("Usuario guardado correctamente");
                         },
                         (error: any) => {
                             alert("Ha ocurrido un problema!");
@@ -95,15 +93,10 @@ export class UserFormComponent implements OnInit {
             } else {
                 this.userService.createUser(this.userForm.value).subscribe(
                     (res: any) => {
-                        if (res.success) {
-                            alert("Usuario creado correctamente");
-                        }
+                        alert("Usuario creado correctamente");
                     },
                     (error: any) => {
                         alert("Ha ocurrido un problema!");
-                        console.log(error.message);
-                        console.log(error.errors);
-                        console.log(this.userForm.value);
                     }
                 );
             }
