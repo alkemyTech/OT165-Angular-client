@@ -98,9 +98,17 @@ export class CategoriesFormComponent implements OnInit {
       } 
     }    
     if(this.category.id){
-      this.categoryService.putById(this.category.id, updateCategory).subscribe();
+      this.categoryService.putById(this.category.id, updateCategory).subscribe({
+        next: () => {
+          this.returnToList();
+        }
+      });
     } else {
-      this.categoryService.post(this.catForm.value).subscribe();
+      this.categoryService.post(this.catForm.value).subscribe({
+        next: () => {
+          this.returnToList();
+        }
+      });
     } 
     
   }

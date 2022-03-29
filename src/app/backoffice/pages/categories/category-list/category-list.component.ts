@@ -35,10 +35,16 @@ export class CategoryListComponent implements OnInit {
         data: this.categories
       }
     });
-  }
-  newCategory() {}
-  editCategory(cat: Category) {}
+  }  
   deleteCategory(e: number) {
-    this.messageService.add({severity:'success', summary: 'Eliminado', detail: 'Categoria eliminada!', life: 3000});
+    this.categoryService.deleteById(e).subscribe({
+      next: res => {
+        this.messageService.add({severity:'success', summary: 'Eliminado', detail: 'Categoria eliminada!', life: 3000});
+      },
+      error: err => {
+        this.messageService.add({severity:'success', summary: 'Error', detail: 'La categoría no pudo ser eliminada.', life: 3000});
+      }
+    })
+    
   }  
 }
