@@ -25,7 +25,7 @@ export class SlidesFormComponent implements OnInit {
   public stateRes: boolean = false;
 
   /* imgs */
-  uploadedFile: any = null;
+  public uploadedFile: any = null;
 
   datos = this.fb.group({
     name: ["", [Validators.required, Validators.minLength(4)]],
@@ -71,10 +71,16 @@ export class SlidesFormComponent implements OnInit {
   }
 
   public editSlide() {
-    const slideUpdatedNoIMG = this.setSlideNoImg(this.datos.value)
+    let slideUpdatedNoIMG: Slide
+    if (!this.uploadedFile) {
+      slideUpdatedNoIMG = this.setSlideNoImg(this.datos.value)
+      }else{
+        slideUpdatedNoIMG = this.setSlideEdit(this.datos.value)
+      }
     this.slideService.upDateSlides(this.id, slideUpdatedNoIMG).subscribe(
       (res: SlideResponse) => {
         if (res.success) {
+          console.log(res)
           this.stateRes = true;
           this.header = "Listo!";
           this.textModal = "¡Has editado un Slide!";
