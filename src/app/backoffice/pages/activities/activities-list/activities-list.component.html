@@ -1,5 +1,5 @@
 <p-toast></p-toast>
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <!-- <div *ngIf="items" class="wrapper"> -->
     <div *ngIf="items" class="mx-auto d-flex justify-content-center">
@@ -16,71 +16,90 @@
             ></button>
           </ng-template>
         </p-toolbar>
+        <div class="w-auto">
+          <p-table
+            #dt
+            [value]="items.data"
+            [rows]="5"
+            [paginator]="true"
+            responsiveLayout="scroll"
+            [rowHover]="true"
+            dataKey="id"
+            currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords} {{
+              items.title
+            }}"
+            [showCurrentPageReport]="true"
+          >
+            <ng-template pTemplate="caption">
+              <div class="d-flex align-items-center justify-content-center">
+                <h5>{{ items.title }}</h5>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th *ngFor="let title of titlesCol">
+                  <p class="text-sm-center text-start">{{ title }}</p>
+                </th>
+                <th></th>
+              </tr>
+            </ng-template>
 
-        <p-table
-          #dt
-          [value]="items.data"
-          [rows]="5"
-          [paginator]="true"
-          responsiveLayout="scroll"
-          [rowHover]="true"
-          dataKey="id"
-          currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords} {{
-            items.title
-          }}"
-          [showCurrentPageReport]="true"
-        >
-          <ng-template pTemplate="caption">
-            <div class="d-flex align-items-center justify-content-center">
-              <h5 class="m-0">{{ items.title }}</h5>
-            </div>
-          </ng-template>
+            <ng-template
+              pTemplate="body"
+              let-item
+              class="justify-content-center"
+            >
+              <tr>
+                <td *ngIf="item.name">
+                  <p class="text-start text-sm-center text-wrap">
+                    {{ item.name }}
+                  </p>
+                </td>
+                <td>
+                  <div class="d-flex col col-md-4 mx-auto">
+                    <img
+                      *ngIf="item.image"
+                      [src]="item.image"
+                      [alt]="item.name"
+                      class="img-fluid"
+                    />
+                  </div>
+                </td>
+                <td *ngIf="item.description">
+                  <p class="description">{{ item.description }}</p>
+                </td>
+                <td *ngIf="item.order || item.order === 0">{{ item.order }}</td>
+                <td *ngIf="item.email">{{ item.email }}</td>
+                <td *ngIf="item.createdAt">
+                  <p class="text-start text-sm-center">
+                    {{ item.createdAt | date: "longDate" }}
+                  </p>
+                </td>
 
-          <ng-template pTemplate="header">
-            <tr>
-              <th *ngFor="let title of titlesCol">
-                <p class="text-center">{{ title }}</p>
-              </th>
-            </tr>
-          </ng-template>
-
-          <ng-template pTemplate="body" let-item>
-            <tr>
-              <td *ngIf="item.name">
-                <p class="text-center">{{ item.name }}</p>
-              </td>
-              <td>
-                <div class="col mx-auto">
-                  <img
-                    *ngIf="item.image"
-                    [src]="item.image"
-                    [alt]="item.name"
-                    class="img-fluid"
-                  />
-                </div>
-              </td>
-              <td *ngIf="item.created_at">
-                <p class="text-center">{{ item.created_at | date }}</p>
-              </td>
-              <td>
-                <button
-                  pButton
-                  pRipple
-                  icon="pi pi-pencil"
-                  class="p-button-rounded p-button-success my-2 me-2"
-                  [routerLink]="[items.path, item.id]"
-                ></button>
-                <button
-                  pButton
-                  pRipple
-                  icon="pi pi-trash"
-                  class="p-button-rounded p-button-warning"
-                  (click)="deleteItem(item.id, item.name)"
-                ></button>
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
+                <td class="col-2">
+                  <div
+                    class="d-flex flex-wrap align-items-center justify-content-center"
+                  >
+                    <button
+                      pButton
+                      pRipple
+                      icon="pi pi-pencil"
+                      class="p-button-rounded p-button-success m-1"
+                      [routerLink]="[items.path, item.id]"
+                    ></button>
+                    <button
+                      pButton
+                      pRipple
+                      icon="pi pi-trash"
+                      class="p-button-rounded p-button-warning m-1"
+                      (click)="deleteItem(item.id, item.name)"
+                    ></button>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
       </div>
     </div>
   </div>
