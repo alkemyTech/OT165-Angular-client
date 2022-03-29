@@ -2,6 +2,7 @@ import { MessageService } from 'primeng/api';
 import { CategoryService } from "./../../../../services/category/category.service";
 import { Component, OnInit } from "@angular/core";
 import { Category } from "src/app/shared/models/Category";
+import { Columns, TableData } from 'src/app/backoffice/models/TableData.interface';
 
 @Component({
   selector: "app-category-list",
@@ -10,9 +11,12 @@ import { Category } from "src/app/shared/models/Category";
   providers: [MessageService]
 })
 export class CategoryListComponent implements OnInit {
-  categories!: Category[];
-  first: number = 0;
-  rows: number = 10;  
+  categories!: Array<Category>;
+  tableCategories!: TableData;
+  titlesCol: Columns[] = [
+  {field: 'name', header: 'Nombre'},   
+  {field: 'created_at', header: 'Creado'}
+  ]  
 
   constructor(private categoryService: CategoryService,
               private messageService: MessageService) {}
@@ -22,8 +26,14 @@ export class CategoryListComponent implements OnInit {
   }
 
   getCategories() {
-    this.categoryService.getCategories().subscribe(async (categories: any) => {
+    this.categoryService.getAll().subscribe(async (categories: any) => {
       this.categories = await categories;
+      this.tableCategories = {
+        createPath: '/backoffice/categorias/crear',
+        editPath: '/backoffice/categorias/editar',
+        title: 'Categorias',
+        data: this.categories
+      }
     });
   }
   newCategory() {}

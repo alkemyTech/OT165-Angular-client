@@ -1,25 +1,6 @@
-<p-toast></p-toast>
-<div class="container-fluid">        
-    <p-table #dt1 [value]="categories" [paginator]="true" [rows]="rows" responsiveLayout="scroll">
-        <ng-template pTemplate="caption">
-            <button class="btn btn-success" routerLink="/categorias/crear"><i class="pi pi-plus"></i> Nuevo</button>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>                
-                <th>Nombre</th>                              
-                <th>Fecha de creación</th>
-                <th></th>                               
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-category>
-            <tr>                
-                <td>{{category.name}}</td>
-                <td>{{category.created_at | date: 'd/M/yy, h:mm a'}}</td>
-                <td>
-                    <button class="btn btn-primary" routerLink="/categorias/editar/{{category.id}}"><i class="pi pi-pencil"></i></button>
-                    <button class="btn btn-danger" (click)="deleteCategory(category)"><i class="pi pi-trash"></i></button>
-                </td>                              
-            </tr>
-        </ng-template>        
-    </p-table>
-</div>
+<p-toast></p-toast> 
+<app-table 
+    [items]="tableCategories" 
+    [columns]="titlesCol" 
+    (deleteItemById)="deleteCategory($event)">
+</app-table>

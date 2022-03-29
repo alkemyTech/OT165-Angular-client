@@ -1,4 +1,3 @@
-import { Columns } from './../../../models/TableData.interface';
 import { Component } from '@angular/core';
 import { Columns, TableData } from 'src/app/backoffice/models/TableData.interface';
 import { User } from 'src/app/backoffice/models/user';
@@ -15,7 +14,7 @@ export class UsersListComponent{
   titlesCol: Columns[] = [
     {field: 'name', header: 'Nombre'},
     {field: 'email', header: 'Correo'}
-  ];fveloci
+  ];
 
   constructor(private servicioUser: UserService) { 
     this.servicioUser.getUsers().subscribe(
@@ -26,7 +25,8 @@ export class UsersListComponent{
   showUsers(response: any){
     this.users = <Array<User>>response.data;    
     this.tableUsers = {
-      path: '/backoffice/usuarios/',
+      createPath: '/backoffice/usuarios',
+      editPath: '/backoffice/usuarios',
       title: 'Usuario',
       data: this.users
     }    

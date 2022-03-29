@@ -1,5 +1,6 @@
 export interface TableData{
-    path: string,
+    createPath: string,
+    editPath: string,
     title: string,
     data: GenericData[]
 }
