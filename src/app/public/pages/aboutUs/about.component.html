@@ -6,15 +6,17 @@
         </div>
     </div>
 </div>
-<div class="row mt-2 justify-content-center">
-    <div class="col-3" *ngFor="let member of membersData">
+
+<div class="row mt-2 mx-4 d-flex justify-content-center align-items-center">
+    <div
+        class="col-4 d-flex justify-content-center align-items-center"
+        *ngFor="let member of membersCard"
+    >
         <app-card
             [title]="member.name"
             [imageSrc]="member.image"
             [description]="member.description || ''"
-            [detailsLink]="member.facebookUrl || ''"
+            [externalLinks]="member.links"
         ></app-card>
-        <button type="button" class="btn primary mr-3">LinkedIn</button>
-        <button type="button" class="btn primary">Facebook</button>
     </div>
 </div>

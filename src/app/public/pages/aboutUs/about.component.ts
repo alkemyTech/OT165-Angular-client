@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Organization } from "src/app/backoffice/models/organization";
 import { OrganizationService } from "src/app/backoffice/services/organization.service";
-import { Member } from "src/app/shared/models/Member";
+import { Member, MemberCard } from "src/app/shared/models/Member";
 import { MemberService } from "src/app/shared/services/member.service";
 
 @Component({
@@ -12,6 +12,7 @@ import { MemberService } from "src/app/shared/services/member.service";
 export class AboutComponent implements OnInit {
     organizationData = <Organization>{};
     membersData: Member[] = [];
+    membersCard: MemberCard[] = [];
 
     constructor(
         private organizationService: OrganizationService,
@@ -31,5 +32,22 @@ export class AboutComponent implements OnInit {
     }
     showMembers(response: any) {
         this.membersData = response.data;
+        this.membersData.forEach((member) => {
+            let links = [];
+            if (member.facebookUrl) {
+                links.push({
+                    url: member.facebookUrl,
+                    name: "Facebook",
+                });
+            }
+            if (member.linkedinUrl) {
+                links.push({
+                    url: member.linkedinUrl,
+                    name: "LinkedIn",
+                });
+            }
+            let memberCard = { ...member, links };
+            this.membersCard.push(memberCard);
+        });
     }
 }

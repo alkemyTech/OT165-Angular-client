@@ -9,3 +9,12 @@ export interface Member {
     updated_at?: string;
     deleted_at?: string;
 }
+
+export interface MemberCard extends Member {
+    links?: Links[];
+}
+
+export interface Links {
+    url?: string;
+    name?: string;
+}
