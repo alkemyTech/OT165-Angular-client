@@ -12,6 +12,7 @@ import { OrganizationComponent } from "./pages/organization/organization-view/or
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
+import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
 import { CategoryListComponent } from "./pages/categories/category-list/category-list.component";
@@ -26,8 +27,12 @@ const routes: Routes = [
       { path: "categorias/crear", component: CategoriesFormComponent},
       { path: "categorias", component: CategoryListComponent, pathMatch: "full" },      
       { path: "novedades", component: NewsFormComponent },
-      { path: "usuarios", component: UsersListComponent},      
-      { path: "registro", component: RegisterFormComponent, pathMatch: "full" },
+      { path: "usuarios", component: UsersListComponent },
+      {
+        path: "registro",
+        component: RegisterFormComponent,
+        pathMatch: "full",
+      },
       { path: "login", component: LoginFormComponent, pathMatch: "full" },
       { path: "organization/edit", component: OrganizationFormComponent },
       {
@@ -39,7 +44,8 @@ const routes: Routes = [
       { path: "slides/editar/:id", component: SlidesFormComponent },
       { path: "slides/crear", component: SlidesFormComponent },
       { path: "members/edit", component: MembersComponent },
-      { path: "slides", component: SlidesListComponent },
+      { path: "usuario", component: UserFormComponent },
+      { path: "usuario/:id", component: UserFormComponent },
       { path: "", component: BackofficeComponent },
     ],
   },
