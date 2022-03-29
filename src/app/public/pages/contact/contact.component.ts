@@ -30,7 +30,7 @@ export class ContactComponent{
       phone: (this.phone.value).toString(),
       message: this.message.value
     }
-    this.serviceContact.sendContactForm(contact).subscribe(
+    this.serviceContact.post(contact).subscribe(
       response => { response }
     )
   }
