@@ -159,7 +159,7 @@ export class ActivitiesListComponent implements OnInit {
     }>
   ) {
     this.tableActivities = {
-      path: "/backoffice/actividades/",
+      path: "/backoffice/actividades/create",
       title: "Actividad",
       data: data,
     };

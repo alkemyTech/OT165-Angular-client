@@ -12,12 +12,17 @@ import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
 //Others Modules
 import { ButtonModule } from "primeng/button";
 import { CKEditorModule } from "ckeditor4-angular";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { DialogModule } from "primeng/dialog";
 import { DropdownModule } from "primeng/dropdown";
 import { FileUploadModule } from "primeng/fileupload";
 import { InputTextModule } from "primeng/inputtext";
+import { TableModule } from "primeng/table";
+import { ToastModule } from "primeng/toast";
+import { ToolbarModule } from "primeng/toolbar";
 
 //Own Components
+import { ActivitiesListComponent } from './pages/activities/activities-list/activities-list.component';
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { ControlComponent } from "./pages/backoffice/control/control.component";
@@ -29,19 +34,14 @@ import { OrganizationComponent } from "./pages/organization/organization-view/or
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
-import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
-import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { TableComponent } from "./shared/components/table/table.component";
+import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
+import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 
-import { ToolbarModule } from "primeng/toolbar";
-import { ConfirmDialogModule } from "primeng/confirmdialog";
-import { ToastModule } from "primeng/toast";
-import { TableModule } from "primeng/table";
 
 import { SharedModule } from "../shared/shared.module";
-import { ActivitiesListComponent } from './pages/activities/activities-list/activities-list.component';
 import { TokenInterceptorService } from "./services/token-interceptor.service";
 
 @NgModule({
