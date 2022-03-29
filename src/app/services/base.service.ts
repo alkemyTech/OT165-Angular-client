@@ -16,7 +16,7 @@ export class BaseService <S> {
 
   getAll(): Observable<S[]>{
     return <Observable<S[]>>(
-      this.http.get(`${environment.BASE_URL_API}`)
+      this.http.get(`${environment.BASE_URL_API}${this.url}`)
       .pipe(map((res: any) => {
         return res.data;
       }))
@@ -28,7 +28,7 @@ export class BaseService <S> {
       this.http
         .get(`${environment.BASE_URL_API}${this.url}/${id}`)
         .pipe(map((res: any) => {
-          return res.data;
+          return res;
         }))
     );
   }
@@ -42,7 +42,7 @@ export class BaseService <S> {
       this.http
         .put(`${environment.BASE_URL_API}${this.url}/${id}`, object)
         .pipe(map((res: any) => {
-          return res.data;
+          return res;
         }))
     ) 
   }
@@ -52,7 +52,7 @@ export class BaseService <S> {
       this.http
         .patch(`${environment.BASE_URL_API}${this.url}/${id}`, object)
         .pipe(map((res: any) => {
-          return res.data;
+          return res;
         }))
     )
   }
@@ -60,9 +60,9 @@ export class BaseService <S> {
   post(object: S): Observable<S>{
     return <Observable<S>>(
       this.http
-        .put(`${environment.BASE_URL_API}${this.url}`, object)
+        .post(`${environment.BASE_URL_API}${this.url}`, object)
         .pipe(map((res: any) => {
-          return res.data;
+          return res;
         }))
     )
   }

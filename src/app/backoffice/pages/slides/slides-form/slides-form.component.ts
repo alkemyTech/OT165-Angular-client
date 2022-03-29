@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { Data, Slide } from "../../../models/slide.interface";
+import { Slide, SlideResponse } from "../../../models/slide.interface";
 import { SlideService } from "../../../services/slide.service";
 import { Location } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
@@ -14,7 +14,7 @@ import { Observable } from "rxjs";
 export class SlidesFormComponent implements OnInit {
   public title: string = "";
   public edit: boolean = false;
-  public slide$!: Observable<Slide>;
+  public slide$!: Observable<SlideResponse>;
   public id!: number;
 
   /* Modal */
@@ -45,10 +45,14 @@ export class SlidesFormComponent implements OnInit {
     if (this.id) {
       this.slide$ = this.slideService.getSingleSlide(this.id);
       this.slide$.subscribe(
-        (res) => {
-          this.setSlideById(res.data);
-          this.edit = true;
-          this.title = "Editar";
+        (res: SlideResponse) => {
+          if (res.success) {
+            this.setSlideById(res.data);
+            this.edit = true;
+            this.title = "Editar";
+          }else{
+            this.title = "Crear";
+          }
         },
         (err) => {
           if (!err.success) {
@@ -67,7 +71,8 @@ export class SlidesFormComponent implements OnInit {
 
   public editSlide() {
     this.slideService.upDateSlides(this.id, this.datos.value).subscribe(
-      (res) => {
+      (res: SlideResponse) => {
+        console.log(res)
         if (res.success) {
           this.stateRes = true;
           this.header = "Listo!";
@@ -86,7 +91,7 @@ export class SlidesFormComponent implements OnInit {
 
   public createSlide() {
     this.slideService.createSlides(this.datos.value).subscribe(
-      (res) => {
+      (res: SlideResponse) => {
         if (res.success) {
           this.stateRes = true;
           this.header = "Listo!";
@@ -114,7 +119,7 @@ export class SlidesFormComponent implements OnInit {
     this.display = true;
   }
 
-  private setSlideById(slide: Data): Data {
+  private setSlideById(slide: Slide): Slide {
     this.datos.controls["name"].setValue(slide.name);
     this.datos.controls["description"].setValue(slide.description);
     this.datos.controls["order"].setValue(slide.order);

@@ -40,6 +40,7 @@ const routes: Routes = [
       },
       { path: "home-form", component: HomeFormComponent },
       { path: "slides/:id", component: SlidesFormComponent },
+      { path: "slides", component: SlidesListComponent },
       { path: "members/edit", component: MembersComponent },
       { path: "usuario", component: UserFormComponent },
       { path: "usuario/:id", component: UserFormComponent },
