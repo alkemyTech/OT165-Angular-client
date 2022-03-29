@@ -13,3 +13,8 @@ export interface GenericData{
   email?: string,
   createdAt?: string,
 }
+
+export interface Columns{
+  field?: string,
+  header: string
+}

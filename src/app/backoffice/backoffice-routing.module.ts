@@ -13,7 +13,8 @@ import { OrganizationFormComponent } from "./pages/organization/organization-for
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
-import {ActivitiesListComponent} from "./pages/activities/activities-list/activities-list.component";
+import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
+import { UsersListComponent } from "./pages/users/users-list/users-list.component";
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: "categorias/:id", component: CategoriesFormComponent },
       { path: "categorias", component: CategoriesFormComponent },
       { path: "novedades", component: NewsFormComponent },
+      { path: "usuarios", component: UsersListComponent },
       { path: "registro", component: RegisterFormComponent, pathMatch: "full" },
       { path: "login", component: LoginFormComponent, pathMatch: "full" },
       { path: "organization/edit", component: OrganizationFormComponent },

@@ -1,34 +1,44 @@
 import { Component, OnInit } from "@angular/core";
-import { ConfirmationService, MessageService } from "primeng/api";
+import {
+  Columns,
+  TableData,
+} from "src/app/backoffice/models/TableData.interface";
 
 @Component({
   selector: "app-activities-list",
   templateUrl: "./activities-list.component.html",
   styleUrls: ["./activities-list.component.scss"],
-  providers: [MessageService, ConfirmationService],
 })
 export class ActivitiesListComponent implements OnInit {
-  public items!: any;
-
-  newData: any[] = [];
-
-  titlesCol: string[] = ["Nombre", "Imagen", "Creado"];
-
   activities!: Array<{
     id: number;
-    name: string;
-    slug: string | null;
-    description: string;
-    image: string;
-    user_id: number | null;
-    category_id: number | null;
-    created_at: string;
-    updated_at: string;
-    deleted_at: string | null;
-    group_id: string | number | null;
+    name?: string;
+    slug?: string | null;
+    description?: string;
+    image?: string;
+    user_id?: number | null;
+    category_id?: number | null;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string | null;
+    group_id?: string | number | null;
   }>;
 
-  constructor(private messageService: MessageService) {}
+  tableActivities!: TableData;
+  titlesCol: Columns[] = [
+    { header: "Nombre" },
+    { header: "Imagen" },
+    { header: "Creado" },
+  ];
+
+  private newData: Array<{
+    id: number | undefined;
+    image: string | undefined;
+    name: string | undefined;
+    createdAt: string | undefined;
+  }> = [];
+
+  constructor() {}
 
   ngOnInit(): void {
     this.activities = [
@@ -130,7 +140,7 @@ export class ActivitiesListComponent implements OnInit {
         group_id: 42,
       },
     ];
-
+    //Use just data require for component app-table
     for (let index = 0; index < this.activities.length; index++) {
       let { id, image, name, created_at } = this.activities[index];
       let cleanData = { id, image, name, createdAt: created_at };
@@ -140,14 +150,20 @@ export class ActivitiesListComponent implements OnInit {
     this.showActivities(this.newData);
   }
 
-  showActivities(data: any) {
-    this.items = {
+  showActivities(
+    data: Array<{
+      id: number | undefined;
+      image: string | undefined;
+      name: string | undefined;
+      createdAt: string | undefined;
+    }>
+  ) {
+    this.tableActivities = {
       path: "/backoffice/actividades/",
       title: "Actividad",
       data: data,
     };
-    console.log(this.items);
   }
 
-  deleteItem(id: any, name: any) {}
+  deleteUser(event: any) {}
 }
