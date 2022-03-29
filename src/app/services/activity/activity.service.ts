@@ -21,15 +21,15 @@ export class ActivityService extends BaseService<Activity> {
     return super.getById(id);
   }
 
-  createActivity(activity: Activity) {
+  createActivity(activity: Activity): Observable<Activity> {
     return super.post(activity);
   }
 
-  updateActivity(id: number, activity: Activity) {
+  updateActivity(id: number, activity: Activity): Observable<Activity> {
     return super.patchById(id, activity);
   }
 
-  deleteActivity(id: number) {
+  deleteActivity(id: number): Observable<Activity> {
     return super.deleteById(id);
   }
 
