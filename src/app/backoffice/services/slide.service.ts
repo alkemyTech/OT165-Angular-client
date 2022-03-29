@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Slide, SlideResponse } from "../models/slide.interface";
 import { BaseService } from 'src/app/services/base.service';
-import { map } from 'rxjs/operators';
-
 
 @Injectable({
   providedIn: 'root'

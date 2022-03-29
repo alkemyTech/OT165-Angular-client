@@ -74,7 +74,6 @@ export class SlidesFormComponent implements OnInit {
     const slideUpdatedNoIMG = this.setSlideNoImg(this.datos.value)
     this.slideService.upDateSlides(this.id, slideUpdatedNoIMG).subscribe(
       (res: SlideResponse) => {
-        console.log(res)
         if (res.success) {
           this.stateRes = true;
           this.header = "Listo!";
