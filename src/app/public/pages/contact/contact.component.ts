@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Contact } from 'src/app/shared/models/contact';
 import { ContactService } from '../../services/contact.service';
 
 @Component({
@@ -24,13 +25,13 @@ export class ContactComponent{
   get message(){ return this.contactForm.get('message')!; }  
 
   sendMessage(){
-    let contact = {
+    let contact:Contact = {
       name: this.name.value,
       email: this.email.value,
       phone: (this.phone.value).toString(),
       message: this.message.value
     }
-    this.serviceContact.post(contact).subscribe(
+    this.serviceContact.createContact(contact).subscribe(
       response => { response }
     )
   }
