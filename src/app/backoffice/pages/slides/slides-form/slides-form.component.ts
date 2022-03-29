@@ -15,6 +15,7 @@ export class SlidesFormComponent implements OnInit {
   public title: string = "";
   public edit: boolean = false;
   public slide$!: Observable<SlideResponse>;
+  public slideUpdated!: Slide;
   public id!: number;
 
   /* Modal */
@@ -47,7 +48,7 @@ export class SlidesFormComponent implements OnInit {
       this.slide$.subscribe(
         (res: SlideResponse) => {
           if (res.success) {
-            this.setSlideById(res.data);
+            this.slideUpdated = this.setSlideEdit(res.data);
             this.edit = true;
             this.title = "Editar";
           }else{
@@ -70,7 +71,8 @@ export class SlidesFormComponent implements OnInit {
   }
 
   public editSlide() {
-    this.slideService.upDateSlides(this.id, this.datos.value).subscribe(
+    const slideUpdatedNoIMG = this.setSlideNoImg(this.datos.value)
+    this.slideService.upDateSlides(this.id, slideUpdatedNoIMG).subscribe(
       (res: SlideResponse) => {
         console.log(res)
         if (res.success) {
@@ -119,7 +121,11 @@ export class SlidesFormComponent implements OnInit {
     this.display = true;
   }
 
-  private setSlideById(slide: Slide): Slide {
+  public isNumber(val: number): boolean { 
+    return typeof val === 'number'; 
+  }
+
+  private setSlideEdit(slide: Slide): Slide {
     this.datos.controls["name"].setValue(slide.name);
     this.datos.controls["description"].setValue(slide.description);
     this.datos.controls["order"].setValue(slide.order);
@@ -127,8 +133,13 @@ export class SlidesFormComponent implements OnInit {
     return slide;
   }
 
-  public isNumber(val: number): boolean { 
-    return typeof val === 'number'; 
+  private setSlideNoImg(slide: any): any {
+    const s = {
+      name: slide.name,
+      description: slide.description,
+      order: slide.order,
+    }
+    return s;
   }
 
   // onClick upload button convert image file to base64 string
