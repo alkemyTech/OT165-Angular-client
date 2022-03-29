@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { Data } from "src/app/backoffice/models/slide.interface";
-import { TableData } from "src/app/backoffice/models/TableData.interface";
+import { Columns, TableData } from "src/app/backoffice/models/TableData.interface";
 import { SlideService } from "src/app/backoffice/services/slide.service";
 
 @Component({
@@ -14,7 +14,11 @@ export class SlidesListComponent implements OnInit {
 
   items!: TableData
 
-  titlesCol: string[] = ['Nombre', 'Imagen', 'Descripción','Orden']
+  titlesCol: Columns[] = [
+  {field: 'name', header: 'Nombre'},
+  {header: 'Imagen'},
+  {header: 'Descripción'},
+  {field: 'order', header: 'Orden'}]
 
   modalDialog!: boolean;
 
