@@ -1,9 +1,8 @@
-import { Router } from '@angular/router';
-import { CategoryService } from '../../../../services/category/category.service';
 import { Category } from './../../../../shared/models/Category';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
   selector: 'app-categories-form',
@@ -49,9 +48,9 @@ export class CategoriesFormComponent implements OnInit {
  
 
   getCategory(id: number) {
-    this.categoryService.getCategoryById(id).subscribe({
+    this.categoryService.getById(id).subscribe({
       next: async (res) => {
-        this.category = await res.data;
+        this.category = await res;
         this.setCategoryForm(this.category)        
       }     
     })
@@ -85,13 +84,13 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   sendCategory() {
-    let updateCategory = {}    
+    let updateCategory: Category = {} as Category    
     if(this.uploadedFile != null) {
       updateCategory = {
         name: this.catForm.get('name')?.value,
         description: this.catForm.get('description')?.value,
         image: this.catForm.get('image')?.value
-      }
+      } as Category
     } else {
       updateCategory = {
         name: this.catForm.get('name')?.value,
@@ -99,17 +98,9 @@ export class CategoriesFormComponent implements OnInit {
       } 
     }    
     if(this.category.id){
-      this.categoryService.updateCategoryById(this.category.id, updateCategory).subscribe({
-        next: res => {
-          this.returnToList();
-        }
-      });
+      this.categoryService.putById(this.category.id, updateCategory).subscribe();
     } else {
-      this.categoryService.storeNewCategory(this.catForm.value).subscribe({
-        next: res => {          
-          this.returnToList();
-        }
-      });
+      this.categoryService.post(this.catForm.value).subscribe();
     } 
     
   }
