@@ -41,7 +41,6 @@ const routes: Routes = [
       { path: "home-form", component: HomeFormComponent },
       { path: "slides/:id", component: SlidesFormComponent },
       { path: "members/edit", component: MembersComponent },
-      { path: "slides", component: SlidesListComponent },
       { path: "usuario", component: UserFormComponent },
       { path: "usuario/:id", component: UserFormComponent },
       { path: "", component: BackofficeComponent },
