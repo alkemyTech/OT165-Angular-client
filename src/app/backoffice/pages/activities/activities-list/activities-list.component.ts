@@ -35,7 +35,7 @@ export class ActivitiesListComponent implements OnInit {
     id: number | undefined;
     image: string | undefined;
     name: string | undefined;
-    createdAt: string | undefined;
+    created_at: string | undefined;
   }> = [];
 
   constructor() {}
@@ -143,7 +143,7 @@ export class ActivitiesListComponent implements OnInit {
     //Use just data require for component app-table
     for (let index = 0; index < this.activities.length; index++) {
       let { id, image, name, created_at } = this.activities[index];
-      let cleanData = { id, image, name, createdAt: created_at };
+      let cleanData = { id, image, name, created_at };
       this.newData.push(cleanData);
     }
 
@@ -155,11 +155,12 @@ export class ActivitiesListComponent implements OnInit {
       id: number | undefined;
       image: string | undefined;
       name: string | undefined;
-      createdAt: string | undefined;
+      created_at: string | undefined;
     }>
   ) {
     this.tableActivities = {
-      path: "/backoffice/actividades/create",
+      createPath: "/backoffice/actividades/create",
+      editPath:"/backoffice/actividades/edit",
       title: "Actividad",
       data: data,
     };

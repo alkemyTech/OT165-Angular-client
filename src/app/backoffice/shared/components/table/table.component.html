@@ -8,7 +8,7 @@
           label="Nuevo {{ items.title }}"
           icon="pi pi-plus"
           class="p-button-success mr-2"
-          [routerLink]="[items.path, '']"
+          [routerLink]="[items.createPath]"
         ></button>
       </ng-template>
     </p-toolbar>
@@ -57,7 +57,7 @@
           </td>
           <td *ngIf="item.order || item.order === 0">{{ item.order }}</td>
           <td *ngIf="item.email">{{ item.email }}</td>
-          <td *ngIf="item.createdAt">{{ item.createdAt | date: "short" }}</td>
+          <td *ngIf="item.created_at">{{ item.created_at | date: "short" }}</td>
           <td></td>
           <td>
             <button
@@ -65,7 +65,7 @@
               pRipple
               icon="pi pi-pencil"
               class="p-button-rounded p-button-success mr-2"
-              [routerLink]="[items.path, item.id]"
+              [routerLink]="[items.editPath, item.id]"
             ></button>
             <button
               pButton

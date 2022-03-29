@@ -25,7 +25,8 @@ export class UsersListComponent{
   showUsers(response: any){
     this.users = <Array<User>>response.data;    
     this.tableUsers = {
-      path: '/backoffice/usuarios/',
+      createPath: '/backoffice/usuarios/create',
+      editPath: '/backoffice/usuarios/edit',
       title: 'Usuario',
       data: this.users
     }    

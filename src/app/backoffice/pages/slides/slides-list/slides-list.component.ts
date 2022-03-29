@@ -35,7 +35,8 @@ export class SlidesListComponent implements OnInit {
     this.slideService.getAllSildes().subscribe((data) => {
       this.slides = data.data.filter(slide => slide.order !== null);
       this.items = {
-        path: '/backoffice/slides/',
+        createPath: '/backoffice/slides/create',
+        editPath: '/backoffice/slides/edit',
         title: 'Slides',
         data: this.slides
       }
