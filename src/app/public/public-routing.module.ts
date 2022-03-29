@@ -10,6 +10,8 @@ import { DonationComponent } from "./pages/donations/donation/donation.component
 import { HomeComponent } from "./pages/home/home.component";
 import { PublicComponent } from "./public.component";
 import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
+import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
+import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 
 const routes: Routes = [
   {
@@ -51,6 +53,16 @@ const routes: Routes = [
       {
         path: "contacto",
         component: ContactComponent,
+        pathMatch: "full",
+      },
+      {
+        path: "login",
+        component: LoginFormComponent,
+        pathMatch: "full",
+      },
+      {
+        path: "registro",
+        component: RegisterFormComponent,
         pathMatch: "full",
       },
     ],
