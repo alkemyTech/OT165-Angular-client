@@ -1,22 +1,22 @@
 <app-title title="Sobre Nosotros"></app-title>
 <div class="row mt-5 justify-content-center">
-    <div class="col-9">
-        <div class="about-text text-center mt-5 mb-5">
-            {{ organizationData.short_description }}
-        </div>
+  <div class="col-9">
+    <div class="about-text text-center mt-5 mb-5">
+      {{ organizationData.short_description }}
     </div>
+  </div>
 </div>
 
 <div class="row mt-2 mx-4 d-flex justify-content-center align-items-center">
-    <div
-        class="col-md-4 mt-5 d-flex justify-content-center align-items-center"
-        *ngFor="let member of membersCard"
-    >
-        <app-card
-            [title]="member.name"
-            [imageSrc]="member.image"
-            [description]="member.description || ''"
-            [externalLinks]="member.links"
-        ></app-card>
-    </div>
+  <div
+    class="col-md-4 mt-5 d-flex justify-content-center align-items-center"
+    *ngFor="let member of membersCard"
+  >
+    <app-card
+      [title]="member.name"
+      [imageSrc]="member.image"
+      [description]="member.description || ''"
+      [externalLinks]="member.links"
+    ></app-card>
+  </div>
 </div>

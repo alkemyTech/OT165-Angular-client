@@ -1,41 +1,41 @@
 <div
-    [ngClass]="{ 'card-container': !isTable, 'table-container': isTable }"
-    class="card-container"
-    (click)="navigateToDetails($event)"
+  [ngClass]="{ 'card-container': !isTable, 'table-container': isTable }"
+  class="card-container"
+  (click)="navigateToDetails($event)"
 >
-    <div class="image-container">
-        <img
-            class="image"
-            [src]="imageSrc"
-            alt="not-found"
-            (error)="errorImageSrc()"
-        />
+  <div class="image-container">
+    <img
+      class="image"
+      [src]="imageSrc"
+      alt="not-found"
+      (error)="errorImageSrc()"
+    />
+  </div>
+  <div class="information">
+    <h3>{{ title }}</h3>
+    <div class="description" [innerHTML]="description"></div>
+  </div>
+  <div class="links" *ngIf="externalLinks">
+    <div class="link" *ngFor="let link of externalLinks">
+      <a (click)="navigateToLink(link.url)" class="badge primary">{{
+        link.name
+      }}</a>
     </div>
-    <div class="information">
-        <h3>{{ title }}</h3>
-        <div class="description" [innerHTML]="description"></div>
-    </div>
-    <div class="links" *ngIf="externalLinks">
-        <div class="link" *ngFor="let link of externalLinks">
-            <a (click)="navigateToLink(link.url)" class="badge primary">{{
-                link.name
-            }}</a>
-        </div>
-    </div>
-    <div class="buttons" *ngIf="isTable">
-        <button
-            pButton
-            pRipple
-            icon="pi pi-pencil"
-            class="p-button-rounded p-button-success p-mr-2"
-            (click)="editToggle()"
-        ></button>
-        <button
-            pButton
-            pRipple
-            icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
-            (click)="deleteToggle()"
-        ></button>
-    </div>
+  </div>
+  <div class="buttons" *ngIf="isTable">
+    <button
+      pButton
+      pRipple
+      icon="pi pi-pencil"
+      class="p-button-rounded p-button-success p-mr-2"
+      (click)="editToggle()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      icon="pi pi-trash"
+      class="p-button-rounded p-button-warning"
+      (click)="deleteToggle()"
+    ></button>
+  </div>
 </div>
