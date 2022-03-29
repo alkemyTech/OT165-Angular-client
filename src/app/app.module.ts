@@ -17,23 +17,23 @@ import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
 
 @NgModule({
-    declarations: [AppComponent],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        CommonModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BackOfficeModule,
-        PublicModule,
-        ButtonModule,
-        InputTextareaModule,
-        FormsModule,
-        InputNumberModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BackOfficeModule,
+    PublicModule,
+    ButtonModule,
+    InputTextareaModule,
+    FormsModule,
+    InputNumberModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

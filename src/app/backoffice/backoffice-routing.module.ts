@@ -17,39 +17,39 @@ import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.comp
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
 
 const routes: Routes = [
-    {
-        path: "",
-        children: [
-            { path: "actividades/:id", component: ActivityFormComponent },
-            { path: "actividades", component: ActivityFormComponent },
-            { path: "categorias/:id", component: CategoriesFormComponent },
-            { path: "categorias", component: CategoriesFormComponent },
-            { path: "novedades", component: NewsFormComponent },
-            { path: "usuarios", component: UsersListComponent },
-            {
-                path: "registro",
-                component: RegisterFormComponent,
-                pathMatch: "full",
-            },
-            { path: "login", component: LoginFormComponent, pathMatch: "full" },
-            { path: "organization/edit", component: OrganizationFormComponent },
-            {
-                path: "organization",
-                component: OrganizationComponent,
-                pathMatch: "full",
-            },
-            { path: "home-form", component: HomeFormComponent },
-            { path: "slides/:id", component: SlidesFormComponent },
-            { path: "members/edit", component: MembersComponent },
-            { path: "slides", component: SlidesListComponent },
-            { path: "usuario", component: UserFormComponent },
-            { path: "usuario/:id", component: UserFormComponent },
-            { path: "", component: BackofficeComponent },
-        ],
-    },
+  {
+    path: "",
+    children: [
+      { path: "actividades/:id", component: ActivityFormComponent },
+      { path: "actividades", component: ActivityFormComponent },
+      { path: "categorias/:id", component: CategoriesFormComponent },
+      { path: "categorias", component: CategoriesFormComponent },
+      { path: "novedades", component: NewsFormComponent },
+      { path: "usuarios", component: UsersListComponent },
+      {
+        path: "registro",
+        component: RegisterFormComponent,
+        pathMatch: "full",
+      },
+      { path: "login", component: LoginFormComponent, pathMatch: "full" },
+      { path: "organization/edit", component: OrganizationFormComponent },
+      {
+        path: "organization",
+        component: OrganizationComponent,
+        pathMatch: "full",
+      },
+      { path: "home-form", component: HomeFormComponent },
+      { path: "slides/:id", component: SlidesFormComponent },
+      { path: "members/edit", component: MembersComponent },
+      { path: "slides", component: SlidesListComponent },
+      { path: "usuario", component: UserFormComponent },
+      { path: "usuario/:id", component: UserFormComponent },
+      { path: "", component: BackofficeComponent },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes)],
 })
 export class BackOfficeRoutingModule {}

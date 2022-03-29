@@ -12,54 +12,54 @@ import { PublicComponent } from "./public.component";
 import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 
 const routes: Routes = [
-    {
+  {
+    path: "",
+    component: PublicComponent,
+    children: [
+      {
         path: "",
-        component: PublicComponent,
-        children: [
-            {
-                path: "",
-                redirectTo: "/home",
-                pathMatch: "full",
-            },
-            {
-                path: "home",
-                component: HomeComponent,
-            },
-            {
-                path: "actividades",
-                component: ActivitiesListComponent,
-            },
-            {
-                path: "actividades/:id",
-                component: DetailComponent,
-            },
-            {
-                path: "donar",
-                component: DonationComponent,
-                pathMatch: "full",
-            },
-            {
-                path: "gracias",
-                component: ThanksComponent,
-                pathMatch: "full",
-            },
-            {
-                path: "nosotros",
-                component: AboutComponent,
-                pathMatch: "full",
-            },
-            {
-                path: "contacto",
-                component: ContactComponent,
-                pathMatch: "full",
-            },
-        ],
-    },
+        redirectTo: "/home",
+        pathMatch: "full",
+      },
+      {
+        path: "home",
+        component: HomeComponent,
+      },
+      {
+        path: "actividades",
+        component: ActivitiesListComponent,
+      },
+      {
+        path: "actividades/:id",
+        component: DetailComponent,
+      },
+      {
+        path: "donar",
+        component: DonationComponent,
+        pathMatch: "full",
+      },
+      {
+        path: "gracias",
+        component: ThanksComponent,
+        pathMatch: "full",
+      },
+      {
+        path: "nosotros",
+        component: AboutComponent,
+        pathMatch: "full",
+      },
+      {
+        path: "contacto",
+        component: ContactComponent,
+        pathMatch: "full",
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    declarations: [],
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  declarations: [],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class PublicRoutingModule {}
