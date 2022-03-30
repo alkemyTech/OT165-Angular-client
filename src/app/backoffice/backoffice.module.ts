@@ -1,3 +1,4 @@
+import { CategoryListComponent } from './pages/categories/category-list/category-list.component';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -58,6 +59,7 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     UsersListComponent,
     SlidesListComponent,
     TableComponent,
+    CategoryListComponent
   ],
   imports: [
     ConfirmDialogModule,

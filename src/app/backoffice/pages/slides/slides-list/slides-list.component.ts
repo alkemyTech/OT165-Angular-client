@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { Data } from "src/app/backoffice/models/slide.interface";
+import { Slide } from "src/app/backoffice/models/slide.interface";
 import { Columns, TableData } from "src/app/backoffice/models/TableData.interface";
 import { SlideService } from "src/app/backoffice/services/slide.service";
 
@@ -16,13 +16,13 @@ export class SlidesListComponent implements OnInit {
 
   titlesCol: Columns[] = [
   {field: 'name', header: 'Nombre'},
-  {header: 'Imagen'},
-  {header: 'Descripción'},
+  {field: 'image', header: 'Imagen'},
+  {field: 'description', header: 'Descripción'},
   {field: 'order', header: 'Orden'}]
 
   modalDialog!: boolean;
 
-  slides!: Data[];
+  slides!: Slide[];
 
   constructor(
     private messageService: MessageService,
@@ -33,9 +33,10 @@ export class SlidesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.slideService.getAllSildes().subscribe((data) => {
-      this.slides = data.data.filter(slide => slide.order !== null);
+      this.slides = data.filter(slide => slide.order !== null);
       this.items = {
-        path: '/backoffice/slides/',
+        createPath: '/backoffice/slides/undefined',
+        editPath: '/backoffice/slides/',
         title: 'Slides',
         data: this.slides
       }
