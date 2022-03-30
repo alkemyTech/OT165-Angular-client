@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Organization } from "src/app/backoffice/models/organization";
-import { OrganizationService } from "src/app/backoffice/services/organization.service";
+import { OrganizationService } from "../../../services/organization/organization.service";
 import { Member, MemberCard } from "src/app/shared/models/Member";
 import { MemberService } from "src/app/shared/services/member.service";
 
@@ -21,13 +21,17 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
     this.memberService.getMembers().subscribe((res) => this.showMembers(res));
-    this.organizationService.getOrganization().subscribe((response) => {
-      this.showOrganization(response);
+    this.showOrganization();
+  }
+
+  showOrganization() {
+    this.organizationService.getOrganization().subscribe({
+      next: (res) => {
+        this.organizationData = <Organization>res;
+      },
     });
   }
-  showOrganization(response: any) {
-    this.organizationData = <Organization>response.data;
-  }
+
   showMembers(response: any) {
     this.membersData = response.data;
     this.membersData.forEach((member) => {
