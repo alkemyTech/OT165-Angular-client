@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { RxwebValidators } from "@rxweb/reactive-form-validators";
-import { OrganizationService } from "./../../../../shared/services/organization.service";
+import { OrganizationService } from "src/app/services/organization/organization.service";
 import { Organization } from "./../../../../shared/models/Organization";
 
 @Component({
@@ -40,15 +40,17 @@ export class OrganizationFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getOrganization();
+    this.showOrganization();
   }
 
-  getOrganization() {
-    this.organizationService.getOrganization().subscribe((res) => {
-      this.organizationData = res;
-      this.setForm(this.organizationData);
-      this.file = this.organizationData.logo;
-      this.display = true;
+  showOrganization() {
+    this.organizationService.getOrganization().subscribe({
+      next: (res) => {
+        this.organizationData = <Organization>res;
+        this.setForm(this.organizationData);
+        this.file = this.organizationData.logo;
+        this.display = true;
+      },
     });
   }
 
