@@ -15,6 +15,7 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
+import { CategoryListComponent } from "./pages/categories/category-list/category-list.component";
 
 const routes: Routes = [
   {
@@ -22,8 +23,9 @@ const routes: Routes = [
     children: [
       { path: "actividades/:id", component: ActivityFormComponent },
       { path: "actividades", component: ActivityFormComponent },
-      { path: "categorias/:id", component: CategoriesFormComponent },
-      { path: "categorias", component: CategoriesFormComponent },
+      { path: "categorias/editar/:id", component: CategoriesFormComponent },
+      { path: "categorias/crear", component: CategoriesFormComponent},
+      { path: "categorias", component: CategoryListComponent, pathMatch: "full" },      
       { path: "novedades", component: NewsFormComponent },
       { path: "usuarios", component: UsersListComponent },
       {
@@ -39,7 +41,8 @@ const routes: Routes = [
         pathMatch: "full",
       },
       { path: "home-form", component: HomeFormComponent },
-      { path: "slides/:id", component: SlidesFormComponent },
+      { path: "slides/editar/:id", component: SlidesFormComponent },
+      { path: "slides/crear", component: SlidesFormComponent },
       { path: "members/edit", component: MembersComponent },
       { path: "usuario", component: UserFormComponent },
       { path: "usuario/:id", component: UserFormComponent },

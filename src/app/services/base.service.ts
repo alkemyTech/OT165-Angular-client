@@ -68,7 +68,7 @@ export class BaseService<S> {
 
   post(object: S): Observable<S> {
     return <Observable<S>>(
-      this.http.put(`${environment.BASE_URL_API}${this.url}`, object).pipe(
+      this.http.post(`${environment.BASE_URL_API}${this.url}`, object).pipe(
         map((res: any) => {
           return res.data;
         })

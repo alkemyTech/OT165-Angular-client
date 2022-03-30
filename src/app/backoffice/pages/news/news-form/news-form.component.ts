@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/backoffice/models/category';
 import { News } from 'src/app/backoffice/models/news';
-import { NewsService } from 'src/app/backoffice/services/news.service';
+import { NewsService } from 'src/app/backoffice/services/news/news.service';
 
 @Component({
   selector: 'app-news-form',
