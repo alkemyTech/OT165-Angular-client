@@ -29,12 +29,10 @@ import { CategoriesFormComponent } from "./pages/categories/categories-form/cate
 import { CategoryListComponent } from './pages/categories/category-list/category-list.component';
 import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { HomeFormComponent } from "./pages/home/home-form/home-form.component";
-import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { MembersComponent } from "./pages/members/members.component";
 import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
 import { OrganizationComponent } from "./pages/organization/organization-view/organization.component";
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
-import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { TableComponent } from "./shared/components/table/table.component";
@@ -54,12 +52,10 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     CategoryListComponent,
     ControlComponent,
     HomeFormComponent,
-    LoginFormComponent,
     MembersComponent,
     NewsFormComponent,
     OrganizationComponent,
     OrganizationFormComponent,
-    RegisterFormComponent,
     SlidesFormComponent,
     SlidesListComponent,
     TableComponent,
