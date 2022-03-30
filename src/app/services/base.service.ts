@@ -16,7 +16,7 @@ export class BaseService <S> {
 
   getAll(): Observable<S[]>{
     return <Observable<S[]>>(
-      this.http.get(`${environment.BASE_URL_API}`)
+      this.http.get(`${environment.BASE_URL_API}${this.url}`)
       .pipe(map((res: any) => {
         return res.data;
       }))
