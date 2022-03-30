@@ -31,7 +31,7 @@
                         <td *ngIf="col.field == 'name'" class="name">{{item.name}}</td>
                         <td *ngIf="col.field == 'image'" class="img"><img [src]="item.image" [alt]="item.name"/></td>
                         <td *ngIf="col.field == 'description'"><p class="description">{{item.description}}</p></td>
-                        <td *ngIf="col.field == 'order' && (item.order || item.order === 0)" class="order">{{item.order}}</td>
+                        <td *ngIf="col.field == 'order' && (item.order || item.order === 0)">{{item.order}}</td>
                         <td *ngIf="col.field == 'email'">{{item.email}}</td>
                         <td *ngIf="col.field == 'created_at'">{{item.created_at| date: 'd/M/yy, h:mm a'}} </td>
                     </ng-container>                    

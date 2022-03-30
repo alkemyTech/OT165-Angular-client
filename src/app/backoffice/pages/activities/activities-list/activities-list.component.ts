@@ -159,8 +159,8 @@ export class ActivitiesListComponent implements OnInit {
     }>
   ) {
     this.tableActivities = {
-      createPath: "/backoffice/actividades/create",
-      editPath:"/backoffice/actividades/edit",
+      createPath: "/backoffice/actividades/crear/",
+      editPath:"/backoffice/actividades/editar/",
       title: "Actividad",
       data: data,
     };
