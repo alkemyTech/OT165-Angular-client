@@ -51,7 +51,7 @@ export class SlidesFormComponent implements OnInit {
             this.slideUpdated = this.setSlideEdit(res.data);
             this.edit = true;
             this.title = "Editar";
-          }else{
+          } else {
             this.title = "Crear";
           }
         },
@@ -71,16 +71,15 @@ export class SlidesFormComponent implements OnInit {
   }
 
   public editSlide() {
-    let slideUpdatedNoIMG: Slide
+    let slideUpdatedNoIMG: Slide;
     if (!this.uploadedFile) {
-      slideUpdatedNoIMG = this.setSlideNoImg(this.datos.value)
-      }else{
-        slideUpdatedNoIMG = this.setSlideEdit(this.datos.value)
-      }
+      slideUpdatedNoIMG = this.setSlideNoImg(this.datos.value);
+    } else {
+      slideUpdatedNoIMG = this.setSlideEdit(this.datos.value);
+    }
     this.slideService.upDateSlides(this.id, slideUpdatedNoIMG).subscribe(
       (res: SlideResponse) => {
         if (res.success) {
-          console.log(res)
           this.stateRes = true;
           this.header = "Listo!";
           this.textModal = "¡Has editado un Slide!";
@@ -126,8 +125,8 @@ export class SlidesFormComponent implements OnInit {
     this.display = true;
   }
 
-  public isNumber(val: number): boolean { 
-    return typeof val === 'number'; 
+  public isNumber(val: number): boolean {
+    return typeof val === "number";
   }
 
   private setSlideEdit(slide: Slide): Slide {
@@ -139,12 +138,11 @@ export class SlidesFormComponent implements OnInit {
   }
 
   private setSlideNoImg(slide: any): any {
-    const s = {
+    return {
       name: slide.name,
       description: slide.description,
       order: slide.order,
-    }
-    return s;
+    };
   }
 
   // onClick upload button convert image file to base64 string
