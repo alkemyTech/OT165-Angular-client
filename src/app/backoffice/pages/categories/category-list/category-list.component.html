@@ -1,0 +1,6 @@
+<p-toast></p-toast> 
+<app-table 
+    [items]="tableCategories" 
+    [columns]="titlesCol" 
+    (deleteItemById)="deleteCategory($event)">
+</app-table>

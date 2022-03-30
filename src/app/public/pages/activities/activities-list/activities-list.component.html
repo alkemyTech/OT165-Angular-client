@@ -7,7 +7,10 @@
     </section>
     <section>
         <div class="activities-list">
-            <app-activity-card *ngFor="let activity of filteredActivities" [activity]="activity"></app-activity-card>
+            <app-card routerLink="/actividades/{{activity.id}}" *ngFor="let activity of filteredActivities" 
+                      title={{activity.name}} 
+                      description={{activity.description}} 
+                      imageSrc={{activity.image}}></app-card>                        
         </div>
         <div class="activities-loadmore" *ngIf="itemCount <= activities.length">
            <button class="btn btn-primary" (click)="fillArray()">Ver más</button> 

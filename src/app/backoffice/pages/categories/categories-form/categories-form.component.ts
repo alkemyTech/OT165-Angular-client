@@ -1,8 +1,7 @@
-
 import { Category } from './../../../../shared/models/Category';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
@@ -33,7 +32,9 @@ export class CategoriesFormComponent implements OnInit {
   maxFileSize: number = 2000000;
   uploadedFile: any = null;
 
-  constructor(private categoryService: CategoryService, private route: ActivatedRoute) {
+  constructor(private categoryService: CategoryService, 
+              private route: ActivatedRoute,
+              private router: Router) {
     this.paramID = this.route.snapshot.params['id'] != undefined ? this.route.snapshot.params['id'] : 0;    
   }
 
@@ -97,11 +98,23 @@ export class CategoriesFormComponent implements OnInit {
       } 
     }    
     if(this.category.id){
-      this.categoryService.putById(this.category.id, updateCategory).subscribe();
+      this.categoryService.putById(this.category.id, updateCategory).subscribe({
+        next: () => {
+          this.returnToList();
+        }
+      });
     } else {
-      this.categoryService.post(this.catForm.value).subscribe();
+      this.categoryService.post(this.catForm.value).subscribe({
+        next: () => {
+          this.returnToList();
+        }
+      });
     } 
     
+  }
+
+  returnToList() {
+    this.router.navigateByUrl('/backoffice/categorias')
   }
 
 }
