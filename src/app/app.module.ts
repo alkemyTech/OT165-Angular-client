@@ -15,9 +15,9 @@ import { InputNumberModule } from "primeng/inputnumber";
 //Own Modules
 import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { reducers, metaReducers } from './reducers';
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import { reducers, metaReducers } from "./reducers";
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +38,7 @@ import { reducers, metaReducers } from './reducers';
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     StoreModule.forRoot(reducers, {
-      metaReducers
+      metaReducers,
     }),
   ],
   providers: [],
