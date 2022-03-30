@@ -30,7 +30,7 @@ export class BaseService<S> {
     return <Observable<S>>(
       this.http.get(`${environment.BASE_URL_API}${this.url}/${id}`).pipe(
         map((res: any) => {
-          return res.data;
+          return res;
         })
       )
     );
@@ -48,7 +48,7 @@ export class BaseService<S> {
         .put(`${environment.BASE_URL_API}${this.url}/${id}`, object)
         .pipe(
           map((res: any) => {
-            return res.data;
+            return res;
           })
         )
     );
@@ -60,7 +60,7 @@ export class BaseService<S> {
         .patch(`${environment.BASE_URL_API}${this.url}/${id}`, object)
         .pipe(
           map((res: any) => {
-            return res.data;
+            return res;
           })
         )
     );
@@ -70,7 +70,7 @@ export class BaseService<S> {
     return <Observable<S>>(
       this.http.post(`${environment.BASE_URL_API}${this.url}`, object).pipe(
         map((res: any) => {
-          return res.data;
+          return res;
         })
       )
     );
