@@ -116,6 +116,15 @@
 .table-container:hover {
   background-color: rgb(240, 240, 240);
 }
+
+.links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.link {
+  margin-right: 10px;
+}
 @media screen and (min-width: 550px) {
   .card-container {
     width: 260px;
