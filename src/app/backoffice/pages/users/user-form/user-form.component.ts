@@ -75,10 +75,11 @@ export class UserFormComponent implements OnInit {
   }
 
   submit() {
+      console.log('form',this.userForm.value );
     if (this.userForm.valid) {
       if (this.id != 0) {
         console.log(this.id, this.userForm.value);
-        this.userService.saveUser(this.id, this.userForm.value).subscribe(
+        this.userService.createUser(this.userForm.value).subscribe(
           (res: any) => {
             alert("Usuario guardado correctamente");
           },
@@ -115,7 +116,6 @@ export class UserFormComponent implements OnInit {
   _handleReaderLoaded(e: any) {
     let reader = e.target;
     this.file = reader.result;
-    console.log("image Src", this.file);
-    this.userForm.patchValue({ profilePic: this.file });
+    this.userForm.patchValue({ profile_image: this.file });
   }
 }
