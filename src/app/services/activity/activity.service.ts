@@ -1,39 +1,36 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
 import { Activity } from "src/app/shared/models/Activity";
-import { environment } from "src/environments/environment.prod";
+import { BaseService } from "../base.service";
 
 @Injectable({
   providedIn: "root",
 })
-export class ActivityService {
-  constructor(private http: HttpClient) {}
+export class ActivityService extends BaseService<Activity> {
+
+  constructor(http:HttpClient) {
+    super(http, 'activities');
+  }
 
   getActivities(): Observable<Activity[]> {
-    return <Observable<Activity[]>>(
-      this.http
-        .get(`${environment.BASE_URL_API}activities`)
-        .pipe(map((res: any) => {
-          return res.data;
-        }))
-    );
+    return super.getAll();
   }
 
   getActivity(id: number): Observable<Activity> {
-    return <Observable<Activity>>(
-      this.http
-        .get(environment.BASE_URL_API + "activities/" + id)
-        .pipe(map((res: any) => {
-          return res.data;
-        }))
-    );
+    return super.getById(id);
   }
 
-  createActivity() {}
+  createActivity(activity: Activity): Observable<Activity> {
+    return super.post(activity);
+  }
 
-  updateActivity() {}
+  updateActivity(id: number, activity: Activity): Observable<Activity> {
+    return super.patchById(id, activity);
+  }
 
-  deleteActivity() {}
+  deleteActivity(id: number): Observable<Activity> {
+    return super.deleteById(id);
+  }
+
 }

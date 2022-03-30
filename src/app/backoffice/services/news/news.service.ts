@@ -1,11 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Category } from 'src/app/shared/models/Category';
+import { News } from '../../models/news';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService {
+export class NewsService {
   private _groupId!: string;
   private _headers!: HttpHeaders;
   api!:string;
@@ -18,8 +20,20 @@ export class ContactService {
   public get<T>(url: string, activateHeader:boolean = false ):Observable<T> {
     return this.http.get<T>(url, activateHeader ? { headers: this._headers }: {});
   }
-  
-  sendContactForm(contact: any){
-    return this.http.post(this.api + "contacts", contact);
+
+  getNews(id: number){
+    return this.http.get(this.api + "news/" + id);
+  }
+
+  createNews(news: any){
+    return this.http.post(this.api + "news", news);
+  }
+
+  updateNews(id:number, news: any): Observable<News>{
+    return this.http.put<News>(this.api + "news/" + id, news);
+  }
+
+  getCategories(): Observable<Array<Category>>{
+    return this.http.get<Array<Category>>(this.api + "categories");
   }
 }

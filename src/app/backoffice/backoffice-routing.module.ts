@@ -16,6 +16,7 @@ import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
+import { CategoryListComponent } from "./pages/categories/category-list/category-list.component";
 
 const routes: Routes = [
   {
@@ -24,8 +25,9 @@ const routes: Routes = [
       { path: "actividades", component: ActivitiesListComponent },
       { path: "actividades/create", component: ActivityFormComponent },
       { path: "actividades/edit/:id", component: ActivityFormComponent },
-      { path: "categorias", component: CategoriesFormComponent },
-      { path: "categorias/:id", component: CategoriesFormComponent },
+      { path: "categorias/editar/:id", component: CategoriesFormComponent },
+      { path: "categorias/crear", component: CategoriesFormComponent},
+      { path: "categorias", component: CategoryListComponent, pathMatch: "full" },      
       { path: "novedades", component: NewsFormComponent },
       { path: "login", component: LoginFormComponent, pathMatch: "full" },
       { path: "novedades", component: NewsFormComponent },
@@ -39,6 +41,8 @@ const routes: Routes = [
       },
       { path: "", component: BackofficeComponent },
       { path: "home-form", component: HomeFormComponent },
+      { path: "slides/editar/:id", component: SlidesFormComponent },
+      { path: "slides/crear", component: SlidesFormComponent },
       { path: "members/edit", component: MembersComponent },
       { path: "slides", component: SlidesListComponent },
       { path: "slides/create", component: SlidesFormComponent },

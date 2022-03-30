@@ -17,15 +17,16 @@ import { DialogModule } from "primeng/dialog";
 import { DropdownModule } from "primeng/dropdown";
 import { FileUploadModule } from "primeng/fileupload";
 import { InputTextModule } from "primeng/inputtext";
+import { InputTextareaModule } from "primeng/inputtextarea";
 import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
-import { InputTextareaModule } from "primeng/inputtextarea";
 
 //Own Components
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
+import { CategoryListComponent } from './pages/categories/category-list/category-list.component';
 import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { HomeFormComponent } from "./pages/home/home-form/home-form.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
@@ -50,6 +51,7 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     ActivityFormComponent,
     BackofficeComponent,
     CategoriesFormComponent,
+    CategoryListComponent,
     ControlComponent,
     HomeFormComponent,
     LoginFormComponent,

@@ -26,9 +26,9 @@ export class ActivitiesListComponent implements OnInit {
 
   tableActivities!: TableData;
   titlesCol: Columns[] = [
-    { header: "Nombre" },
-    { header: "Imagen" },
-    { header: "Creado" },
+    { field: 'name',header: "Nombre" },
+    { field: 'image',header: "Imagen" },
+    { field: 'created_at',header: "Creado" },
   ];
 
   private newData: Array<{

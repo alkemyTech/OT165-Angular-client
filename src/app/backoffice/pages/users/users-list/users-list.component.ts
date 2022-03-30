@@ -28,8 +28,8 @@ export class UsersListComponent {
   showUsers(response: any) {
     this.users = <Array<User>>response.data;
     this.tableUsers = {
-      createPath: '/backoffice/usuarios/create',
-      editPath: '/backoffice/usuarios/edit',
+      createPath: '/backoffice/usuario',
+      editPath: '/backoffice/usuario',
       title: 'Usuario',
       data: this.users
     }    
