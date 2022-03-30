@@ -12,6 +12,7 @@ import { OrganizationComponent } from "./pages/organization/organization-view/or
 import { OrganizationFormComponent } from "./pages/organization/organization-form/organization-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.component";
+import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: "actividades/edit/:id", component: ActivityFormComponent },
       { path: "categorias", component: CategoriesFormComponent },
       { path: "categorias/:id", component: CategoriesFormComponent },
+      { path: "novedades", component: NewsFormComponent },
       { path: "login", component: LoginFormComponent, pathMatch: "full" },
       { path: "novedades", component: NewsFormComponent },
       { path: "organization/edit", component: OrganizationFormComponent },
@@ -41,6 +43,9 @@ const routes: Routes = [
       { path: "slides", component: SlidesListComponent },
       { path: "slides/create", component: SlidesFormComponent },
       { path: "slides/edit/:id", component: SlidesFormComponent },
+      { path: "usuario", component: UserFormComponent },
+      { path: "usuario/:id", component: UserFormComponent },
+      { path: "", component: BackofficeComponent },
     ],
   },
 ];

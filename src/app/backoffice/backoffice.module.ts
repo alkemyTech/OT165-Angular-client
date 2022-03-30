@@ -20,9 +20,10 @@ import { InputTextModule } from "primeng/inputtext";
 import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
+import { InputTextareaModule } from "primeng/inputtextarea";
 
 //Own Components
-import { ActivitiesListComponent } from './pages/activities/activities-list/activities-list.component';
+import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { ControlComponent } from "./pages/backoffice/control/control.component";
@@ -38,57 +39,59 @@ import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.comp
 import { TableComponent } from "./shared/components/table/table.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
-import { UsersListComponent } from './pages/users/users-list/users-list.component';
-
+import { UsersListComponent } from "./pages/users/users-list/users-list.component";
 
 import { SharedModule } from "../shared/shared.module";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
 
 @NgModule({
-    declarations: [
-        ActivitiesListComponent,
-        ActivityFormComponent,
-        BackofficeComponent,
-        CategoriesFormComponent,
-        ControlComponent,
-        HomeFormComponent,
-        LoginFormComponent,
-        MembersComponent,
-        NewsFormComponent,
-        OrganizationComponent,
-        OrganizationFormComponent,
-        RegisterFormComponent,
-        SlidesFormComponent,
-        SlidesListComponent,
-        TableComponent,
-        TestimonialFormComponent,
-        UserFormComponent,
-        UsersListComponent,
-    ],
-    imports: [
-        BackOfficeRoutingModule,
-        ButtonModule,
-        CKEditorModule,
-        CommonModule,
-        ConfirmDialogModule,
-        DialogModule,
-        DropdownModule,
-        FileUploadModule,
-        FormsModule,
-        HttpClientModule,
-        InputTextModule,
-        ReactiveFormsModule,
-        RouterModule,
-        RxReactiveFormsModule,
-        SharedModule,
-        TableModule,
-        ToastModule,
-        ToolbarModule,
-    ],
-    exports: [
-    ],
-    providers: [
-      {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}
-    ]
+  declarations: [
+    ActivitiesListComponent,
+    ActivityFormComponent,
+    BackofficeComponent,
+    CategoriesFormComponent,
+    ControlComponent,
+    HomeFormComponent,
+    LoginFormComponent,
+    MembersComponent,
+    NewsFormComponent,
+    OrganizationComponent,
+    OrganizationFormComponent,
+    RegisterFormComponent,
+    SlidesFormComponent,
+    SlidesListComponent,
+    TableComponent,
+    TestimonialFormComponent,
+    UserFormComponent,
+    UsersListComponent,
+  ],
+  imports: [
+    BackOfficeRoutingModule,
+    ButtonModule,
+    CKEditorModule,
+    CommonModule,
+    ConfirmDialogModule,
+    DialogModule,
+    DropdownModule,
+    FileUploadModule,
+    FormsModule,
+    HttpClientModule,
+    InputTextModule,
+    InputTextareaModule,
+    ReactiveFormsModule,
+    RouterModule,
+    RxReactiveFormsModule,
+    SharedModule,
+    TableModule,
+    ToastModule,
+    ToolbarModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
 })
 export class BackOfficeModule {}
