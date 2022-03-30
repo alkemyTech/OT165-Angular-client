@@ -56,7 +56,7 @@ export class UserFormComponent implements OnInit {
 
   getUser(id: number) {
     this.userService.getUser(id).subscribe((res: any) => {
-      this.userData = res;
+      this.userData = res.data;
       this.setForm(this.userData);
       if (this.userData.profile_image) {
         this.file = this.userData.profile_image;
@@ -75,7 +75,6 @@ export class UserFormComponent implements OnInit {
   }
 
   submit() {
-      console.log('form',this.userForm.value );
     if (this.userForm.valid) {
       if (this.id != 0) {
         console.log(this.id, this.userForm.value);

@@ -1,24 +1,26 @@
 import { Component, OnInit } from "@angular/core";
-import { OrganizationService } from "../../../../shared/services/organization.service";
+import { OrganizationService } from "src/app/services/organization/organization.service";
 import { Organization } from "../../../../shared/models/Organization";
 
 @Component({
-    selector: "app-organization",
-    templateUrl: "./organization.component.html",
-    styleUrls: ["./organization.component.scss"],
+  selector: "app-organization",
+  templateUrl: "./organization.component.html",
+  styleUrls: ["./organization.component.scss"],
 })
 export class OrganizationComponent implements OnInit {
-    organizationData = <Organization>{};
+  organizationData = <Organization>{};
 
-    constructor(private organizationService: OrganizationService) {}
+  constructor(private organizationService: OrganizationService) {}
 
-    ngOnInit(): void {
-        this.getOrganization();
-    }
+  ngOnInit(): void {
+    this.showOrganization();
+  }
 
-    getOrganization() {
-        this.organizationService
-            .getOrganization()
-            .subscribe((res) => (this.organizationData = res));
-    }
+  showOrganization() {
+    this.organizationService.getOrganization().subscribe({
+      next: (res) => {
+        this.organizationData = <Organization>res;
+      },
+    });
+  }
 }

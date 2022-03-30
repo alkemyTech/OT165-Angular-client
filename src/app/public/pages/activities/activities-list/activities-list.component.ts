@@ -23,7 +23,7 @@ export class ActivitiesListComponent implements OnInit {
   getActivities() {
     this.activityService.getActivities().subscribe({
       next: async (activities) => {        
-        this.activities = await activities;
+        this.activities = await activities;               
         this.fillArray();        
       }
     })
@@ -31,7 +31,7 @@ export class ActivitiesListComponent implements OnInit {
 
   fillArray() {   
     if(this.itemCount != this.activities.length) this.itemCount += 6;    
-    this.filteredActivities = this.activities.slice(0,this.itemCount);       
+    this.filteredActivities = this.activities.slice(0,this.itemCount);        
   }
 
 }

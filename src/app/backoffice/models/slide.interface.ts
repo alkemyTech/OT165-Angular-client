@@ -1,10 +1,10 @@
-export interface Slide {
+export interface SlideResponse {
   message: string;
   success: boolean;
-  data: Data;
+  data: Slide;
 }
 
-export interface Data {
+export interface Slide {
   id: number,
   name: string,
   description: string,
@@ -15,5 +15,5 @@ export interface Data {
 export interface AllSlides {
   message: string;
   success: boolean;
-  data: Data[];
+  data: Slide[];
 }
