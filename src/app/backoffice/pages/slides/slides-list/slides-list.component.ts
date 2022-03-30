@@ -16,8 +16,8 @@ export class SlidesListComponent implements OnInit {
 
   titlesCol: Columns[] = [
   {field: 'name', header: 'Nombre'},
-  {header: 'Imagen'},
-  {header: 'Descripción'},
+  {field: 'image', header: 'Imagen'},
+  {field: 'description', header: 'Descripción'},
   {field: 'order', header: 'Orden'}]
 
   modalDialog!: boolean;
@@ -35,7 +35,8 @@ export class SlidesListComponent implements OnInit {
     this.slideService.getAllSildes().subscribe((data) => {
       this.slides = data.filter(slide => slide.order !== null);
       this.items = {
-        path: '/backoffice/slides/',
+        createPath: '/backoffice/slides/undefined',
+        editPath: '/backoffice/slides/',
         title: 'Slides',
         data: this.slides
       }

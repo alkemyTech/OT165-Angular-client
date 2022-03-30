@@ -1,5 +1,6 @@
 export interface TableData{
-    path: string,
+    createPath: string,
+    editPath: string,
     title: string,
     data: GenericData[]
 }
@@ -11,7 +12,7 @@ export interface GenericData{
   order?: number,
   image?: string,
   email?: string,
-  createdAt?: string,
+  created_at?: string,
 }
 
 export interface Columns{

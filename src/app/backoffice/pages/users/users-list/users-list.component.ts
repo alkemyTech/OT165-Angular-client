@@ -28,10 +28,11 @@ export class UsersListComponent {
   showUsers(response: any) {
     this.users = <Array<User>>response.data;
     this.tableUsers = {
-      path: "/backoffice/usuarios/",
-      title: "Usuario",
-      data: this.users,
-    };
+      createPath: '/backoffice/usuario',
+      editPath: '/backoffice/usuario',
+      title: 'Usuario',
+      data: this.users
+    }    
   }
 
   deleteUser(id: number) {

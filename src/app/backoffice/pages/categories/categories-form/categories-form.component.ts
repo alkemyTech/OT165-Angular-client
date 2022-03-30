@@ -1,17 +1,16 @@
-
 import { Category } from './../../../../shared/models/Category';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
-  selector: 'app-categories-form',
-  templateUrl: './categories-form.component.html',
-  styleUrls: ['./categories-form.component.scss']
+  selector: "app-categories-form",
+  templateUrl: "./categories-form.component.html",
+  styleUrls: ["./categories-form.component.scss"],
 })
 export class CategoriesFormComponent implements OnInit {
-
+  
   @Input() category: Category = {} as Category;
   actionType: string = 'Crear';
   buttonAction: string = 'Crear';
@@ -33,10 +32,12 @@ export class CategoriesFormComponent implements OnInit {
   maxFileSize: number = 2000000;
   uploadedFile: any = null;
 
-  constructor(private categoryService: CategoryService, private route: ActivatedRoute) {
+  constructor(private categoryService: CategoryService, 
+              private route: ActivatedRoute,
+              private router: Router) {
     this.paramID = this.route.snapshot.params['id'] != undefined ? this.route.snapshot.params['id'] : 0;    
   }
-
+  
   ngOnInit(): void {    
     if(this.paramID != 0) {
       this.getCategory(this.paramID);
@@ -44,8 +45,8 @@ export class CategoriesFormComponent implements OnInit {
       this.buttonAction = 'Guardar';
     }
   }
- 
-
+  
+  
   getCategory(id: number) {
     this.categoryService.getById(id).subscribe({
       next: async (res) => {
@@ -64,22 +65,22 @@ export class CategoriesFormComponent implements OnInit {
   }
   // onClick upload button convert image file to base64 string
   onUpload(event: any) {
-    let file = event.files[0]
+    let file = event.files[0];
     let pattern = /image-*/;
     let reader = new FileReader();
     if(!file.type.match(pattern)) {
-      alert('invalid format')
+      alert("invalid format");
       return;
     }
-    reader.onload = this._handleReaderLoaded.bind(this)
-    reader.readAsDataURL(file)    
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
   }
 
   // set base64 string to image field at formulary
   _handleReaderLoaded(e: any) {
     let reader = e.target;
-    this.uploadedFile = reader.result;    
-    this.catForm.patchValue({image: this.uploadedFile})          
+    this.uploadedFile = reader.result;
+    this.catForm.patchValue({image: this.uploadedFile});
   }
 
   sendCategory() {
@@ -97,11 +98,23 @@ export class CategoriesFormComponent implements OnInit {
       } 
     }    
     if(this.category.id){
-      this.categoryService.putById(this.category.id, updateCategory).subscribe();
+      this.categoryService.putById(this.category.id, updateCategory).subscribe({
+        next: () => {
+          this.returnToList();
+        }
+      });
     } else {
-      this.categoryService.post(this.catForm.value).subscribe();
+      this.categoryService.post(this.catForm.value).subscribe({
+        next: () => {
+          this.returnToList();
+        }
+      });
     } 
     
+  }
+
+  returnToList() {
+    this.router.navigateByUrl('/backoffice/categorias')
   }
 
 }
