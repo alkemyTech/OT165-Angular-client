@@ -73,10 +73,16 @@
         >
       </div>
 
-      <label *ngIf="isNumber(id) || this.datos.get('image')?.value">Imagen actual</label>   
-          <div *ngIf="this.datos.get('image')?.value">
-            <img class="img-actual" src="{{this.datos.get('image')?.value}}" alt="not found">
-          </div>  
+      <label *ngIf="isNumber(id) || this.datos.get('image')?.value"
+        >Imagen actual</label
+      >
+      <div *ngIf="this.datos.get('image')?.value">
+        <img
+          class="img-actual"
+          src="{{ this.datos.get('image')?.value }}"
+          alt="not found"
+        />
+      </div>
 
       <div class="field">
         <label for="img">Subir Imagen</label>
@@ -87,12 +93,7 @@
           url="./upload.php"
           accept="image/*"
         ></p-fileUpload>
-        <small
-          *ngIf="
-            datos.get('image')?.errors
-          "
-          id="img"
-          class="p-error block"
+        <small *ngIf="datos.get('image')?.errors" id="img" class="p-error block"
           >Debe cargar una imagen (Upload)</small
         >
       </div>
@@ -102,9 +103,8 @@
   </div>
 </div>
 
-
 <p-dialog
-  header={{header}}
+  header="{{ header }}"
   [(visible)]="display"
   [modal]="true"
   [style]="{ width: '50vw' }"
@@ -112,7 +112,7 @@
   [resizable]="false"
 >
   <p class="m-0">
-    {{textModal}}
+    {{ textModal }}
   </p>
   <ng-template pTemplate="footer">
     <p-button
