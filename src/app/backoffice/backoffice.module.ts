@@ -32,7 +32,7 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
-import { TableComponent } from "./shared/components/table/table.component";
+import { TableComponent } from "./components/table/table.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
 
 import { ToolbarModule } from "primeng/toolbar";
