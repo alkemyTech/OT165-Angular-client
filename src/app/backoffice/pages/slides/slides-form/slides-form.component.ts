@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Slide, SlideResponse } from "../../../models/slide.interface";
-import { SlideService } from "../../../services/slide.service";
+import { SlideService } from "../../../services/slides/slide.service";
 import { Location } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
