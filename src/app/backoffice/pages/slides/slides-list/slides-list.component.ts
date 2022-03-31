@@ -6,7 +6,7 @@ import {
   Columns,
   TableData,
 } from "src/app/backoffice/models/TableData.interface";
-import { SlideService } from "src/app/backoffice/services/slide.service";
+import { SlideService } from "src/app/backoffice/services/slides/slide.service";
 
 @Component({
   selector: "app-slides-list",
