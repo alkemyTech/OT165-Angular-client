@@ -2,14 +2,15 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { BaseService } from "src/app/services/base.service";
-import { User } from "../models/user";
+import { environment } from "src/environments/environment";
+import { User } from "src/app/backoffice/models/user";
 
 @Injectable({
   providedIn: "root",
 })
 export class UserService extends BaseService<User> {
   constructor(http: HttpClient) {
-    super(http, "users");
+    super(http, environment.API_URL_USERS);
   }
 
   public getUsers(): Observable<User[]> {

@@ -4,7 +4,7 @@ import {
   TableData,
 } from "src/app/backoffice/models/TableData.interface";
 import { User } from "src/app/backoffice/models/user";
-import { UserService } from "src/app/backoffice/services/user.service";
+import { UserService } from "src/app/backoffice/services/users/user.service";
 
 @Component({
   selector: "app-users-list",
