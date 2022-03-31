@@ -1,4 +1,4 @@
-<div class="card">
+<div *ngIf="isLoading" class="card">
     <h5 class="mt-2">{{ title }}</h5>
     <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
 </div>

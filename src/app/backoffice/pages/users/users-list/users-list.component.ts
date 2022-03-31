@@ -18,14 +18,14 @@ export class UsersListComponent {
     { field: "name", header: "Nombre" },
     { field: "email", header: "Correo" },
   ];
-  flagProgressBar!:boolean;
+  isLoading!:boolean;
 
   constructor(private servicioUser: UserService) {
-    this.flagProgressBar = true;
+    this.isLoading = true;
     this.servicioUser.getUsers().subscribe(
       (response) => { this.showUsers(response)},
       (error) => {error},
-      () => {this.flagProgressBar = false}
+      () => {this.isLoading = false}
     );
   }
 
