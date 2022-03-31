@@ -1,3 +1,7 @@
 <p-toast></p-toast>
-
-<app-table [items]="items" [columns]="titlesCol" (deleteItemById)="(deleteSlides($event))" ></app-table>
+<app-spinner *ngIf="spinner$ | async"></app-spinner>
+<app-table
+  [items]="items"
+  [columns]="titlesCol"
+  (deleteItemById)="deleteSlides($event)"
+></app-table>
