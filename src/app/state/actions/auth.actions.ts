@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { User } from "../../backoffice/models/user";
+import { UserState } from "src/app/models/userState.interface";
 
 export const loginUser = createAction(
   "[Login Page] Login",
@@ -7,6 +7,6 @@ export const loginUser = createAction(
 );
 
 export const logedUser = createAction(
-  "[Login Page] Loged success",
-  props<{ user: User }>()
+  "[Register Page] Register success",
+  props<{ user: UserState }>()
 );
