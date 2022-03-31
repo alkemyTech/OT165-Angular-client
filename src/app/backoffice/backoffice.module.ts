@@ -9,7 +9,7 @@ import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
 
 //Others Modules
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { ButtonModule } from "primeng/button";
 import { CKEditorModule } from "ckeditor4-angular";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
@@ -26,7 +26,7 @@ import { ToolbarModule } from "primeng/toolbar";
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
-import { CategoryListComponent } from './pages/categories/category-list/category-list.component';
+import { CategoryListComponent } from "./pages/categories/category-list/category-list.component";
 import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { HomeFormComponent } from "./pages/home/home-form/home-form.component";
 import { MembersComponent } from "./pages/members/members.component";
@@ -42,7 +42,7 @@ import { UsersListComponent } from "./pages/users/users-list/users-list.componen
 
 import { SharedModule } from "../shared/shared.module";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
-import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SpinnerComponent } from "./components/spinner/spinner.component";
 
 @NgModule({
   declarations: [
@@ -66,9 +66,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     SpinnerComponent,
   ],
   imports: [
-
     ProgressSpinnerModule,
-    BackOfficeRoutingModule,
     ButtonModule,
     CKEditorModule,
     CommonModule,
