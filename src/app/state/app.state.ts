@@ -1,5 +1,5 @@
 import { ActionReducerMap } from "@ngrx/store";
-import { UserState } from "../models/userState.interface";
+import { UserState } from "../shared/models/userState.interface";
 import { loginReducer } from "./reducers/auth.reducers";
 
 export interface AppState {

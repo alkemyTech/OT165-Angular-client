@@ -26,8 +26,8 @@ import { ListnewsComponent } from "./components/listnews/listnews.component";
 import { SharedModule } from "../shared/shared.module";
 import { CarouselModule } from "./components/carousel/carousel.module";
 import { ActivityFormComponent } from "./pages/activities/activity-form.component";
-import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
-import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
+import { LoginFormComponent } from "../shared/auth/login-form/login-form.component";
+import { RegisterFormComponent } from "../shared/auth/register-form/register-form.component";
 
 @NgModule({
   declarations: [
