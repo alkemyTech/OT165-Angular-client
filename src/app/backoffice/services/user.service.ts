@@ -1,45 +1,34 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { BaseService } from "src/app/services/base.service";
 import { User } from "../models/user";
 
 @Injectable({
   providedIn: "root",
 })
-export class UserService {
-  private _groupId!: string;
-  private _headers!: HttpHeaders;
-  api!: string;
-
-  constructor(private http: HttpClient) {
-    this._headers = new HttpHeaders({ Group: this._groupId });
-    this.api = "https://ongapi.alkemy.org/api/users";
+export class UserService extends BaseService<User> {
+  constructor(http: HttpClient) {
+    super(http, "users");
   }
 
-  public get<T>(url: string, activateHeader: boolean = false): Observable<T> {
-    return this.http.get<T>(
-      url,
-      activateHeader ? { headers: this._headers } : {}
-    );
+  public getUsers(): Observable<User[]> {
+    return super.getAll();
   }
 
-  getUsers(): Observable<Array<User>> {
-    return this.http.get<Array<User>>(this.api);
+  public createUser(user: User): Observable<User> {
+    return super.post(user);
   }
 
-  getUser(id: number): Observable<any> {
-    return this.http.get(`${this.api}/${id}`);
+  public getUser(id: number): Observable<User> {
+    return super.getById(id);
   }
 
-  deleteUser(id: number): Observable<any> {
-    return this.http.delete(this.api + "/" + id);
+  public updateUser(id: number, user: User): Observable<User> {
+    return super.putById(id, user);
   }
 
-  createUser(user: User): any {
-    return this.http.post(this.api, user);
-  }
-
-  saveUser(id: number, user: User): any {
-    return this.http.put(`${this.api}/${id}`, user);
+  public deleteUser(id: number): Observable<any> {
+    return super.deleteById(id);
   }
 }
