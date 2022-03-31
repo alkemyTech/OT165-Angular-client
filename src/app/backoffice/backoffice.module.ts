@@ -6,7 +6,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 
-import { BackOfficeRoutingModule } from "./backoffice-routing.module";
 import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
 
 //Others Modules
@@ -67,6 +66,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     SpinnerComponent,
   ],
   imports: [
+
     ProgressSpinnerModule,
     BackOfficeRoutingModule,
     ButtonModule,
