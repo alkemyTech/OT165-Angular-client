@@ -9,6 +9,7 @@ import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
 
 //Others Modules
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { ButtonModule } from "primeng/button";
 import { CKEditorModule } from "ckeditor4-angular";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
@@ -41,6 +42,7 @@ import { UsersListComponent } from "./pages/users/users-list/users-list.componen
 
 import { SharedModule } from "../shared/shared.module";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -61,8 +63,12 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     TestimonialFormComponent,
     UserFormComponent,
     UsersListComponent,
+    SpinnerComponent,
   ],
   imports: [
+
+    ProgressSpinnerModule,
+    BackOfficeRoutingModule,
     ButtonModule,
     CKEditorModule,
     CommonModule,
