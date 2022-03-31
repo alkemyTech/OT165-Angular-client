@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Slide, SlideResponse } from "../models/slide.interface";
+import { Slide, SlideResponse } from "../../models/slide.interface";
 import { BaseService } from "src/app/services/base.service";
 import { environment } from "src/environments/environment";
 

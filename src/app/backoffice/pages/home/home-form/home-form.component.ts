@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Organization } from "src/app/backoffice/models/organization";
 import { Slide } from "src/app/backoffice/models/slide";
 
-import { SlideService } from "src/app/backoffice/services/slide.service";
+import { SlideService } from "src/app/backoffice/services/slides/slide.service";
 import { OrganizationService } from "src/app/services/organization/organization.service";
 
 @Component({
