@@ -21,12 +21,12 @@ export class UsersListComponent {
 
   constructor(private servicioUser: UserService) {
     this.servicioUser.getUsers().subscribe((response) => {
-      this.showUsers(response);
+        this.showUsers(response);
     });
   }
 
   showUsers(response: any) {
-    this.users = <Array<User>>response.data;
+    this.users = <Array<User>>response;
     this.tableUsers = {
       createPath: '/backoffice/usuario',
       editPath: '/backoffice/usuario',
