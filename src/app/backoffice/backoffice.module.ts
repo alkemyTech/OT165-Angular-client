@@ -66,9 +66,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     SpinnerComponent,
   ],
   imports: [
-
     ProgressSpinnerModule,
-    BackOfficeRoutingModule,
     ButtonModule,
     CKEditorModule,
     CommonModule,
