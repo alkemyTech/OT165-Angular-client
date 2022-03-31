@@ -1,7 +1,6 @@
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-// import { PublicRoutingModule } from "./public-routing.module";
 
 //Own Component
 import { AboutComponent } from "./pages/aboutUs/about.component";
@@ -54,7 +53,6 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     CommonModule,
     SharedModule,
     RouterModule,
-    // PublicRoutingModule,
     ReactiveFormsModule,
     InputNumberModule,
     InputTextModule,

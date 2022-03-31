@@ -6,7 +6,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 
-// import { BackOfficeRoutingModule } from "./backoffice-routing.module";
 import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
 
 //Others Modules
@@ -64,7 +63,6 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
     UsersListComponent,
   ],
   imports: [
-    // BackOfficeRoutingModule,
     ButtonModule,
     CKEditorModule,
     CommonModule,
