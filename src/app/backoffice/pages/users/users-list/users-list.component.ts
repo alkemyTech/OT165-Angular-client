@@ -18,11 +18,15 @@ export class UsersListComponent {
     { field: "name", header: "Nombre" },
     { field: "email", header: "Correo" },
   ];
+  flagProgressBar!:boolean;
 
   constructor(private servicioUser: UserService) {
-    this.servicioUser.getUsers().subscribe((response) => {
-      this.showUsers(response);
-    });
+    this.flagProgressBar = true;
+    this.servicioUser.getUsers().subscribe(
+      (response) => { this.showUsers(response)},
+      (error) => {error},
+      () => {this.flagProgressBar = false}
+    );
   }
 
   showUsers(response: any) {
