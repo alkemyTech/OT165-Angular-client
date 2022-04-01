@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { SpinnerService } from "src/app/backoffice/components/spinner/spinner.service";
 import { Slide } from "src/app/backoffice/models/slide.interface";
 import {
   Columns,
   TableData,
 } from "src/app/backoffice/models/TableData.interface";
-import { SlideService } from "src/app/backoffice/services/slide.service";
+import { SlideService } from "src/app/backoffice/services/slides/slide.service";
 
 @Component({
   selector: "app-slides-list",
@@ -27,12 +28,16 @@ export class SlidesListComponent implements OnInit {
 
   slides!: Slide[];
 
+  spinner$ = this.spinnerService.loading$;
+
   constructor(
     private messageService: MessageService,
-    private slideService: SlideService
+    private slideService: SlideService,
+    private spinnerService: SpinnerService
   ) {}
 
   ngOnInit(): void {
+    this.spinnerService.show();
     this.slideService.getAllSildes().subscribe((data) => {
       this.slides = data.filter((slide) => slide.order !== null);
       this.items = {
@@ -41,10 +46,12 @@ export class SlidesListComponent implements OnInit {
         title: "Slides",
         data: this.slides,
       };
+      this.spinnerService.hide();
     });
   }
 
   public deleteSlides(event: number) {
+    this.spinnerService.show();
     this.slideService.deleteSlide(event).subscribe(
       (res) => {
         if (res.success) {
@@ -73,5 +80,6 @@ export class SlidesListComponent implements OnInit {
         });
       }
     );
+    this.spinnerService.hide();
   }
 }
