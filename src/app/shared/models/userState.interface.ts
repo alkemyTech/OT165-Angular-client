@@ -1,6 +1,6 @@
 import { User } from "../../backoffice/models/user";
 
 export interface UserState {
-  isLoged: boolean;
+  success: boolean;
   user: User;
 }

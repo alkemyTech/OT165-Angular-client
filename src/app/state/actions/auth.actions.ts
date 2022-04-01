@@ -7,6 +7,16 @@ export const loginUser = createAction(
 );
 
 export const logedUser = createAction(
+  "[Login Page] Login success",
+  props<{ success: boolean, user: UserState }>()
+);
+
+export const registerUser = createAction(
+  "[Register Page] Register",
+  props<{ email: string; password: string }>()
+);
+
+export const registeredUser = createAction(
   "[Register Page] Register success",
-  props<{ user: UserState }>()
+  props<{ success: boolean, user: UserState }>()
 );

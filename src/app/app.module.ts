@@ -38,9 +38,8 @@ import { REDUCERS } from "./state/app.state";
     InputNumberModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(REDUCERS),
     EffectsModule.forRoot([]),
-    StoreModule.forRoot(reducers, {
+    StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),
     StoreDevtoolsModule.instrument({ name: "test redux" }),
