@@ -1,6 +1,9 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
+//PrimeNG
+import { ToastModule } from 'primeng/toast';
+
 //Own Components
 import { LogoComponent } from "./components/logo/logo.component";
 import { TitleComponent } from "./components/title/title.component";
@@ -12,6 +15,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { NavComponent } from "./components/nav/nav.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { ProgressBarComponent } from './components/progressBar/progress-bar.component';
+import { DialogComponent } from './components/dialog/dialog/dialog.component';
+import { MessageComponent } from './components/dialog/message/message.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +26,11 @@ import { ProgressBarComponent } from './components/progressBar/progress-bar.comp
     NavComponent,
     FooterComponent,
     ProgressBarComponent,
+    DialogComponent,
+    MessageComponent,
   ],
   imports: [
+    ToastModule,
     CommonModule,
     RouterModule,
     ButtonModule,
@@ -35,7 +43,8 @@ import { ProgressBarComponent } from './components/progressBar/progress-bar.comp
     CardComponent,
     NavComponent,
     FooterComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    DialogComponent,
   ]
 })
 export class SharedModule {}

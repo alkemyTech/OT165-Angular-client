@@ -10,8 +10,13 @@ import { HomeComponent } from "./pages/home/home.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
+import { LorenzoTestsComponent } from "./pages/lorenzo-tests/lorenzo-tests.component";
 
 const childRoutes: Routes = [
+  {
+    path: "lorenzo",
+    component: LorenzoTestsComponent,
+  },
   {
     path: "home",
     component: HomeComponent,

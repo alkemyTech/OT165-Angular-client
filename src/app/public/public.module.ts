@@ -27,6 +27,7 @@ import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
 import { CarouselModule } from "./components/carousel/carousel.module";
+import { LorenzoTestsComponent } from './pages/lorenzo-tests/lorenzo-tests.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CarouselModule } from "./components/carousel/carousel.module";
     ActivitiesListComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    LorenzoTestsComponent,
   ],
   exports: [],
   imports: [
