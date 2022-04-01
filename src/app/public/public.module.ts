@@ -1,7 +1,3 @@
-import { RouterModule } from "@angular/router";
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-
 //Own Component
 import { AboutComponent } from "./pages/aboutUs/about.component";
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
@@ -17,17 +13,21 @@ import { ImageCurvedComponent } from "./components/image-curved/image-curved.com
 import { InputNumberModule } from "primeng/inputnumber";
 import { InputTextModule } from "primeng/inputtext";
 import { ListnewsComponent } from "./components/listnews/listnews.component";
-import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { PublicComponent } from "./public.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
+import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
+import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
 import { CarouselModule } from "./components/carousel/carousel.module";
 import { LorenzoTestsComponent } from './pages/lorenzo-tests/lorenzo-tests.component';
+import { RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+
 
 @NgModule({
   declarations: [
