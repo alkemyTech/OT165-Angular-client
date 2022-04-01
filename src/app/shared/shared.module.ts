@@ -10,6 +10,7 @@ import { ButtonModule } from "primeng/button";
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { NavComponent } from "./components/nav/nav.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FooterComponent } from "./components/footer/footer.component";
     CardComponent,
     NavComponent,
     FooterComponent,
+    DialogComponent,
   ],
   imports: [
     CommonModule,
