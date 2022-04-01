@@ -18,10 +18,22 @@ export class DialogService {
     this.subject.next(this.messages);
   }
 
+  addAll(messages: Message[]) {
+    messages.forEach(el => {
+      this.messages.push(el);
+    });
+    this.subject.next(this.messages);
+  }
+
   delete(message: Message) {
     this.messages = this.messages.filter(el => {
       return el != message;
     });
+    this.subject.next(this.messages);
+  }
+
+  deleteAll() {
+    this.messages = [];
     this.subject.next(this.messages);
   }
 
