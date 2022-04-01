@@ -9,7 +9,7 @@ import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
 
 //Others Modules
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { ButtonModule } from "primeng/button";
 import { CKEditorModule } from "ckeditor4-angular";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
@@ -21,12 +21,14 @@ import { InputTextareaModule } from "primeng/inputtextarea";
 import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
+import { SkeletonModule } from "primeng/skeleton";
+import { SkeletonComponent } from "./components/skeleton/skeleton.component";
 
 //Own Components
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
-import { CategoryListComponent } from './pages/categories/category-list/category-list.component';
+import { CategoryListComponent } from "./pages/categories/category-list/category-list.component";
 import { ControlComponent } from "./pages/backoffice/control/control.component";
 import { HomeFormComponent } from "./pages/home/home-form/home-form.component";
 import { MembersComponent } from "./pages/members/members.component";
@@ -42,7 +44,8 @@ import { UsersListComponent } from "./pages/users/users-list/users-list.componen
 
 import { SharedModule } from "../shared/shared.module";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
-import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SpinnerComponent } from "./components/spinner/spinner.component";
+import { BackOfficeRoutingModule } from "./backoffice-routing.module";
 
 @NgModule({
   declarations: [
@@ -64,9 +67,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     UserFormComponent,
     UsersListComponent,
     SpinnerComponent,
+    SkeletonComponent,
   ],
   imports: [
-
     ProgressSpinnerModule,
     BackOfficeRoutingModule,
     ButtonModule,
@@ -87,6 +90,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     TableModule,
     ToastModule,
     ToolbarModule,
+    SkeletonModule,
   ],
   providers: [
     {
