@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { BaseService } from "src/app/services/base.service";
-import { User } from "../../backoffice/models/user";
+import { User } from "../../models/user";
 import { environment } from "src/environments/environment";
 
 @Injectable({

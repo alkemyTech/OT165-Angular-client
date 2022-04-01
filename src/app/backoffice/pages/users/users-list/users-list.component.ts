@@ -18,11 +18,15 @@ export class UsersListComponent {
     { field: "name", header: "Nombre" },
     { field: "email", header: "Correo" },
   ];
+  isLoading!:boolean;
 
   constructor(private servicioUser: UserService) {
-    this.servicioUser.getUsers().subscribe((response) => {
-        this.showUsers(response);
-    });
+    this.isLoading = true;
+    this.servicioUser.getUsers().subscribe(
+      (response) => { this.showUsers(response)},
+      (error) => {error},
+      () => {this.isLoading = false}
+    );
   }
 
   showUsers(response: any) {
