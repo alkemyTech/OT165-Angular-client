@@ -4,7 +4,7 @@ import {
   TableData,
 } from "src/app/backoffice/models/TableData.interface";
 import { User } from "src/app/backoffice/models/user";
-import { UserService } from "src/app/backoffice/services/user.service";
+import { UserService } from "src/app/services/auth/user.service";
 
 @Component({
   selector: "app-users-list",
@@ -22,9 +22,17 @@ export class UsersListComponent {
 
   constructor(private servicioUser: UserService) {
     this.skeleton = true;
-    this.servicioUser.getUsers().subscribe((response) => {
-      this.showUsers(response);
-    });
+    this.servicioUser.getUsers().subscribe(
+      (response) => {
+        this.showUsers(response);
+      },
+      (error) => {
+        error;
+      },
+      () => {
+        this.skeleton = false;
+      }
+    );
   }
 
   showUsers(response: any) {

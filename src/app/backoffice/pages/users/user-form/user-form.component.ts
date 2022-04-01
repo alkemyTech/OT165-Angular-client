@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { RxwebValidators } from "@rxweb/reactive-form-validators";
 import { User } from "src/app/backoffice/models/user";
-import { UserService } from "src/app/backoffice/services/user.service";
+import { UserService } from "src/app/services/auth/user.service";
 
 @Component({
   selector: "app-user-form",

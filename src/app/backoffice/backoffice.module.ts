@@ -71,7 +71,6 @@ import { BackOfficeRoutingModule } from "./backoffice-routing.module";
   ],
   imports: [
     ProgressSpinnerModule,
-    BackOfficeRoutingModule,
     ButtonModule,
     CKEditorModule,
     CommonModule,

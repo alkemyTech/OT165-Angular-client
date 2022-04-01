@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { registerUser, registeredUser } from 'src/app/state/actions/auth.actions';
 import { checkPattern, checkPasswords } from '../custom.validators';
 
 @Component({
@@ -27,7 +29,7 @@ export class RegisterFormComponent implements OnInit {
     validator: checkPasswords('password1', 'password2')
   });
 
-  constructor() { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit(): void {
   }
@@ -49,10 +51,11 @@ export class RegisterFormComponent implements OnInit {
       return;
     }
     let object = {
-      email: this.email,
-      password: this.password1
+      email: this.form.get('email')?.value,
+      password: this.form.get('password1')?.value
     }
     //here we should send the object to the http server
+    this.store.dispatch(registerUser(object));
   }
 
 }
