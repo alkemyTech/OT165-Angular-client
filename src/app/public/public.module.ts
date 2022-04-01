@@ -23,7 +23,6 @@ import { RegisterFormComponent } from "./pages/auth/register-form/register-form.
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
 import { CarouselModule } from "./components/carousel/carousel.module";
-import { LorenzoTestsComponent } from './pages/lorenzo-tests/lorenzo-tests.component';
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -47,7 +46,6 @@ import { NgModule } from "@angular/core";
     ActivitiesListComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    LorenzoTestsComponent,
   ],
   exports: [],
   imports: [
