@@ -1,9 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-//PrimeNG
-import { ToastModule } from 'primeng/toast';
-
 //Own Components
 import { LogoComponent } from "./components/logo/logo.component";
 import { TitleComponent } from "./components/title/title.component";
@@ -30,7 +27,6 @@ import { MessageComponent } from './components/dialog/message/message.component'
     MessageComponent,
   ],
   imports: [
-    ToastModule,
     CommonModule,
     RouterModule,
     ButtonModule,
