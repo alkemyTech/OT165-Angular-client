@@ -1,0 +1,7 @@
+export const environment = {
+  production: false,
+  API_URL_SLIDES: 'YOUR API URL GOES HERE',
+  API_URL_USERS: 'YOUR API URL GOES HERE',
+  API_URL_ACTIVITIES: 'YOUR API URL GOES HERE'
+};
+
