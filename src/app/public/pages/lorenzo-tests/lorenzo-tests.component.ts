@@ -21,7 +21,8 @@ export class LorenzoTestsComponent {
     this.dialogService.add({
       type: 'warning',
       title: 'Probando un título',
-      detail: 'Este es un detalle de prueba de error'
+      detail: 'Este es un detalle de prueba de error',
+      life: 3000
     });
   }
   addMessageSuccess() {

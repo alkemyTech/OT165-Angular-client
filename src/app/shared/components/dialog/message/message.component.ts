@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Message } from 'src/app/shared/models/Message';
 import { DialogService } from '../dialog.service';
 
@@ -14,6 +14,11 @@ export class MessageComponent implements OnInit {
   constructor(private dialogService: DialogService) { }
 
   ngOnInit(): void {
+    if (this.message.life) {
+      setTimeout(() => {
+        this.dialogService.delete(this.message)
+      }, this.message.life);
+    }
   }
 
   deleteMe(message: Message) {
