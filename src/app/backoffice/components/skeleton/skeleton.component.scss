@@ -1,32 +1,36 @@
 .wrapper {
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 1200px;
-    margin: auto;
-    padding: 100px 20px 20px 20px;
-    .description{
-      overflow: hidden;
-      max-width: 500px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-    .order{
-      text-align: center;
-    }
-    .name{
-      overflow: hidden;
-      max-width: 180px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-    .img{
-        img{
-          max-height: 125px;
-          width: 200px;
-          box-shadow: 0 1px 10px #0000001f,0 4px 5px #00000024,0 2px 4px -1px #0003;
-          border-radius: 5px;
-        }
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 100px 20px 20px 20px;
+  .description {
+    overflow: hidden;
+    max-width: 500px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .order {
+    text-align: center;
+  }
+  .name {
+    overflow: hidden;
+    max-width: 180px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .img {
+    img {
+      max-height: 125px;
+      width: 200px;
+      box-shadow: 0 1px 10px #0000001f, 0 4px 5px #00000024,
+        0 2px 4px -1px #0003;
+      border-radius: 5px;
     }
   }
-  
+}
+
+.buttons {
+  text-align: right !important;
+}

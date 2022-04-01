@@ -9,7 +9,7 @@ import { User } from "../models/user";
 })
 export class UserService extends BaseService<User> {
   constructor(http: HttpClient) {
-    super(http, "users");
+    super(http, "https://ongapi.alkemy.org/api/users");
   }
 
   public getUsers(): Observable<User[]> {
