@@ -15,7 +15,6 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
-import { SkeletonComponent } from "./components/skeleton/skeleton.component";
 
 const childRoutes: Routes = [
   { path: "actividades", component: ActivitiesListComponent },
@@ -39,7 +38,6 @@ const childRoutes: Routes = [
   { path: "slides", component: SlidesListComponent },
   { path: "usuario", component: UserFormComponent },
   { path: "usuario/:id", component: UserFormComponent },
-  { path: "skeleton", component: SkeletonComponent },
   { path: "", component: BackofficeComponent },
 ];
 
