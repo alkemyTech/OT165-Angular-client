@@ -8,9 +8,11 @@ import { CardComponent } from './components/card/card.component';
 import { RouterModule } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { NavComponent } from "./components/nav/nav.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { DialogComponent } from './components/dialog/dialog.component';
+import { ProgressBarComponent } from './components/progressBar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,14 @@ import { DialogComponent } from './components/dialog/dialog.component';
     NavComponent,
     FooterComponent,
     DialogComponent,
+    ProgressBarComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ButtonModule,
-    RadioButtonModule
+    RadioButtonModule,
+    ProgressBarModule
   ],
   exports: [
     LogoComponent,
@@ -33,6 +37,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     CardComponent,
     NavComponent,
     FooterComponent,
+    ProgressBarComponent
   ]
 })
 export class SharedModule {}
