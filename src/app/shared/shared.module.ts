@@ -1,3 +1,4 @@
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
@@ -29,7 +30,8 @@ import { ProgressBarComponent } from './components/progressBar/progress-bar.comp
     RouterModule,
     ButtonModule,
     RadioButtonModule,
-    ProgressBarModule
+    ProgressBarModule,    
+    ConfirmDialogModule       
   ],
   exports: [
     LogoComponent,
@@ -37,7 +39,8 @@ import { ProgressBarComponent } from './components/progressBar/progress-bar.comp
     CardComponent,
     NavComponent,
     FooterComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    DialogComponent
   ]
 })
 export class SharedModule {}

@@ -1,12 +1,30 @@
-import { Component, Input } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  styleUrls: ['./dialog.component.scss'],
+  providers: [ConfirmationService]
 })
 export class DialogComponent {
-  @Input() type!: string;
-  constructor() { }
+  @Input() header: string = 'Titulo';  
+  @Output() eventToEmit: EventEmitter<any> = new EventEmitter(); 
+  @Input() icon: string = "pi pi-exclamation-triangle";
 
+  constructor(private confirmationService: ConfirmationService) { }
+
+  confirm(id?: number, message?: string) {
+    this.confirmationService.confirm({
+        message: `${message}`,
+        header: this.header,
+        icon: this.icon,
+        acceptLabel: 'Si',
+        rejectLabel: 'No',
+        accept: () => {
+            this.eventToEmit.emit(id);
+        }
+    });
+}
+  
 }
