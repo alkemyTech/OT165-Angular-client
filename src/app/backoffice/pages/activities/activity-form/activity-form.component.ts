@@ -1,8 +1,8 @@
-import { Component,  OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { RxwebValidators } from "@rxweb/reactive-form-validators";
+import { ActivitiesService } from "src/app/backoffice/services/activities/activities.service";
 
 @Component({
   selector: "app-activity-form",
@@ -11,10 +11,11 @@ import { RxwebValidators } from "@rxweb/reactive-form-validators";
 })
 export class ActivityFormComponent implements OnInit {
   public edit: boolean = false;
-  public id!: string | null;
-  public image: string | null | SafeResourceUrl = "";
+  public id!: number;
+  public image: string | null = "";
+  private file: string = "";
 
-   activity!: {
+  activity!: {
     name: string;
     description: string;
     image: string;
@@ -37,62 +38,98 @@ export class ActivityFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private sanatizer: DomSanitizer
+    private activitiesService: ActivitiesService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.setFieldsData(this.id);
-  }
+    let idString = this.activatedRoute.snapshot.paramMap.get("id") || " ";
+    this.id = parseInt(idString);
 
-  setFieldsData(id: string | null) {
-    if (id) {
+    if (this.id) {
       this.edit = true;
-      //See if obtain an activity data from endpoint.
-      if (!!this.activity) {
-        //Endpoint response with data, fill to activityForm
-        this.activityForm.setValue({
-          name: this.activity.name,
-          description: this.activity.description,
-          image: this.activity.image,
-        });
-        this.image = this.activityForm.value.image;
-        return;
-      } else {
-        //Endpoint response with null data, show form create activity.
-        this.edit = false;
-        this.activity = { name: "", description: "", image: "" };
-      }
+      this.activitiesService.getActivity(this.id).subscribe({
+        next: (response) => {
+          this.activity = {
+            name: response.data.name,
+            image: response.data.image,
+            description: response.data.description,
+          };
+          this.setFieldsData();
+        },
+        error: (error) => {
+          this.edit = false;
+        },
+      });
     }
   }
 
-  onUpload(event: any, fileUploader: any) {
-    this.activityForm.patchValue({
-      image: event.files,
+  setFieldsData() {
+    this.activityForm.setValue({
+      name: this.activity.name,
+      description: this.activity.description,
+      image: this.activity.image,
     });
-    //Show image after click  upload button
-    let files = event.files[0].objectURL.changingThisBreaksApplicationSecurity;
-    this.image = this.sanatizer.bypassSecurityTrustResourceUrl(files);
+    this.image = this.activityForm.value.image;
+  }
 
+  onUpload(event: any, fileUploader: any) {
+    let file = event.files[0];
+    this.imageToB64(file);
     fileUploader.clear();
   }
 
-  createActivity() {
+  imageToB64(file: any) {
+    let reader = new FileReader();
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+
+  _handleReaderLoaded(e: any) {
+    let reader = e.target;
+    this.file = reader.result;
+    this.image = this.file;
+    this.activityForm.patchValue({ image: this.file });
+  }
+
+  async createActivity() {
     if (this.activityForm.valid) {
-      //Endpoint POST /activities/create
-      this.activityForm.value;
-      this.image = "";
-      this.activityForm.reset();
-      return;
+      this.activitiesService.createActivity(this.activityForm.value).subscribe({
+        next: (res) => {
+          alert("Your activity is created succesfully");
+          this.image = "";
+          this.activityForm.reset();
+          this.router.navigateByUrl("/backoffice/actividades");
+        },
+        error: (err) => {},
+      });
     }
   }
 
   editActivity() {
     if (this.activityForm.valid) {
-      //Endpoint PATCH /activities/:id
-      this.activityForm.value;
-      alert("Your activity was updated succesfully");
-      return;
+      if (!!this.file) {
+        this.activitiesService
+          .updateActivity(this.id, this.activityForm.value)
+          .subscribe({
+            next: (res) => {
+              alert("Your activity was updated succesfully");
+              this.router.navigateByUrl("/backoffice/actividades");
+            },
+            error: (error) => {},
+          });
+        return;
+      }
+      delete this.activityForm.value.image;
+      this.activitiesService
+        .updateActivity(this.id, this.activityForm.value)
+        .subscribe({
+          next: (res) => {
+            alert("Your activity was updated succesfully");
+            this.router.navigateByUrl("/backoffice/actividades");
+          },
+          error: (e) => {},
+        });
     }
   }
 }

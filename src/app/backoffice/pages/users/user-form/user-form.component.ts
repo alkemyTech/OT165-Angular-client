@@ -77,7 +77,6 @@ export class UserFormComponent implements OnInit {
   submit() {
     if (this.userForm.valid) {
       if (this.id != 0) {
-        console.log(this.id, this.userForm.value);
         this.userService.createUser(this.userForm.value).subscribe(
           (res: any) => {
             alert("Usuario guardado correctamente");
