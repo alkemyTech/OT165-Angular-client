@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  BASE_URL_API: "https://ongapi.alkemy.org/api/",
 };
 
 /*
