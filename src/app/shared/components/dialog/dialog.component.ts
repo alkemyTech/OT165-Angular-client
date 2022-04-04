@@ -8,7 +8,8 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
   providers: [ConfirmationService]
 })
 export class DialogComponent {
-  @Input() header: string = 'Titulo';  
+  @Input() header: string = 'Titulo'; 
+  @Input() message!: string; 
   @Output() eventToEmit: EventEmitter<any> = new EventEmitter(); 
   @Input() icon: string = "pi pi-exclamation-triangle";
 
@@ -16,7 +17,7 @@ export class DialogComponent {
 
   confirm(id?: number, message?: string) {
     this.confirmationService.confirm({
-        message: `${message}`,
+        message: this.message !== null ? this.message : `${message}`,
         header: this.header,
         icon: this.icon,
         acceptLabel: 'Si',

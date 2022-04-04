@@ -17,7 +17,7 @@ export class CategoryListComponent implements OnInit {
   {field: 'name', header: 'Nombre'},   
   {field: 'created_at', header: 'Creado'}
   ]  
-
+ 
   constructor(private categoryService: CategoryService,
               private messageService: MessageService) {}
 
@@ -44,7 +44,7 @@ export class CategoryListComponent implements OnInit {
       error: err => {
         this.messageService.add({severity:'success', summary: 'Error', detail: 'La categoría no pudo ser eliminada.', life: 3000});
       }
-    })
-    
-  }  
+    })    
+  } 
+  
 }
