@@ -20,7 +20,7 @@ const childRoutes: Routes = [
   { path: "actividades", component: ActivitiesListComponent },
   { path: "actividades/crear", component: ActivityFormComponent },
   { path: "actividades/editar/:id", component: ActivityFormComponent },
-  { path: "categorias", component: CategoryListComponent, pathMatch: "full" },
+  { path: "categorias", component: CategoryListComponent },
   { path: "categorias/crear", component: CategoriesFormComponent },
   { path: "categorias/editar/:id", component: CategoriesFormComponent },
   { path: "novedades", component: NewsFormComponent },

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { loginUser } from '../../../../state/actions/auth.actions';
 import { checkPattern } from '../custom.validators';
 
 @Component({
@@ -22,7 +24,7 @@ export class LoginFormComponent {
       ]]
   });
 
-  constructor() { }
+  constructor(private store: Store<any>) { }
 
   get email(): AbstractControl | null {
     return this.form.get('email');
@@ -38,10 +40,11 @@ export class LoginFormComponent {
       return;
     }
     let object = {
-      email: this.email,
-      password: this.password
+      email: this.form.get('email')?.value,
+      password: this.form.get('password')?.value
     }
     //here we should send the object to the http server
+    this.store.dispatch(loginUser(object));
   }
 
 }
