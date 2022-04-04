@@ -21,6 +21,8 @@ import { reducers, metaReducers } from "./state/reducers";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
 import { REDUCERS } from "./state/app.state";
+import { usersReducer } from 'src/app/state/reducers/users.reducers';
+import { UsersEffects } from "src/app/state/effects/users.effects";
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,11 +40,12 @@ import { REDUCERS } from "./state/app.state";
     InputNumberModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([UsersEffects]),
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),
     StoreDevtoolsModule.instrument({ name: "test redux" }),
+    StoreModule.forRoot({ users: usersReducer }) 
   ],
   providers: [],
   bootstrap: [AppComponent],
