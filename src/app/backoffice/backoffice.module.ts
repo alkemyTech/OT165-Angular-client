@@ -21,6 +21,8 @@ import { InputTextareaModule } from "primeng/inputtextarea";
 import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
+import { SkeletonModule } from "primeng/skeleton";
+import { SkeletonComponent } from "./components/skeleton/skeleton.component";
 
 //Own Components
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
@@ -64,6 +66,7 @@ import { SpinnerComponent } from "./components/spinner/spinner.component";
     UserFormComponent,
     UsersListComponent,
     SpinnerComponent,
+    SkeletonComponent,
   ],
   imports: [
     ProgressSpinnerModule,
@@ -85,6 +88,7 @@ import { SpinnerComponent } from "./components/spinner/spinner.component";
     TableModule,
     ToastModule,
     ToolbarModule,
+    SkeletonModule,
   ],
   providers: [
     {

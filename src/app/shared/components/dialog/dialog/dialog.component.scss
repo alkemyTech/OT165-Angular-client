@@ -1,0 +1,12 @@
+.dialog-container {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10000;
+}
+.dialog-container > * {
+  margin-bottom: 7px;
+}
