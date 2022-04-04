@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { loginUser } from '../../../../state/actions/auth.actions';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { LoginResponse } from 'src/app/shared/models/auth/loginResponse.interface';
+import { loginSend } from 'src/app/shared/models/auth/loginSend.interface';
+import { UserState } from 'src/app/shared/models/auth/userState.interface';
+import { logedUser, loginUser } from '../../../../state/actions/auth.actions';
 import { checkPattern } from '../custom.validators';
 
 @Component({
@@ -24,7 +29,9 @@ export class LoginFormComponent {
       ]]
   });
 
-  constructor(private store: Store<any>) { }
+
+  constructor(private store: Store<any>, private authService: AuthService, private router: Router) { 
+   }
 
   get email(): AbstractControl | null {
     return this.form.get('email');
@@ -39,12 +46,24 @@ export class LoginFormComponent {
       this.form.markAllAsTouched();
       return;
     }
-    let object = {
+    let object: loginSend = {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value
     }
-    //here we should send the object to the http server
-    this.store.dispatch(loginUser(object));
+    this.store.dispatch(loginUser( { user: object } ));
+    this.authService.loginAPI(object).subscribe( (res: LoginResponse) => {
+      if (res.success) {
+        let user: UserState = {
+          success: res.success,
+          user: res.data
+        }
+        this.store.dispatch(logedUser({ user }))
+        this.router.navigateByUrl('home');
+      }
+    },
+    error => {
+      //alert
+    })
   }
 
 }
