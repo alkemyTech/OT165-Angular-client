@@ -7,7 +7,8 @@ import {
 } from "src/app/backoffice/models/TableData.interface";
 import { User } from "src/app/backoffice/models/user";
 import { UserService } from "src/app/services/auth/user.service";
-import { getUsers } from "src/app/state/actions/users.actions";
+import { getUsers, getUsersSuccess } from "src/app/state/actions/users.actions";
+import { selectLoading } from "src/app/state/selectors/users.selectors";
 
 @Component({
   selector: "app-users-list",
@@ -24,10 +25,11 @@ export class UsersListComponent implements OnInit{
   isLoading!:boolean;
   skeleton!: boolean;
   usersList$!: Observable<Array<User>>;  
+  loading$:Observable<boolean> = new Observable();
 
   constructor(private servicioUser: UserService, private store: Store<any>) {    
     this.isLoading = false;
-    this.store.dispatch(getUsers());
+    
     // this.skeleton = true;
     // this.servicioUser.getUsers().subscribe(
     //   (response) => {
@@ -43,7 +45,15 @@ export class UsersListComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    //this.store.subscribe(state => this.createUsersList(state));
+    this.loading$ = this.store.select(selectLoading);
+    this.store.dispatch(getUsers());
+
+    this.servicioUser.getUsers().subscribe(
+      (response:User[]) => {
+        this.store.dispatch(getUsersSuccess(
+          { users: response }
+        ));
+    })    
   }
 
   createUsersList(state: any){

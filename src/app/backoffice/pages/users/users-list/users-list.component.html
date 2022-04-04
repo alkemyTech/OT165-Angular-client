@@ -1,4 +1,6 @@
-<app-skeleton *ngIf="skeleton" [columns]="titlesCol"></app-skeleton>
+<app-progress-bar *ngIf="(loading$ | async)" title="Cargando Usuarios..."></app-progress-bar>
+<app-skeleton *ngIf="(loading$ | async)" [columns]="titlesCol"></app-skeleton>
+
 <app-table
   [items]="tableUsers"
   [columns]="titlesCol"

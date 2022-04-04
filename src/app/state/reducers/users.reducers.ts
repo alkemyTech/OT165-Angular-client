@@ -7,5 +7,5 @@ export const initialState: UsersState = { loading: false, users: [] };
 export const usersReducer = createReducer(
   initialState,
   on(getUsers, (state) => { return {...state, loading: true} }),
-  //on(getUsersSuccess, (state, { users }) => [...users]),
+  on(getUsersSuccess, (state, { users }) => { return {...state, loading: false, users} })
 );
