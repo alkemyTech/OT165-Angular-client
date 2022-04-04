@@ -1,7 +1,6 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Env
-/environments/environment.prod.ts
 /environments/environment.ts
 
 # compiled output
