@@ -2,11 +2,10 @@ import { createAction, props } from '@ngrx/store';
 import { User } from 'src/app/backoffice/models/user';
 
 export const getUsers = createAction(
-    '[Users] Get users'
+    '[Users List] Get users'
 );
 
 export const getUsersSuccess = createAction(
-    '[Users] Get users success',
-    (users: Array<User>) => ({users})
-    //props<{ users: Array<User>}>()
+    '[Users List] Get users success',
+    props<{ users: Array<User> }>()
 );

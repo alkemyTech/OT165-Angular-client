@@ -23,10 +23,9 @@ export class UsersListComponent implements OnInit{
   ];
   isLoading!:boolean;
   skeleton!: boolean;
-  usersList$!: Observable<Array<User>>;
-  
+  usersList$!: Observable<Array<User>>;  
 
-  constructor(private servicioUser: UserService, private store: Store<{users: Array<User>}>) {    
+  constructor(private servicioUser: UserService, private store: Store<any>) {    
     this.isLoading = false;
     this.store.dispatch(getUsers());
     // this.skeleton = true;
@@ -44,20 +43,20 @@ export class UsersListComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.store.subscribe(state => this.createUsersList(state));
+    //this.store.subscribe(state => this.createUsersList(state));
   }
 
   createUsersList(state: any){
     // console.log(state);
-    this.usersList$ = state.users;    
-    this.users = JSON.parse(JSON.stringify(this.usersList$));
-    this.tableUsers = {
-      createPath: "/backoffice/usuario",
-      editPath: "/backoffice/usuario",
-      title: "Usuario",
-      data: this.users,
-    };
-    this.skeleton = false;
+    // this.usersList$ = state.users;    
+    // this.users = JSON.parse(JSON.stringify(this.usersList$));
+    // this.tableUsers = {
+    //   createPath: "/backoffice/usuario",
+    //   editPath: "/backoffice/usuario",
+    //   title: "Usuario",
+    //   data: this.users,
+    // };
+    // this.skeleton = false;
   }
 
   // showUsers(response: any) {

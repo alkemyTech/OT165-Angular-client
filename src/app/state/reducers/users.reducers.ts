@@ -1,11 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
-import { User } from 'src/app/backoffice/models/user';
-import { getUsersSuccess } from 'src/app/state/actions/users.actions';
+import { UsersState } from 'src/app/shared/models/userState.interface';
+import { getUsers, getUsersSuccess } from 'src/app/state/actions/users.actions';
 
-
-export const initialState:Array<User> = [];
+export const initialState: UsersState = { loading: false, users: [] };
 
 export const usersReducer = createReducer(
-  initialState,  
-  on(getUsersSuccess, (state, { users }) => [...users]),
+  initialState,
+  on(getUsers, (state) => { return {...state, loading: true} }),
+  //on(getUsersSuccess, (state, { users }) => [...users]),
 );
