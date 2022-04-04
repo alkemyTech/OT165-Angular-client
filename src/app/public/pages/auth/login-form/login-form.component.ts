@@ -44,6 +44,10 @@ export class LoginFormComponent {
       email: this.form.get("email")?.value,
       password: this.form.get("password")?.value,
     };
-    this.store.dispatch(loginUser({ user: object }));
+    this.serviceLogin(object);
+  }
+
+  private async serviceLogin(object: loginSend) {
+    await this.store.dispatch(loginUser({ user: object }));
   }
 }

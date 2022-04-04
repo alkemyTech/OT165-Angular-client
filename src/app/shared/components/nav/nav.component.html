@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-xxl navbar-light">
+<nav class="navbar navbar-expand-xl navbar-light">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="home">
       <app-logo></app-logo>
@@ -17,38 +17,112 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
-          <a class="me-1 mb-1 danger" pButton pRipple label="Inicio" type="button" routerLink="home"></a>
+          <a
+            class="me-1 mb-1 danger"
+            pButton
+            pRipple
+            label="Inicio"
+            type="button"
+            routerLink="home"
+          ></a>
         </li>
         <li class="nav-item">
-          <a  class="me-1 mb-1 danger" pButton pRipple label="Nosotros" type="button" href="nosotros"></a>
+          <a
+            class="me-1 mb-1 danger"
+            pButton
+            pRipple
+            label="Nosotros"
+            type="button"
+            href="nosotros"
+          ></a>
         </li>
         <li class="nav-item">
-          <a class="me-1 mb-1 danger" pButton pRipple label="Actividades" type="button" href="/actividades"></a>
+          <a
+            class="me-1 mb-1 danger"
+            pButton
+            pRipple
+            label="Actividades"
+            type="button"
+            href="/actividades"
+          ></a>
         </li>
         <li class="nav-item">
-          <a class="me-1 mb-1 danger" pButton pRipple label="Novedades" type="button" href="#"></a>
+          <a
+            class="me-1 mb-1 danger"
+            pButton
+            pRipple
+            label="Novedades"
+            type="button"
+            href="#"
+          ></a>
         </li>
         <li class="nav-item">
-          <a class="me-1 mb-1 danger" pButton pRipple label="Testimonios" type="button" href="#"></a>
+          <a
+            class="me-1 mb-1 danger"
+            pButton
+            pRipple
+            label="Testimonios"
+            type="button"
+            href="#"
+          ></a>
         </li>
         <li class="nav-item">
-          <a class="me-1 mb-1 danger" pButton pRipple label="Contacto" type="button" routerLink="contacto"></a>
+          <a
+            class="me-1 mb-1 danger"
+            pButton
+            pRipple
+            label="Contacto"
+            type="button"
+            routerLink="contacto"
+          ></a>
         </li>
         <li class="nav-item">
-          <a class="me-1 mb-1 danger" pButton pRipple label="Contribuye" type="button" routerLink="donar"></a>
+          <a
+            class="me-1 mb-1 danger"
+            pButton
+            pRipple
+            label="Contribuye"
+            type="button"
+            routerLink="donar"
+          ></a>
         </li>
       </ul>
-      <div class="d-flex">
-        <a class="me-1 mb-1 warning" aria-current="page" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" label="Log in" pButton pRipple type="button" routerLink="login"></a>
+      <div class="d-flex" *ngIf="!(userLoged$ | async)">
         <a
-          aria-current="page" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
+          class="me-1 mb-1 warning"
+          aria-current="page"
+          data-bs-toggle="collapse"
+          data-bs-target=".navbar-collapse.show"
+          label="Log in"
+          pButton
+          pRipple
+          type="button"
+          routerLink="login"
+        ></a>
+        <a
+          aria-current="page"
+          data-bs-toggle="collapse"
+          data-bs-target=".navbar-collapse.show"
           class="primary mb-1"
           label="Registrate"
-          pButton pRipple 
+          pButton
+          pRipple
           type="button"
           routerLink="registro"
-          ></a
-        >
+        ></a>
+      </div>
+      <div *ngIf="userLoged$ | async as user">
+        <a
+        class="me-1 mb-1 warning"
+        aria-current="page"
+        data-bs-toggle="collapse"
+        data-bs-target=".navbar-collapse.show"
+        label="Log out"
+        pButton
+        pRipple
+        type="button"
+        (click)="logOut()"
+      ></a>
       </div>
     </div>
   </div>

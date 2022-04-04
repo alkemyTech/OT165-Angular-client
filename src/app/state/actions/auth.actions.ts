@@ -18,6 +18,10 @@ export const loginError = createAction(
   "[Login Page] Login Error",
 );
 
+export const logOut = createAction(
+  "[Login Page] Logout",
+);
+
 /* Register Actions */
 export const registerUser = createAction(
   "[Register Page] Register",

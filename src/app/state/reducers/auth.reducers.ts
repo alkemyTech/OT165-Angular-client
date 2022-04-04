@@ -13,6 +13,9 @@ export const loginReducer = createReducer(
     on(actions.logedUser,  (state, newState) => {
         return state = {...newState.user} 
     }),
+    on(actions.logOut,  state => {
+        return state = { success: false }
+    }),
   );
 
   export const registerReducer = createReducer(

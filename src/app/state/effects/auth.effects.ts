@@ -2,11 +2,11 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
-import { map, mergeMap, catchError } from "rxjs/operators";
+import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { AuthService } from "src/app/services/auth/auth.service";
 import { LoginResponse } from "src/app/shared/models/auth/loginResponse.interface";
 import { RegisterResponse } from "src/app/shared/models/auth/registerResponse.interface";
-import { loginUser, registerUser } from "../actions/auth.actions";
+import { loginUser, logOut, registerUser } from "../actions/auth.actions";
 
 @Injectable()
 export class AuthEffects {
@@ -22,6 +22,11 @@ export class AuthEffects {
               user: user.data,
             },
           })),
+          tap((action) => {
+            if (action.user.success) {
+              this.router.navigateByUrl("home");
+            }
+          }),
           catchError(() => of({ type: "[Login Page] Login Error" }))
         )
       )
@@ -40,6 +45,11 @@ export class AuthEffects {
               user: user.data,
             },
           })),
+          tap((action) => {
+            if (action.user.success) {
+              this.router.navigateByUrl("login");
+            }
+          }),
           catchError(() => of({ type: "[Register Page] Register Error" }))
         )
       )

@@ -56,6 +56,10 @@ export class RegisterFormComponent {
       email: this.form.get("email")?.value,
       password: this.form.get("password1")?.value,
     };
-    this.store.dispatch(registerUser({ user: object }));
+    this.serviceRegister(object);
+  }
+
+  private async serviceRegister(object: registerSend) {
+    await this.store.dispatch(registerUser({ user: object }));
   }
 }
