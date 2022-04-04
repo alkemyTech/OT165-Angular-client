@@ -22,16 +22,25 @@ export class UsersListComponent implements OnInit{
     { field: "email", header: "Correo" },
   ];
   isLoading!:boolean;
+  skeleton!: boolean;
   usersList$!: Observable<Array<User>>;
+  
 
   constructor(private servicioUser: UserService, private store: Store<{users: Array<User>}>) {    
     this.isLoading = false;
     this.store.dispatch(getUsers());
+    // this.skeleton = true;
     // this.servicioUser.getUsers().subscribe(
-    //  (response) => { this.showUsers(response)},
-    //  (error) => {error},
-    //  () => {this.isLoading = false}
-    // );    
+    //   (response) => {
+    //     this.showUsers(response);
+    //   },
+    //   (error) => {
+    //     error;
+    //   },
+    //   () => {
+    //     this.skeleton = false;
+    //   }
+    // );   
   }
 
   ngOnInit(): void {
@@ -43,11 +52,12 @@ export class UsersListComponent implements OnInit{
     this.usersList$ = state.users;    
     this.users = JSON.parse(JSON.stringify(this.usersList$));
     this.tableUsers = {
-      createPath: '/backoffice/usuario',
-      editPath: '/backoffice/usuario',
-      title: 'Usuario',
-      data: this.users
-    }  
+      createPath: "/backoffice/usuario",
+      editPath: "/backoffice/usuario",
+      title: "Usuario",
+      data: this.users,
+    };
+    this.skeleton = false;
   }
 
   // showUsers(response: any) {
@@ -61,8 +71,10 @@ export class UsersListComponent implements OnInit{
   // }
 
   deleteUser(id: number) {
+    this.skeleton = true;
     this.servicioUser.deleteUser(id).subscribe((response) => {
       response;
+      this.skeleton = false;
     });
   }
 }
