@@ -1,61 +1,65 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { registerUser, registeredUser } from 'src/app/state/actions/auth.actions';
-import { checkPattern, checkPasswords } from '../custom.validators';
+import { Component } from "@angular/core";
+import {
+  AbstractControl,
+  FormBuilder,
+  Validators,
+} from "@angular/forms";
+import { Store } from "@ngrx/store";
+import { registerSend } from "src/app/shared/models/auth/registerSend.interface";
+import { registerUser } from "src/app/state/actions/auth.actions";
+import { checkPattern, checkPasswords } from "../custom.validators";
 
 @Component({
-  selector: 'app-register-form',
-  templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.scss']
+  selector: "app-register-form",
+  templateUrl: "./register-form.component.html",
+  styleUrls: ["./register-form.component.scss"],
 })
-export class RegisterFormComponent implements OnInit {
+export class RegisterFormComponent {
+  form = this.fb.group(
+    {
+      name: ["", [Validators.required]],
+      email: ["", [Validators.required, Validators.email]],
+      password1: [
+        "",
+        [Validators.required, Validators.minLength(6), checkPattern],
+      ],
+      password2: ["", [Validators.required]],
+    },
+    {
+      validator: checkPasswords("password1", "password2"),
+    }
+  );
 
-  formBuilder: FormBuilder = new FormBuilder();
-  form: FormGroup = this.formBuilder.group({
-    email: [null,[
-      Validators.required,
-      Validators.email
-    ]],
-    password1: [null,[
-        Validators.required,
-        Validators.minLength(6),
-        checkPattern
-      ]],
-    password2: [null,[
-      Validators.required
-    ]]
-  }, { 
-    validator: checkPasswords('password1', 'password2')
-  });
-
-  constructor(private store: Store<any>) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private store: Store<any>, private fb: FormBuilder) {}
 
   get email(): AbstractControl | null {
-    return this.form.get('email');
+    return this.form.get("email");
+  }
+  get name(): AbstractControl | null {
+    return this.form.get("name");
   }
   get password1(): AbstractControl | null {
-    return this.form.get('password1');
+    return this.form.get("password1");
   }
   get password2(): AbstractControl | null {
-    return this.form.get('password2');
+    return this.form.get("password2");
   }
 
-  register(e:Event) {
+  register(e: Event) {
     e.preventDefault();
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
     }
-    let object = {
-      email: this.form.get('email')?.value,
-      password: this.form.get('password1')?.value
-    }
-    //here we should send the object to the http server
-    this.store.dispatch(registerUser(object));
+    let object: registerSend = {
+      name: this.form.get("name")?.value,
+      email: this.form.get("email")?.value,
+      password: this.form.get("password1")?.value,
+    };
+    this.serviceRegister(object);
   }
 
+  private async serviceRegister(object: registerSend) {
+    await this.store.dispatch(registerUser({ user: object }));
+  }
 }

@@ -1,22 +1,38 @@
 import { createAction, props } from "@ngrx/store";
-import { UserState } from "src/app/shared/models/userState.interface";
+import { loginSend } from "src/app/shared/models/auth/loginSend.interface";
+import { registerSend } from "src/app/shared/models/auth/registerSend.interface";
+import { UserState } from "src/app/shared/models/auth/userState.interface";
 
+/* Login Actions */
 export const loginUser = createAction(
   "[Login Page] Login",
-  props<{ email: string; password: string }>()
+  props<{ user: loginSend }>()
 );
 
 export const logedUser = createAction(
   "[Login Page] Login success",
-  props<{ success: boolean, user: UserState }>()
+  props<{ user: UserState }>()
 );
 
+export const loginError = createAction(
+  "[Login Page] Login Error",
+);
+
+export const logOut = createAction(
+  "[Login Page] Logout",
+);
+
+/* Register Actions */
 export const registerUser = createAction(
   "[Register Page] Register",
-  props<{ email: string; password: string }>()
+  props<{ user: registerSend }>()
 );
 
 export const registeredUser = createAction(
   "[Register Page] Register success",
-  props<{ success: boolean, user: UserState }>()
+  props<{ user: UserState }>()
+);
+
+export const registerError = createAction(
+  "[Register Page] Register Error",
 );
