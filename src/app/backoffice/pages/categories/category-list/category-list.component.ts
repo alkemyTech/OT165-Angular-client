@@ -1,4 +1,4 @@
-import { MessageService } from 'primeng/api';
+import { MessageService } from "primeng/api";
 import { CategoryService } from "./../../../../services/category/category.service";
 import { Component, OnInit } from "@angular/core";
 import { Category } from "src/app/shared/models/Category";
@@ -8,19 +8,21 @@ import { CategoryState } from 'src/app/state/reducers/category.reducer';
 import { getCategories } from 'src/app/state/actions/category.actions';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: "app-category-list",
   templateUrl: "./category-list.component.html",
   styleUrls: ["./category-list.component.scss"],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class CategoryListComponent implements OnInit {
   categories!: Observable<readonly Category[]>;
   tableCategories!: TableData;
   titlesCol: Columns[] = [
-  {field: 'name', header: 'Nombre'},   
-  {field: 'created_at', header: 'Creado'}
-  ]  
+    { field: "name", header: "Nombre" },
+    { field: "created_at", header: "Creado" },
+  ];
+  skeleton!: boolean;
 
   constructor(private categoryService: CategoryService,
               private messageService: MessageService,
@@ -45,14 +47,25 @@ export class CategoryListComponent implements OnInit {
     }); */
   }  
   deleteCategory(e: number) {
+    this.skeleton = true;
     this.categoryService.deleteById(e).subscribe({
-      next: res => {
-        this.messageService.add({severity:'success', summary: 'Eliminado', detail: 'Categoria eliminada!', life: 3000});
+      next: (res) => {
+        this.messageService.add({
+          severity: "success",
+          summary: "Eliminado",
+          detail: "Categoria eliminada!",
+          life: 3000,
+        });
       },
-      error: err => {
-        this.messageService.add({severity:'success', summary: 'Error', detail: 'La categoría no pudo ser eliminada.', life: 3000});
-      }
-    })
-    
-  }  
+      error: (err) => {
+        this.messageService.add({
+          severity: "success",
+          summary: "Error",
+          detail: "La categoría no pudo ser eliminada.",
+          life: 3000,
+        });
+      },
+    });
+    this.skeleton = false;
+  }
 }
