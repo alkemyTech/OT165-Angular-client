@@ -18,30 +18,39 @@ export class UsersListComponent {
     { field: "name", header: "Nombre" },
     { field: "email", header: "Correo" },
   ];
-  isLoading!:boolean;
+  skeleton!: boolean;
 
   constructor(private servicioUser: UserService) {
-    this.isLoading = true;
+    this.skeleton = true;
     this.servicioUser.getUsers().subscribe(
-      (response) => { this.showUsers(response)},
-      (error) => {error},
-      () => {this.isLoading = false}
+      (response) => {
+        this.showUsers(response);
+      },
+      (error) => {
+        error;
+      },
+      () => {
+        this.skeleton = false;
+      }
     );
   }
 
   showUsers(response: any) {
     this.users = <Array<User>>response;
     this.tableUsers = {
-      createPath: '/backoffice/usuario',
-      editPath: '/backoffice/usuario',
-      title: 'Usuario',
-      data: this.users
-    }    
+      createPath: "/backoffice/usuario",
+      editPath: "/backoffice/usuario",
+      title: "Usuario",
+      data: this.users,
+    };
+    this.skeleton = false;
   }
 
   deleteUser(id: number) {
+    this.skeleton = true;
     this.servicioUser.deleteUser(id).subscribe((response) => {
       response;
+      this.skeleton = false;
     });
   }
 }

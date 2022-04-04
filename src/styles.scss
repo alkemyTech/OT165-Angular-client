@@ -48,8 +48,14 @@ body{
 
 :root {
     --primary: #9AC9FB;
-    --warning: #FAFA88;
+    --primary-text: rgb(104, 177, 254);
+    --primary-background: rgba(188, 220, 254, 0.8);
     --danger: #DB5752;
+    --danger-text: #DB5752;
+    --danger-background: rgba(243, 166, 163, 0.8);
+    --warning: #FAFA88;
+    --warning-text: rgb(152, 152, 57);
+    --warning-background: rgba(255, 255, 173, 0.8);
     --app-text-color: #000000;
     background: aliceblue;
 }
