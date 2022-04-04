@@ -8,7 +8,8 @@ import {
 import { User } from "src/app/backoffice/models/user";
 import { UserService } from "src/app/services/auth/user.service";
 import { getUsers, getUsersSuccess } from "src/app/state/actions/users.actions";
-import { selectLoading } from "src/app/state/selectors/users.selectors";
+import { AppState } from "src/app/state/app.state";
+import { selectLoading, selectUsersList } from "src/app/state/selectors/users.selectors";
 
 @Component({
   selector: "app-users-list",
@@ -21,30 +22,11 @@ export class UsersListComponent implements OnInit{
   titlesCol: Columns[] = [
     { field: "name", header: "Nombre" },
     { field: "email", header: "Correo" },
-  ];
-  isLoading!:boolean;
-  skeleton!: boolean;
-  usersList$!: Observable<Array<User>>;  
+  ];  
   loading$:Observable<boolean> = new Observable();
+  users$: Observable<User[]> = new Observable();
 
-  constructor(private servicioUser: UserService, private store: Store<any>) {    
-    this.isLoading = false;
-    
-    // this.skeleton = true;
-    // this.servicioUser.getUsers().subscribe(
-    //   (response) => {
-    //     this.showUsers(response);
-    //   },
-    //   (error) => {
-    //     error;
-    //   },
-    //   () => {
-    //     this.skeleton = false;
-    //   }
-    // );   
-  }
-
-  ngOnInit(): void {
+  constructor(private servicioUser: UserService, private store: Store<AppState>) {          
     this.loading$ = this.store.select(selectLoading);
     this.store.dispatch(getUsers());
 
@@ -53,37 +35,30 @@ export class UsersListComponent implements OnInit{
         this.store.dispatch(getUsersSuccess(
           { users: response }
         ));
-    })    
+    });
   }
 
-  createUsersList(state: any){
-    // console.log(state);
-    // this.usersList$ = state.users;    
-    // this.users = JSON.parse(JSON.stringify(this.usersList$));
-    // this.tableUsers = {
-    //   createPath: "/backoffice/usuario",
-    //   editPath: "/backoffice/usuario",
-    //   title: "Usuario",
-    //   data: this.users,
-    // };
-    // this.skeleton = false;
+  ngOnInit(): void {    
+    this.users$ = this.store.select(selectUsersList);
+    this.users$.subscribe( response => {
+      this.loadTable(response);
+    })      
   }
 
-  // showUsers(response: any) {
-  //   this.users = <Array<User>>response;
-  //   this.tableUsers = {
-  //     createPath: '/backoffice/usuario',
-  //     editPath: '/backoffice/usuario',
-  //     title: 'Usuario',
-  //     data: this.users
-  //   }    
-  // }
+  loadTable(response: User[]){
+    this.users = JSON.parse(JSON.stringify(response));
+    
+    this.tableUsers = {
+      createPath: "/backoffice/usuario",
+      editPath: "/backoffice/usuario",
+      title: "Usuario",
+      data: this.users,
+    };
+  }
 
-  deleteUser(id: number) {
-    this.skeleton = true;
+  deleteUser(id: number) {    
     this.servicioUser.deleteUser(id).subscribe((response) => {
-      response;
-      this.skeleton = false;
+      response;      
     });
   }
 }
