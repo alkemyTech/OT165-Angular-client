@@ -1,3 +1,4 @@
+import { CategoryEffects } from './state/effects/category.effects';
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CommonModule } from "@angular/common";
@@ -38,7 +39,9 @@ import { REDUCERS } from "./state/app.state";
     InputNumberModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([
+      CategoryEffects
+    ]),
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),

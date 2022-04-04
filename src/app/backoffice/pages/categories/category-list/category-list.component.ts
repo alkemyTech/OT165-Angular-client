@@ -3,6 +3,10 @@ import { CategoryService } from "./../../../../services/category/category.servic
 import { Component, OnInit } from "@angular/core";
 import { Category } from "src/app/shared/models/Category";
 import { Columns, TableData } from 'src/app/backoffice/models/TableData.interface';
+import { Store } from '@ngrx/store';
+import { CategoryState } from 'src/app/state/reducers/category.reducer';
+import { getCategories } from 'src/app/state/actions/category.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: "app-category-list",
@@ -11,7 +15,7 @@ import { Columns, TableData } from 'src/app/backoffice/models/TableData.interfac
   providers: [MessageService]
 })
 export class CategoryListComponent implements OnInit {
-  categories!: Array<Category>;
+  categories!: Observable<readonly Category[]>;
   tableCategories!: TableData;
   titlesCol: Columns[] = [
   {field: 'name', header: 'Nombre'},   
@@ -19,14 +23,18 @@ export class CategoryListComponent implements OnInit {
   ]  
 
   constructor(private categoryService: CategoryService,
-              private messageService: MessageService) {}
+              private messageService: MessageService,
+              private store: Store<CategoryState>) {
+              this.categories = store.select('categories');
+  }
 
   ngOnInit(): void {
     this.getCategories();
   }
 
   getCategories() {
-    this.categoryService.getAll().subscribe(async (categories: any) => {
+    this.store.dispatch(getCategories())
+    /* this.categoryService.getAll().subscribe(async (categories: any) => {
       this.categories = await categories;
       this.tableCategories = {
         createPath: '/backoffice/categorias/crear',
@@ -34,7 +42,7 @@ export class CategoryListComponent implements OnInit {
         title: 'Categorias',
         data: this.categories
       }
-    });
+    }); */
   }  
   deleteCategory(e: number) {
     this.categoryService.deleteById(e).subscribe({
