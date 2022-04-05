@@ -1,3 +1,4 @@
+import { Category } from 'src/app/shared/models/Category';
 import { CategoryState } from 'src/app/state/reducers/category.reducer';
 import { AppState } from './../app.state';
 import { createSelector } from "@ngrx/store";

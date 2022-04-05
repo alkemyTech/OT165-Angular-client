@@ -1,8 +1,12 @@
+import { Observable } from 'rxjs';
+import { createCategory } from './../../../../state/actions/category.actions';
+import { Store } from '@ngrx/store';
 import { Category } from './../../../../shared/models/Category';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { AppState } from 'src/app/state/app.state';
 
 @Component({
   selector: "app-categories-form",
@@ -11,7 +15,8 @@ import { CategoryService } from 'src/app/services/category/category.service';
 })
 export class CategoriesFormComponent implements OnInit {
   
-  @Input() category: Category = {} as Category;
+  category: Category = {} as Category;
+  categoryObservable: Observable<Category> = new Observable();
   actionType: string = 'Crear';
   buttonAction: string = 'Crear';
   paramID: number = 0;
@@ -34,7 +39,8 @@ export class CategoriesFormComponent implements OnInit {
 
   constructor(private categoryService: CategoryService, 
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private store: Store<AppState>) {
     this.paramID = this.route.snapshot.params['id'] != undefined ? this.route.snapshot.params['id'] : 0;    
   }
   
@@ -48,12 +54,7 @@ export class CategoriesFormComponent implements OnInit {
   
   
   getCategory(id: number) {
-    this.categoryService.getById(id).subscribe({
-      next: async (res) => {
-        this.category = await res;
-        this.setCategoryForm(this.category)        
-      }     
-    })
+    
   }
 
   setCategoryForm(cat: any) {
@@ -104,11 +105,9 @@ export class CategoriesFormComponent implements OnInit {
         }
       });
     } else {
-      this.categoryService.post(this.catForm.value).subscribe({
-        next: () => {
-          this.returnToList();
-        }
-      });
+      console.log(this.catForm.value)
+      this.store.dispatch(createCategory(this.catForm.value))
+      //this.returnToList()            
     } 
     
   }

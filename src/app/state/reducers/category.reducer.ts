@@ -1,4 +1,4 @@
-import { createCategory, deleteCategory, deleteCategorySuccess, editCategory, getCategoriesSuccess } from './../actions/category.actions';
+import { createCategory, deleteCategory, deleteCategorySuccess, editCategory, getCategoriesSuccess, createCategorySuccess, editCategorySuccess } from './../actions/category.actions';
 import { createReducer, on } from '@ngrx/store';
 import { Category } from 'src/app/shared/models/Category';
 
@@ -14,7 +14,11 @@ export const categoryReducer = createReducer(
     on(getCategoriesSuccess, (state, {categories}) => { 
         return state = {success: true, categories, error: ''};
     }),
-    on(editCategory, (state) => {
+    on(createCategorySuccess, (state, {category}) => {
+        const categories = [...state.categories, category]
+        return state = {success: true, categories: categories, error: ''}
+    }),
+    on(editCategorySuccess, (state, {category}) => {
         return state = {...state}
     }),
     on(deleteCategorySuccess, (state, {id}) => {

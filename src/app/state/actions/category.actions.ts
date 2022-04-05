@@ -9,14 +9,22 @@ export const getCategoriesSuccess = createAction(
 );
 export const createCategory = createAction(
     '[Category] Create Category',
-    (category: Category) => ({ category })
+    props<{category: Category}>()
 );
 export const createCategorySuccess = createAction(
     '[Category] Create Category success',
-    (category: Category) => ({ category })
+    props<{category: Category}>()
 );
-export const editCategory = createAction('[Category] Edit Category');
-export const deleteCategory = createAction('[Category] Delete Category',
+export const editCategory = createAction(
+    '[Category] Edit Category',
+    props<{category: Category}>()
+);
+export const editCategorySuccess = createAction(
+    '[Category] Edit category success',
+    props<{category: Category}>()
+);
+export const deleteCategory = createAction(
+    '[Category] Delete Category',
     props<{id: number}>()
 );
 export const deleteCategorySuccess = createAction(
