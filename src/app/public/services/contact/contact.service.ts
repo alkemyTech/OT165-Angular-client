@@ -5,18 +5,18 @@ import { BaseService } from 'src/app/services/base.service';
 import { Contact } from 'src/app/shared/models/contact';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ContactService extends BaseService<Contact>{
+export class ContactService extends BaseService<Contact> {
   constructor(http: HttpClient) {
-    super(http, 'contacts');
+    super(http, 'https://ongapi.alkemy.org/api/contacts');
   }
 
   getContacts(): Observable<Contact[]> {
     return super.getAll();
   }
 
-  getContact(id: number): Observable<Contact> {    
+  getContact(id: number): Observable<Contact> {
     return super.getById(id);
   }
 
