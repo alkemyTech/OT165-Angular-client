@@ -1,6 +1,8 @@
 import { createReducer, on } from "@ngrx/store";
 import { UsersState } from "src/app/shared/models/userState.interface";
 import {
+  addUser,
+  addUserSuccess,
   deleteUser,
   deleteUserSuccess,
   getUsers,
@@ -26,5 +28,15 @@ export const usersReducer = createReducer(
       ...state,      
       users: updatedUsers
     };
+  }),
+  on(addUser, (state) => {
+    return { ...state, loading: false };
+  }),
+  on(addUserSuccess, (state, { user }) => {
+    const updatedUsers = [...state.users, user]
+    return{
+      ...state,
+      users: updatedUsers   
+    }
   })
 );
