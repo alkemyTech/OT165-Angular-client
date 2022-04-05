@@ -9,6 +9,7 @@ export const environment = {
   API_URL_USERS: "https://ongapi.alkemy.org/api/users",
   API_URL_ACTIVITIES: "https://ongapi.alkemy.org/api/users",
   API_URL_ORGANIZATION: 'https://ongapi.alkemy.org/api/organization',
+  API_URL_NEWS: 'https://ongapi.alkemy.org/api/news',
 };
 
 /*

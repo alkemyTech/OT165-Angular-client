@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/backoffice/models/category';
 import { News } from 'src/app/backoffice/models/news';
 import { NewsService } from 'src/app/backoffice/services/news/news.service';
+import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
   selector: 'app-news-form',
@@ -19,7 +20,7 @@ export class NewsFormComponent implements OnInit {
   categories!:Array<Category>;
   selectedCategory!:Category;
 
-  constructor(private serviceNews: NewsService, private route: ActivatedRoute) {    
+  constructor(private serviceNews: NewsService, private serviceCategory: CategoryService, private route: ActivatedRoute) {    
     this.paramID = this.route.snapshot.params['id'] != undefined ? this.route.snapshot.params['id'] : 0;
   }
 
@@ -37,29 +38,28 @@ export class NewsFormComponent implements OnInit {
   uploadedFile: any = null;
 
   ngOnInit(): void {    
-    if (this.news == null) {
-      this.serviceNews.getCategories().subscribe(
-        response => { this.showCategories(response) }
-      )
-    } else {
+    if (this.paramID != 0) {
       this.actionType = 'Editar';
-      this.buttonAction = 'Guardar';
-      this.showNews();
+      this.buttonAction = 'Guardar';      
+      this.serviceNews.getById(this.paramID).subscribe(
+        response => { this.loadOldNews(response) }
+      )      
     }
-  }
 
-  showNews(){ 
-    this.name.setValue(this.news.name);
-    this.content.setValue(this.news.content);
-    this.image.setValue(this.news.image);
-    
-    this.serviceNews.getCategories().subscribe(
-      response => { this.showCategories(response) }
+    this.serviceCategory.getAll().subscribe(
+      response => { this.loadCategories(response) }
     )
   }
 
-  showCategories(response:any){
-    this.categories = <Array<Category>>response.data;
+  loadOldNews(response: News){
+    this.news = response;
+    this.name.setValue(this.news.name);
+    this.content.setValue(this.news.content);
+    this.image.setValue(this.news.image);
+  }
+
+  loadCategories(response:any){
+    this.categories = <Array<Category>>response;
     if(this.news != null){      
       let index = this.categories.findIndex(category=>{
         return category.id == this.news.category_id;
@@ -105,8 +105,7 @@ export class NewsFormComponent implements OnInit {
       } 
     }    
     if(this.news != null){
-      this.serviceNews.updateNews(this.news.id, updateNews).subscribe();
-      console.log(updateNews);
+      this.serviceNews.updateNews(this.news.id, updateNews).subscribe();      
     } else {      
       let newNews = {
         name: this.name.value,
