@@ -3,40 +3,84 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact } from 'src/app/shared/models/contact';
 import { ContactService } from 'src/app/public/services/contact/contact.service';
 
+import { DialogService } from 'src/app/shared/components/dialog/dialog.service';
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
 })
-export class ContactComponent{
-
-  constructor(private serviceContact:ContactService) { }
+export class ContactComponent {
+  constructor(
+    private serviceContact: ContactService,
+    private dialogService: DialogService
+  ) {}
 
   contactForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.pattern(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/), Validators.required]),    
-    phone: new FormControl('', [Validators.pattern(/^([0-9]{8,})*$/), Validators.required]),
-    message: new FormControl('', [Validators.required])
+    email: new FormControl('', [
+      Validators.pattern(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/),
+      Validators.required,
+    ]),
+    phone: new FormControl('', [
+      Validators.pattern(/^([0-9]{8,})*$/),
+      Validators.required,
+    ]),
+    message: new FormControl('', [Validators.required]),
   });
 
-  get name(){ return this.contactForm.get('name')!; }
-  get email(){ return this.contactForm.get('email')!; }
-  get phone(){ return this.contactForm.get('phone')!; }
-  get message(){ return this.contactForm.get('message')!; }  
-
-  sendMessage(){
-    let contact:Contact = {
-      name: this.name.value,
-      email: this.email.value,
-      phone: (this.phone.value).toString(),
-      message: this.message.value
-    }
-    this.serviceContact.createContact(contact).subscribe(
-      response => { response }
-    )
+  get name() {
+    return this.contactForm.get('name')!;
+  }
+  get email() {
+    return this.contactForm.get('email')!;
+  }
+  get phone() {
+    return this.contactForm.get('phone')!;
+  }
+  get message() {
+    return this.contactForm.get('message')!;
   }
 
-  clearContactForm(){
+  sendMessage() {
+    let contact: Contact = {
+      name: this.name.value,
+      email: this.email.value,
+      phone: this.phone.value.toString(),
+      message: this.message.value,
+    };
+
+    this.serviceContact.createContact(contact).subscribe(
+      (response) => {
+        //Show dialog success
+        this.messageSuccess();
+      },
+      (error) => {
+        //Show dialog error
+        this.messageError();
+      }
+    );
+  }
+
+  clearContactForm() {
     this.contactForm.reset();
+  }
+
+  messageSuccess() {
+    this.dialogService.add({
+      type: 'success',
+      title: 'Respuesta exitosa',
+      detail: 'Su mensaje ha sido enviado con éxito!',
+      life: 3000,
+    });
+  }
+
+  messageError() {
+    this.dialogService.add({
+      type: 'error',
+      title: 'Ha ocurrido un error',
+      detail: 'El mensaje no pudo ser enviado, por favor intente nuevamente.',
+      life: 3000,
+    });
   }
 }
