@@ -1,12 +1,15 @@
+import { AppState } from './../../../../state/app.state';
+import { selectCategories } from './../../../../state/selectors/category.selectors';
 import { MessageService } from "primeng/api";
 import { CategoryService } from "./../../../../services/category/category.service";
 import { Component, OnInit } from "@angular/core";
 import { Category } from "src/app/shared/models/Category";
 import { Columns, TableData } from 'src/app/backoffice/models/TableData.interface';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { CategoryState } from 'src/app/state/reducers/category.reducer';
-import { getCategories } from 'src/app/state/actions/category.actions';
-import { Observable } from 'rxjs';
+import { deleteCategory, getCategories } from 'src/app/state/actions/category.actions';
+import { Observable } from "rxjs";
+
 
 
 @Component({
@@ -16,7 +19,8 @@ import { Observable } from 'rxjs';
   providers: [MessageService],
 })
 export class CategoryListComponent implements OnInit {
-  categories!: Observable<readonly Category[]>;
+  categoriesObservable!: Observable<Category[]>;
+  categoriesData!: Array<Category>;
   tableCategories!: TableData;
   titlesCol: Columns[] = [
     { field: "name", header: "Nombre" },
@@ -26,12 +30,16 @@ export class CategoryListComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
               private messageService: MessageService,
-              private store: Store<CategoryState>) {
-              this.categories = store.select('categories');
+              private store: Store<AppState>) {
+              
   }
 
   ngOnInit(): void {
     this.getCategories();
+    this.categoriesObservable= this.store.select(selectCategories);
+    this.categoriesObservable.subscribe(res => {
+      this.loadTable(res);
+    })
   }
 
   getCategories() {
@@ -46,9 +54,19 @@ export class CategoryListComponent implements OnInit {
       }
     }); */
   }  
+  loadTable(response: Category[]) {
+    this.categoriesData = JSON.parse(JSON.stringify(response));
+    this.tableCategories = {
+      createPath: '/backoffice/categorias/crear',
+      editPath: '/backoffice/categorias/editar',
+      title: 'Categorias',
+      data: this.categoriesData
+    }
+  }
   deleteCategory(e: number) {
     this.skeleton = true;
-    this.categoryService.deleteById(e).subscribe({
+    this.store.dispatch(deleteCategory({id: e}))
+    /* this.categoryService.deleteById(e).subscribe({
       next: (res) => {
         this.messageService.add({
           severity: "success",
@@ -65,7 +83,7 @@ export class CategoryListComponent implements OnInit {
           life: 3000,
         });
       },
-    });
+    }); */
     this.skeleton = false;
   }
 }
