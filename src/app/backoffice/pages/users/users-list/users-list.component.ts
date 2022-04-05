@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { select, Store } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import {
   Columns,  
@@ -7,7 +7,7 @@ import {
 } from "src/app/backoffice/models/TableData.interface";
 import { User } from "src/app/backoffice/models/user";
 import { UserService } from "src/app/services/auth/user.service";
-import { getUsers, getUsersSuccess } from "src/app/state/actions/users.actions";
+import { getUsers } from "src/app/state/actions/users.actions";
 import { AppState } from "src/app/state/app.state";
 import { selectLoading, selectUsersList } from "src/app/state/selectors/users.selectors";
 
@@ -29,13 +29,6 @@ export class UsersListComponent implements OnInit{
   constructor(private servicioUser: UserService, private store: Store<AppState>) {          
     this.loading$ = this.store.select(selectLoading);
     this.store.dispatch(getUsers());
-
-    this.servicioUser.getUsers().subscribe(
-      (response:User[]) => {
-        this.store.dispatch(getUsersSuccess(
-          { users: response }
-        ));
-    });
   }
 
   ngOnInit(): void {    
