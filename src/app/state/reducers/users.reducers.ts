@@ -1,11 +1,30 @@
-import { createReducer, on } from '@ngrx/store';
-import { UsersState } from 'src/app/shared/models/userState.interface';
-import { getUsers, getUsersSuccess } from 'src/app/state/actions/users.actions';
+import { createReducer, on } from "@ngrx/store";
+import { UsersState } from "src/app/shared/models/userState.interface";
+import {
+  deleteUser,
+  deleteUserSuccess,
+  getUsers,
+  getUsersSuccess,
+} from "src/app/state/actions/users.actions";
 
 export const initialState: UsersState = { loading: false, users: [] };
 
 export const usersReducer = createReducer(
   initialState,
-  on(getUsers, (state) => { return {...state, loading: true} }),
-  on(getUsersSuccess, (state, { users }) => { return {...state, loading: false, users} })
+  on(getUsers, (state) => {
+    return { ...state, loading: true };
+  }),
+  on(getUsersSuccess, (state, { users }) => {
+    return { ...state, loading: false, users };
+  }),
+  on(deleteUser, (state) => {
+    return { ...state, loading: false };
+  }),
+  on(deleteUserSuccess, (state, { id }) => {
+    const updatedUsers = state.users.filter((user) => user.id !== id);
+    return {
+      ...state,      
+      users: updatedUsers
+    };
+  })
 );

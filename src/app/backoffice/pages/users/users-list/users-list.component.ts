@@ -7,7 +7,7 @@ import {
 } from "src/app/backoffice/models/TableData.interface";
 import { User } from "src/app/backoffice/models/user";
 import { UserService } from "src/app/services/auth/user.service";
-import { getUsers } from "src/app/state/actions/users.actions";
+import { deleteUser, getUsers } from "src/app/state/actions/users.actions";
 import { AppState } from "src/app/state/app.state";
 import { selectLoading, selectUsersList } from "src/app/state/selectors/users.selectors";
 
@@ -38,7 +38,7 @@ export class UsersListComponent implements OnInit{
     })      
   }
 
-  loadTable(response: User[]){
+  loadTable(response: User[]){    
     this.users = JSON.parse(JSON.stringify(response));
     
     this.tableUsers = {
@@ -49,9 +49,7 @@ export class UsersListComponent implements OnInit{
     };
   }
 
-  deleteUser(id: number) {    
-    this.servicioUser.deleteUser(id).subscribe((response) => {
-      response;      
-    });
+  deleteUser(id: number) {
+    this.store.dispatch(deleteUser({id: id}));    
   }
 }

@@ -9,3 +9,13 @@ export const getUsersSuccess = createAction(
     '[Users List] Get users success',
     props<{ users: Array<User> }>()
 );
+
+export const deleteUser = createAction(
+    '[Users List] Delete user',
+    props<{ id: number }>()
+);
+
+export const deleteUserSuccess = createAction(
+    '[Users List] Delete user success',
+    props<{ id: number }>()    
+);
