@@ -1,5 +1,3 @@
-<app-skeleton *ngIf="(loading$ | async)" [columns]="titlesCol"></app-skeleton>
-
 <app-table
   *ngIf="!(loading$ | async)"
   [items]="tableUsers"
