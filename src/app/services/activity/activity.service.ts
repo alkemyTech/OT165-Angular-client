@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Activity } from "src/app/shared/models/Activity";
+import { environment } from "src/environments/environment";
 import { BaseService } from "../base.service";
 
 @Injectable({
@@ -10,7 +11,7 @@ import { BaseService } from "../base.service";
 export class ActivityService extends BaseService<Activity> {
 
   constructor(http:HttpClient) {
-    super(http, 'activities');
+    super(http, environment.API_URL_ACTIVITIES);
   }
 
   getActivities(): Observable<Activity[]> {
