@@ -14,15 +14,20 @@ export const categoryReducer = createReducer(
     on(getCategoriesSuccess, (state, {categories}) => { 
         return state = {success: true, categories, error: ''};
     }),
-    on(createCategorySuccess, (state, {category}) => {
-        const categories = [...state.categories, category]
-        return state = {success: true, categories: categories, error: ''}
+    on(createCategorySuccess, (state, {category}) => {                    
+        return state = {
+            success: true, 
+            categories: [...state.categories, category],
+            error: ''}
     }),
     on(editCategorySuccess, (state, {category}) => {
-        return state = {...state}
+        return state = {
+            success: true, 
+            categories: [...state.categories, category],
+            error: ''}
     }),
     on(deleteCategorySuccess, (state, {id}) => {
-        const cats = state.categories.filter(cat => cat.id !== id);
-        return state = {categories: cats, success: true, error: ''}
+        const categories = state.categories.filter(cat => cat.id !== id);
+        return state = {categories: categories, success: true, error: ''}
     })
 )

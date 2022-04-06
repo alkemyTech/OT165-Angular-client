@@ -1,4 +1,5 @@
-import { createCategory, createCategorySuccess } from './../actions/category.actions';
+import { concatMap } from 'rxjs/operators';
+import { createCategory, createCategorySuccess, editCategory, editCategorySuccess } from './../actions/category.actions';
 import { catchError, map } from 'rxjs/operators';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { Actions, createEffect, ofType } from "@ngrx/effects";
@@ -21,13 +22,21 @@ export class CategoryEffects {
 
     createCategory$ = createEffect(() => this.action$.pipe(
         ofType(createCategory),
-        mergeMap(({category}) => this.categoryService.post(category)
-            .pipe(
+        concatMap(({category}) => 
+            this.categoryService.post(category).pipe(
                 map((newCategory) => createCategorySuccess({category: newCategory})),
                 catchError(() => EMPTY)
-            )
-        )
+            ))
     ))
+
+    updateCategory$ = createEffect(() => this.action$.pipe(
+        ofType(editCategory),
+        concatMap(({category}) =>
+            this.categoryService.putById(category.id!, category).pipe(
+                map((updatedCategory) => editCategorySuccess({category: updatedCategory})),
+                catchError(() => EMPTY)
+            ))
+    )) 
 
     deleteCategory$ = createEffect(() => this.action$.pipe(
         ofType(deleteCategory),
