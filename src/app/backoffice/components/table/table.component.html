@@ -81,7 +81,7 @@
               pRipple
               icon="pi pi-trash"
               class="p-button-rounded p-button-warning"
-              (click)="deleteItem(item.id, item.name)"
+              (click)="openDialog(item.id, 'Deseas eliminar '+item.name+'?')"
             ></button>
           </td>
         </tr>
@@ -90,4 +90,4 @@
   </div>
 </div>
 
-<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<app-dialog header="Eliminar" (eventToEmit)="deleteItem($event)"></app-dialog>
