@@ -4,7 +4,7 @@ import { AppState } from '../app.state';
  
 export const selectSlides = (state: AppState) => state.slide;
  
-export const selectSlidesData = createSelector(
+export const selectSlidesList = createSelector(
   selectSlides,
   (state: SlideState) => state.slides
 );

@@ -1,26 +1,48 @@
 import { createAction, props } from "@ngrx/store";
 import { Slide } from "../../shared/models/Slide";
 
-export const getAllSlides = createAction(
-  "[Get All Slides] Slides"
+export const getSlides = createAction(
+  "[Get Slides] Slides"
+);
+
+export const getSlidesSuccess = createAction(
+  "[Get Slides Success] Slides",
+  props<{ slides: Slide[] }>()
 );
 
 export const getOneSlide = createAction(
   "[Get Slide] Slides",
-  props<{payload: { id: number }}>()
+  props<{ id: number }>()
+);
+
+export const getOneSlideSuccess = createAction(
+  "[Get Slide Success] Slides",
+  props<{ id: number }>()
 );
 
 export const createSlide = createAction(
-  "[Create Slide] Slides",
-  props<{payload: { slide: Slide }}>()
+  "[Create Slide] Slides"
+);
+
+export const createSlideSuccess = createAction(
+  "[Create Slide Success] Slides",
+  props<{ slide: Slide }>()
 );
 
 export const updateSlide = createAction(
-  "[Update Slide] Slides",
-  props<{payload:{ id: number; slide: Slide }}>()
+  "[Update Slide] Slides"
+);
+
+export const updateSlideSuccess = createAction(
+  "[Update Slide Success] Slides",
+  props<{ id: number; slide: Slide }>()
 );
 
 export const deleteSlide = createAction(
-  "[Delete Slide] Slides",
-  props<{payload: { id: number }}>()
+  "[Delete Slide] Slides"
+);
+
+export const deleteSlideSuccess = createAction(
+  "[Delete Slide Success] Slides",
+  props<{ id: number }>()
 );
