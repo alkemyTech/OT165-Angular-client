@@ -46,14 +46,7 @@ export class SlidesEffects {
               detail: "La slide se eliminó correctamente",
             });
           }),
-          catchError(() => {
-            this.dialogService.add({
-              type: "error",
-              title: "Error en el servidor",
-              detail: "No se pudo eliminar la slide",
-            });  
-            return of(actions.errorSlides);
-          })
+          catchError(() => of({ type: "[Error Slides] Slides" }))
         )
       )
     )

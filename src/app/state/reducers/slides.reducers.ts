@@ -68,7 +68,7 @@ export const slideReducer = createReducer(
   }),
 
   //ERROR
-  on(actions.deleteSlideSuccess, (state) => {
+  on(actions.errorSlides, (state) => {
     return {
       ...state,
       loading: false
