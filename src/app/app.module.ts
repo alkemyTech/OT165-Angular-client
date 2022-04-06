@@ -17,7 +17,12 @@ import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
-import { reducers, metaReducers } from "./reducers";
+import { reducers, metaReducers } from "./state/reducers";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { environment } from "../environments/environment";
+import { REDUCERS } from "./state/app.state";
+import { AuthEffects } from "./state/effects/auth.effects";
+import { UsersEffects } from "src/app/state/effects/users.effects";
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,11 +40,11 @@ import { reducers, metaReducers } from "./reducers";
     InputNumberModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    StoreModule.forRoot(reducers, {
+    EffectsModule.forRoot([AuthEffects, UsersEffects]),
+    StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),
+    StoreDevtoolsModule.instrument({ name: "test redux" })    
   ],
   providers: [],
   bootstrap: [AppComponent],

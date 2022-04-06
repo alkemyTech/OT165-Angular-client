@@ -1,10 +1,28 @@
-<div class="container">
+<div class="container fadeInDown" id="formContent">
   <header class="header">
     <app-logo [width]="200" [margin]="60"></app-logo>
     <h1>Registro de usuario</h1>
   </header>
   <main>
     <form [formGroup]="form">
+      <div class="field">
+        <label for="name" class="block">Nombre</label>
+        <input
+          formControlName="name"
+          id="name"
+          type="name"
+          aria-describedby="name-help"
+          [ngClass]="{ 'ng-invalid ng-dirty': name?.touched && name?.errors }"
+          pInputText
+        />
+        <small
+          *ngIf="name?.touched && name?.errors"
+          id="name-help"
+          class="p-error block"
+          >error en el campo nombre.</small
+        >
+      </div>
+
       <div class="field">
         <label for="email" class="block">Email</label>
         <input

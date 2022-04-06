@@ -27,12 +27,15 @@ export class SlidesListComponent implements OnInit {
 
   slides!: Slide[];
 
+  skeleton!: boolean;
+
   constructor(
     private messageService: MessageService,
     private slideService: SlideService
   ) {}
 
   ngOnInit(): void {
+    this.skeleton = true;
     this.slideService.getAllSildes().subscribe((data) => {
       this.slides = data.filter((slide) => slide.order !== null);
       this.items = {
@@ -41,10 +44,12 @@ export class SlidesListComponent implements OnInit {
         title: "Slides",
         data: this.slides,
       };
+      this.skeleton = false;
     });
   }
 
   public deleteSlides(event: number) {
+    this.skeleton = true;
     this.slideService.deleteSlide(event).subscribe(
       (res) => {
         if (res.success) {
@@ -73,5 +78,6 @@ export class SlidesListComponent implements OnInit {
         });
       }
     );
+    this.skeleton = false;
   }
 }

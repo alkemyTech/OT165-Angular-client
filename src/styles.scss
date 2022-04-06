@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap";
+/* Fonts */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    font-family: "Poppins", sans-serif;
+}
+body{
+  background: aliceblue;
+}
 /* Scroll */
 ::-webkit-scrollbar {
   width: 8px;
@@ -36,18 +44,20 @@
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
 }
-/* Fonts */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-* {
-    font-family: "Poppins", sans-serif;
-}
 
 :root {
     --primary: #9AC9FB;
-    --warning: #FAFA88;
+    --primary-text: rgb(104, 177, 254);
+    --primary-background: rgba(188, 220, 254, 0.8);
     --danger: #DB5752;
+    --danger-text: #DB5752;
+    --danger-background: rgba(243, 166, 163, 0.8);
+    --warning: #FAFA88;
+    --warning-text: rgb(152, 152, 57);
+    --warning-background: rgba(255, 255, 173, 0.8);
     --app-text-color: #000000;
+    background: aliceblue;
 }
 
 .primary {
