@@ -1,27 +1,29 @@
 import { createReducer, on } from "@ngrx/store";
-import { User } from "src/app/backoffice/models/user";
-import { UserState } from "src/app/shared/models/userState.interface";
+import { UserState } from "src/app/shared/models/auth/userState.interface";
 import * as actions from "../actions/auth.actions";
 
-export const initialState: UserState = { success: false, user: new User };
+export const initialState: UserState = { success: false, user: {} };
 
 
 export const loginReducer = createReducer(
     initialState,
     on(actions.loginUser, state => {
-        return {...state, success: true}
+        return {...state}
     }),
-    on(actions.logedUser,  (state, { user }) => {
-        return state = { ...user, success: true }
+    on(actions.logedUser,  (state, newState) => {
+        return state = {...newState.user} 
+    }),
+    on(actions.logOut,  state => {
+        return state = { success: false }
     }),
   );
 
   export const registerReducer = createReducer(
     initialState,
     on(actions.registerUser, state => {
-        return {...state, success: true}
+        return {...state}
     }),
     on(actions.registeredUser,  (state, { user }) => {
-        return state = { ...user, success: true }
+        return state = { ...user }
     }),
   );

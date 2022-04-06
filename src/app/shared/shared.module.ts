@@ -14,6 +14,8 @@ import { NavComponent } from "./components/nav/nav.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ProgressBarComponent } from './components/progressBar/progress-bar.component';
+import { DialogComponent } from './components/dialog/dialog/dialog.component';
+import { MessageComponent } from './components/dialog/message/message.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ProgressBarComponent } from './components/progressBar/progress-bar.comp
     FooterComponent,
     DialogComponent,
     ProgressBarComponent,
+    DialogComponent,
+    MessageComponent,
   ],
   imports: [
     CommonModule,

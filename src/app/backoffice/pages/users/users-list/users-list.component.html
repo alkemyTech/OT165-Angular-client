@@ -1,6 +1,5 @@
-<app-progress-bar [isLoading]="isLoading" title="Cargando Usuarios..."></app-progress-bar>
-
 <app-table
+  *ngIf="!(loading$ | async)"
   [items]="tableUsers"
   [columns]="titlesCol"
   (deleteItemById)="deleteUser($event)"
