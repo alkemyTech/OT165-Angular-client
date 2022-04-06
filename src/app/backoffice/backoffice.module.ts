@@ -45,7 +45,6 @@ import { UsersListComponent } from "./pages/users/users-list/users-list.componen
 import { SharedModule } from "../shared/shared.module";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
-import { BackOfficeRoutingModule } from "./backoffice-routing.module";
 
 @NgModule({
   declarations: [
