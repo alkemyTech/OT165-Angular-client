@@ -1,3 +1,4 @@
+<app-dialog></app-dialog>
 <div class="container mt-4">
     <div class="row">
         <h2 class="text-center">{{actionType}} novedad</h2>
@@ -67,28 +68,7 @@
             </div>
 
             <div class="d-grid gap-2 col-4 mx-auto mt-2">                
-                <button pButton pRipple type="button" (click)="sendNews()" [label]="buttonAction" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="primary" [disabled]="!newsForm.valid || selectedCategory == null"></button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal con formulario completo -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 *ngIf="news == null" class="modal-title" id="staticBackdropLabel">La novedad se creó correctamente</h5>
-                <h5 *ngIf="news != null" class="modal-title" id="staticBackdropLabel">La novedad se modificó correctamente</h5>             
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Título: {{name.value}} </p>
-                <p *ngIf="content.value != null">Contenido: {{content.value.substring(3, content.value.length - 5)}} </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" (click)="clearNewsForm()" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>                
+                <button pButton pRipple type="button" (click)="sendNews()" [label]="buttonAction" class="primary" [disabled]="!newsForm.valid || selectedCategory == null"></button>
             </div>
         </div>
     </div>
