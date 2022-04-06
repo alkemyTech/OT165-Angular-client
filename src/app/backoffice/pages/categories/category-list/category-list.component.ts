@@ -63,7 +63,13 @@ export class CategoryListComponent implements OnInit {
           life: 3000,
         });
       },
+      error: err => {
+        this.messageService.add({severity:'success', summary: 'Error', detail: 'La categoría no pudo ser eliminada.', life: 3000});
+      }
+    })    
+  }  
     });
     this.skeleton = false;
   }
+
 }
