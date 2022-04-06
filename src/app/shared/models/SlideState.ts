@@ -1,4 +1,4 @@
-import { Slide } from "./Slide";
+import { Slide } from "../../backoffice/models/slide.interface";
 
 export interface SlideState {
   loading: boolean;

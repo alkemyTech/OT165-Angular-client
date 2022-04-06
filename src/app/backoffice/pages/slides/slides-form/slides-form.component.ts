@@ -5,6 +5,9 @@ import { SlideService } from "../../../services/slides/slide.service";
 import { Location } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
+import { Store } from "@ngrx/store";
+import { AppState } from "src/app/state/app.state";
+import { selectSlideById } from "src/app/state/selectors/slides.selectors";
 
 @Component({
   selector: "app-slides-form",
@@ -14,7 +17,9 @@ import { Observable } from "rxjs";
 export class SlidesFormComponent implements OnInit {
   public title: string = "";
   public edit: boolean = false;
-  public slide$!: Observable<SlideResponse>;
+  // public slide$!: Observable<SlideResponse>;
+  public slide$!: Observable<Slide | undefined>;
+  // slides$: Observable<Slide[]> = new Observable();
   public slideUpdated!: Slide;
   public id!: number;
 
@@ -38,17 +43,20 @@ export class SlidesFormComponent implements OnInit {
     private fb: FormBuilder,
     private slideService: SlideService,
     public location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
     if (this.id) {
-      this.slide$ = this.slideService.getSingleSlide(this.id);
+      // this.slide$ = this.slideService.getSingleSlide(this.id);
+      this.slide$ = this.store.select(selectSlideById(this.id));
       this.slide$.subscribe(
-        (res: SlideResponse) => {
-          if (res.success) {
-            this.slideUpdated = this.setSlideEdit(res.data);
+        (res: Slide | undefined) => {
+          console.log(res);
+          if (res) {
+            this.slideUpdated = this.setSlideEdit(res);
             this.edit = true;
             this.title = "Editar";
           } else {

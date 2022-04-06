@@ -1,5 +1,9 @@
 import { createAction, props } from "@ngrx/store";
-import { Slide } from "../../shared/models/Slide";
+import { Slide } from "src/app/backoffice/models/slide.interface";
+
+export const errorSlides = createAction(
+  "[Error Slides] Slides"
+);
 
 export const getSlides = createAction(
   "[Get Slides] Slides"
@@ -21,7 +25,8 @@ export const getOneSlideSuccess = createAction(
 );
 
 export const createSlide = createAction(
-  "[Create Slide] Slides"
+  "[Create Slide] Slides",
+  props<{ slide: Slide }>()
 );
 
 export const createSlideSuccess = createAction(
@@ -39,7 +44,8 @@ export const updateSlideSuccess = createAction(
 );
 
 export const deleteSlide = createAction(
-  "[Delete Slide] Slides"
+  "[Delete Slide] Slides",
+  props<{ id: number }>()
 );
 
 export const deleteSlideSuccess = createAction(

@@ -65,5 +65,13 @@ export const slideReducer = createReducer(
         }),
       ],
     };
+  }),
+
+  //ERROR
+  on(actions.deleteSlideSuccess, (state) => {
+    return {
+      ...state,
+      loading: false
+    };
   })
 );

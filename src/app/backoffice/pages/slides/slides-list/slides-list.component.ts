@@ -1,11 +1,16 @@
 import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { Observable } from "rxjs";
 import { Slide } from "src/app/backoffice/models/slide.interface";
 import {
   Columns,
   TableData,
 } from "src/app/backoffice/models/TableData.interface";
 import { SlideService } from "src/app/backoffice/services/slides/slide.service";
+import * as actions from "src/app/state/actions/slides.actions";
+import { AppState } from "src/app/state/app.state";
+import { selectSlidesList } from "src/app/state/selectors/slides.selectors";
 
 @Component({
   selector: "app-slides-list",
@@ -28,56 +33,34 @@ export class SlidesListComponent implements OnInit {
   slides!: Slide[];
 
   skeleton!: boolean;
+  slides$: Observable<Slide[]> = new Observable();
 
   constructor(
-    private messageService: MessageService,
-    private slideService: SlideService
-  ) {}
+    private store: Store<AppState>
+  ) {
+    this.store.dispatch(actions.getSlides());
+  }
 
   ngOnInit(): void {
     this.skeleton = true;
-    this.slideService.getAllSildes().subscribe((data) => {
-      this.slides = data.filter((slide) => slide.order !== null);
-      this.items = {
-        createPath: "/backoffice/slides/undefined",
-        editPath: "/backoffice/slides/",
-        title: "Slides",
-        data: this.slides,
-      };
+    this.slides$ = this.store.select(selectSlidesList);
+    this.slides$.subscribe((response) => {
+      this.loadTable(response);
       this.skeleton = false;
     });
   }
 
-  public deleteSlides(event: number) {
-    this.skeleton = true;
-    this.slideService.deleteSlide(event).subscribe(
-      (res) => {
-        if (res.success) {
-          this.slides = this.slides.filter((val) => val.id !== event);
-          this.messageService.add({
-            severity: "success",
-            summary: "Eliminado",
-            detail: "Slide eliminado!",
-            life: 3000,
-          });
-        } else {
-          this.messageService.add({
-            severity: "warn",
-            summary: "error",
-            detail: "error al intentar eliminar",
-            life: 3000,
-          });
-        }
-      },
-      (error) => {
-        this.messageService.add({
-          severity: "error",
-          summary: "error",
-          detail: "error al intentar eliminar",
-          life: 3000,
-        });
-      }
-    );
-    this.skeleton = false;
+  loadTable(response: Slide[]) {
+    this.slides = response.filter((slide: Slide) => slide.order !== null);
+    this.items = {
+      createPath: "/backoffice/slides/undefined",
+      editPath: "/backoffice/slides/",
+      title: "Slides",
+      data: this.slides,
+    };
+  }
+
+  deleteSlides(event: number) {
+    this.store.dispatch(actions.deleteSlide({id: event}));
   }
 }
