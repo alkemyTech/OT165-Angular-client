@@ -20,6 +20,7 @@ export class UserFormComponent implements OnInit {
   userForm = this.fb.group({
     name: ["", [Validators.required, Validators.minLength(4)]],
     email: ["", [Validators.required, RxwebValidators.email()]],
+    password: ["", [Validators.required]],
     profile_image: [
       "",
       [RxwebValidators.extension({ extensions: ["png", "jpg"] })],
@@ -56,7 +57,8 @@ export class UserFormComponent implements OnInit {
 
   getUser(id: number) {
     this.userService.getUser(id).subscribe((res: any) => {
-      this.userData = res.data;
+      this.userData = res;
+      console.log(this.userData);
       this.setForm(this.userData);
       if (this.userData.profile_image) {
         this.file = this.userData.profile_image;
@@ -68,6 +70,7 @@ export class UserFormComponent implements OnInit {
     this.userForm.setValue({
       name: user.name,
       email: user.email,
+      password: user.password,
       profile_image: user.profile_image,
       role_id: user.role_id,
       address: user.address,
@@ -77,13 +80,12 @@ export class UserFormComponent implements OnInit {
   submit() {
     if (this.userForm.valid) {
       if (this.id != 0) {
-        console.log(this.id, this.userForm.value);
-        this.userService.createUser(this.userForm.value).subscribe(
+        this.userService.updateUser(this.id, this.userForm.value).subscribe(
           (res: any) => {
             alert("Usuario guardado correctamente");
           },
           (error: any) => {
-            alert("Ha ocurrido un problema!");
+            alert("Ha ocurrido un problema al modificar!");
           }
         );
       } else {
@@ -92,7 +94,7 @@ export class UserFormComponent implements OnInit {
             alert("Usuario creado correctamente");
           },
           (error: any) => {
-            alert("Ha ocurrido un problema!");
+            alert("Ha ocurrido un problema al crear!");
           }
         );
       }

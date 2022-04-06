@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { BaseService } from './../base.service';
 import { HttpClient } from '@angular/common/http';
 import { Category } from 'src/app/shared/models/Category';

@@ -58,4 +58,5 @@ export class CategoryListComponent implements OnInit {
     this.store.dispatch(deleteCategory({id: e}))    
     this.skeleton = false;
   }
+
 }
