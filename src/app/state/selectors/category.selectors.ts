@@ -1,4 +1,3 @@
-import { catchError } from 'rxjs/operators';
 import { Category } from 'src/app/shared/models/Category';
 import { CategoryState } from 'src/app/state/reducers/category.reducer';
 import { AppState } from './../app.state';
@@ -11,5 +10,7 @@ export const selectCategories = createSelector(
 )
 export const selectCategoryById = (id: number) => createSelector(
     selectCategoriesFeature,
-    (state: CategoryState) => state.categories.find(cat =>  cat.id === id)   
+    (state: CategoryState) => {        
+        return state.categories.find((cat: Category) =>  cat.id == id)
+    }   
 )

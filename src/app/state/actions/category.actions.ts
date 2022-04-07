@@ -31,3 +31,7 @@ export const deleteCategorySuccess = createAction(
     '[Category] Delete category success',
     props<{id: number}>()
 );
+export const deleteCategoryError = createAction(
+    '[Category] Delete category error',
+    props<{error: string}>()
+);

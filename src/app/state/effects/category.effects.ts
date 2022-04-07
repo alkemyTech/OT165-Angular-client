@@ -1,5 +1,6 @@
+import { DialogService } from 'src/app/shared/components/dialog/dialog.service';
 import { concatMap } from 'rxjs/operators';
-import { createCategory, createCategorySuccess, editCategory, editCategorySuccess } from './../actions/category.actions';
+import { createCategory, createCategorySuccess, deleteCategoryError, editCategory, editCategorySuccess } from './../actions/category.actions';
 import { catchError, map } from 'rxjs/operators';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { Actions, createEffect, ofType } from "@ngrx/effects";
@@ -43,13 +44,15 @@ export class CategoryEffects {
         mergeMap(({id}) => this.categoryService.deleteById(id)
             .pipe(
                 map(() => deleteCategorySuccess({id: id})),
-                catchError(() => EMPTY)
+                catchError(async (err) => {
+                    console.log(err)
+                    return deleteCategoryError({error: err.message})
+                })
             )
         )
-    ))
-
-   
+    ))   
     
-    constructor(private action$: Actions, private categoryService: CategoryService) {}
+    constructor(private action$: Actions, 
+                private categoryService: CategoryService) {}
     
 }

@@ -6,7 +6,6 @@ import { Category } from './../../../../shared/models/Category';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category/category.service';
 import { AppState } from 'src/app/state/app.state';
 
 
@@ -39,8 +38,7 @@ export class CategoriesFormComponent implements OnInit {
   maxFileSize: number = 2000000;
   uploadedFile: any = null;
 
-  constructor(private categoryService: CategoryService, 
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private router: Router,
               private store: Store<AppState>) {
     this.paramID = this.route.snapshot.params['id'] != undefined ? this.route.snapshot.params['id'] : 0;    
@@ -52,13 +50,14 @@ export class CategoriesFormComponent implements OnInit {
       this.actionType = 'Editar';
       this.buttonAction = 'Guardar';
     }
-  }  
+  }    
   
   getCategory(id: number) {
     this.category$ = this.store.select(selectCategoryById(id))
     this.category$.subscribe(async res => {
       const response = await res;
-      console.log('Res', response)
+      this.category = response!;      
+      this.setCategoryForm(response)      
     })
   }
 
@@ -93,12 +92,14 @@ export class CategoriesFormComponent implements OnInit {
     let updateCategory: Category = {} as Category    
     if(this.uploadedFile != null) {
       updateCategory = {
+        id: this.category.id,
         name: this.catForm.get('name')?.value,
         description: this.catForm.get('description')?.value,
         image: this.catForm.get('image')?.value
       } 
     } else {
       updateCategory = {
+        id: this.category.id,
         name: this.catForm.get('name')?.value,
         description: this.catForm.get('description')?.value
       } 
@@ -106,8 +107,7 @@ export class CategoriesFormComponent implements OnInit {
     if(this.category.id){
       this.store.dispatch(editCategory({category: updateCategory}))
     } else {      
-      this.store.dispatch(createCategory({category: this.catForm.value}))
-      this.returnToList()            
+      this.store.dispatch(createCategory({category: this.catForm.value}))                 
     }     
   }
 
