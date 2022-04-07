@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   public resultsUserGoogle(): Observable<any>{
-    this.afAuth.getRedirectResult().then((credentials) => {
+    this.afAuth.getRedirectResult().then((credentials: any) => {
       if (credentials.user) {
         const userGoogle = this.setUserGoogle(credentials.user)
         this.userLoged.next(userGoogle)

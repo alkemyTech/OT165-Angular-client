@@ -91,13 +91,11 @@ export class BackofficeComponent{
 
   private checkUserLogin(){
     this.authService.resultsUserGoogle().subscribe( (res) =>{
-      console.log(res)
       this.userLog = res
       if (!res) {
         this.authService.getUserLoged.subscribe(res => {
           this.userLoged$ = this.store.select(selectUserData)
           this.userLoged$.subscribe((res) => {
-            console.log(res)
             this.userLog = res
           })
         })
