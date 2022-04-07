@@ -5,11 +5,67 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './backoffice.component.html',
   styleUrls: ['./backoffice.component.scss']
 })
-export class BackofficeComponent implements OnInit {
+export class BackofficeComponent {
 
-  constructor() { }
+  dashboard!:Array<any>;
 
-  ngOnInit(): void {
+  constructor() {
+    this.dashboard = [
+      {
+        id: 1,
+        title: "Backoffice",
+        path: '/backoffice',
+        icon: `pi pi-id-card`
+      },
+      {
+        id: 2,
+        title: "Novedades",
+        path: '/backoffice/novedades',
+        icon: `pi pi-calendar-plus`
+      },
+      {
+        id: 3,
+        title: "Actividades",
+        path: '/backoffice/actividades',
+        icon: `pi pi-calendar`
+      },
+      {
+        id: 4,
+        title: "Categorías",
+        path: '/backoffice/categorias',
+        icon: `pi pi-list`
+      },
+      {
+        id: 5,
+        title: "Testimonios",
+        path: '/backoffice',
+        icon: `pi pi-comment`
+      },
+      {
+        id: 6,
+        title: "Organización",
+        path: '/backoffice/organization',
+        icon: `pi pi-briefcase`
+      },
+      {
+        id: 7,
+        title: "Slides",
+        path: '/backoffice/slides',
+        icon: `pi pi-images`
+      },
+      {
+        id: 8,
+        title: "Usuarios",
+        path: '/backoffice/usuarios',
+        icon: `pi pi-users`
+      },
+      {
+        id: 9,
+        title: "Miembros",
+        path: '/backoffice-list',
+        icon: `pi pi-id-card`
+      },
+    ]    
   }
 
 }
