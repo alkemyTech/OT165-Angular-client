@@ -1,11 +1,18 @@
 import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { Observable, Subscription } from "rxjs";
 import { Slide } from "src/app/backoffice/models/slide.interface";
 import {
   Columns,
   TableData,
 } from "src/app/backoffice/models/TableData.interface";
-import { SlideService } from "src/app/backoffice/services/slides/slide.service";
+import * as actions from "src/app/state/actions/slides.actions";
+import { AppState } from "src/app/state/app.state";
+import {
+  selectLoading,
+  selectSlidesListWithOrder,
+} from "src/app/state/selectors/slides.selectors";
 
 @Component({
   selector: "app-slides-list",
@@ -14,70 +21,39 @@ import { SlideService } from "src/app/backoffice/services/slides/slide.service";
   providers: [MessageService, ConfirmationService],
 })
 export class SlidesListComponent implements OnInit {
-  items!: TableData;
-
   titlesCol: Columns[] = [
     { field: "name", header: "Nombre" },
     { field: "image", header: "Imagen" },
     { field: "description", header: "Descripción" },
     { field: "order", header: "Orden" },
   ];
+  items: TableData = {
+    createPath: "/backoffice/slides/undefined",
+    editPath: "/backoffice/slides/",
+    title: "Slides",
+    data: []
+  };
 
-  modalDialog!: boolean;
+  skeleton: boolean = true;
+  isLoading$!: Observable<boolean>;
+  slides$: Observable<Slide[]> = new Observable();
 
-  slides!: Slide[];
-
-  skeleton!: boolean;
-
-  constructor(
-    private messageService: MessageService,
-    private slideService: SlideService
-  ) {}
+  constructor(private store: Store<AppState>) {
+    this.store.dispatch(actions.getSlides());
+  }
 
   ngOnInit(): void {
-    this.skeleton = true;
-    this.slideService.getAllSildes().subscribe((data) => {
-      this.slides = data.filter((slide) => slide.order !== null);
-      this.items = {
-        createPath: "/backoffice/slides/undefined",
-        editPath: "/backoffice/slides/",
-        title: "Slides",
-        data: this.slides,
-      };
-      this.skeleton = false;
+    this.isLoading$ = this.store.select(selectLoading);
+    this.isLoading$.subscribe((isLoading) => {
+      this.skeleton = isLoading;
+    });
+    this.slides$ = this.store.select(selectSlidesListWithOrder);
+    this.slides$.subscribe((response) => {
+      this.items = {...this.items, data: response}
     });
   }
 
-  public deleteSlides(event: number) {
-    this.skeleton = true;
-    this.slideService.deleteSlide(event).subscribe(
-      (res) => {
-        if (res.success) {
-          this.slides = this.slides.filter((val) => val.id !== event);
-          this.messageService.add({
-            severity: "success",
-            summary: "Eliminado",
-            detail: "Slide eliminado!",
-            life: 3000,
-          });
-        } else {
-          this.messageService.add({
-            severity: "warn",
-            summary: "error",
-            detail: "error al intentar eliminar",
-            life: 3000,
-          });
-        }
-      },
-      (error) => {
-        this.messageService.add({
-          severity: "error",
-          summary: "error",
-          detail: "error al intentar eliminar",
-          life: 3000,
-        });
-      }
-    );
-    this.skeleton = false;
+  deleteSlides(event: number) {
+    this.store.dispatch(actions.deleteSlide({ id: event }));
   }
 }

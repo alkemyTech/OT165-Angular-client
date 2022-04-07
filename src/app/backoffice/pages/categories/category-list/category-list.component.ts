@@ -28,11 +28,11 @@ export class CategoryListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.skeleton = true;
     this.getCategories();
   }
 
   getCategories() {
-    this.skeleton = true;
     this.categoryService.getAll().subscribe(async (categories: any) => {
       this.categories = await categories;
       this.tableCategories = {
