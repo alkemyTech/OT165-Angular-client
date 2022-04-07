@@ -23,6 +23,9 @@ import { environment } from "../environments/environment";
 import { REDUCERS } from "./state/app.state";
 import { AuthEffects } from "./state/effects/auth.effects";
 import { UsersEffects } from "src/app/state/effects/users.effects";
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,7 +47,10 @@ import { UsersEffects } from "src/app/state/effects/users.effects";
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),
-    StoreDevtoolsModule.instrument({ name: "test redux" })    
+    StoreDevtoolsModule.instrument({ name: "test redux" }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent],
