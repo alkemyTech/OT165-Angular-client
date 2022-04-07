@@ -1,13 +1,13 @@
 export class Activity {
   id!: number;
   name!: string;
-  slug!: string | null;
+  slug!: string | undefined;
   description!: string;
   image!: string;
-  user_id!: number | null;
-  category_id!: number | null;
-  created_at!: Date | null | string;
-  updated_at!: Date | null | string;
-  deleted_at!: Date | null | string;
+  user_id!: number | undefined;
+  category_id!: number | undefined;
+  created_at!: Date | undefined ;
+  updated_at!: Date | undefined ;
+  deleted_at!: Date | undefined ;
   group_id!: number;
 }

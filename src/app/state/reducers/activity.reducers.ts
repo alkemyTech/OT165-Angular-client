@@ -1,14 +1,39 @@
 import { createReducer, on } from "@ngrx/store";
-import { Activity } from "src/app/backoffice/models/activity";
-import { getActivities } from "../actions/activity.actions";
+import { ActivityState } from "src/app/shared/models/Activity";
+import {
+  deleteActivity,
+  deleteActivitySuccess,
+  getActivities,
+  getActivitiesSuccess,
+} from "../actions/activity.actions";
 
-export const initialState: Activity[] = [];
+export const initialState: ActivityState = { loading: false, activities: [] };
 
-const _activityReducer = createReducer(
+export const activityReducer = createReducer(
   initialState,
-  on(getActivities, (state) => state)
-);
+  on(getActivities, (state) => {
+    return { ...state, loading: true };
+  }),
 
-export function activityReducer(state: Activity[], action: any) {
-  return _activityReducer(state, action);
-}
+  on(getActivitiesSuccess, (state, { activities }) => {
+    return { ...state, activities };
+  }),
+
+  on(deleteActivity, (state) => {
+    return { ...state, loading: true };
+  }),
+
+  on(deleteActivitySuccess, (state, { id }) => {
+    // const updateActivities = state.activities.filter((activity) => {
+    //  return activity.id !== id;
+    // });
+    // return { ...state, activities: updateActivities };
+
+    return {
+      ...state,
+      activities: state.activities.filter((activity) => {
+        return id !== activity.id;
+      }),
+    };
+  })
+);

@@ -1,4 +1,5 @@
 import { ActionReducerMap } from "@ngrx/store";
+import {ActivityState} from "../shared/models/Activity";
 import { UserState } from "../shared/models/auth/userState.interface";
 import { activityReducer } from "./reducers/activity.reducers";
 import { loginReducer, registerReducer } from "./reducers/auth.reducers";
@@ -6,7 +7,7 @@ import { loginReducer, registerReducer } from "./reducers/auth.reducers";
 export interface AppState {
   userLogin: UserState;
   userRegister: UserState;
-  activities: any ;
+  activities: ActivityState;
 }
 
 export const REDUCERS: ActionReducerMap<AppState> = {
@@ -14,4 +15,3 @@ export const REDUCERS: ActionReducerMap<AppState> = {
   userRegister: registerReducer,
   activities: activityReducer,
 };
-
