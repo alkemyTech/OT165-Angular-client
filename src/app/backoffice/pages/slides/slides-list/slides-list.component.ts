@@ -11,7 +11,6 @@ import * as actions from "src/app/state/actions/slides.actions";
 import { AppState } from "src/app/state/app.state";
 import {
   selectLoading,
-  selectSlidesList,
   selectSlidesListWithOrder,
 } from "src/app/state/selectors/slides.selectors";
 
@@ -35,9 +34,7 @@ export class SlidesListComponent implements OnInit {
     data: []
   };
 
-  modalDialog!: boolean;
-  slidesSubscription: Subscription = new Subscription();
-  skeleton!: boolean;
+  skeleton: boolean = true;
   isLoading$!: Observable<boolean>;
   slides$: Observable<Slide[]> = new Observable();
 
@@ -46,7 +43,6 @@ export class SlidesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.skeleton = true;
     this.isLoading$ = this.store.select(selectLoading);
     this.isLoading$.subscribe((isLoading) => {
       this.skeleton = isLoading;
