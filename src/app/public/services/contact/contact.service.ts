@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BaseService } from 'src/app/services/base.service';
 import { Contact } from 'src/app/shared/models/contact';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService extends BaseService<Contact> {
   constructor(http: HttpClient) {
-    super(http, 'https://ongapi.alkemy.org/api/contacts');
+    super(http, environment.API_URL_CONTACTS);
   }
 
   getContacts(): Observable<Contact[]> {
