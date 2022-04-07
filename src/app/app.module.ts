@@ -11,6 +11,7 @@ import { AppComponent } from "./app.component";
 import { ButtonModule } from "primeng/button";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputNumberModule } from "primeng/inputnumber";
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 //Own Modules
 import { BackOfficeModule } from "./backoffice/backoffice.module";
@@ -45,7 +46,8 @@ import { SlidesEffects } from "./state/effects/slides.effects";
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),
-    StoreDevtoolsModule.instrument({ name: "test redux" })    
+    StoreDevtoolsModule.instrument({ name: "test redux" }),
+    LeafletModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

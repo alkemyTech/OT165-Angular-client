@@ -45,31 +45,31 @@ export class CategoryListComponent implements OnInit {
     });
   }
   deleteCategory(e: number) {
-    this.skeleton = true;
-    this.categoryService.deleteById(e).subscribe({
-      next: (res) => {
-        this.messageService.add({
-          severity: "success",
-          summary: "Eliminado",
-          detail: "Categoria eliminada!",
-          life: 3000,
-        });
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: "success",
-          summary: "Error",
-          detail: "La categoría no pudo ser eliminada.",
-          life: 3000,
-        });
-      },
-      error: err => {
-        this.messageService.add({severity:'success', summary: 'Error', detail: 'La categoría no pudo ser eliminada.', life: 3000});
-      }
-    })    
-  }  
-    });
-    this.skeleton = false;
+  //   this.skeleton = true;
+  //   this.categoryService.deleteById(e).subscribe({
+  //     next: (res) => {
+  //       this.messageService.add({
+  //         severity: "success",
+  //         summary: "Eliminado",
+  //         detail: "Categoria eliminada!",
+  //         life: 3000,
+  //       });
+  //     },
+  //     error: (err) => {
+  //       this.messageService.add({
+  //         severity: "success",
+  //         summary: "Error",
+  //         detail: "La categoría no pudo ser eliminada.",
+  //         life: 3000,
+  //       });
+  //     },
+  //     error: err => {
+  //       this.messageService.add({severity:'success', summary: 'Error', detail: 'La categoría no pudo ser eliminada.', life: 3000});
+  //     }
+  //   })    
+  // }  
+  //   });
+  //   this.skeleton = false;
   }
 
 }
