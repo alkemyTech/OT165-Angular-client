@@ -1,0 +1,16 @@
+<p>Acá va el header</p>
+
+<app-carousel [items]="items"></app-carousel>
+<main>
+  <p class="reminder">
+    Faltan 
+    <span>{{remainder.days}}d </span>
+    <span>{{remainder.hours}}h </span>
+    <span>{{remainder.minutes}}m</span>
+  </p>
+  <p><span class="bold">Dirección: </span>{{location}}</p>
+  <p><span class="bold">Día: </span>{{dueDate | date:'dd/MM/yy'}}</p>
+  <p><span class="bold">Horario: </span>{{dueDate | date:'hh:mm'}}</p>
+</main>
+
+<p>Acá va el footer</p>

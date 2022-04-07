@@ -26,6 +26,7 @@ import { CarouselModule } from "./components/carousel/carousel.module";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { ContentComponent } from './pages/content/content.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { NgModule } from "@angular/core";
     ActivitiesListComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    ContentComponent,
   ],
   exports: [],
   imports: [
