@@ -14,6 +14,11 @@ export const selectSlidesList = createSelector(
   (state: SlideState) => state.slides
 );
 
+export const selectSlidesListWithOrder = createSelector(
+  selectSlides,
+  (state: SlideState) => state.slides.filter(el => el.order !== null)
+);
+
 export const selectSlideById = (id: number) => createSelector(
   selectSlides,
   (state: SlideState) => state.slides.find(el => el.id == id)
