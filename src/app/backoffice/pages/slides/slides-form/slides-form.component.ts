@@ -8,6 +8,7 @@ import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.state";
 import { selectSlideById } from "src/app/state/selectors/slides.selectors";
+import * as actions from 'src/app/state/actions/slides.actions';
 
 @Component({
   selector: "app-slides-form",
@@ -17,9 +18,7 @@ import { selectSlideById } from "src/app/state/selectors/slides.selectors";
 export class SlidesFormComponent implements OnInit {
   public title: string = "";
   public edit: boolean = false;
-  // public slide$!: Observable<SlideResponse>;
   public slide$!: Observable<Slide | undefined>;
-  // slides$: Observable<Slide[]> = new Observable();
   public slideUpdated!: Slide;
   public id!: number;
 
@@ -50,7 +49,6 @@ export class SlidesFormComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
     if (this.id) {
-      // this.slide$ = this.slideService.getSingleSlide(this.id);
       this.slide$ = this.store.select(selectSlideById(this.id));
       this.slide$.subscribe(
         (res: Slide | undefined) => {
@@ -104,22 +102,8 @@ export class SlidesFormComponent implements OnInit {
   }
 
   public createSlide() {
-    this.slideService.createSlides(this.datos.value).subscribe(
-      (res: SlideResponse) => {
-        if (res.success) {
-          this.stateRes = true;
-          this.header = "Listo!";
-          this.textModal = "¡Has creado un nuevo Slide!";
-          this.showModalDialog();
-        }
-      },
-      (error) => {
-        this.stateRes = false;
-        this.header = "Error";
-        this.textModal = "Ha ocurrido un error, vuelve a intentarlo";
-        this.showModalDialog();
-      }
-    );
+    let slide: Slide = this.datos.value;
+    this.store.dispatch(actions.createSlide({slide}));
   }
 
   public modalDismiss(state: boolean) {

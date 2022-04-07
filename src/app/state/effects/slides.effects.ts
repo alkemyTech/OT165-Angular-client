@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { createEffect, Actions, ofType } from "@ngrx/effects";
 import { EMPTY, of } from "rxjs";
 import { catchError, exhaustMap, map, mergeMap, tap } from "rxjs/operators";
@@ -11,7 +12,8 @@ export class SlidesEffects {
   constructor(
     private actions$: Actions,
     private slideService: SlideService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private router: Router
   ) {}
 
   loadSlides$ = createEffect(() =>
@@ -26,7 +28,7 @@ export class SlidesEffects {
               title: "Error en el servidor",
               detail: "No se pudo obtener el listado de slides",
             });
-            return EMPTY;
+            return of({ type: "[Error Slides] Slides" });
           })
         )
       )
@@ -54,7 +56,7 @@ export class SlidesEffects {
               title: "Error del servidor",
               detail: "No pudo eliminarse la slide",
             });
-            return of({ type: "[Error Slides] Slides" })
+            return of({ type: "[Error Slides] Slides" });
           })
         )
       )
@@ -66,14 +68,22 @@ export class SlidesEffects {
       ofType(actions.createSlide),
       mergeMap(({ slide }) =>
         this.slideService.createSlides(slide).pipe(
-          map(() => actions.createSlideSuccess({ slide: slide })),
+          map(() => {
+            this.router.navigate(['/backoffice/slides']);
+            this.dialogService.add({
+              type: "success",
+              title: "Listo",
+              detail: "¡Has creado un nuevo Slide!",
+            });
+            return actions.createSlideSuccess({ slide: slide })
+          }),
           catchError(() => {
             this.dialogService.add({
               type: "error",
               title: "Error en el servidor",
               detail: "No se pudo crear la slide",
             });  
-            return of(actions.errorSlides);
+            return of({ type: "[Error Slides] Slides" });
           })
         )
       )
