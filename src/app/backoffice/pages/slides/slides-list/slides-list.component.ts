@@ -7,10 +7,9 @@ import {
   Columns,
   TableData,
 } from "src/app/backoffice/models/TableData.interface";
-import { SlideService } from "src/app/backoffice/services/slides/slide.service";
 import * as actions from "src/app/state/actions/slides.actions";
 import { AppState } from "src/app/state/app.state";
-import { selectSlidesList } from "src/app/state/selectors/slides.selectors";
+import { selectLoading, selectSlidesList } from "src/app/state/selectors/slides.selectors";
 
 @Component({
   selector: "app-slides-list",
@@ -33,6 +32,7 @@ export class SlidesListComponent implements OnInit {
   slides!: Slide[];
 
   skeleton!: boolean;
+  isLoading$!: Observable<boolean>;
   slides$: Observable<Slide[]> = new Observable();
 
   constructor(
@@ -43,10 +43,13 @@ export class SlidesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.skeleton = true;
+    this.isLoading$ = this.store.select(selectLoading);
+    this.isLoading$.subscribe(isLoading => {
+      this.skeleton = isLoading;
+    })
     this.slides$ = this.store.select(selectSlidesList);
     this.slides$.subscribe((response) => {
       this.loadTable(response);
-      this.skeleton = false;
     });
   }
 
