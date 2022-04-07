@@ -14,3 +14,10 @@ export const selectCategoryById = (id: number) => createSelector(
         return state.categories.find((cat: Category) =>  cat.id == id)
     }   
 )
+
+export const getCategoryError = createSelector(
+    selectCategoriesFeature,
+    (state: CategoryState) => {
+        return state.error;
+    }
+)

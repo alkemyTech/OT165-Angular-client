@@ -1,4 +1,4 @@
-import { createCategory, deleteCategory, deleteCategorySuccess, editCategory, getCategoriesSuccess, createCategorySuccess, editCategorySuccess, deleteCategoryError } from './../actions/category.actions';
+import { deleteCategorySuccess, getCategoriesSuccess, createCategorySuccess, editCategorySuccess, deleteCategoryError } from './../actions/category.actions';
 import { createReducer, on } from '@ngrx/store';
 import { Category } from 'src/app/shared/models/Category';
 

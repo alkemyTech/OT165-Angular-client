@@ -1,9 +1,10 @@
+import { DialogService } from 'src/app/shared/components/dialog/dialog.service';
 import { selectCategoryById } from './../../../../state/selectors/category.selectors';
 import { Observable } from 'rxjs';
 import { createCategory, editCategory } from './../../../../state/actions/category.actions';
 import { Store } from '@ngrx/store';
 import { Category } from './../../../../shared/models/Category';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppState } from 'src/app/state/app.state';
@@ -17,7 +18,7 @@ import { AppState } from 'src/app/state/app.state';
 export class CategoriesFormComponent implements OnInit {
   
   category: Category = {} as Category;
-  category$!: Observable<Category | undefined>;
+  category$!: Observable<Category | undefined>;  
   actionType: string = 'Crear';
   buttonAction: string = 'Crear';
   paramID: number = 0;
@@ -49,7 +50,7 @@ export class CategoriesFormComponent implements OnInit {
       this.getCategory(this.paramID);
       this.actionType = 'Editar';
       this.buttonAction = 'Guardar';
-    }
+    }    
   }    
   
   getCategory(id: number) {
