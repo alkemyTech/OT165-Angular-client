@@ -4,7 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { RxwebValidators } from "@rxweb/reactive-form-validators";
 import { Observable } from "rxjs";
-import { User } from "src/app/backoffice/models/user";
+import { IUser, User } from "src/app/backoffice/models/user";
 import { checkPattern } from "src/app/public/pages/auth/custom.validators";
 import { DialogService } from "src/app/shared/components/dialog/dialog.service";
 import { addUser, updateUser } from "src/app/state/actions/users.actions";
@@ -26,7 +26,10 @@ export class UserFormComponent implements OnInit {
   userForm = this.fb.group({
     name: ["", [Validators.required, Validators.minLength(4)]],
     email: ["", [Validators.required, RxwebValidators.email()]],
-    password: ["", [Validators.required, Validators.minLength(6), checkPattern]],
+    password: [
+      "",
+      [Validators.required, Validators.minLength(6), checkPattern],
+    ],
     profile_image: [
       "",
       [RxwebValidators.extension({ extensions: ["png", "jpg"] })],
@@ -41,11 +44,11 @@ export class UserFormComponent implements OnInit {
   ];
 
   file: string = "";
-  users$: Observable<User|undefined> = new Observable();
+  users$: Observable<User | undefined> = new Observable();
 
   constructor(
     private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute,    
+    private activatedRoute: ActivatedRoute,
     private store: Store<AppState>,
     private dialogService: DialogService
   ) {}
@@ -57,16 +60,16 @@ export class UserFormComponent implements OnInit {
       this.button = "Guardar cambios";
       this.id = id;
       this.users$ = this.store.select(selectUser(this.id));
-      this.users$.subscribe(response => {
+      this.users$.subscribe((response) => {
         this.getUser(response);
-      })
+      });
     } else {
       this.title = "Crear";
       this.button = "Crear usuario";
     }
   }
 
-  getUser(response: any) {    
+  getUser(response: any) {
     this.userData = <User>response;
     this.setForm(this.userData);
     if (this.userData.profile_image) {
@@ -88,32 +91,26 @@ export class UserFormComponent implements OnInit {
   submit() {
     if (this.userForm.valid) {
       if (this.id != 0) {
-        this.store.dispatch(updateUser({user: this.userForm.value}));
+        this.store.dispatch(updateUser({ user: this.userForm.value }));
         this.messageSuccessUpdatedUser();
         this.userForm.reset();
       } else {
-        let newUser = {}
-        if(this.userForm.get('profile_image')?.value == ""){
-          newUser = {
-            name: this.userForm.get('name')?.value,
-            email: this.userForm.get('email')?.value,
-            password: this.userForm.get('password')?.value,
-            role_id: this.userForm.get('role_id')?.value,
-            address: this.userForm.get('address')?.value
-          }          
-        } else {
-          newUser = {
-            name: this.userForm.get('name')?.value,
-            email: this.userForm.get('email')?.value,
-            password: this.userForm.get('password')?.value,
-            profile_image: this.userForm.get('profile_image')?.value,
-            role_id: this.userForm.get('role_id')?.value,
-            address: this.userForm.get('address')?.value
-          }
+        
+        let newUser: IUser = {
+          name: this.userForm.get("name")?.value,
+          email: this.userForm.get("email")?.value,
+          password: this.userForm.get("password")?.value,
+          role_id: this.userForm.get("role_id")?.value,
+          address: this.userForm.get("address")?.value,
+        };
+
+        if (this.userForm.get("profile_image")?.value != "") {
+          newUser.profile_image = this.userForm.get("profile_image")?.value;
         }
-        this.store.dispatch(addUser({user: newUser}));
+
+        this.store.dispatch(addUser({ user: <User>newUser }));
         this.messageSuccessNewUser();
-        //this.userForm.reset();
+        this.userForm.reset();
       }
     }
   }
@@ -139,18 +136,18 @@ export class UserFormComponent implements OnInit {
 
   messageSuccessNewUser() {
     this.dialogService.add({
-      type: 'success',
-      title: 'Respuesta exitosa',
-      detail: 'El usuario se creó correctamente.',
+      type: "success",
+      title: "Respuesta exitosa",
+      detail: "El usuario se creó correctamente.",
       life: 3000,
     });
   }
 
   messageSuccessUpdatedUser() {
     this.dialogService.add({
-      type: 'success',
-      title: 'Respuesta exitosa',
-      detail: 'El usuario se modificó correctamente.',
+      type: "success",
+      title: "Respuesta exitosa",
+      detail: "El usuario se modificó correctamente.",
       life: 3000,
     });
   }

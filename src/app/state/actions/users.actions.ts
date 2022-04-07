@@ -30,7 +30,7 @@ export const updateUserSuccess = createAction(
 
 export const addUser = createAction(
   "[Users List] Add user",
-  props<{ user: any }>()
+  props<{ user: User }>()
 );
 
 export const addUserSuccess = createAction(
