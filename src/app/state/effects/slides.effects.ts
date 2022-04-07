@@ -38,7 +38,9 @@ export class SlidesEffects {
       ofType(actions.deleteSlide),
       mergeMap(({ id }) =>
         this.slideService.deleteById(id).pipe(
-          map(() => actions.deleteSlideSuccess({ id: id })),
+          map(() => {
+            return actions.deleteSlideSuccess({ id: id })
+          }),
           tap(() => {
             this.dialogService.add({
               type: "success",
@@ -46,7 +48,14 @@ export class SlidesEffects {
               detail: "La slide se eliminó correctamente",
             });
           }),
-          catchError(() => of({ type: "[Error Slides] Slides" }))
+          catchError(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Error del servidor",
+              detail: "No pudo eliminarse la slide",
+            });
+            return of({ type: "[Error Slides] Slides" })
+          })
         )
       )
     )
