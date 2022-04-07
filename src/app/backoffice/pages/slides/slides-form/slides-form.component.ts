@@ -52,7 +52,6 @@ export class SlidesFormComponent implements OnInit {
       this.slide$ = this.store.select(selectSlideById(this.id));
       this.slide$.subscribe(
         (res: Slide | undefined) => {
-          console.log(res);
           if (res) {
             this.slideUpdated = this.setSlideEdit(res);
             this.edit = true;
