@@ -6,8 +6,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 
-import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
-
 //Others Modules
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { ButtonModule } from "primeng/button";
@@ -29,7 +27,7 @@ import { ActivitiesListComponent } from "./pages/activities/activities-list/acti
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { CategoryListComponent } from "./pages/categories/category-list/category-list.component";
-import { ControlComponent } from "./pages/backoffice/control/control.component";
+import { ControlComponent } from "./pages/backoffice-list/control/control.component";
 import { HomeFormComponent } from "./pages/home/home-form/home-form.component";
 import { MembersComponent } from "./pages/members/members.component";
 import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
@@ -41,16 +39,18 @@ import { TableComponent } from "./components/table/table.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
+import { BackofficeComponent } from "./backoffice.component";
 
 import { SharedModule } from "../shared/shared.module";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
+import { SideBarComponent } from './components/side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
+    BackofficeComponent,
     ActivitiesListComponent,
     ActivityFormComponent,
-    BackofficeComponent,
     CategoriesFormComponent,
     CategoryListComponent,
     ControlComponent,
@@ -67,6 +67,7 @@ import { SpinnerComponent } from "./components/spinner/spinner.component";
     UsersListComponent,
     SpinnerComponent,
     SkeletonComponent,
+    SideBarComponent,
   ],
   imports: [
     ProgressSpinnerModule,

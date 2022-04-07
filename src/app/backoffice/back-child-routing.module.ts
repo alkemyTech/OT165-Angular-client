@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
-import { BackofficeComponent } from "./pages/backoffice/backoffice.component";
+import { BackofficeComponent } from "./backoffice.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { CategoryListComponent } from "./pages/categories/category-list/category-list.component";
 import { HomeFormComponent } from "./pages/home/home-form/home-form.component";
@@ -15,6 +15,7 @@ import { SlidesFormComponent } from "./pages/slides/slides-form/slides-form.comp
 import { SlidesListComponent } from "./pages/slides/slides-list/slides-list.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
+import { BackofficeListComponent } from "./pages/backoffice/backoffice.component";
 
 const childRoutes: Routes = [
   { path: "actividades", component: ActivitiesListComponent },
@@ -40,6 +41,7 @@ const childRoutes: Routes = [
   { path: "usuario", component: UserFormComponent },
   { path: "usuario/:id", component: UserFormComponent },
   { path: "", component: BackofficeComponent },
+  { path: "backoffice-list", component: BackofficeListComponent },
 ];
 
 @NgModule({
