@@ -1,8 +1,17 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Store } from "@ngrx/store";
 import { RxwebValidators } from "@rxweb/reactive-form-validators";
+import { Observable } from "rxjs";
 import { ActivitiesService } from "src/app/backoffice/services/activities/activities.service";
+import {
+  getActivity,
+  getActivitySuccess,
+  updateActivity,
+  updateActivitySuccess,
+} from "src/app/state/actions/activity.actions";
+import { selectListActivity } from "src/app/state/selectors/activity.selectors";
 
 @Component({
   selector: "app-activity-form",
@@ -15,11 +24,7 @@ export class ActivityFormComponent implements OnInit {
   public image: string | null = "";
   private file: string = "";
 
-  activity!: {
-    name: string;
-    description: string;
-    image: string;
-  };
+  activity$: Observable<any> = new Observable();
 
   activityForm = this.fb.group({
     name: ["", [Validators.required]],
@@ -39,39 +44,43 @@ export class ActivityFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private activitiesService: ActivitiesService,
-    private router: Router
+    private router: Router,
+    private store: Store<any>
   ) {}
 
   ngOnInit(): void {
+    this.activity$ = this.store.select(selectListActivity);
     let idString = this.activatedRoute.snapshot.paramMap.get("id") || " ";
     this.id = parseInt(idString);
 
     if (this.id) {
+      this.store.dispatch(getActivity());
       this.edit = true;
       this.activitiesService.getActivity(this.id).subscribe({
         next: (response) => {
-            console.log(response.data.name)
-          this.activity = {
-            name: response.data.name,
-            image: response.data.image,
-            description: response.data.description,
-          };
-          this.setFieldsData();
+          this.store.dispatch(getActivitySuccess({ data: response }));
         },
         error: (error) => {
           this.edit = false;
         },
       });
+      this.activity$.subscribe((res) => {
+        if (res.length !== 0) {
+          console.log("____________________", res);
+          let { name, description, image } = res;
+          this.setFieldsData(name, description, image);
+        }
+      });
     }
   }
 
-  setFieldsData() {
-    this.activityForm.setValue({
-      name: this.activity.name,
-      description: this.activity.description,
-      image: this.activity.image,
-    });
-    this.image = this.activityForm.value.image;
+  setFieldsData(name:string,description:string,image:string) {
+     this.activityForm.setValue({
+       name,
+       description,
+       image,
+     });
+     this.image = this.activityForm.value.image;
   }
 
   onUpload(event: any, fileUploader: any) {
@@ -93,7 +102,7 @@ export class ActivityFormComponent implements OnInit {
     this.activityForm.patchValue({ image: this.file });
   }
 
-  async createActivity() {
+  createActivity() {
     if (this.activityForm.valid) {
       this.activitiesService.createActivity(this.activityForm.value).subscribe({
         next: (res) => {
@@ -110,6 +119,9 @@ export class ActivityFormComponent implements OnInit {
   editActivity() {
     if (this.activityForm.valid) {
       if (!!this.file) {
+        this.store.dispatch(
+          updateActivity({ id: this.id, data: this.activityForm.value })
+        );
         this.activitiesService
           .updateActivity(this.id, this.activityForm.value)
           .subscribe({
@@ -122,10 +134,16 @@ export class ActivityFormComponent implements OnInit {
         return;
       }
       delete this.activityForm.value.image;
+      this.store.dispatch(
+        updateActivity({ id: this.id, data: this.activityForm.value })
+      );
       this.activitiesService
         .updateActivity(this.id, this.activityForm.value)
         .subscribe({
           next: (res) => {
+            this.store.dispatch(
+              updateActivitySuccess({ id: this.id, data: res })
+            );
             alert("Your activity was updated succesfully");
             this.router.navigateByUrl("/backoffice/actividades");
           },

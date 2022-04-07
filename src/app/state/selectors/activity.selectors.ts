@@ -9,6 +9,11 @@ export const selectListActivities = createSelector(
   (state: ActivityState) => state.activities
 );
 
+export const selectListActivity = createSelector(
+  selectActivities,
+  (state: ActivityState) => state.activity
+);
+
 export const selectLoading = createSelector(
   selectActivities,
   (state: ActivityState) => state.loading

@@ -14,6 +14,7 @@ export interface Activity {
 
 export interface ActivityState {
   loading: boolean;
+  activity: ReadonlyArray<Activity>
   activities: ReadonlyArray<Activity>;
 }
 
