@@ -25,6 +25,7 @@ const childRoutes: Routes = [
   { path: 'categorias/crear', component: CategoriesFormComponent },
   { path: 'categorias/editar/:id', component: CategoriesFormComponent },
   { path: 'novedades', component: NewsFormComponent },
+  { path: 'novedades/:id', component: NewsFormComponent },
   { path: 'usuarios', component: UsersListComponent },
   { path: 'organization/edit', component: OrganizationFormComponent },
   {

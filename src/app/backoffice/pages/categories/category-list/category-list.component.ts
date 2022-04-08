@@ -28,11 +28,11 @@ export class CategoryListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.skeleton = true;
     this.getCategories();
   }
 
   getCategories() {
-    this.skeleton = true;
     this.categoryService.getAll().subscribe(async (categories: any) => {
       this.categories = await categories;
       this.tableCategories = {
@@ -63,7 +63,13 @@ export class CategoryListComponent implements OnInit {
           life: 3000,
         });
       },
+      error: err => {
+        this.messageService.add({severity:'success', summary: 'Error', detail: 'La categoría no pudo ser eliminada.', life: 3000});
+      }
+    })    
+  }  
     });
     this.skeleton = false;
   }
+
 }

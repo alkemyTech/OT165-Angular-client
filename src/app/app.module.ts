@@ -19,11 +19,11 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './state/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { REDUCERS } from './state/app.state';
 import { AuthEffects } from './state/effects/auth.effects';
 import { UsersEffects } from 'src/app/state/effects/users.effects';
 import { MembersEffects } from './state/effects/members.effects';
+import { SlidesEffects } from './state/effects/slides.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +41,12 @@ import { MembersEffects } from './state/effects/members.effects';
     InputNumberModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([AuthEffects, UsersEffects, MembersEffects]),
+    EffectsModule.forRoot([
+      AuthEffects,
+      UsersEffects,
+      SlidesEffects,
+      MembersEffects,
+    ]),
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),
