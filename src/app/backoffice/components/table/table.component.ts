@@ -1,4 +1,4 @@
-import { DialogComponent } from './../../../shared/components/dialog/dialog.component';
+import { ConfirmDialogComponent } from '../../../shared/components/dialog/confirm-dialog.component';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from "@angular/core";
 import { ConfirmationService, SortEvent } from "primeng/api";
 import { Columns, TableData } from "src/app/backoffice/models/TableData.interface";
@@ -16,7 +16,7 @@ export class TableComponent  {
   @Input() columns!: Columns[];
   /* Al hacer click en eliminar un item se envia el ID del item al componente que implemente la tabla */
   @Output() deleteItemById = new EventEmitter<number>();
-  @ViewChild(DialogComponent, {static: true}) dialog!: DialogComponent;
+  @ViewChild(ConfirmDialogComponent, {static: true}) dialog!: ConfirmDialogComponent;
   
   constructor() {}
   
