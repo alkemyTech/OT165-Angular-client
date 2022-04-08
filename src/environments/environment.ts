@@ -12,7 +12,7 @@ export const environment = {
   API_URL_ORGANIZATION: 'https://ongapi.alkemy.org/api/organization',
   API_URL_MEMBERS: 'https://ongapi.alkemy.org/api/members',
   API_URL_NEWS: 'https://ongapi.alkemy.org/api/news',
-  API_URL_CONTACTS: 'https://ongapi.alkemy.org/api/contacts',
+  API_URL_CONTACTS: 'https://ongapi.alkemy.org/api/contacts'  
 };
 
 /*
