@@ -26,6 +26,8 @@ import { UsersEffects } from "src/app/state/effects/users.effects";
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { SlidesEffects } from "./state/effects/slides.effects";
+import { CategoryEffects } from './state/effects/category.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,7 +45,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     InputNumberModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([AuthEffects, UsersEffects]),
+    EffectsModule.forRoot([AuthEffects, UsersEffects, SlidesEffects, CategoryEffects]),
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),
