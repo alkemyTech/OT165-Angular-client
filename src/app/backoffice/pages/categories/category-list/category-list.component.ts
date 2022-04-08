@@ -34,6 +34,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.skeleton = true;
     this.getCategories();
     this.categoriesObservable= this.store.select(selectCategories);
     this.categoriesObservable.subscribe(res => {
