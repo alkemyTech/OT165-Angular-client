@@ -8,7 +8,7 @@ import {
   map,
   mergeMap,
 } from 'rxjs/operators';
-import { MemberService } from 'src/app/shared/services/member.service';
+import { MemberService } from 'src/app/backoffice/services/members/member.service';
 import {
   addMember,
   addedMember,
