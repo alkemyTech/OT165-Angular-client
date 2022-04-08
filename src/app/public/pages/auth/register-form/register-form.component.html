@@ -110,7 +110,8 @@
 
       <div class="map-field">
         <label for="address" class="block">Dirección</label>
-        <google-map 
+        <div class="map-container">
+          <google-map 
                   id="address" 
                   height="300px" 
                   [zoom]="4" 
@@ -119,14 +120,15 @@
                   (mapClick)="addMarker($event)">
             <map-marker                      
                     [position]="markerPosition!">
-            </map-marker>
-            <small
+            </map-marker>            
+        </google-map>
+        </div>
+        <small
                     *ngIf="address?.hasError('required')"
                     id="password1-help"
                     class="p-error block"
                     >Debe marcar una dirección en el mapa.
-            </small>
-        </google-map>
+        </small>        
       </div>
 
       <button

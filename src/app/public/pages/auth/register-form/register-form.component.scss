@@ -30,11 +30,17 @@ form {
 }
 .map-field {
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
-  margin: 20px 0;  
+  margin: 20px 0;   
 }
-
+.map-container {
+  width: auto;
+  height: auto;
+  border-radius: 2%;
+  overflow: hidden;
+}
 button {
   margin: 20px 0 10px 0;
 }
