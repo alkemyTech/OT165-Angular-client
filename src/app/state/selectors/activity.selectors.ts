@@ -14,7 +14,3 @@ export const selectListActivity = createSelector(
   (state: ActivityState) => state.activity
 );
 
-export const selectLoading = createSelector(
-  selectActivities,
-  (state: ActivityState) => state.loading
-);

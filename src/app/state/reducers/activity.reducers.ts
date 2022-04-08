@@ -14,7 +14,6 @@ import {
 } from "../actions/activity.actions";
 
 export const initialState: ActivityState = {
-  loading: false,
   activities: [],
   activity: [],
 };
@@ -24,7 +23,7 @@ export const activityReducer = createReducer(
 
   //Get Activities-------------------------------------
   on(getActivities, (state) => {
-    return { ...state, activity: [], loading: true };
+    return { ...state, activity: [] };
   }),
 
   on(getActivitiesSuccess, (state, { activities }) => {
@@ -33,16 +32,16 @@ export const activityReducer = createReducer(
 
   //Get Activity----------------------------------------
   on(getActivity, (state) => {
-    return { ...state, loading: true };
+    return { ...state };
   }),
 
   on(getActivitySuccess, (state, { data }) => {
-    return { ...state, activity: data, loading: true };
+    return { ...state, activity: data };
   }),
 
   //Delete Activity--------------------------------------
   on(deleteActivity, (state) => {
-    return { ...state, loading: true };
+    return { ...state };
   }),
 
   on(deleteActivitySuccess, (state, { id }) => {
@@ -55,8 +54,8 @@ export const activityReducer = createReducer(
   }),
 
   //Update Activity--------------------------------------
-  on(updateActivity, (state, { id, data }) => {
-    return { ...state, loading: true };
+  on(updateActivity, (state) => {
+    return { ...state };
   }),
 
   on(updateActivitySuccess, (state, { id, data }) => {
@@ -69,8 +68,8 @@ export const activityReducer = createReducer(
   }),
 
   //Add Activity----------------------------------------
-  on(addActivity, (state, { data }) => {
-    return { ...state, loading: true };
+  on(addActivity, (state) => {
+    return { ...state };
   }),
 
   on(addActivitySuccess, (state, { data }) => {

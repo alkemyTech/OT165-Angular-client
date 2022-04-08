@@ -10,7 +10,10 @@ export const getActivitiesSuccess = createAction(
 );
 
 //Get Activity---------------------------------------------------------
-export const getActivity = createAction("[Activity] Get activity");
+export const getActivity = createAction(
+  "[Activity] Get activity",
+  props<{ id: number }>()
+);
 
 export const getActivitySuccess = createAction(
   "[Activity] Get activity success",

@@ -22,6 +22,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
 import { REDUCERS } from "./state/app.state";
 import { AuthEffects } from "./state/effects/auth.effects";
+import {ActivityEffects} from "./state/effects/activity.effects";
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,7 +40,7 @@ import { AuthEffects } from "./state/effects/auth.effects";
     InputNumberModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects,ActivityEffects]),
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),

@@ -6,12 +6,9 @@ import {
   Columns,
   TableData,
 } from "src/app/backoffice/models/TableData.interface";
-import { ActivitiesService } from "src/app/backoffice/services/activities/activities.service";
 import {
   deleteActivity,
-  deleteActivitySuccess,
   getActivities,
-  getActivitiesSuccess,
 } from "src/app/state/actions/activity.actions";
 import { AppState } from "src/app/state/app.state";
 import { selectListActivities } from "src/app/state/selectors/activity.selectors";
@@ -34,8 +31,6 @@ export class ActivitiesListComponent implements OnInit {
   ];
 
   constructor(
-    private activitiesServices: ActivitiesService,
-    private messageService: MessageService,
     private store: Store<AppState>
   ) {}
 
@@ -43,12 +38,6 @@ export class ActivitiesListComponent implements OnInit {
     this.activities$ = this.store.select(selectListActivities);
 
     this.store.dispatch(getActivities());
-    this.activitiesServices.getActivities().subscribe({
-      next: (res) => {
-        this.store.dispatch(getActivitiesSuccess({ activities: res }));
-      },
-      error: (error) => {},
-    });
     this.activities$.subscribe((res) => {
       this.showActivities(res);
     });
@@ -65,24 +54,5 @@ export class ActivitiesListComponent implements OnInit {
 
   deleteUser(event: number) {
     this.store.dispatch(deleteActivity({ id: event }));
-    this.activitiesServices.deleteActivity(event).subscribe({
-      next: (res) => {
-        this.store.dispatch(deleteActivitySuccess({ id: event }));
-        this.messageService.add({
-          severity: "success",
-          summary: "Eliminado",
-          detail: "Categoria eliminada!",
-          life: 3000,
-        });
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: "success",
-          summary: "Error",
-          detail: "La categoría no pudo ser eliminada.",
-          life: 3000,
-        });
-      },
-    });
   }
 }

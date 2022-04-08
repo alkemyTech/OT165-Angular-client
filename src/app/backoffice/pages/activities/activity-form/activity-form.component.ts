@@ -4,14 +4,10 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { RxwebValidators } from "@rxweb/reactive-form-validators";
 import { Observable } from "rxjs";
-import { ActivitiesService } from "src/app/backoffice/services/activities/activities.service";
 import {
   addActivity,
-  addActivitySuccess,
   getActivity,
-  getActivitySuccess,
   updateActivity,
-  updateActivitySuccess,
 } from "src/app/state/actions/activity.actions";
 import { selectListActivity } from "src/app/state/selectors/activity.selectors";
 
@@ -45,27 +41,19 @@ export class ActivityFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private activitiesService: ActivitiesService,
     private router: Router,
     private store: Store<any>
   ) {}
 
   ngOnInit(): void {
     this.activity$ = this.store.select(selectListActivity);
+
     let idString = this.activatedRoute.snapshot.paramMap.get("id") || " ";
     this.id = parseInt(idString);
 
     if (this.id) {
-      this.store.dispatch(getActivity());
       this.edit = true;
-      this.activitiesService.getActivity(this.id).subscribe({
-        next: ({ data }) => {
-          this.store.dispatch(getActivitySuccess({ data }));
-        },
-        error: (error) => {
-          this.edit = false;
-        },
-      });
+      this.store.dispatch(getActivity({ id: this.id }));
       this.activity$.subscribe((res) => {
         if (res.length !== 0) {
           let { name, description, image } = res;
@@ -106,16 +94,9 @@ export class ActivityFormComponent implements OnInit {
   createActivity() {
     if (this.activityForm.valid) {
       this.store.dispatch(addActivity({ data: this.activityForm.value }));
-      this.activitiesService.createActivity(this.activityForm.value).subscribe({
-        next: (res) => {
-          this.store.dispatch(addActivitySuccess({ data: res.data }));
-          alert("Your activity is created succesfully");
-          this.image = "";
-          this.activityForm.reset();
-          this.router.navigateByUrl("/backoffice/actividades");
-        },
-        error: (err) => {},
-      });
+      this.image = "";
+      this.activityForm.reset();
+      this.router.navigateByUrl("/backoffice/actividades");
     }
   }
 
@@ -125,36 +106,14 @@ export class ActivityFormComponent implements OnInit {
         this.store.dispatch(
           updateActivity({ id: this.id, data: this.activityForm.value })
         );
-        this.activitiesService
-          .updateActivity(this.id, this.activityForm.value)
-          .subscribe({
-            next: (res) => {
-              this.store.dispatch(
-                updateActivitySuccess({ id: this.id, data: res.data })
-              );
-              alert("Your activity was updated succesfully");
-              this.router.navigateByUrl("/backoffice/actividades");
-            },
-            error: (error) => {},
-          });
+        this.router.navigateByUrl("/backoffice/actividades");
         return;
       }
       delete this.activityForm.value.image;
       this.store.dispatch(
         updateActivity({ id: this.id, data: this.activityForm.value })
       );
-      this.activitiesService
-        .updateActivity(this.id, this.activityForm.value)
-        .subscribe({
-          next: (res) => {
-            this.store.dispatch(
-              updateActivitySuccess({ id: this.id, data: res.data })
-            );
-            alert("Your activity data was updated succesfully");
-            this.router.navigateByUrl("/backoffice/actividades");
-          },
-          error: (e) => {},
-        });
+      this.router.navigateByUrl("/backoffice/actividades");
     }
   }
 }

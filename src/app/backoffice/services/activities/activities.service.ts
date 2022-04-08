@@ -25,7 +25,7 @@ export class ActivitiesService extends BaseService<Activity> {
     return super.getById(id);
   }
 
-  public updateActivity(id: number, activity: Activity): Observable<any> {
+  public updateActivity(id: number, activity: any): Observable<any> {
     return super.putById(id, activity);
   }
 
