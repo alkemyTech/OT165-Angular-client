@@ -1,16 +1,18 @@
-import { Observable } from "rxjs";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Member } from '../models/Member';
+import { BaseService } from '../../services/base.service';
+import { environment } from 'src/environments/environment';
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
-export class MemberService {
-  baseURL = "https://ongapi.alkemy.org/api/members";
-
-  constructor(private http: HttpClient) {}
+export class MemberService extends BaseService<Member> {
+  constructor(http: HttpClient) {
+    super(http, environment.API_URL_MEMBERS);
+  }
 
   getMembers(): Observable<any> {
-    return this.http.get<any>(`${this.baseURL}`);
+    return super.getAll();
   }
 }
