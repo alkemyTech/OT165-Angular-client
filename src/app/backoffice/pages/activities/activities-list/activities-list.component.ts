@@ -37,8 +37,7 @@ export class ActivitiesListComponent implements OnInit {
     private activitiesServices: ActivitiesService,
     private messageService: MessageService,
     private store: Store<AppState>
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.activities$ = this.store.select(selectListActivities);

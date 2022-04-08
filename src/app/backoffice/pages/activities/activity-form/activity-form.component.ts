@@ -6,6 +6,8 @@ import { RxwebValidators } from "@rxweb/reactive-form-validators";
 import { Observable } from "rxjs";
 import { ActivitiesService } from "src/app/backoffice/services/activities/activities.service";
 import {
+  addActivity,
+  addActivitySuccess,
   getActivity,
   getActivitySuccess,
   updateActivity,
@@ -57,8 +59,8 @@ export class ActivityFormComponent implements OnInit {
       this.store.dispatch(getActivity());
       this.edit = true;
       this.activitiesService.getActivity(this.id).subscribe({
-        next: (response) => {
-          this.store.dispatch(getActivitySuccess({ data: response }));
+        next: ({ data }) => {
+          this.store.dispatch(getActivitySuccess({ data }));
         },
         error: (error) => {
           this.edit = false;
@@ -66,7 +68,6 @@ export class ActivityFormComponent implements OnInit {
       });
       this.activity$.subscribe((res) => {
         if (res.length !== 0) {
-          console.log("____________________", res);
           let { name, description, image } = res;
           this.setFieldsData(name, description, image);
         }
@@ -74,13 +75,13 @@ export class ActivityFormComponent implements OnInit {
     }
   }
 
-  setFieldsData(name:string,description:string,image:string) {
-     this.activityForm.setValue({
-       name,
-       description,
-       image,
-     });
-     this.image = this.activityForm.value.image;
+  setFieldsData(name: string, description: string, image: string) {
+    this.activityForm.setValue({
+      name,
+      description,
+      image,
+    });
+    this.image = this.activityForm.value.image;
   }
 
   onUpload(event: any, fileUploader: any) {
@@ -104,8 +105,10 @@ export class ActivityFormComponent implements OnInit {
 
   createActivity() {
     if (this.activityForm.valid) {
+      this.store.dispatch(addActivity({ data: this.activityForm.value }));
       this.activitiesService.createActivity(this.activityForm.value).subscribe({
         next: (res) => {
+          this.store.dispatch(addActivitySuccess({ data: res.data }));
           alert("Your activity is created succesfully");
           this.image = "";
           this.activityForm.reset();
@@ -126,6 +129,9 @@ export class ActivityFormComponent implements OnInit {
           .updateActivity(this.id, this.activityForm.value)
           .subscribe({
             next: (res) => {
+              this.store.dispatch(
+                updateActivitySuccess({ id: this.id, data: res.data })
+              );
               alert("Your activity was updated succesfully");
               this.router.navigateByUrl("/backoffice/actividades");
             },
@@ -142,9 +148,9 @@ export class ActivityFormComponent implements OnInit {
         .subscribe({
           next: (res) => {
             this.store.dispatch(
-              updateActivitySuccess({ id: this.id, data: res })
+              updateActivitySuccess({ id: this.id, data: res.data })
             );
-            alert("Your activity was updated succesfully");
+            alert("Your activity data was updated succesfully");
             this.router.navigateByUrl("/backoffice/actividades");
           },
           error: (e) => {},

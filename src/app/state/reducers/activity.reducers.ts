@@ -1,6 +1,8 @@
 import { createReducer, on } from "@ngrx/store";
 import { ActivityState } from "src/app/shared/models/Activity";
 import {
+  addActivity,
+  addActivitySuccess,
   deleteActivity,
   deleteActivitySuccess,
   getActivities,
@@ -31,12 +33,11 @@ export const activityReducer = createReducer(
 
   //Get Activity----------------------------------------
   on(getActivity, (state) => {
-    console.log(state);
     return { ...state, loading: true };
   }),
 
   on(getActivitySuccess, (state, { data }) => {
-    return { ...state, activity: data.data, loading: true };
+    return { ...state, activity: data, loading: true };
   }),
 
   //Delete Activity--------------------------------------
@@ -62,8 +63,17 @@ export const activityReducer = createReducer(
     return {
       ...state,
       activities: state.activities.map((activity) =>
-        activity.id == id ? data.data : activity
+        activity.id == id ? data : activity
       ),
     };
+  }),
+
+  //Add Activity----------------------------------------
+  on(addActivity, (state, { data }) => {
+    return { ...state, loading: true };
+  }),
+
+  on(addActivitySuccess, (state, { data }) => {
+    return { ...state, activities: state.activities.concat(data) };
   })
 );

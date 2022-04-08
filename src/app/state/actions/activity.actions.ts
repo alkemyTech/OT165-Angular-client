@@ -14,14 +14,18 @@ export const getActivity = createAction("[Activity] Get activity");
 
 export const getActivitySuccess = createAction(
   "[Activity] Get activity success",
-  props<{data:any}>()
+  props<{ data: Activity[] }>()
 );
 
 //Add Activity---------------------------------------------------------
-export const addActivity = createAction("[Activity] Add activity");
+export const addActivity = createAction(
+  "[Activity] Add activity",
+  props<{ data: Activity[] }>()
+);
 
 export const addActivitySuccess = createAction(
-  "[Activity] Add activity success"
+  "[Activity] Add activity success",
+  props<{ data: Activity[] }>()
 );
 
 //Delete Activity-----------------------------------------------------
@@ -38,10 +42,10 @@ export const deleteActivitySuccess = createAction(
 //Update Activity-----------------------------------------------------
 export const updateActivity = createAction(
   "[Activity] Update activity",
-  props<{ id: number; data: any }>()
+  props<{ id: number; data: Activity }>()
 );
 
 export const updateActivitySuccess = createAction(
   "[Activity] Update activity success",
-  props<{ id: number; data: any }>()
+  props<{ id: number; data: Activity }>()
 );
