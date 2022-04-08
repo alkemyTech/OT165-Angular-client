@@ -1,12 +1,10 @@
 import { AppState } from './../../../../state/app.state';
 import { selectCategories } from './../../../../state/selectors/category.selectors';
 import { MessageService } from "primeng/api";
-import { CategoryService } from "./../../../../services/category/category.service";
 import { Component, OnInit } from "@angular/core";
 import { Category } from "src/app/shared/models/Category";
 import { Columns, TableData } from 'src/app/backoffice/models/TableData.interface';
-import { select, Store } from '@ngrx/store';
-import { CategoryState } from 'src/app/state/reducers/category.reducer';
+import { Store } from '@ngrx/store';
 import { deleteCategory, getCategories } from 'src/app/state/actions/category.actions';
 import { Observable } from "rxjs";
 
