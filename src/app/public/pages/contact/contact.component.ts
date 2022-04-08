@@ -4,6 +4,7 @@ import { Contact } from 'src/app/shared/models/contact';
 import { ContactService } from 'src/app/public/services/contact/contact.service';
 
 import { DialogService } from 'src/app/shared/components/dialog/dialog.service';
+import { latLng, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'app-contact',
@@ -29,6 +30,16 @@ export class ContactComponent {
     message: new FormControl('', [Validators.required]),
   });
 
+  options = {
+    layers: [
+      tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      })
+    ],
+    zoom: 7,
+    center: latLng([ 46.879966, -121.726909 ])
+  };
+
   get name() {
     return this.contactForm.get('name')!;
   }
@@ -51,12 +62,10 @@ export class ContactComponent {
     };
 
     this.serviceContact.createContact(contact).subscribe(
-      (response) => {
-        //Show dialog success
+      (response) => {        
         this.messageSuccess();
       },
-      (error) => {
-        //Show dialog error
+      (error) => {        
         this.messageError();
       }
     );

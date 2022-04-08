@@ -26,7 +26,7 @@ import { CarouselModule } from "./components/carousel/carousel.module";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -57,6 +57,7 @@ import { NgModule } from "@angular/core";
     InputNumberModule,
     InputTextModule,
     ButtonModule,
+    LeafletModule,
   ],
 })
 export class PublicModule {}
