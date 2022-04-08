@@ -23,6 +23,8 @@ import { environment } from "../environments/environment";
 import { REDUCERS } from "./state/app.state";
 import { AuthEffects } from "./state/effects/auth.effects";
 import { UsersEffects } from "src/app/state/effects/users.effects";
+import { SlidesEffects } from "./state/effects/slides.effects";
+import { CategoryEffects } from './state/effects/category.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,7 +42,7 @@ import { UsersEffects } from "src/app/state/effects/users.effects";
     InputNumberModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([AuthEffects, UsersEffects]),
+    EffectsModule.forRoot([AuthEffects, UsersEffects, SlidesEffects, CategoryEffects]),
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),
