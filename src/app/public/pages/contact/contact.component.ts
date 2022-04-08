@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Contact } from 'src/app/shared/models/contact';
 import { ContactService } from 'src/app/public/services/contact/contact.service';
@@ -11,7 +11,7 @@ import { latLng, tileLayer } from 'leaflet';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit{
   constructor(
     private serviceContact: ContactService,
     private dialogService: DialogService
@@ -39,6 +39,10 @@ export class ContactComponent {
     zoom: 7,
     center: latLng([ 46.879966, -121.726909 ])
   };
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   get name() {
     return this.contactForm.get('name')!;
