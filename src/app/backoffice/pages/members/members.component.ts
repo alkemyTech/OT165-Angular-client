@@ -7,7 +7,7 @@ import { Member } from 'src/app/shared/models/Member';
 import { addMember, editMember } from 'src/app/state/actions/members.actions';
 import { AppState } from 'src/app/state/app.state';
 import { ActivatedRoute } from '@angular/router';
-import { MemberService } from 'src/app/shared/services/member.service';
+import { MemberService } from 'src/app/backoffice/services/members/member.service';
 import { Observable } from 'rxjs';
 import { selectMember } from 'src/app/state/selectors/members.selectors';
 

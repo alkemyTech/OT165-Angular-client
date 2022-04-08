@@ -1,9 +1,10 @@
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Member } from '../models/Member';
-import { BaseService } from '../../services/base.service';
+import { HttpClient } from '@angular/common/http';
+import { BaseService } from '../base.service';
+import { Member } from 'src/app/shared/models/Member';
 import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,6 +14,6 @@ export class MemberService extends BaseService<Member> {
   }
 
   getMembers(): Observable<any> {
-    return super.getAll();
+    return this.getAll();
   }
 }
