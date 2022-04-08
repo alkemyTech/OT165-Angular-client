@@ -33,7 +33,7 @@
                             "src/favicon.ico",
                             "src/assets",
                             {
-                                "glob": "**/*",
+                                "glob": "*.png",
                                 "input": "node_modules/leaflet/dist/images",
                                 "output": "src/assets/leaflet/"
                             }

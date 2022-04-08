@@ -4,7 +4,7 @@ import { Contact } from 'src/app/shared/models/contact';
 import { ContactService } from 'src/app/public/services/contact/contact.service';
 
 import { DialogService } from 'src/app/shared/components/dialog/dialog.service';
-import { latLng, tileLayer } from 'leaflet';
+import { latLng, Map, marker, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'app-contact',
@@ -41,7 +41,15 @@ export class ContactComponent implements OnInit{
   };
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    var map = new Map('map').setView([51.505, -0.09], 13);
+
+    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    marker([51.5, -0.09]).addTo(map)
+      .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+      .openPopup();
   }
 
   get name() {
