@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { AppState } from 'src/app/state/app.state';
+import { selectUserData } from 'src/app/state/selectors/auth.selectors';
 
 @Component({
   selector: 'app-backoffice',
@@ -7,8 +12,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BackofficeComponent{
   dashboard!:Array<any>;
-
-  constructor() {
+  userLog = {}
+  userLoged$!: Observable<any>;
+  constructor(private authService: AuthService, private store: Store<AppState>) {
     this.dashboard = [
       {
         id: 1,
@@ -79,6 +85,21 @@ export class BackofficeComponent{
               '<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>' +
               '</svg>'
       }
-    ]    
+    ]
+    this.checkUserLogin();
+  }
+
+  private checkUserLogin(){
+    this.authService.resultsUserGoogle().subscribe( (res) =>{
+      this.userLog = res
+      if (!res) {
+        this.authService.getUserLoged.subscribe(res => {
+          this.userLoged$ = this.store.select(selectUserData)
+          this.userLoged$.subscribe((res) => {
+            this.userLog = res
+          })
+        })
+      }
+    }) 
   }
 }

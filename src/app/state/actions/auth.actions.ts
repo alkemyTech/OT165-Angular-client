@@ -14,6 +14,15 @@ export const logedUser = createAction(
   props<{ user: UserState }>()
 );
 
+export const loginGoogle = createAction(
+  "[Login Page] Login Google",
+);
+
+export const logedGoogle = createAction(
+  "[Login Page] Login Google success",
+  props<{ user: UserState }>()
+);
+
 export const loginError = createAction(
   "[Login Page] Login Error",
 );

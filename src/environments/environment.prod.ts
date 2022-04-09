@@ -1,4 +1,12 @@
 export const environment = {
+  firebase: {
+    projectId: 'alkemy-somos-mas',
+    appId: '1:28868089907:web:85c0767bcdd0a606672b46',
+    storageBucket: 'alkemy-somos-mas.appspot.com',
+    apiKey: 'AIzaSyCBN98jczqgU_gJFcBjFu4AE4ZXZMYFB1Y',
+    authDomain: 'alkemy-somos-mas.firebaseapp.com',
+    messagingSenderId: '28868089907',
+  },
   production: true,
   BASE_URL_API: "https://ongapi.alkemy.org/api/",
   API_URL_SLIDES: "https://ongapi.alkemy.org/api/slides",

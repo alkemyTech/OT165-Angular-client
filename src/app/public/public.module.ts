@@ -26,6 +26,7 @@ import { CarouselModule } from "./components/carousel/carousel.module";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { GoogleMapsModule } from "@angular/google-maps";
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
@@ -57,6 +58,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     InputNumberModule,
     InputTextModule,
     ButtonModule,
+    GoogleMapsModule,
     LeafletModule,
   ],
 })

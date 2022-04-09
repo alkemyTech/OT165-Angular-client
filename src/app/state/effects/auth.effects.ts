@@ -6,7 +6,11 @@ import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { AuthService } from "src/app/services/auth/auth.service";
 import { LoginResponse } from "src/app/shared/models/auth/loginResponse.interface";
 import { RegisterResponse } from "src/app/shared/models/auth/registerResponse.interface";
-import { loginUser, logOut, registerUser } from "../actions/auth.actions";
+import {
+  loginGoogle,
+  loginUser,
+  registerUser,
+} from "../actions/auth.actions";
 
 @Injectable()
 export class AuthEffects {
@@ -23,11 +27,34 @@ export class AuthEffects {
             },
           })),
           tap((action) => {
-            if (action.user.success) {
-              this.router.navigateByUrl("home");
+            if (action.user.success && action.user.user?.user?.role_id == 2) {
+              this.router.navigateByUrl('backoffice');
+            }else if (action.user.user?.user?.role_id == 1) {
+              this.router.navigateByUrl('home');
             }
           }),
           catchError(() => of({ type: "[Login Page] Login Error" }))
+        )
+      )
+    )
+  );
+
+  loginUserGoogle$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loginGoogle),
+      tap(() => {
+         this.authService.SigninWithGoogle()
+         this.router.navigateByUrl('home')
+      }),
+      mergeMap((action) =>
+        this.authService.getUserLoged.pipe(
+          map((user) => ({
+            type: "[Login Page] Login Google success",
+            user: {
+              success: true,
+              user: user,
+            },
+          }))
         )
       )
     )
@@ -59,6 +86,6 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 }
