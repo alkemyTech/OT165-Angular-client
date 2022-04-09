@@ -1,3 +1,4 @@
+<app-dialog></app-dialog>
 <div class="container-fluid">
   <div class="col-md-6 mt-5 mb-5 mx-auto fadeIn second">
     <div id="formContent">
@@ -54,7 +55,7 @@
             >Ingrese un email válido.</small
           >
         </div>
-        <div class="field">
+        <div *ngIf="id != 0" class="field">
           <label for="password" class="block">Contraseña</label>
           <input
             [ngClass]="{
@@ -68,6 +69,28 @@
             pInputText
             readonly
           />
+        </div>
+        <div *ngIf="id == 0" class="field">
+          <label for="password" class="block">Contraseña</label>
+          <input
+            [ngClass]="{
+              'ng-invalid ng-dirty':
+                userForm.get('password')?.touched && userForm.get('password')?.errors
+            }"
+            formControlName="password"
+            id="password"
+            type="password"
+            aria-describedby="password-help"
+            pInputText
+          />
+          <small
+            *ngIf="
+              userForm.get('password')?.touched && userForm.get('password')?.errors
+            "
+            id="password-help"
+            class="p-error block"
+            >Ingrese una contraseña válida.</small
+          >
         </div>
         <div class="field">
           <label for="profile_image" class="block">Foto de perfil</label>

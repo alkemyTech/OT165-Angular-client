@@ -15,3 +15,12 @@ export class User {
   address!: string;
   profile_image!: string;
 }
+
+export interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  profile_image?: string;
+  role_id: number;
+  address: string;
+}
