@@ -1,18 +1,17 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { CommonModule } from "@angular/common";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
-import { ButtonModule } from "primeng/button";
-import { InputTextareaModule } from "primeng/inputtextarea";
-import { InputNumberModule } from "primeng/inputnumber";
+import { ButtonModule } from 'primeng/button';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputNumberModule } from 'primeng/inputnumber';
 
-//Own Modules
 import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
 import { StoreModule } from "@ngrx/store";
@@ -28,6 +27,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { SlidesEffects } from "./state/effects/slides.effects";
 import { CategoryEffects } from './state/effects/category.effects';
+import { MembersEffects } from './state/effects/members.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,7 +45,7 @@ import { CategoryEffects } from './state/effects/category.effects';
     InputNumberModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([AuthEffects, UsersEffects, SlidesEffects, CategoryEffects]),
+    EffectsModule.forRoot([AuthEffects, UsersEffects, SlidesEffects, MembersEffects, CategoryEffects]),
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),

@@ -6,7 +6,7 @@
   </div>
 
   <header>
-    <h1 class="my-5 text-center">Miembros</h1>
+    <h1 class="my-5 text-center">{{ title }} Miembros</h1>
   </header>
 
   <div class="mx-auto d-flex justify-content-center">
@@ -38,34 +38,29 @@
 
         <!-- IMAGE -->
         <div class="field mt-3">
-          <div *ngIf="image; else imageRequire">
-            <div class="d-flex justify-content-center">
-              <img [src]="image" class="w-50 h-50" alt="" />
+          <label for="profile_image" class="block">Foto de perfil</label>
+          <div *ngIf="file">
+            <div class="text-container">
+              <img
+                style="width: 200px"
+                class="img-thumbnail"
+                src="{{ file }}"
+                alt=""
+              />
             </div>
             <small id="image-text" class="block">
               Para modificar la imagen seleccione un nuevo archivo.
             </small>
           </div>
-          <ng-template #imageRequire>
-            <div class="d-flex justify-content-center">
-              <img src="./assets/images/upload.png" class="w-50 h-50" alt="" />
-            </div>
-            <div class="mb-5 fs-2 text-center">
-              <small *ngIf="!image" id="description-help">
-                Imagen es requerida.
-              </small>
-            </div>
-          </ng-template>
           <p-fileUpload
+            id="profile_image"
+            [customUpload]="true"
+            name="profile_image"
             #fileUploader
             (uploadHandler)="onUpload($event, fileUploader)"
-            [customUpload]="true"
             [multiple]="false"
-            [showCancelButton]="false"
-            accept=".jpg,.png"
+            accept="image/*.jpg image/*.png"
             class="mt-3"
-            id="image"
-            name="image"
           ></p-fileUpload>
         </div>
 
@@ -88,8 +83,6 @@
           </small>
         </div>
 
-        <!-- SOCIAL -->
-
         <!-- Facebook -->
         <div class="field mt-3">
           <label for="facebook" class="block my-2">Facebook</label>
@@ -97,9 +90,10 @@
             class="form-control"
             [ngClass]="{
               'ng-invalid ng-dirty':
-                form.get('facebook')?.touched && form.get('facebook')?.errors
+                form.get('facebookUrl')?.touched &&
+                form.get('facebookUrl')?.errors
             }"
-            formControlName="facebook"
+            formControlName="facebookUrl"
             id="facebook"
             type="text"
             aria-describedby="facebook-help"
@@ -123,9 +117,10 @@
             class="form-control"
             [ngClass]="{
               'ng-invalid ng-dirty':
-                form.get('linkedin')?.touched && form.get('linkedin')?.errors
+                form.get('linkedinUrl')?.touched &&
+                form.get('linkedinUrl')?.errors
             }"
-            formControlName="linkedin"
+            formControlName="linkedinUrl"
             id="linkedin"
             type="text"
             aria-describedby="linkedin-help"
@@ -143,63 +138,13 @@
           </small>
         </div>
 
-        <!-- Instagram -->
-        <div class="field">
-          <label for="instagram" class="block my-2">Instagram</label>
-          <input
-            class="form-control"
-            [ngClass]="{
-              'ng-invalid ng-dirty':
-                form.get('instagram')?.touched && form.get('instagram')?.errors
-            }"
-            formControlName="instagram"
-            id="instagram"
-            type="text"
-            aria-describedby="instagram-help"
-            pInputText
-          />
-          <small
-            *ngIf="
-              form.get('instagram')?.touched && form.get('instagram')?.errors
-            "
-            id="instagram-help"
-            class="p-error block"
-          >
-            La Url debe ser válida.
-          </small>
-        </div>
-
-        <!-- Twitter -->
-        <div class="field">
-          <label for="twitter" class="block my-2">Twitter</label>
-          <input
-            class="form-control"
-            [ngClass]="{
-              'ng-invalid ng-dirty':
-                form.get('instagram')?.touched && form.get('instagram')?.errors
-            }"
-            formControlName="twitter"
-            id="twitter"
-            type="text"
-            aria-describedby="twitter-help"
-            pInputText
-          />
-          <small
-            *ngIf="form.get('twitter')?.touched && form.get('twitter')?.errors"
-            id="twitter-help"
-            class="p-error block"
-          >
-            La Url debe ser válida.
-          </small>
-        </div>
-
         <!-- Button -->
         <div class="my-3 d-flex justify-content-center">
           <button
             pButton
             pRipple
             type="button"
-            label="Editar"
+            label="{{ button }}"
             class="primary mt-3"
             (click)="submit()"
           ></button>

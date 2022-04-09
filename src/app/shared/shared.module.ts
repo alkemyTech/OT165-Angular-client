@@ -1,13 +1,13 @@
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 //Own Components
-import { LogoComponent } from "./components/logo/logo.component";
-import { TitleComponent } from "./components/title/title.component";
+import { LogoComponent } from './components/logo/logo.component';
+import { TitleComponent } from './components/title/title.component';
 import { CardComponent } from './components/card/card.component';
-import { RouterModule } from "@angular/router";
-import { ButtonModule } from "primeng/button";
+import { RouterModule } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { NavComponent } from "./components/nav/nav.component";
@@ -34,8 +34,8 @@ import { DialogComponent } from './components/dialog/dialog/dialog.component';
     RouterModule,
     ButtonModule,
     RadioButtonModule,
-    ProgressBarModule,    
-    ConfirmDialogModule       
+    ProgressBarModule,
+    ConfirmDialogModule,
   ],
   exports: [
     LogoComponent,
