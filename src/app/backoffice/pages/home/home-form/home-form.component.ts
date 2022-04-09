@@ -81,11 +81,7 @@ export class HomeFormComponent {
   }
 
   showSlides(response: any) {
-<<<<<<< HEAD
-    this.listSlides = <Array<any>>response;
-=======
     this.listSlides = <Array<Slide>>response;
->>>>>>> origin
 
     this.indexSlide1 = this.listSlides.findIndex((slide) => {
       return slide.order == 1;
