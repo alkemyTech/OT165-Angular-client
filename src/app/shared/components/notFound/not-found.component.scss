@@ -1,0 +1,12 @@
+.container-fluid {
+  min-height: 400px;
+  background-image: url('../../../../assets/images/image.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  color: var(--danger);
+  font-weight: bold;
+  text-transform: uppercase;
+}
