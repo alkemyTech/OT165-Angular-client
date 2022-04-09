@@ -24,9 +24,14 @@ export class ContactComponent{
     private dialogService: DialogService
   ) {
     this.organization = new Organization();
-    this.serviceOrganization.getAll().subscribe((response) => {
+    this.serviceOrganization.getAll().subscribe(
+      (response) => {
       this.loadOrganization(response);
-    });
+      },
+      (error) => {
+        this.errorMessageLoadingOrganization();
+      }
+    );
   }
 
   contactForm = new FormGroup({
@@ -61,7 +66,8 @@ export class ContactComponent{
         <p> ${this.organization.address} </p>
       `)
       .setRadius(10)
-      .openPopup();
+      .openPopup()
+      .isPopupOpen();
   }
 
   loadOrganization(response: any) {
@@ -118,6 +124,15 @@ export class ContactComponent{
       type: "error",
       title: "Ha ocurrido un error",
       detail: "El mensaje no pudo ser enviado, por favor intente nuevamente.",
+      life: 3000,
+    });
+  }
+
+  errorMessageLoadingOrganization() {
+    this.dialogService.add({
+      type: "error",
+      title: "Ha ocurrido un error",
+      detail: "La dirección de la organización no pudo ser cargada, por favor intente nuevamente.",
       life: 3000,
     });
   }
