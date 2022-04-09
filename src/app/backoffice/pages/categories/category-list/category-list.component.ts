@@ -26,8 +26,7 @@ export class CategoryListComponent implements OnInit {
   ];
   skeleton!: boolean;
 
-  constructor(private messageService: MessageService,
-              private store: Store<AppState>) {
+  constructor(private store: Store<AppState>) {
               
   }
 
