@@ -12,18 +12,22 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 
-//Own Modules
-import { BackOfficeModule } from './backoffice/backoffice.module';
-import { PublicModule } from './public/public.module';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { reducers, metaReducers } from './state/reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { REDUCERS } from './state/app.state';
-import { AuthEffects } from './state/effects/auth.effects';
-import { UsersEffects } from 'src/app/state/effects/users.effects';
+import { BackOfficeModule } from "./backoffice/backoffice.module";
+import { PublicModule } from "./public/public.module";
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import { reducers, metaReducers } from "./state/reducers";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { environment } from "../environments/environment";
+import { REDUCERS } from "./state/app.state";
+import { AuthEffects } from "./state/effects/auth.effects";
+import { UsersEffects } from "src/app/state/effects/users.effects";
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { SlidesEffects } from "./state/effects/slides.effects";
+import { CategoryEffects } from './state/effects/category.effects';
 import { MembersEffects } from './state/effects/members.effects';
-import { SlidesEffects } from './state/effects/slides.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,16 +45,14 @@ import { SlidesEffects } from './state/effects/slides.effects';
     InputNumberModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    EffectsModule.forRoot([
-      AuthEffects,
-      UsersEffects,
-      SlidesEffects,
-      MembersEffects,
-    ]),
+    EffectsModule.forRoot([AuthEffects, UsersEffects, SlidesEffects, MembersEffects, CategoryEffects]),
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
     }),
-    StoreDevtoolsModule.instrument({ name: 'test redux' }),
+    StoreDevtoolsModule.instrument({ name: "test redux" }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [],
   bootstrap: [AppComponent],

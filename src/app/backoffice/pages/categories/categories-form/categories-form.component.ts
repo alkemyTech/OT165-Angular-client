@@ -1,8 +1,14 @@
+import { DialogService } from 'src/app/shared/components/dialog/dialog.service';
+import { selectCategoryById } from './../../../../state/selectors/category.selectors';
+import { Observable } from 'rxjs';
+import { createCategory, editCategory } from './../../../../state/actions/category.actions';
+import { Store } from '@ngrx/store';
 import { Category } from './../../../../shared/models/Category';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category/category.service';
+import { AppState } from 'src/app/state/app.state';
+
 
 @Component({
   selector: "app-categories-form",
@@ -11,7 +17,8 @@ import { CategoryService } from 'src/app/services/category/category.service';
 })
 export class CategoriesFormComponent implements OnInit {
   
-  @Input() category: Category = {} as Category;
+  category: Category = {} as Category;
+  category$!: Observable<Category | undefined>;  
   actionType: string = 'Crear';
   buttonAction: string = 'Crear';
   paramID: number = 0;
@@ -32,9 +39,9 @@ export class CategoriesFormComponent implements OnInit {
   maxFileSize: number = 2000000;
   uploadedFile: any = null;
 
-  constructor(private categoryService: CategoryService, 
-              private route: ActivatedRoute,
-              private router: Router) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private store: Store<AppState>) {
     this.paramID = this.route.snapshot.params['id'] != undefined ? this.route.snapshot.params['id'] : 0;    
   }
   
@@ -43,16 +50,15 @@ export class CategoriesFormComponent implements OnInit {
       this.getCategory(this.paramID);
       this.actionType = 'Editar';
       this.buttonAction = 'Guardar';
-    }
-  }
-  
+    }    
+  }    
   
   getCategory(id: number) {
-    this.categoryService.getById(id).subscribe({
-      next: async (res) => {
-        this.category = await res;
-        this.setCategoryForm(this.category)        
-      }     
+    this.category$ = this.store.select(selectCategoryById(id))
+    this.category$.subscribe(async res => {
+      const response = await res;
+      this.category = response!;      
+      this.setCategoryForm(response)      
     })
   }
 
@@ -87,34 +93,27 @@ export class CategoriesFormComponent implements OnInit {
     let updateCategory: Category = {} as Category    
     if(this.uploadedFile != null) {
       updateCategory = {
+        id: this.category.id,
         name: this.catForm.get('name')?.value,
         description: this.catForm.get('description')?.value,
         image: this.catForm.get('image')?.value
-      } as Category
+      } 
     } else {
       updateCategory = {
+        id: this.category.id,
         name: this.catForm.get('name')?.value,
         description: this.catForm.get('description')?.value
       } 
     }    
     if(this.category.id){
-      this.categoryService.putById(this.category.id, updateCategory).subscribe({
-        next: () => {
-          this.returnToList();
-        }
-      });
-    } else {
-      this.categoryService.post(this.catForm.value).subscribe({
-        next: () => {
-          this.returnToList();
-        }
-      });
-    } 
-    
+      this.store.dispatch(editCategory({category: updateCategory}))
+    } else {      
+      this.store.dispatch(createCategory({category: this.catForm.value}))                 
+    }     
   }
 
   returnToList() {
-    this.router.navigateByUrl('/backoffice/categorias')
+    this.router.navigateByUrl('/backoffice/categorias')   
   }
 
 }
