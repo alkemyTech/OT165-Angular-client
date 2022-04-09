@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Contact } from "src/app/shared/models/contact";
 import { ContactService } from "src/app/public/services/contact/contact.service";
 
 import { DialogService } from "src/app/shared/components/dialog/dialog.service";
-import { divIcon, Icon, Map, marker, tileLayer } from "leaflet";
+import { circleMarker, Map, tileLayer } from "leaflet";
 import { OrganizationService } from "src/app/services/organization/organization.service";
 import { Organization } from "src/app/backoffice/models/organization";
 
@@ -47,20 +47,20 @@ export class ContactComponent{
 
     tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+    }).addTo(map);    
 
-    const myIcon = new Icon({
-      iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
-      shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]      
-    });
-
-    marker([this.latOrganization, this.lonOrganization], { icon: myIcon })
-      .addTo(map)
-      .bindPopup(this.organization.name + "<br>" + this.organization.address)
+    circleMarker([this.latOrganization, this.lonOrganization], {
+      radius: 20,
+      color: "#000000",
+      fillOpacity: 0.6,
+      fillColor: "#9AC9FB",
+      weight: 2
+    }).addTo(map)      
+      .bindPopup(`        
+        <h5 style="color:#DB5752;"> ${this.organization.name} </h5> 
+        <p> ${this.organization.address} </p>
+      `)
+      .setRadius(10)
       .openPopup();
   }
 
