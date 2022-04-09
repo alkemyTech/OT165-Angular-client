@@ -1,3 +1,4 @@
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
@@ -11,9 +12,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { NavComponent } from "./components/nav/nav.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import { ConfirmDialogComponent } from './components/dialog/confirm-dialog.component';
 import { ProgressBarComponent } from './components/progressBar/progress-bar.component';
-import { DialogComponent } from './components/dialog/dialog/dialog.component';
 import { MessageComponent } from './components/dialog/message/message.component';
+import { DialogComponent } from './components/dialog/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,16 +24,18 @@ import { MessageComponent } from './components/dialog/message/message.component'
     CardComponent,
     NavComponent,
     FooterComponent,
-    ProgressBarComponent,
-    DialogComponent,
+    ConfirmDialogComponent,
+    ProgressBarComponent,   
     MessageComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     ButtonModule,
     RadioButtonModule,
-    ProgressBarModule
+    ProgressBarModule,    
+    ConfirmDialogModule       
   ],
   exports: [
     LogoComponent,
@@ -41,6 +45,7 @@ import { MessageComponent } from './components/dialog/message/message.component'
     FooterComponent,
     ProgressBarComponent,
     DialogComponent,
+    ConfirmDialogComponent
   ]
 })
 export class SharedModule {}

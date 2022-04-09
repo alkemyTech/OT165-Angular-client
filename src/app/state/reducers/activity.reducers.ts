@@ -27,7 +27,7 @@ export const activityReducer = createReducer(
   }),
 
   on(getActivitiesSuccess, (state, { activities }) => {
-    return { ...state, activities };
+    return { ...state, activities: activities };
   }),
 
   //Get Activity----------------------------------------

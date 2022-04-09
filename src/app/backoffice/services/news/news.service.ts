@@ -1,39 +1,35 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from 'src/app/shared/models/Category';
-import { News } from '../../models/news';
+import { News } from 'src/app/backoffice/models/news';
+import { BaseService } from 'src/app/services/base.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NewsService {
-  private _groupId!: string;
-  private _headers!: HttpHeaders;
-  api!:string;
-
-  constructor(private http:HttpClient) {
-    this._headers = new HttpHeaders({ Group: this._groupId });
-    this.api = "https://ongapi.alkemy.org/api/";
+export class NewsService extends BaseService<News> {
+  constructor(http: HttpClient) {
+    super(http, environment.API_URL_NEWS);
   }
 
-  public get<T>(url: string, activateHeader:boolean = false ):Observable<T> {
-    return this.http.get<T>(url, activateHeader ? { headers: this._headers }: {});
+  public getAllNews(): Observable<News[]> {
+    return super.getAll();
   }
 
-  getNews(id: number){
-    return this.http.get(this.api + "news/" + id);
+  public getNews(id: number): Observable<News> {
+    return super.getById(id);
   }
 
-  createNews(news: any){
-    return this.http.post(this.api + "news", news);
+  public createNews(news: any): Observable<News> {
+    return super.post(news);
   }
 
-  updateNews(id:number, news: any): Observable<News>{
-    return this.http.put<News>(this.api + "news/" + id, news);
+  public updateNews(id: number, news: any): Observable<News> {
+    return super.putById(id, news);
   }
 
-  getCategories(): Observable<Array<Category>>{
-    return this.http.get<Array<Category>>(this.api + "categories");
+  public deleteNews(id: number): Observable<any> {
+    return super.deleteById(id);
   }
 }

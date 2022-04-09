@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
+import {Router} from "@angular/router";
 import { Actions, ofType, createEffect } from "@ngrx/effects";
 import { EMPTY } from "rxjs";
-import { catchError, exhaustMap, map, mergeMap } from "rxjs/operators";
+import { catchError, exhaustMap, map, mergeMap, tap } from "rxjs/operators";
 import { ActivitiesService } from "src/app/backoffice/services/activities/activities.service";
 import {
   addActivity,
@@ -47,7 +48,7 @@ export class ActivityEffects {
       ofType(getActivity),
       mergeMap(({ id }) =>
         this.activitiesService.getActivity(id).pipe(
-          map(({ data }) => getActivitySuccess({ data })),
+          map((res) => getActivitySuccess({data: res})),
           catchError(() => EMPTY)
         )
       )
@@ -60,9 +61,9 @@ export class ActivityEffects {
       mergeMap(({ data }) =>
         this.activitiesService.createActivity(data).pipe(
           map(
-            ({ data }) => addActivitySuccess({ data }),
-            alert("Your activity is created succesfully")
-          ),
+            (res) => addActivitySuccess({ data: res }),
+            alert("Your activity is created succesfully"),
+          ),tap(()=> this.router.navigateByUrl("/backoffice/actividades")),
           catchError(() => EMPTY)
         )
       )
@@ -75,9 +76,9 @@ export class ActivityEffects {
       mergeMap(({ id, data }) =>
         this.activitiesService.updateActivity(id, data).pipe(
           map(
-            ({ data }) => updateActivitySuccess({ id, data }),
+            (res) => updateActivitySuccess({ id, data:res }),
             alert("Your activity data was updated succesfully")
-          ),
+          ),tap(()=> this.router.navigateByUrl("/backoffice/actividades")),
           catchError(() => EMPTY)
         )
       )
@@ -85,6 +86,7 @@ export class ActivityEffects {
   );
 
   constructor(
+    private router:Router,
     private actions$: Actions,
     private activitiesService: ActivitiesService
   ) {}

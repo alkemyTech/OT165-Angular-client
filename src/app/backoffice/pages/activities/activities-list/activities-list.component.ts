@@ -30,9 +30,7 @@ export class ActivitiesListComponent implements OnInit {
     { field: "created_at", header: "Creado" },
   ];
 
-  constructor(
-    private store: Store<AppState>
-  ) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.activities$ = this.store.select(selectListActivities);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { RxwebValidators } from "@rxweb/reactive-form-validators";
 import { Observable } from "rxjs";
@@ -41,7 +41,6 @@ export class ActivityFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router,
     private store: Store<any>
   ) {}
 
@@ -96,7 +95,6 @@ export class ActivityFormComponent implements OnInit {
       this.store.dispatch(addActivity({ data: this.activityForm.value }));
       this.image = "";
       this.activityForm.reset();
-      this.router.navigateByUrl("/backoffice/actividades");
     }
   }
 
@@ -106,14 +104,12 @@ export class ActivityFormComponent implements OnInit {
         this.store.dispatch(
           updateActivity({ id: this.id, data: this.activityForm.value })
         );
-        this.router.navigateByUrl("/backoffice/actividades");
         return;
       }
       delete this.activityForm.value.image;
       this.store.dispatch(
         updateActivity({ id: this.id, data: this.activityForm.value })
       );
-      this.router.navigateByUrl("/backoffice/actividades");
     }
   }
 }

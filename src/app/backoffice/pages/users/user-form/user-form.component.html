@@ -55,6 +55,21 @@
           >
         </div>
         <div class="field">
+          <label for="password" class="block">Contraseña</label>
+          <input
+            [ngClass]="{
+              'ng-invalid ng-dirty':
+                userForm.get('password')?.touched && userForm.get('password')?.errors
+            }"
+            formControlName="password"
+            id="password"
+            type="password"
+            aria-describedby="password-help"
+            pInputText
+            readonly
+          />
+        </div>
+        <div class="field">
           <label for="profile_image" class="block">Foto de perfil</label>
           <div *ngIf="file">
             <div class="text-container">

@@ -26,7 +26,7 @@ export class BaseService<S> {
   getById(id: number): Observable<S> {
     return <Observable<S>>this.http.get(`${this.url}/${id}`).pipe(
       map((res: any) => {
-        return res;
+        return res.data;
       })
     );
   }
@@ -38,7 +38,7 @@ export class BaseService<S> {
   putById(id: number, object: S): Observable<S> {
     return <Observable<S>>this.http.put(`${this.url}/${id}`, object).pipe(
       map((res: any) => {
-        return res;
+        return res.data;
       })
     );
   }
@@ -46,7 +46,7 @@ export class BaseService<S> {
   patchById(id: number, object: S): Observable<S> {
     return <Observable<S>>this.http.patch(`${this.url}/${id}`, object).pipe(
       map((res: any) => {
-        return res;
+        return res.data;
       })
     );
   }
@@ -54,7 +54,7 @@ export class BaseService<S> {
   post(object: S): Observable<S> {
     return <Observable<S>>this.http.post(`${this.url}`, object).pipe(
       map((res: any) => {
-        return res;
+        return res.data;
       })
     );
   }
