@@ -2,12 +2,12 @@
   height: 86.95px;
 }
 
-nav {
-  background-color: #fafa88 !important;
+.navbar {
+  background-color: rgba(255, 194, 194, 1);
 }
 
 @media (min-width: 2550px) {
   .navbar {
-    --bs-bg-opacity: 0.25;
+    background-color: rgba(255, 194, 194, 0.5) !important;
   }
 }
