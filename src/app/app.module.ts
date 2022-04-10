@@ -28,10 +28,12 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { SlidesEffects } from "./state/effects/slides.effects";
 import { CategoryEffects } from './state/effects/category.effects';
 import { MembersEffects } from './state/effects/members.effects';
+import {CampanaJuguetesModule} from './landing/campana-juguetes/campana-juguetes.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    CampanaJuguetesModule,
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
