@@ -1,0 +1,7 @@
+<app-table
+  *ngIf="!(loading$ | async)"
+  [items]="tableMembers"
+  [columns]="titlesCol"
+  (deleteItemById)="deleteMember($event)"
+>
+</app-table>

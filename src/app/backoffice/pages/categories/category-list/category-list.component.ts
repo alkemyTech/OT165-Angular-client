@@ -8,12 +8,10 @@ import { Store } from '@ngrx/store';
 import { deleteCategory, getCategories } from 'src/app/state/actions/category.actions';
 import { Observable } from "rxjs";
 
-
-
 @Component({
-  selector: "app-category-list",
-  templateUrl: "./category-list.component.html",
-  styleUrls: ["./category-list.component.scss"],
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.scss'],
   providers: [MessageService],
 })
 export class CategoryListComponent implements OnInit {
@@ -21,8 +19,8 @@ export class CategoryListComponent implements OnInit {
   categoriesData!: Array<Category>;
   tableCategories!: TableData;
   titlesCol: Columns[] = [
-    { field: "name", header: "Nombre" },
-    { field: "created_at", header: "Creado" },
+    { field: 'name', header: 'Nombre' },
+    { field: 'created_at', header: 'Creado' },
   ];
   skeleton!: boolean;
 
@@ -56,5 +54,4 @@ export class CategoryListComponent implements OnInit {
     this.store.dispatch(deleteCategory({id: e}))    
     this.skeleton = false;
   }
-
 }

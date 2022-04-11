@@ -9,6 +9,8 @@ import { slideReducer } from "./reducers/slides.reducers";
 import { UsersState } from "src/app/shared/models/userState.interface";
 import { loginReducer, registerReducer } from "./reducers/auth.reducers";
 import { usersReducer } from "./reducers/users.reducers";
+import { MemberState } from '../shared/models/membersState.interface';
+import { membersReducer } from './reducers/member.reducer';
 
 export interface AppState {
   userLogin: UserState;
@@ -16,6 +18,7 @@ export interface AppState {
   activities: ActivityState;
   slide: SlideState;
   users: UsersState;
+  members: MemberState;
   category: CategoryState;
 }
 
@@ -26,4 +29,6 @@ export const REDUCERS: ActionReducerMap<AppState> = {
   users: usersReducer,
   category: categoryReducer,
   activities: activityReducer,
-};
+  members: membersReducer,
+}
+
