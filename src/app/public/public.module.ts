@@ -27,6 +27,7 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ContentComponent } from './pages/content/content.component';
+import { LandingFooterComponent } from './components/landing-footer/landing-footer.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { ContentComponent } from './pages/content/content.component';
     LoginFormComponent,
     RegisterFormComponent,
     ContentComponent,
+    LandingFooterComponent,
   ],
   exports: [],
   imports: [
