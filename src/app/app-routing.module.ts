@@ -14,6 +14,11 @@ const routes: Routes = [
     redirectTo: "/home",
     pathMatch: "full",
   },
+  {
+    path: "escuelas",
+    redirectTo: "/escuelas",
+    pathMatch: "full",
+  },
 ];
 @NgModule({
   imports: [

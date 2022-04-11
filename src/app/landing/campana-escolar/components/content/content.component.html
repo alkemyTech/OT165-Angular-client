@@ -1,0 +1,23 @@
+<app-school-header></app-school-header>
+<div class="container">
+  <div class="row mt-5 mb-2">
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h5 class="text-center">{{ date | date:'dd-MM-yyyy HH:mm' }} hs {{ place }}</h5>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-0 col-lg-12 col-xl-12">
+      <h4 class="text-center mt-2 mb-2">
+        Te quedan: {{ countdown.days }}d {{ countdown.hours }}h {{ countdown.minutes }}m para participar
+      </h4>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <p class="text-center mt-2 mb-2">{{ description }}</p>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+    </div>
+  </div>
+</div>

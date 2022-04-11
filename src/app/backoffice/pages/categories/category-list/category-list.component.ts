@@ -34,6 +34,7 @@ export class CategoryListComponent implements OnInit {
     this.categoriesObservable= this.store.select(selectCategories);
     this.categoriesObservable.subscribe(res => {
       this.loadTable(res);
+      this.skeleton = false;
     })
   }
 
