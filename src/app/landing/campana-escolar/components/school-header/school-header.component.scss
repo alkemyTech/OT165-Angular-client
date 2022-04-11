@@ -1,5 +1,5 @@
 .landing-header {
-    background-color: white;   
+    background-color: var(--danger-background);   
     height: auto;
     width: 100%;
     display: flex;
@@ -15,9 +15,10 @@
     display: flex;
     justify-content: center;
     font-size: 2em;
-    font-weight: 500;
+    font-weight: bold;
     text-align: center;
-    margin: auto 5vw;    
+    margin: auto 5vw; 
+    color: white;   
 }
 .ong-logo {
     width: auto;
@@ -39,6 +40,6 @@
 }
 @media screen and (min-width: 1201px) {
     .landing-header {
-        background-color: var(--danger-background);
+        background-color: rgba(243, 166, 163, 0.5);
     }    
 }
