@@ -9,6 +9,7 @@ import {
   getActivity,
   updateActivity,
 } from "src/app/state/actions/activity.actions";
+import {AppState} from "src/app/state/app.state";
 import { selectListActivity } from "src/app/state/selectors/activity.selectors";
 
 @Component({
@@ -41,7 +42,7 @@ export class ActivityFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private store: Store<any>
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {

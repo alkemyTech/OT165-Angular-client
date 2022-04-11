@@ -1,4 +1,4 @@
-export interface Activity {
+export interface IActivity {
   id?: number;
   name?: string;
   slug?: string;
@@ -13,7 +13,7 @@ export interface Activity {
 }
 
 export interface ActivityState {
-  activity: ReadonlyArray<Activity>
-  activities: ReadonlyArray<Activity>;
+  activity: ReadonlyArray<IActivity>
+  activities: ReadonlyArray<IActivity>;
 }
 
