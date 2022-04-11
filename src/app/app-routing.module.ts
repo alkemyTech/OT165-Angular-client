@@ -1,14 +1,15 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { BackOfficeRoutingModule } from "./backoffice/backoffice-routing.module";
-import {CampanaJuguetesRoutingModule} from "./landing/campana-juguetes/campana-juguetes-routing.module";
+import { ToysCampaignRoutingModule } from "./landing/toys-campaign/toys-campaign-routing.module";
 import { PublicRoutingModule } from "./public/public-routing.module";
+import { NotFoundComponent } from "./shared/components/notFound/not-found.component";
 
 const routes: Routes = [
   {
-  path:"juguetes",
-  redirectTo:"/juguetes",
-  pathMatch:"full",
+    path: "juguetes",
+    redirectTo: "/juguetes",
+    pathMatch: "full",
   },
   {
     path: "backoffice",
@@ -20,11 +21,12 @@ const routes: Routes = [
     redirectTo: "/home",
     pathMatch: "full",
   },
+  { path: "**", pathMatch: "full", component: NotFoundComponent },
 ];
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    CampanaJuguetesRoutingModule,
+    ToysCampaignRoutingModule,
     PublicRoutingModule,
     BackOfficeRoutingModule,
   ],
