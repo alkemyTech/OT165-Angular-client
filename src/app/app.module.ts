@@ -14,6 +14,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 
 import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
+import { CampanaEscolarModule } from './landing/campana-escolar/campana-escolar.module';
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { reducers, metaReducers } from "./state/reducers";
@@ -39,6 +40,7 @@ import { MembersEffects } from './state/effects/members.effects';
     HttpClientModule,
     BackOfficeModule,
     PublicModule,
+    CampanaEscolarModule,
     ButtonModule,
     InputTextareaModule,
     FormsModule,

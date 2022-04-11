@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { BackOfficeRoutingModule } from "./backoffice/backoffice-routing.module";
+import { CampanaEscolarRoutingModule } from "./landing/campana-escolar/campana-escolar-routing.module";
 import { PublicRoutingModule } from "./public/public-routing.module";
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     PublicRoutingModule,
     BackOfficeRoutingModule,
+    CampanaEscolarRoutingModule
   ],
   exports: [RouterModule],
 })
