@@ -15,6 +15,7 @@ import { Organization } from "src/app/backoffice/models/organization";
 })
 export class ContactComponent{
   organization!: Organization;
+  subtitle!:string;
   latOrganization:number = -34.59755;
   lonOrganization:number = -58.37742;
 
@@ -24,6 +25,7 @@ export class ContactComponent{
     private dialogService: DialogService
   ) {
     this.organization = new Organization();
+    this.subtitle = "Tu mensaje es recibido por un miembro de la ONG"
     this.serviceOrganization.getAll().subscribe(
       (response) => {
       this.loadOrganization(response);
