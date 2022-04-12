@@ -4,7 +4,7 @@ import { ToysCampaignComponent } from "./toys-campaign.component";
 
 const routes: Routes = [
   {
-    path: "toys",
+    path: "toys-campaign",
     component: ToysCampaignComponent,
   },
 ];
