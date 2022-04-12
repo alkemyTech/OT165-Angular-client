@@ -1,8 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
+import { Store } from "@ngrx/store";
 import { RxwebValidators } from "@rxweb/reactive-form-validators";
-import { ActivitiesService } from "src/app/backoffice/services/activities/activities.service";
+import { Observable } from "rxjs";
+import {
+  addActivity,
+  getActivity,
+  updateActivity,
+} from "src/app/state/actions/activity.actions";
+import {AppState} from "src/app/state/app.state";
+import { selectListActivity } from "src/app/state/selectors/activity.selectors";
 
 @Component({
   selector: "app-activity-form",
@@ -15,11 +23,7 @@ export class ActivityFormComponent implements OnInit {
   public image: string | null = "";
   private file: string = "";
 
-  activity!: {
-    name: string;
-    description: string;
-    image: string;
-  };
+  activity$: Observable<any> = new Observable();
 
   activityForm = this.fb.group({
     name: ["", [Validators.required]],
@@ -38,37 +42,32 @@ export class ActivityFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private activitiesService: ActivitiesService,
-    private router: Router
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
+    this.activity$ = this.store.select(selectListActivity);
+
     let idString = this.activatedRoute.snapshot.paramMap.get("id") || " ";
     this.id = parseInt(idString);
 
     if (this.id) {
       this.edit = true;
-      this.activitiesService.getActivity(this.id).subscribe({
-        next: (response) => {
-          this.activity = {
-            name: response.data.name,
-            image: response.data.image,
-            description: response.data.description,
-          };
-          this.setFieldsData();
-        },
-        error: (error) => {
-          this.edit = false;
-        },
+      this.store.dispatch(getActivity({ id: this.id }));
+      this.activity$.subscribe((res) => {
+        if (res.length !== 0) {
+          let { name, description, image } = res;
+          this.setFieldsData(name, description, image);
+        }
       });
     }
   }
 
-  setFieldsData() {
+  setFieldsData(name: string, description: string, image: string) {
     this.activityForm.setValue({
-      name: this.activity.name,
-      description: this.activity.description,
-      image: this.activity.image,
+      name,
+      description,
+      image,
     });
     this.image = this.activityForm.value.image;
   }
@@ -92,44 +91,26 @@ export class ActivityFormComponent implements OnInit {
     this.activityForm.patchValue({ image: this.file });
   }
 
-  async createActivity() {
+  createActivity() {
     if (this.activityForm.valid) {
-      this.activitiesService.createActivity(this.activityForm.value).subscribe({
-        next: (res) => {
-          alert("Your activity is created succesfully");
-          this.image = "";
-          this.activityForm.reset();
-          this.router.navigateByUrl("/backoffice/actividades");
-        },
-        error: (err) => {},
-      });
+      this.store.dispatch(addActivity({ data: this.activityForm.value }));
+      this.image = "";
+      this.activityForm.reset();
     }
   }
 
   editActivity() {
     if (this.activityForm.valid) {
       if (!!this.file) {
-        this.activitiesService
-          .updateActivity(this.id, this.activityForm.value)
-          .subscribe({
-            next: (res) => {
-              alert("Your activity was updated succesfully");
-              this.router.navigateByUrl("/backoffice/actividades");
-            },
-            error: (error) => {},
-          });
+        this.store.dispatch(
+          updateActivity({ id: this.id, data: this.activityForm.value })
+        );
         return;
       }
       delete this.activityForm.value.image;
-      this.activitiesService
-        .updateActivity(this.id, this.activityForm.value)
-        .subscribe({
-          next: (res) => {
-            alert("Your activity was updated succesfully");
-            this.router.navigateByUrl("/backoffice/actividades");
-          },
-          error: (e) => {},
-        });
+      this.store.dispatch(
+        updateActivity({ id: this.id, data: this.activityForm.value })
+      );
     }
   }
 }
