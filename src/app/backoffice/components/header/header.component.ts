@@ -15,4 +15,8 @@ export class HeaderComponent {
     this.openBar.emit();
   }
 
+  logOut() {
+    //here should be the service called
+  }
+
 }

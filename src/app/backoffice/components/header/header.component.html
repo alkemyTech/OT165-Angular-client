@@ -4,7 +4,7 @@
     <app-logo [routerLink]="['/home']" class="logo" [width]="100"></app-logo>
   </div>
   <ul>
-    <li class="logout">
+    <li class="logout" (click)="logOut()">
       <i class="pi pi-sign-out"></i>
       <span class="">Cerrar Sesión</span>
     </li>

@@ -6,18 +6,12 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["./side-bar.component.scss"],
 })
 export class SideBarComponent {
-
-  @Input() itemsList!: any[]
+  @Input() itemsList!: any[];
+  isOpen: boolean = false;
 
   constructor() {}
 
   menuBtnChange() {
-    let sidebar = document.querySelector(".sidebar");
-
-    if (sidebar?.classList.contains("open")) {
-      sidebar?.classList.remove("open");
-    } else {
-      sidebar?.classList.toggle("open");
-    }
+    this.isOpen = !this.isOpen;
   }
 }
