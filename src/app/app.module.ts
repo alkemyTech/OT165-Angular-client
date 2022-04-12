@@ -14,6 +14,7 @@ import { InputNumberModule } from "primeng/inputnumber";
 
 import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
+import { SchoolCampaignModule } from './landing/school-campaign/school-campaign.module';
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { metaReducers } from "./state/reducers";
@@ -41,6 +42,7 @@ import { ToysCampaignModule } from "./landing/toys-campaign/toys-campaign.module
     HttpClientModule,
     BackOfficeModule,
     PublicModule,
+    SchoolCampaignModule,
     ButtonModule,
     InputTextareaModule,
     FormsModule,

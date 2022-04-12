@@ -21,8 +21,6 @@ import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
 import { SkeletonModule } from "primeng/skeleton";
 
-
-
 //Own Components
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
@@ -40,8 +38,9 @@ import { TableComponent } from "./components/table/table.component";
 import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/testimonial-form.component";
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
+import { BackofficeComponent } from "./backoffice.component";
 import { SkeletonComponent } from "./components/skeleton/skeleton.component";
-import { MembersListComponent } from "./pages/members/members-list/members-list.component"
+import { MembersListComponent } from "./pages/members/members-list/members-list.component";
 
 import { SharedModule } from "../shared/shared.module";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
@@ -53,6 +52,7 @@ import { HeaderComponent } from './components/header/header.component';
 @NgModule({
   declarations: [
     BackofficeListComponent,
+    BackofficeComponent,
     ActivitiesListComponent,
     ActivityFormComponent,
     CategoriesFormComponent,
@@ -71,6 +71,8 @@ import { HeaderComponent } from './components/header/header.component';
     UsersListComponent,
     SpinnerComponent,
     SkeletonComponent,
+    SideBarComponent,
+    HeaderComponent,
     MembersListComponent,
   ],
   imports: [

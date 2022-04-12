@@ -17,43 +17,6 @@
 .sidebar.open{
   width: 250px;
 }
-// .sidebar .logo-details{
-//   height: 60px;
-//   display: flex;
-//   align-items: center;
-//   position: relative;
-// }
-// .sidebar .logo-details img{
-//   opacity: 0;
-//   transition: all 0.5s ease;
-// }
-// .sidebar .logo-details .logo_name{
-//   color: #fff;
-//   font-size: 20px;
-//   font-weight: 600;
-//   opacity: 0;
-//   transition: all 0.5s ease;
-// }
-// .sidebar.open .logo-details img,
-// .sidebar.open .logo-details .logo_name{
-//   width: 100px;
-//   opacity: 1;
-// }
-// .sidebar .logo-details #btn{
-//   position: absolute;
-//   top: 50%;
-//   right: 0;
-//   transform: translateY(-50%);
-//   font-size: 22px;
-//   transition: all 0.4s ease;
-//   font-size: 23px;
-//   text-align: center;
-//   cursor: pointer;
-//   transition: all 0.5s ease;
-// }
-// .sidebar.open .logo-details #btn{
-//   text-align: right;
-// }
 .sidebar i{
   color: #fff;
   height: 60px;
