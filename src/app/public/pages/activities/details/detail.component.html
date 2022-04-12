@@ -1,8 +1,20 @@
-<app-dialog></app-dialog>
-<app-progress-bar [isLoading]="isLoading"></app-progress-bar>
-<app-title
-  [title]="activity.name ?? ''"
-  [imagePath]="activity.image ?? ''"
+<app-image-curved
+  url="{{ activity.image ?? '' }}"
+  title="{{ activity.name ?? '' }}"
+  [opacity]="0.2"
 >
-</app-title>
-<main [innerHTML]="activity.description"></main>
+</app-image-curved>
+<section class="activity-page" id="activity">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="down-content text-center">
+          <h3 class="">{{ activity.name ?? '' }}</h3>
+          <p class="description">
+            {{ activity.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

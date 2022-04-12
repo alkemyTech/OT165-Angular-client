@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-xl navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light fadeInDown">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="home">
       <app-logo></app-logo>
@@ -18,77 +18,94 @@
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
           <a
-            class="me-1 mb-1 danger"
-            pButton
-            pRipple
-            label="Inicio"
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
             type="button"
             routerLink="home"
-          ></a>
+            >Inicio</a
+          >
         </li>
         <li class="nav-item">
           <a
-            class="me-1 mb-1 danger"
-            pButton
-            pRipple
-            label="Nosotros"
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
             type="button"
-            href="nosotros"
-          ></a>
+            routerLink="nosotros"
+            >Nosotros</a
+          >
         </li>
         <li class="nav-item">
           <a
-            class="me-1 mb-1 danger"
-            pButton
-            pRipple
-            label="Actividades"
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
             type="button"
-            href="/actividades"
-          ></a>
+            routerLink="/actividades"
+            >Actividades</a
+          >
         </li>
         <li class="nav-item">
           <a
-            class="me-1 mb-1 danger"
-            pButton
-            pRipple
-            label="Novedades"
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
             type="button"
-            href="#"
-          ></a>
+            >Novedades</a
+          >
         </li>
         <li class="nav-item">
           <a
-            class="me-1 mb-1 danger"
-            pButton
-            pRipple
-            label="Testimonios"
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
             type="button"
-            href="#"
-          ></a>
+            >Testimonios</a
+          >
         </li>
         <li class="nav-item">
           <a
-            class="me-1 mb-1 danger"
-            pButton
-            pRipple
-            label="Contacto"
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
             type="button"
             routerLink="contacto"
-          ></a>
+            >Contacto</a
+          >
         </li>
         <li class="nav-item">
           <a
-            class="me-1 mb-1 danger"
-            pButton
-            pRipple
-            label="Contribuye"
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
             type="button"
             routerLink="donar"
-          ></a>
+            >Contribuye</a
+          >
+        </li>
+        <!-- DROPMENU -->
+        <li class="dropBox nav-item">
+          <a class="underlineHover" >Campañas</a>
+          <!-- DROPDOWN MENU -->
+          <ul class="dropdown">
+            <li class="nav-item">
+              <a aria-current="page"
+              data-bs-toggle="collapse"
+              routerLink="toys-campaign"
+              data-bs-target=".navbar-collapse.show">Campaña Escolar</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current="page"
+              routerLink="toys-campaign"
+              data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show">Campaña Juegues</a>
+            </li>
+          </ul>
         </li>
       </ul>
       <div class="d-flex" *ngIf="!(userLoged$ | async)">
-        <a
+        <button
           class="me-1 mb-1 warning"
           aria-current="page"
           data-bs-toggle="collapse"
@@ -98,8 +115,8 @@
           pRipple
           type="button"
           routerLink="login"
-        ></a>
-        <a
+        ></button>
+        <button
           aria-current="page"
           data-bs-toggle="collapse"
           data-bs-target=".navbar-collapse.show"
@@ -109,20 +126,20 @@
           pRipple
           type="button"
           routerLink="registro"
-        ></a>
+        ></button>
       </div>
       <div *ngIf="userLoged$ | async as user">
-        <a
-        class="me-1 mb-1 warning"
-        aria-current="page"
-        data-bs-toggle="collapse"
-        data-bs-target=".navbar-collapse.show"
-        label="Log out"
-        pButton
-        pRipple
-        type="button"
-        (click)="logOut()"
-      ></a>
+        <button
+          class="me-1 mb-1 warning"
+          aria-current="page"
+          data-bs-toggle="collapse"
+          data-bs-target=".navbar-collapse.show"
+          label="Log out"
+          pButton
+          pRipple
+          type="button"
+          (click)="logOut()"
+        ></button>
       </div>
     </div>
   </div>
