@@ -39,12 +39,11 @@ export class SlidesListComponent implements OnInit {
   isLoading$!: Observable<boolean>;
   slides$: Observable<Slide[]> = new Observable();
 
-  constructor(private store: Store<AppState>, private dialogService: DialogService) {
+  constructor(private store: Store<AppState>) {
     this.store.dispatch(actions.getSlides());
   }
 
   ngOnInit(): void {
-    this.dialogService.deleteAll();
     this.isLoading$ = this.store.select(selectLoading);
     this.isLoading$.subscribe((isLoading) => {
       this.skeleton = isLoading;
