@@ -28,6 +28,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { GoogleMapsModule } from "@angular/google-maps";
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     ActivitiesListComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    TermsandconditionsComponent,
   ],
   exports: [],
   imports: [
