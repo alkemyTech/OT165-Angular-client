@@ -21,12 +21,14 @@ import { LoginFormComponent } from './pages/auth/login-form/login-form.component
 import { RegisterFormComponent } from './pages/auth/register-form/register-form.component';
 
 //Own Modules
-import { SharedModule } from '../shared/shared.module';
-import { CarouselModule } from './components/carousel/carousel.module';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { GoogleMapsModule } from '@angular/google-maps';
+import { SharedModule } from "../shared/shared.module";
+import { CarouselModule } from "./components/carousel/carousel.module";
+import { RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+
+import { GoogleMapsModule } from "@angular/google-maps";
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
 
 @NgModule({
@@ -48,7 +50,9 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
     LoginFormComponent,
     RegisterFormComponent,
   ],
-  exports: [],
+  exports: [
+    CarouselModule
+  ],
   imports: [
     CarouselModule,
     CommonModule,
@@ -60,6 +64,7 @@ import { NgxTwitterTimelineModule } from 'ngx-twitter-timeline';
     ButtonModule,
     GoogleMapsModule,
     NgxTwitterTimelineModule,
+    LeafletModule,
   ],
 })
 export class PublicModule {}

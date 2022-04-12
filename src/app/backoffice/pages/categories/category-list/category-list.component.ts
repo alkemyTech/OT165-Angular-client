@@ -1,5 +1,5 @@
-import { AppState } from './../../../../state/app.state';
-import { selectCategories } from './../../../../state/selectors/category.selectors';
+import { AppState } from "./../../../../state/app.state";
+import { selectCategories } from "./../../../../state/selectors/category.selectors";
 import { MessageService } from "primeng/api";
 import { Component, OnInit } from "@angular/core";
 import { Category } from "src/app/shared/models/Category";
@@ -31,27 +31,28 @@ export class CategoryListComponent implements OnInit {
   ngOnInit(): void {
     this.skeleton = true;
     this.getCategories();
-    this.categoriesObservable= this.store.select(selectCategories);
-    this.categoriesObservable.subscribe(res => {
+    this.categoriesObservable = this.store.select(selectCategories);
+    this.categoriesObservable.subscribe((res) => {
       this.loadTable(res);
+      this.skeleton = false;
     })
   }
 
   getCategories() {
-    this.store.dispatch(getCategories())   
-  }  
+    this.store.dispatch(getCategories());
+  }
   loadTable(response: Category[]) {
     this.categoriesData = JSON.parse(JSON.stringify(response));
     this.tableCategories = {
-      createPath: '/backoffice/categorias/crear',
-      editPath: '/backoffice/categorias/editar',
-      title: 'Categorias',
-      data: this.categoriesData
-    }
+      createPath: "/backoffice/categorias/crear",
+      editPath: "/backoffice/categorias/editar",
+      title: "Categorias",
+      data: this.categoriesData,
+    };
   }
   deleteCategory(e: number) {
     this.skeleton = true;
-    this.store.dispatch(deleteCategory({id: e}))    
+    this.store.dispatch(deleteCategory({ id: e }));
     this.skeleton = false;
   }
 }

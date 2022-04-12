@@ -1,0 +1,40 @@
+<app-school-header></app-school-header>
+<div class="container pt-5 pb-5">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h3 class="text-center">{{ date | date:'dd-MM-yyyy HH:mm' }} hs {{ place }}</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-lg-2 col-xl-3">
+      <img src="assets/images/calculadora.png" class="float-start" alt="" width="60">
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6">
+      <h4 class="text-center mt-2 mb-2">
+        Te quedan: {{ countdown.days }}d {{ countdown.hours }}h {{ countdown.minutes }}m para participar
+      </h4>
+    </div>
+    <div class="col-md-3 col-lg-2 col-xl-3">
+      <img src="assets/images/tijera.png" class="float-end" alt="" width="60">
+    </div>          
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <p class="text-center mt-2 mb-2">{{ description }}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-lg-4 col-xl-4 text-center">
+      <img src="assets/images/pincel.png" alt="" class="img3" width="100">
+    </div>
+    <div class="col-md-4 col-lg-4 col-xl-4 text-center">
+      <img src="assets/images/cuadernos.png" alt="" width="100">
+    </div>
+    <div class="col-md-4 col-lg-4 col-xl-4 text-center">
+      <img src="assets/images/lapices.png" alt="" class="img5" width="100">
+    </div>
+  </div>
+</div>

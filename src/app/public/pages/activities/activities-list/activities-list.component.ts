@@ -1,6 +1,6 @@
 import { ActivityService } from "src/app/services/activity/activity.service";
 import { Component, OnInit } from "@angular/core";
-import { Activity } from "src/app/shared/models/Activity";
+import { IActivity } from "src/app/shared/models/Activity";
 import { DialogService } from "src/app/shared/components/dialog/dialog.service";
 
 @Component({
@@ -10,8 +10,8 @@ import { DialogService } from "src/app/shared/components/dialog/dialog.service";
 })
 export class ActivitiesListComponent implements OnInit {
   isLoading!: boolean;
-  activities: Activity[] = [];
-  filteredActivities: Activity[] = [];
+  activities: IActivity[] = [];
+  filteredActivities: IActivity[] = [];
   itemCount: number = 0;
 
   constructor(

@@ -1,0 +1,66 @@
+main {
+  padding: 48px 24px;
+  // background-color: red;
+  position: relative;
+  background: transparent;
+  z-index: 10;
+}
+.reminder {
+  text-align: center;
+  color: var(--danger-text);
+  font-size: 1.3em;
+  font-weight: bold;
+  display: none;
+}
+.bold {
+  font-weight: bold;
+}
+.day, .time, .direction, .description {
+  text-align: center;
+}
+.description {
+  padding: 0 10%;
+}
+.images {
+  width: calc(100% - 48px);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  padding: 24px 0;
+  display: none;
+  justify-content: space-evenly;
+  opacity: 0.5;
+  z-index: -1;
+}
+.bow-tie, .hat, .maraca {
+  height: 50px;
+}
+.teddy-bear, .horse, .castle {
+  height: 100px;
+  align-self: flex-end;
+}
+.hat {
+  margin-top: 30px;
+  margin-left: -100px;
+  margin-right: 100px;
+}
+.horse {
+  margin-right: -100px;
+  margin-bottom: 80px;
+}
+
+@media screen and (min-width:768px){
+  .reminder {
+    display: block;
+  }
+}
+
+@media screen and (min-width:992px) {
+  .images {
+    display: flex;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  
+}
