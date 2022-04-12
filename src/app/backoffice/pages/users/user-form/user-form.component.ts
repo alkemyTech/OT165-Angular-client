@@ -1,9 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { Store } from "@ngrx/store";
 import { RxwebValidators } from "@rxweb/reactive-form-validators";
-import { User } from "src/app/backoffice/models/user";
-import { UserService } from "src/app/services/auth/user.service";
+import { Observable } from "rxjs";
+import { IUser, User } from "src/app/backoffice/models/user";
+import { checkPattern } from "src/app/public/pages/auth/custom.validators";
+import { DialogService } from "src/app/shared/components/dialog/dialog.service";
+import { addUser, updateUser } from "src/app/state/actions/users.actions";
+import { AppState } from "src/app/state/app.state";
+import { selectUser } from "src/app/state/selectors/users.selectors";
 
 @Component({
   selector: "app-user-form",
@@ -20,7 +26,10 @@ export class UserFormComponent implements OnInit {
   userForm = this.fb.group({
     name: ["", [Validators.required, Validators.minLength(4)]],
     email: ["", [Validators.required, RxwebValidators.email()]],
-    password: ["", [Validators.required]],
+    password: [
+      "",
+      [Validators.required, Validators.minLength(6), checkPattern],
+    ],
     profile_image: [
       "",
       [RxwebValidators.extension({ extensions: ["png", "jpg"] })],
@@ -35,11 +44,13 @@ export class UserFormComponent implements OnInit {
   ];
 
   file: string = "";
+  users$: Observable<User | undefined> = new Observable();
 
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private store: Store<AppState>,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -48,22 +59,22 @@ export class UserFormComponent implements OnInit {
       this.title = "Editar";
       this.button = "Guardar cambios";
       this.id = id;
-      this.getUser(id);
+      this.users$ = this.store.select(selectUser(this.id));
+      this.users$.subscribe((response) => {
+        this.getUser(response);
+      });
     } else {
       this.title = "Crear";
       this.button = "Crear usuario";
     }
   }
 
-  getUser(id: number) {
-    this.userService.getUser(id).subscribe((res: any) => {
-      this.userData = res;
-      console.log(this.userData);
-      this.setForm(this.userData);
-      if (this.userData.profile_image) {
-        this.file = this.userData.profile_image;
-      }
-    });
+  getUser(response: any) {
+    this.userData = <User>response;
+    this.setForm(this.userData);
+    if (this.userData.profile_image) {
+      this.file = this.userData.profile_image;
+    }
   }
 
   setForm(user: User) {
@@ -80,23 +91,26 @@ export class UserFormComponent implements OnInit {
   submit() {
     if (this.userForm.valid) {
       if (this.id != 0) {
-        this.userService.updateUser(this.id, this.userForm.value).subscribe(
-          (res: any) => {
-            alert("Usuario guardado correctamente");
-          },
-          (error: any) => {
-            alert("Ha ocurrido un problema al modificar!");
-          }
-        );
+        this.store.dispatch(updateUser({ user: this.userForm.value }));
+        this.messageSuccessUpdatedUser();
+        this.userForm.reset();
       } else {
-        this.userService.createUser(this.userForm.value).subscribe(
-          (res: any) => {
-            alert("Usuario creado correctamente");
-          },
-          (error: any) => {
-            alert("Ha ocurrido un problema al crear!");
-          }
-        );
+        
+        let newUser: IUser = {
+          name: this.userForm.get("name")?.value,
+          email: this.userForm.get("email")?.value,
+          password: this.userForm.get("password")?.value,
+          role_id: this.userForm.get("role_id")?.value,
+          address: this.userForm.get("address")?.value,
+        };
+
+        if (this.userForm.get("profile_image")?.value != "") {
+          newUser.profile_image = this.userForm.get("profile_image")?.value;
+        }
+
+        this.store.dispatch(addUser({ user: <User>newUser }));
+        this.messageSuccessNewUser();
+        this.userForm.reset();
       }
     }
   }
@@ -118,5 +132,23 @@ export class UserFormComponent implements OnInit {
     let reader = e.target;
     this.file = reader.result;
     this.userForm.patchValue({ profile_image: this.file });
+  }
+
+  messageSuccessNewUser() {
+    this.dialogService.add({
+      type: "success",
+      title: "Respuesta exitosa",
+      detail: "El usuario se creó correctamente.",
+      life: 3000,
+    });
+  }
+
+  messageSuccessUpdatedUser() {
+    this.dialogService.add({
+      type: "success",
+      title: "Respuesta exitosa",
+      detail: "El usuario se modificó correctamente.",
+      life: 3000,
+    });
   }
 }

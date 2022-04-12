@@ -7,6 +7,8 @@ import {
   deleteUserSuccess,
   getUsers,
   getUsersSuccess,
+  updateUser,
+  updateUserSuccess,
 } from "src/app/state/actions/users.actions";
 
 export const initialState: UsersState = { loading: false, users: [] };
@@ -29,6 +31,21 @@ export const usersReducer = createReducer(
       users: updatedUsers
     };
   }),
+  on(updateUser, (state) => {
+    return { ...state, loading: false };
+  }),
+  on(updateUserSuccess, (state, { user }) => {
+    const updatedUsers = state.users.map((u) => {
+      if (u.id == user.id) {
+        return user;
+      }
+      return u;
+    });
+    return {
+      ...state,
+      users: updatedUsers
+    };
+  }),
   on(addUser, (state) => {
     return { ...state, loading: false };
   }),
@@ -36,7 +53,7 @@ export const usersReducer = createReducer(
     const updatedUsers = [...state.users, user]
     return{
       ...state,
-      users: updatedUsers   
+      users: updatedUsers
     }
   })
 );

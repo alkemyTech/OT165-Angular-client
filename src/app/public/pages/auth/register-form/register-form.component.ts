@@ -24,14 +24,21 @@ export class RegisterFormComponent {
         [Validators.required, Validators.minLength(6), checkPattern],
       ],
       password2: ["", [Validators.required]],
+      address: ["", [Validators.required]]
     },
     {
       validator: checkPasswords("password1", "password2"),
     }
   );
+  mapOptions: google.maps.MapOptions = {
+    mapTypeId: 'hybrid',
+    center: {lat: -38.416097, lng: -63.616672},
+    disableDoubleClickZoom: false        
+  };    
+  markerPosition!: google.maps.LatLngLiteral | undefined;
 
   constructor(private store: Store<any>, private fb: FormBuilder) {}
-
+  
   get email(): AbstractControl | null {
     return this.form.get("email");
   }
@@ -44,7 +51,10 @@ export class RegisterFormComponent {
   get password2(): AbstractControl | null {
     return this.form.get("password2");
   }
-
+  get address(): AbstractControl | null {
+    return this.form.get("address");
+  }
+ 
   register(e: Event) {
     e.preventDefault();
     if (!this.form.valid) {
@@ -55,11 +65,17 @@ export class RegisterFormComponent {
       name: this.form.get("name")?.value,
       email: this.form.get("email")?.value,
       password: this.form.get("password1")?.value,
+      address: this.form.get("address")?.value
     };
     this.serviceRegister(object);
   }
 
   private async serviceRegister(object: registerSend) {
     await this.store.dispatch(registerUser({ user: object }));
+  }
+
+  addMarker(event: google.maps.MapMouseEvent) {    
+    this.markerPosition = event.latLng?.toJSON();
+    this.form.patchValue({address: `${this.markerPosition!.lat}, ${this.markerPosition!.lng}`})    
   }
 }

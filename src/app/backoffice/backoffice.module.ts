@@ -20,7 +20,6 @@ import { TableModule } from "primeng/table";
 import { ToastModule } from "primeng/toast";
 import { ToolbarModule } from "primeng/toolbar";
 import { SkeletonModule } from "primeng/skeleton";
-import { SkeletonComponent } from "./components/skeleton/skeleton.component";
 
 //Own Components
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
@@ -40,11 +39,13 @@ import { TestimonialFormComponent } from "./pages/testimonials/testimonial-form/
 import { UserFormComponent } from "./pages/users/user-form/user-form.component";
 import { UsersListComponent } from "./pages/users/users-list/users-list.component";
 import { BackofficeComponent } from "./backoffice.component";
+import { SkeletonComponent } from "./components/skeleton/skeleton.component";
+import { MembersListComponent } from "./pages/members/members-list/members-list.component";
 
 import { SharedModule } from "../shared/shared.module";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
-import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { SideBarComponent } from "./components/side-bar/side-bar.component";
 import { BackofficeListComponent } from "./pages/backoffice-list/backoffice.component";
 
 @NgModule({
@@ -70,6 +71,7 @@ import { BackofficeListComponent } from "./pages/backoffice-list/backoffice.comp
     SpinnerComponent,
     SkeletonComponent,
     SideBarComponent,
+    MembersListComponent,
   ],
   imports: [
     ProgressSpinnerModule,
