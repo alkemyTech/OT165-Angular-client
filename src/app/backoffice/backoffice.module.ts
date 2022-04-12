@@ -45,9 +45,9 @@ import { MembersListComponent } from "./pages/members/members-list/members-list.
 import { SharedModule } from "../shared/shared.module";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
-import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { SideBarComponent } from "./components/side-bar/side-bar.component";
 import { BackofficeListComponent } from "./pages/backoffice-list/backoffice.component";
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from "./components/header/header.component";
 
 @NgModule({
   declarations: [
