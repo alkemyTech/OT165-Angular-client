@@ -3,7 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { ActivityService } from "src/app/services/activity/activity.service";
 import { DialogService } from "src/app/shared/components/dialog/dialog.service";
-import { Activity } from "src/app/shared/models/Activity";
+import { IActivity } from "src/app/shared/models/Activity";
 
 @Component({
   selector: "app-detail",
@@ -13,7 +13,7 @@ import { Activity } from "src/app/shared/models/Activity";
 export class DetailComponent implements OnInit, OnDestroy {
   isLoading!: boolean;
   subscription: Subscription = new Subscription();
-  activity: Activity = {
+  activity: IActivity = {
     id: 0,
     name: "",
   };

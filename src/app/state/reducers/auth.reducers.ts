@@ -16,6 +16,13 @@ export const loginReducer = createReducer(
     on(actions.logOut,  state => {
         return state = { success: false }
     }),
+    /* login google */
+    on(actions.loginGoogle, state => {
+        return {...state}
+    }),
+    on(actions.logedGoogle,  (state, newState) => {
+        return  state = {...newState.user} 
+    }),
   );
 
   export const registerReducer = createReducer(

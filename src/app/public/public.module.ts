@@ -29,6 +29,8 @@ import { NgModule } from "@angular/core";
 import { ContentComponent } from './pages/content/content.component';
 import { LandingFooterComponent } from './components/landing-footer/landing-footer.component';
 
+import { GoogleMapsModule } from "@angular/google-maps";
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { LandingFooterComponent } from './components/landing-footer/landing-foot
     InputNumberModule,
     InputTextModule,
     ButtonModule,
+    GoogleMapsModule,
+    LeafletModule,
   ],
 })
 export class PublicModule {}
