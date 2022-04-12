@@ -1,0 +1,9 @@
+<section class="home-section">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let control of dashboard" class="col-12 col-sm-12 col-md-6 col-lg-3 mt-5 mb-5">
+        <app-control [control]="control"></app-control>
+      </div>
+    </div>
+  </div>
+</section>
