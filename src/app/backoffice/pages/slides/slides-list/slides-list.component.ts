@@ -7,6 +7,7 @@ import {
   Columns,
   TableData,
 } from "src/app/backoffice/models/TableData.interface";
+import { DialogService } from "src/app/shared/components/dialog/dialog.service";
 import * as actions from "src/app/state/actions/slides.actions";
 import { AppState } from "src/app/state/app.state";
 import {
@@ -38,11 +39,12 @@ export class SlidesListComponent implements OnInit {
   isLoading$!: Observable<boolean>;
   slides$: Observable<Slide[]> = new Observable();
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private dialogService: DialogService) {
     this.store.dispatch(actions.getSlides());
   }
 
   ngOnInit(): void {
+    this.dialogService.deleteAll();
     this.isLoading$ = this.store.select(selectLoading);
     this.isLoading$.subscribe((isLoading) => {
       this.skeleton = isLoading;
