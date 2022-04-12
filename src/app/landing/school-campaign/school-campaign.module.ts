@@ -1,3 +1,4 @@
+import { SchoolHeaderComponent } from './components/school-header/school-header.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,6 +10,7 @@ import { ContentComponent } from './components/content/content.component';
   declarations: [
     SchoolCampaignComponent,
     ContentComponent,
+    SchoolHeaderComponent
   ],
   imports: [
     CommonModule,
