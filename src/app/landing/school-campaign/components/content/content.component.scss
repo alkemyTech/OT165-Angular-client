@@ -1,0 +1,34 @@
+@media screen and (max-width: 576px) {
+  h4 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .container img {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    background-color: rgba(188, 220, 254, 0.2) !important;
+  }
+}
+
+h4{
+  color: var(--danger);
+}
+
+.container img{
+  opacity: 1;
+  z-index: -1;
+}
+
+.float-start, .img3{
+  transform: rotate(20deg);
+}
+
+.float-end, .img5{
+  transform: rotate(-20deg);
+}
