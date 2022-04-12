@@ -49,7 +49,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     LoginFormComponent,
     RegisterFormComponent,
   ],
-  exports: [],
+  exports: [
+    CarouselModule
+  ],
   imports: [
     CarouselModule,
     CommonModule,

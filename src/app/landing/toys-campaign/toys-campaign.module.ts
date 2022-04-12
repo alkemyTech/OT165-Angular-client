@@ -3,15 +3,13 @@ import { CommonModule } from "@angular/common";
 
 import { ToysCampaignRoutingModule } from "./toys-campaign-routing.module";
 import { HeaderComponent } from "./components/header/header.component";
-import { ToysCampaignComponent } from "./toys-campaign.component";
 import { SharedModule } from "src/app/shared/shared.module";
 import { FooterComponent } from "./components/footer/footer.component";
 import { ToysPage } from "./toys-page/toys-page.component";
-import { PublicComponent } from "src/app/public/public.component";
+import { PublicModule } from "src/app/public/public.module";
 
 @NgModule({
   declarations: [
-    ToysCampaignComponent,
     HeaderComponent,
     FooterComponent,
     ToysPage,
@@ -20,7 +18,7 @@ import { PublicComponent } from "src/app/public/public.component";
     CommonModule,
     ToysCampaignRoutingModule,
     SharedModule,
-    PublicComponent,
+    PublicModule
   ],
 })
 export class ToysCampaignModule {}
