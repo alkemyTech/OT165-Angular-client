@@ -1,6 +1,6 @@
 
-import { Component, Input, OnInit } from '@angular/core';
-import { Activity } from 'src/app/shared/models/Activity';
+import { Component, Input} from '@angular/core';
+import { IActivity } from 'src/app/shared/models/Activity';
 
 @Component({
   selector: 'app-activity-card',
@@ -9,7 +9,7 @@ import { Activity } from 'src/app/shared/models/Activity';
 })
 export class ActivityCardComponent {
 
-  @Input() activity: Activity = {} as Activity;
+  @Input() activity: IActivity = {} as IActivity;
   constructor() { }
 
 }
