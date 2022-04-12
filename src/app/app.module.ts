@@ -14,7 +14,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 
 import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
-import { CampanaEscolarModule } from './landing/campana-escolar/campana-escolar.module';
+
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { metaReducers } from "./state/reducers";
@@ -30,6 +30,7 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { SlidesEffects } from "./state/effects/slides.effects";
 import { CategoryEffects } from './state/effects/category.effects';
 import { MembersEffects } from './state/effects/members.effects';
+import { SchoolCampaignModule } from './landing/school-campaign/school-campaign.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,7 +41,7 @@ import { MembersEffects } from './state/effects/members.effects';
     HttpClientModule,
     BackOfficeModule,
     PublicModule,
-    CampanaEscolarModule,
+    SchoolCampaignModule,
     ButtonModule,
     InputTextareaModule,
     FormsModule,

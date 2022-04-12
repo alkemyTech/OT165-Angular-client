@@ -17,4 +17,4 @@ import { SchoolHeaderComponent } from './components/school-header/school-header.
     SchoolCampaignRoutingModule
   ]
 })
-export class CampanaEscolarModule { }
+export class SchoolCampaignModule { }
