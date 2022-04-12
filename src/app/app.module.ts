@@ -16,11 +16,12 @@ import { BackOfficeModule } from "./backoffice/backoffice.module";
 import { PublicModule } from "./public/public.module";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
-import { reducers, metaReducers } from "./state/reducers";
+import { metaReducers } from "./state/reducers";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
 import { REDUCERS } from "./state/app.state";
 import { AuthEffects } from "./state/effects/auth.effects";
+import { ActivityEffects } from "./state/effects/activity.effects";
 import { UsersEffects } from "src/app/state/effects/users.effects";
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { provideAuth, getAuth } from "@angular/fire/auth";
@@ -35,7 +36,6 @@ import { ToysCampaignModule } from "./landing/toys-campaign/toys-campaign.module
   imports: [
     ToysCampaignModule,
     BrowserModule,
-    BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
@@ -53,6 +53,7 @@ import { ToysCampaignModule } from "./landing/toys-campaign/toys-campaign.module
       SlidesEffects,
       MembersEffects,
       CategoryEffects,
+      ActivityEffects,
     ]),
     StoreModule.forRoot(REDUCERS, {
       metaReducers,

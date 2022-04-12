@@ -7,8 +7,8 @@ import { NotFoundComponent } from "./shared/components/notFound/not-found.compon
 
 const routes: Routes = [
   {
-    path: "juguetes",
-    redirectTo: "/juguetes",
+    path: "toys",
+    redirectTo: "/toys",
     pathMatch: "full",
   },
   {
