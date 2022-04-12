@@ -4,7 +4,7 @@ import { SchoolCampaignComponent } from './school-campaign.component';
 
 const routes: Routes = [
   {
-    path: "escuelas",
+    path: "school-campaign",
     component: SchoolCampaignComponent
   }
 ];

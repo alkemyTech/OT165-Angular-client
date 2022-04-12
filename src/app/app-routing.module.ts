@@ -12,8 +12,8 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: "escuelas",
-    redirectTo: "/escuelas",
+    path: "school-campaign",
+    redirectTo: "/school-campaign",
     pathMatch: "full",
   },
   {
