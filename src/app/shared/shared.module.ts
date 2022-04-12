@@ -40,6 +40,7 @@ import { NotFoundComponent } from './components/notFound/not-found.component';
     ConfirmDialogModule,
   ],
   exports: [
+    MessageComponent,
     LogoComponent,
     TitleComponent,
     CardComponent,
