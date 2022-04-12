@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
   AbstractControl,
   FormBuilder,
@@ -7,7 +7,7 @@ import {
 } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { loginSend } from "src/app/shared/models/auth/loginSend.interface";
-import { loginUser } from "../../../../state/actions/auth.actions";
+import { loginGoogle, loginUser } from "../../../../state/actions/auth.actions";
 import { checkPattern } from "../custom.validators";
 
 @Component({
@@ -15,7 +15,7 @@ import { checkPattern } from "../custom.validators";
   templateUrl: "./login-form.component.html",
   styleUrls: ["./login-form.component.scss"],
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
   formBuilder: FormBuilder = new FormBuilder();
   form: FormGroup = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
@@ -25,7 +25,13 @@ export class LoginFormComponent {
     ],
   });
 
-  constructor(private store: Store<any>) {}
+  constructor(
+    private store: Store<any>,
+  ) {}
+
+  ngOnInit(): void {
+
+  }
 
   get email(): AbstractControl | null {
     return this.form.get("email");
@@ -34,7 +40,7 @@ export class LoginFormComponent {
     return this.form.get("password");
   }
 
-  login(e: Event) {
+  public login(e: Event) {
     e.preventDefault();
     if (!this.form.valid) {
       this.form.markAllAsTouched();
@@ -45,6 +51,10 @@ export class LoginFormComponent {
       password: this.form.get("password")?.value,
     };
     this.serviceLogin(object);
+  }
+
+  public loginGoogle() {
+    this.store.dispatch(loginGoogle())
   }
 
   private async serviceLogin(object: loginSend) {
