@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SchoolCampaignComponent } from './school-campaign.component';
 
-
 const routes: Routes = [
   {
     path: "school-campaign",
