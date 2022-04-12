@@ -30,7 +30,7 @@ import { ActivitiesListComponent } from "./pages/activities/activities-list/acti
 import { ActivityFormComponent } from "./pages/activities/activity-form/activity-form.component";
 import { CategoriesFormComponent } from "./pages/categories/categories-form/categories-form.component";
 import { CategoryListComponent } from "./pages/categories/category-list/category-list.component";
-import { ControlComponent } from "./pages/backoffice/control/control.component";
+import { ControlComponent } from "./components/control/control.component";
 import { HomeFormComponent } from "./pages/home/home-form/home-form.component";
 import { MembersComponent } from "./pages/members/members.component";
 import { NewsFormComponent } from "./pages/news/news-form/news-form.component";
