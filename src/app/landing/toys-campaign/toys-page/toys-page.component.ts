@@ -7,11 +7,11 @@ type Remainder = {
 };
 
 @Component({
-  selector: "app-content",
-  templateUrl: "./content.component.html",
-  styleUrls: ["./content.component.scss"],
+  selector: "app-toys-page",
+  templateUrl: "./toys-page.component.html",
+  styleUrls: ["./toys-page.component.scss"],
 })
-export class ContentComponent implements OnInit {
+export class ToysPage implements OnInit {
   location: string = 'Calle Esmeralda Nº 351, CABA';
   dueDate: Date = new Date("2022-12-08T12:15");
   remainder!: Remainder;
