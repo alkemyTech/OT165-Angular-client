@@ -2,11 +2,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">Términos y condiciones</h5>
-      <button
-        type="button"
-        class="btn-close"
-        (click)="close()"
-      ></button>
+      <button type="button" class="btn-close" (click)="close()"></button>
     </div>
     <div class="modal-body">
       <pdf-viewer
@@ -19,13 +15,21 @@
     </div>
     <div class="modal-footer">
       <button
-        type="button"
-        class="btn btn-secondary"
         (click)="close()"
-      >
-        Cancelar
-      </button>
-      <button type="button" class="btn btn-primary" (click)="agree()">Aceptar</button>
+        pButton
+        pRipple
+        type="button"
+        label="Cancelar"
+        class="warning me-2"
+      ></button>
+      <button
+        (click)="agree()"
+        pButton
+        pRipple
+        type="button"
+        label="Aceptar"
+        class="primary"
+      ></button>
     </div>
   </div>
 </div>

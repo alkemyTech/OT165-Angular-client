@@ -83,12 +83,4 @@ export class RegisterFormComponent {
       address: `${this.markerPosition!.lat}, ${this.markerPosition!.lng}`,
     });
   }
-
-  hidden(e: boolean) {
-    this.hide = e;
-  }
-
-  agree(e: boolean) {
-    this.accept = e;
-  }
 }

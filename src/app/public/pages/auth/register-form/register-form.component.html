@@ -135,16 +135,12 @@
       >
         <div *ngIf="accept; then checked; else empty"></div>
         <ng-template #checked>
-          <input type="checkbox" id="flexCheckChecked" checked disabled />
+          <input type="checkbox" id="flexCheckChecked" checked />
         </ng-template>
         <ng-template #empty>
-          <input
-            type="checkbox"
-            id="flexCheckChecked"
-            disabled
-          />
+          <input type="checkbox" id="flexCheckChecked" />
         </ng-template>
-        <a (click)="hide = false">Terminos y condiciones</a>
+        <a (click)="hide = false">leer <strong>Terminos y condiciones</strong></a>
       </div>
       <button
         (click)="register($event)"
@@ -164,8 +160,8 @@
   <div id="pdf" class="row justify-content-center align-items-center">
     <div class="col col-sm-8">
       <app-termsandconditions
-        (accept)="agree($event)"
-        (hide)="hidden($event)"
+        (accept)="accept = $event"
+        (hide)="hide = $event"
       ></app-termsandconditions>
     </div>
   </div>
