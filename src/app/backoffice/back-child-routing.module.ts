@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { BackofficeListComponent } from "./pages/backoffice-list/backoffice.component";
+import { BackofficeListComponent } from "./pages/backoffice-list/backoffice-list.component";
 import { ActivitiesListComponent } from './pages/activities/activities-list/activities-list.component';
 import { ActivityFormComponent } from './pages/activities/activity-form/activity-form.component';
-import { BackofficeComponent } from './backoffice.component';
 import { CategoriesFormComponent } from './pages/categories/categories-form/categories-form.component';
 import { CategoryListComponent } from './pages/categories/category-list/category-list.component';
 import { HomeFormComponent } from './pages/home/home-form/home-form.component';
@@ -35,7 +34,6 @@ const childRoutes: Routes = [
     component: OrganizationComponent,
     pathMatch: 'full',
   },
-  { path: "", component: BackofficeListComponent },
   { path: 'home-form', component: HomeFormComponent },
   { path: 'slides/:id', component: SlidesFormComponent },
   { path: 'slides', component: SlidesListComponent },
@@ -45,7 +43,7 @@ const childRoutes: Routes = [
   { path: 'slides', component: SlidesListComponent },
   { path: 'usuario', component: UserFormComponent },
   { path: 'usuario/:id', component: UserFormComponent },
-  { path: '', component: BackofficeComponent },
+  { path: "", component: BackofficeListComponent },
 ];
 
 @NgModule({

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-backoffice',
-  templateUrl: './backoffice.component.html',
-  styleUrls: ['./backoffice.component.scss']
+  selector: 'app-backoffice-list',
+  templateUrl: './backoffice-list.component.html',
+  styleUrls: ['./backoffice-list.component.scss']
 })
 export class BackofficeListComponent{
   dashboard!:Array<any>;

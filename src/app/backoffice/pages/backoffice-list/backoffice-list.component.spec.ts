@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BackofficeComponent } from './backoffice.component';
+import { BackofficeListComponent } from './backoffice-list.component';
 
-describe('BackofficeComponent', () => {
-  let component: BackofficeComponent;
-  let fixture: ComponentFixture<BackofficeComponent>;
+describe('BackofficeListComponent', () => {
+  let component: BackofficeListComponent;
+  let fixture: ComponentFixture<BackofficeListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BackofficeComponent ]
+      declarations: [ BackofficeListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BackofficeComponent);
+    fixture = TestBed.createComponent(BackofficeListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
