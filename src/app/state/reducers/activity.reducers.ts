@@ -9,6 +9,8 @@ import {
   getActivitiesSuccess,
   getActivity,
   getActivitySuccess,
+  getSpecificActivities,
+  getSpecificActivitiesSuccess,
   updateActivity,
   updateActivitySuccess,
 } from "../actions/activity.actions";
@@ -28,6 +30,14 @@ export const activityReducer = createReducer(
   }),
 
   on(getActivitiesSuccess, (state, { activities }) => {
+    return { ...state, activities: activities, loading: false };
+  }),
+
+  //Get Specific Activities-------------------------------------
+  on(getSpecificActivities, (state) => {
+    return { ...state, activity: [], loading: true };
+  }),
+  on(getSpecificActivitiesSuccess, (state, { activities }) => {
     return { ...state, activities: activities, loading: false };
   }),
 

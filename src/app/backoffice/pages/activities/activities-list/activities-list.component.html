@@ -1,7 +1,7 @@
 <main>
-  <app-skeleton *ngIf="skeleton" [columns]="titlesCol"></app-skeleton>
+  <!-- <app-skeleton *ngIf="skeleton" [columns]="titlesCol"></app-skeleton> -->
   <app-table
-    *ngIf="!skeleton"
+
     [items]="tableActivities"
     [columns]="titlesCol"
     (deleteItemById)="deleteUser($event)"

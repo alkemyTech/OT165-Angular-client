@@ -3,9 +3,21 @@ import { Activity } from "src/app/backoffice/models/activity";
 import { IActivity } from "src/app/shared/models/Activity";
 
 //Get Activities-------------------------------------------------------
-export const getActivities = createAction("[Activity] Get activities");
+export const getActivities = createAction(
+  "[Activity] Get activities",
+);
 
 export const getActivitiesSuccess = createAction(
+  "[Activity] Get activities success",
+  props<{ activities: IActivity[] }>()
+);
+
+export const getSpecificActivities = createAction(
+  "[Activity] Get activities",
+  props<{ key: string }>()  
+);
+
+export const getSpecificActivitiesSuccess = createAction(
   "[Activity] Get activities success",
   props<{ activities: IActivity[] }>()
 );

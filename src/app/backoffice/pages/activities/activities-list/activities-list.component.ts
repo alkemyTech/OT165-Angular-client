@@ -11,6 +11,7 @@ import {
 import {
   deleteActivity,
   getActivities,
+  getSpecificActivities,
 } from "src/app/state/actions/activity.actions";
 import { AppState } from "src/app/state/app.state";
 import { selectListActivities, selectLoading } from "src/app/state/selectors/activity.selectors";
@@ -36,7 +37,6 @@ export class ActivitiesListComponent implements OnInit {
     title: "Actividad",
     data: []
   };
-  data: Activity[] = [];
   subject: Subject<any> = new Subject<any>();
 
   constructor(private store: Store<AppState>) {}
@@ -50,7 +50,6 @@ export class ActivitiesListComponent implements OnInit {
     this.store.dispatch(getActivities());
     this.activities$ = this.store.select(selectListActivities);
     this.activities$.subscribe((response) => {
-      this.data = response;
       this.refreshData(response);
     });
     this.subject.pipe(debounceTime(700))
@@ -81,14 +80,10 @@ export class ActivitiesListComponent implements OnInit {
   }
 
   filter(e: string) {
-    if (e !== '') {
-      let regExp = new RegExp(e.trim(), 'i');
-      let data = this.data.filter(el => {
-        return regExp.test(el.description.trim());
-      });
-      this.refreshData(data);
+    if (e.length > 2) {
+      this.store.dispatch(getSpecificActivities({ key: e }));
     } else {
-      this.refreshData(this.data);
+      this.store.dispatch(getActivities());
     }
   }
 }
