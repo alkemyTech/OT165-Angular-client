@@ -25,7 +25,7 @@ import { selectListActivities, selectLoading } from "src/app/state/selectors/act
 export class ActivitiesListComponent implements OnInit {
   activities$: Observable<any> = new Observable();
   isLoading$!: Observable<boolean>;
-  skeleton!: boolean;
+  isLoading!: boolean;
   titlesCol: Columns[] = [
     { field: "name", header: "Nombre" },
     { field: "image", header: "Imagen" },
@@ -42,10 +42,10 @@ export class ActivitiesListComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.skeleton = true;
+    this.isLoading = true;
     this.isLoading$ = this.store.select(selectLoading);
     this.isLoading$.subscribe((isLoading) => {
-      this.skeleton = isLoading;
+      this.isLoading = isLoading;
     });
     this.store.dispatch(getActivities());
     this.activities$ = this.store.select(selectListActivities);

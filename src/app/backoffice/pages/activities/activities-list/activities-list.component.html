@@ -1,10 +1,9 @@
 <main>
-  <!-- <app-skeleton *ngIf="skeleton" [columns]="titlesCol"></app-skeleton> -->
   <app-table
-
     [items]="tableActivities"
     [columns]="titlesCol"
     (deleteItemById)="deleteUser($event)"
     (keyword)="filterDebounce($event)"
+    [isLoading]="isLoading"
   ></app-table>
 </main>
