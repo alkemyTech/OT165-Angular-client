@@ -19,7 +19,7 @@ import { SliderComponent } from "./components/slider/slider.component";
 import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
-import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
+import { TermsandconditionsComponent } from "./components/termsandconditions/termsandconditions.component";
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
@@ -27,9 +27,11 @@ import { CarouselModule } from "./components/carousel/carousel.module";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+
 import { GoogleMapsModule } from "@angular/google-maps";
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import {PdfViewerModule} from "ng2-pdf-viewer";
+import { LeafletModule } from "@asymmetrik/ngx-leaflet";
+import { PdfViewerModule } from "ng2-pdf-viewer";
+import { NgxTwitterTimelineModule } from "ngx-twitter-timeline";
 
 @NgModule({
   declarations: [
@@ -51,7 +53,7 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
     RegisterFormComponent,
     TermsandconditionsComponent,
   ],
-  exports: [],
+  exports: [CarouselModule],
   imports: [
     CarouselModule,
     CommonModule,
@@ -62,6 +64,7 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
     InputTextModule,
     ButtonModule,
     GoogleMapsModule,
+    NgxTwitterTimelineModule,
     LeafletModule,
     PdfViewerModule,
   ],

@@ -1,17 +1,14 @@
-<div class="sidebar">
-    <div class="logo-details">
-      <img [routerLink]="['/home']" src="../../../../assets/images/logo.png" alt="">
-        <div class="logo_name">Somos más</div>
-        <i class='pi pi-align-justify' id="btn" ></i>
-    </div>
-    <ul class="nav-list">
-      <li *ngFor="let item of itemsList">
-        <a [routerLink]="[item.path]">
-          <i class="{{item.icon}}"></i>
-          <span class="links_name">{{item.title}}</span>
-        </a>
-         <span class="tooltip">{{item.title}}</span>
-      </li>
+<app-header (openBar)="menuBtnChange()"></app-header>
 
-    </ul>
-  </div>
+<div [ngClass]="{'sidebar': true, 'open': isOpen}">
+  <ul class="nav-list">
+    <li *ngFor="let item of itemsList">
+      <a [routerLink]="[item.path]">
+        <i class="{{item.icon}}"></i>
+        <span class="links_name">{{item.title}}</span>
+      </a>
+      <span class="tooltip">{{item.title}}</span>
+    </li>
+
+  </ul>
+</div>

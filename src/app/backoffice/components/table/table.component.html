@@ -54,7 +54,7 @@
               <img [src]="item.image" [alt]="item.name" />
             </td>
             <td *ngIf="col.field == 'description'">
-              <p class="description">{{ item.description }}</p>
+              <div class="description" [innerHTML]="item.description"></div>
             </td>
             <td
               *ngIf="col.field == 'order' && (item.order || item.order === 0)"
