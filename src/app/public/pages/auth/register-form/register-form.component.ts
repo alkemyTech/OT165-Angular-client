@@ -1,9 +1,5 @@
 import { Component } from "@angular/core";
-import {
-  AbstractControl,
-  FormBuilder,
-  Validators,
-} from "@angular/forms";
+import { AbstractControl, FormBuilder, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { registerSend } from "src/app/shared/models/auth/registerSend.interface";
 import { registerUser } from "src/app/state/actions/auth.actions";
@@ -15,6 +11,9 @@ import { checkPattern, checkPasswords } from "../custom.validators";
   styleUrls: ["./register-form.component.scss"],
 })
 export class RegisterFormComponent {
+  hide: boolean = true;
+  agree!: boolean;
+
   form = this.fb.group(
     {
       name: ["", [Validators.required]],
@@ -24,21 +23,21 @@ export class RegisterFormComponent {
         [Validators.required, Validators.minLength(6), checkPattern],
       ],
       password2: ["", [Validators.required]],
-      address: ["", [Validators.required]]
+      address: ["", [Validators.required]],
     },
     {
       validator: checkPasswords("password1", "password2"),
     }
   );
   mapOptions: google.maps.MapOptions = {
-    mapTypeId: 'hybrid',
-    center: {lat: -38.416097, lng: -63.616672},
-    disableDoubleClickZoom: false        
-  };    
+    mapTypeId: "hybrid",
+    center: { lat: -38.416097, lng: -63.616672 },
+    disableDoubleClickZoom: false,
+  };
   markerPosition!: google.maps.LatLngLiteral | undefined;
 
   constructor(private store: Store<any>, private fb: FormBuilder) {}
-  
+
   get email(): AbstractControl | null {
     return this.form.get("email");
   }
@@ -54,7 +53,7 @@ export class RegisterFormComponent {
   get address(): AbstractControl | null {
     return this.form.get("address");
   }
- 
+
   register(e: Event) {
     e.preventDefault();
     if (!this.form.valid) {
@@ -65,17 +64,19 @@ export class RegisterFormComponent {
       name: this.form.get("name")?.value,
       email: this.form.get("email")?.value,
       password: this.form.get("password1")?.value,
-      address: this.form.get("address")?.value
+      address: this.form.get("address")?.value,
     };
     this.serviceRegister(object);
   }
 
   private async serviceRegister(object: registerSend) {
-    await this.store.dispatch(registerUser({ user: object }));
+    this.store.dispatch(registerUser({ user: object }));
   }
 
-  addMarker(event: google.maps.MapMouseEvent) {    
+  addMarker(event: google.maps.MapMouseEvent) {
     this.markerPosition = event.latLng?.toJSON();
-    this.form.patchValue({address: `${this.markerPosition!.lat}, ${this.markerPosition!.lng}`})    
+    this.form.patchValue({
+      address: `${this.markerPosition!.lat}, ${this.markerPosition!.lng}`,
+    });
   }
 }

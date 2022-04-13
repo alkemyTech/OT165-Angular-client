@@ -129,6 +129,7 @@
           >Debe marcar una dirección en el mapa.
         </small>
       </div>
+      <button (click)="hide = false">Terminos y condiciones</button>
       <button
         (click)="register($event)"
         pButton
@@ -140,9 +141,16 @@
       <a routerLink="/login">Ingresar</a>
     </form>
   </main>
-  <div id="modal" class="d-none justify-content-center align-items-center">
-    <div>
-      <app-termsandconditions></app-termsandconditions>
+</div>
+
+<div *ngIf="hide; else show"></div>
+<ng-template #show>
+  <div id="pdf" class="row justify-content-center align-items-center">
+    <div class="col col-sm-8">
+      <app-termsandconditions
+        (hide)="hide = $event"
+        (agree)="agree=!!$event"
+      ></app-termsandconditions>
     </div>
   </div>
-</div>
+</ng-template>

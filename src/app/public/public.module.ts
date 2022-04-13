@@ -19,6 +19,7 @@ import { SliderComponent } from "./components/slider/slider.component";
 import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
+import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
@@ -28,7 +29,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { GoogleMapsModule } from "@angular/google-maps";
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { TermsandconditionsComponent } from './components/termsandconditions/termsandconditions.component';
+import {PdfViewerModule} from "ng2-pdf-viewer";
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { TermsandconditionsComponent } from './components/termsandconditions/ter
     ButtonModule,
     GoogleMapsModule,
     LeafletModule,
+    PdfViewerModule,
   ],
 })
 export class PublicModule {}
