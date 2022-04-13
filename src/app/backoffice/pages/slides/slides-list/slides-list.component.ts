@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { Observable, Subscription } from "rxjs";
+import { Observable, Subject, Subscription } from "rxjs";
+import { debounceTime } from "rxjs/operators";
 import { Slide } from "src/app/backoffice/models/slide.interface";
 import {
   Columns,
@@ -34,7 +35,8 @@ export class SlidesListComponent implements OnInit {
     title: "Slides",
     data: []
   };
-
+  data: Slide[] = [];
+  subject: Subject<any> = new Subject<any>();
   skeleton: boolean = true;
   isLoading$!: Observable<boolean>;
   slides$: Observable<Slide[]> = new Observable();
@@ -50,11 +52,36 @@ export class SlidesListComponent implements OnInit {
     });
     this.slides$ = this.store.select(selectSlidesListWithOrder);
     this.slides$.subscribe((response) => {
-      this.items = {...this.items, data: response}
+      this.data = response;
+      this.refreshData(response);
     });
+    this.subject.pipe(debounceTime(700))
+    .subscribe((key: string) => {
+      this.filter(key);
+    });
+  }
+
+  refreshData(data: Slide[]) {
+    this.items = {...this.items, data: data};
   }
 
   deleteSlides(event: number) {
     this.store.dispatch(actions.deleteSlide({ id: event }));
+  }
+
+  filterDebounce(key: string) {
+    this.subject.next(key);
+  }
+
+  filter(e: string) {
+    if (e !== '') {
+      let regExp = new RegExp(e.trim(), 'i');
+      let data = this.data.filter(el => {
+        return regExp.test(el.description.trim()) || regExp.test(el.name.trim())
+      });
+      this.refreshData(data);
+    } else {
+      this.refreshData(this.data);
+    }
   }
 }

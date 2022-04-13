@@ -17,6 +17,8 @@ export class TableComponent  {
   /* Al hacer click en eliminar un item se envia el ID del item al componente que implemente la tabla */
   @Output() deleteItemById = new EventEmitter<number>();
   @ViewChild(ConfirmDialogComponent, {static: true}) dialog!: ConfirmDialogComponent;
+  key: string = '';
+  @Output() keyword: EventEmitter<string> = new EventEmitter();
   
   constructor() {}
   
@@ -26,5 +28,8 @@ export class TableComponent  {
   deleteItem(id: number) {
     this.items.data = this.items.data.filter(val => val.id !== id);
     this.deleteItemById.emit(id);    
+  }
+  toggleInput(){
+    this.keyword.emit(this.key);
   }
 }

@@ -1,15 +1,21 @@
 <div class="wrapper">
   <div class="card">
     <p-toolbar styleClass="mb-4">
-      <ng-template pTemplate="left">
+      <div class="ui-toolbar-group-left">
         <button
-          pButton
-          pRipple
-          label="Nuevo"
-          icon="pi pi-plus"
-          class="p-button-success mr-2"
+        pButton
+        pRipple
+        label="Nuevo"
+        icon="pi pi-plus"
+        class="p-button-success mr-2"
         ></button>
-      </ng-template>
+      </div>
+      <div class="ui-toolbar-group-right">
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" placeholder="Search keyword" />
+        </span>
+      </div>
     </p-toolbar>
     <p-table
       [rows]="5"
