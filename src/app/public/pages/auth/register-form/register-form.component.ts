@@ -12,7 +12,7 @@ import { checkPattern, checkPasswords } from "../custom.validators";
 })
 export class RegisterFormComponent {
   hide: boolean = true;
-  agree!: boolean;
+  accept: boolean = false;
 
   form = this.fb.group(
     {
@@ -60,17 +60,21 @@ export class RegisterFormComponent {
       this.form.markAllAsTouched();
       return;
     }
-    let object: registerSend = {
-      name: this.form.get("name")?.value,
-      email: this.form.get("email")?.value,
-      password: this.form.get("password1")?.value,
-      address: this.form.get("address")?.value,
-    };
-    this.serviceRegister(object);
+    if (this.accept) {
+      let object: registerSend = {
+        name: this.form.get("name")?.value,
+        email: this.form.get("email")?.value,
+        password: this.form.get("password1")?.value,
+        address: this.form.get("address")?.value,
+      };
+      this.serviceRegister(object);
+      return;
+    }
+    this.hide = false;
   }
 
   private async serviceRegister(object: registerSend) {
-    this.store.dispatch(registerUser({ user: object }));
+    await this.store.dispatch(registerUser({ user: object }));
   }
 
   addMarker(event: google.maps.MapMouseEvent) {
@@ -78,5 +82,13 @@ export class RegisterFormComponent {
     this.form.patchValue({
       address: `${this.markerPosition!.lat}, ${this.markerPosition!.lng}`,
     });
+  }
+
+  hidden(e: boolean) {
+    this.hide = e;
+  }
+
+  agree(e: boolean) {
+    this.accept = e;
   }
 }

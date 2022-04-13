@@ -6,8 +6,8 @@ import { Component, EventEmitter, OnInit, Output } from "@angular/core";
   styleUrls: ["./termsandconditions.component.scss"],
 })
 export class TermsandconditionsComponent implements OnInit {
-  @Output() hide = new EventEmitter<boolean>();
   @Output() accept = new EventEmitter<boolean>();
+  @Output() hide = new EventEmitter<boolean>();
 
   pdfSrc = "assets/pdf/pdf-test.pdf";
 
@@ -16,6 +16,7 @@ export class TermsandconditionsComponent implements OnInit {
   ngOnInit(): void {}
 
   close() {
+    this.accept.emit(false);
     this.hide.emit(true);
   }
 

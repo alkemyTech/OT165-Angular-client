@@ -129,7 +129,23 @@
           >Debe marcar una dirección en el mapa.
         </small>
       </div>
-      <button (click)="hide = false">Terminos y condiciones</button>
+      <div
+        (click)="hide = false"
+        class="row d-flex align-items-center justify-content-center"
+      >
+        <div *ngIf="accept; then checked; else empty"></div>
+        <ng-template #checked>
+          <input type="checkbox" id="flexCheckChecked" checked disabled />
+        </ng-template>
+        <ng-template #empty>
+          <input
+            type="checkbox"
+            id="flexCheckChecked"
+            disabled
+          />
+        </ng-template>
+        <a (click)="hide = false">Terminos y condiciones</a>
+      </div>
       <button
         (click)="register($event)"
         pButton
@@ -148,8 +164,8 @@
   <div id="pdf" class="row justify-content-center align-items-center">
     <div class="col col-sm-8">
       <app-termsandconditions
-        (hide)="hide = $event"
-        (agree)="agree=!!$event"
+        (accept)="agree($event)"
+        (hide)="hidden($event)"
       ></app-termsandconditions>
     </div>
   </div>
