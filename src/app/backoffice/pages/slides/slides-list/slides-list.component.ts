@@ -7,6 +7,7 @@ import {
   Columns,
   TableData,
 } from "src/app/backoffice/models/TableData.interface";
+import { DialogService } from "src/app/shared/components/dialog/dialog.service";
 import * as actions from "src/app/state/actions/slides.actions";
 import { AppState } from "src/app/state/app.state";
 import {
