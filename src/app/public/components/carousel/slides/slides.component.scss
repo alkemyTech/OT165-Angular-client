@@ -1,20 +1,27 @@
 img {
-	border-radius: 0px 0px 12px 12px;
-	filter: brightness(80%);
-	object-fit: cover;
-	object-position: center;
-	height: 50vh;
-	width: 100%;
-	overflow: hidden;
+  border-radius: 0px 0px 12px 12px;
+  filter: brightness(80%);
+  object-fit: cover;
+  object-position: center;
+  height: 50vh;
+  width: 100%;
+  overflow: hidden;
 }
 
-h2{
-	font-size: 3em;
-	font-weight: 700;
-	line-height: 1;
+h2 {
+  font-size: 3em;
+  font-weight: 700;
+  line-height: 1;
 }
-h3{
-	font-size: 2em;
-	font-weight: 600;
-	margin: 0;
+h3 {
+  font-size: 2em;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* 320px — 480px: Mobile devices; 481px — 768px: iPads, Tablets*/
+@media (min-width: 320px) and (max-width: 768px) {
+  .carousel-caption {
+    opacity: 0 !important;
+  }
 }

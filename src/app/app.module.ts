@@ -41,7 +41,6 @@ import { ToysCampaignModule } from "./landing/toys-campaign/toys-campaign.module
     AppRoutingModule,
     HttpClientModule,
     BackOfficeModule,
-    PublicModule,
     SchoolCampaignModule,
     ButtonModule,
     InputTextareaModule,
