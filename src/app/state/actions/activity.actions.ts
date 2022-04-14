@@ -2,6 +2,11 @@ import { createAction, props } from "@ngrx/store";
 import { Activity } from "src/app/backoffice/models/activity";
 import { IActivity } from "src/app/shared/models/Activity";
 
+//Error
+export const errorActivities = createAction(
+  "[Error Activities] Activities"
+);
+
 //Get Activities-------------------------------------------------------
 export const getActivities = createAction("[Activity] Get activities");
 

@@ -5,6 +5,7 @@ import {
   addActivitySuccess,
   deleteActivity,
   deleteActivitySuccess,
+  errorActivities,
   getActivities,
   getActivitiesSuccess,
   getActivity,
@@ -16,10 +17,14 @@ import {
 export const initialState: ActivityState = {
   activities: [],
   activity: [],
+  error: "",
 };
 
 export const activityReducer = createReducer(
   initialState,
+
+  //Error----------------------------------------------
+  on(errorActivities,state => ({...state})),
 
   //Get Activities-------------------------------------
   on(getActivities, (state) => {
