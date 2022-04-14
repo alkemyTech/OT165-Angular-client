@@ -33,7 +33,7 @@ form {
   height: auto;
   display: flex;
   flex-direction: column;
-  margin: 20px 0;   
+  margin: 20px 0;
 }
 .map-container {
   width: auto;
@@ -43,4 +43,13 @@ form {
 }
 button {
   margin: 20px 0 10px 0;
+}
+#pdf {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
 }
