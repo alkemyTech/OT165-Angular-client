@@ -6,11 +6,7 @@ import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { AuthService } from "src/app/services/auth/auth.service";
 import { LoginResponse } from "src/app/shared/models/auth/loginResponse.interface";
 import { RegisterResponse } from "src/app/shared/models/auth/registerResponse.interface";
-import {
-  loginGoogle,
-  loginUser,
-  registerUser,
-} from "../actions/auth.actions";
+import { loginGoogle, loginUser, registerUser } from "../actions/auth.actions";
 
 @Injectable()
 export class AuthEffects {
@@ -19,18 +15,20 @@ export class AuthEffects {
       ofType(loginUser),
       mergeMap((action) =>
         this.authService.loginAPI(action.user).pipe(
-          map((user: LoginResponse) => ({
-            type: "[Login Page] Login success",
-            user: {
-              success: user.success,
-              user: user.data,
-            },
-          })),
+          map((user: LoginResponse) => {
+            return {
+              type: "[Login Page] Login success",
+              user: {
+                success: user.success,
+                user: user.data,
+              },
+            };
+          }),
           tap((action) => {
             if (action.user.success && action.user.user?.user?.role_id == 2) {
-              this.router.navigateByUrl('backoffice');
-            }else if (action.user.user?.user?.role_id == 1) {
-              this.router.navigateByUrl('home');
+              this.router.navigateByUrl("backoffice");
+            } else if (action.user.user?.user?.role_id == 1) {
+              this.router.navigateByUrl("home");
             }
           }),
           catchError(() => of({ type: "[Login Page] Login Error" }))
@@ -43,8 +41,8 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(loginGoogle),
       tap(() => {
-         this.authService.SigninWithGoogle()
-         this.router.navigateByUrl('home')
+        this.authService.SigninWithGoogle();
+        this.router.navigateByUrl("home");
       }),
       mergeMap((action) =>
         this.authService.getUserLoged.pipe(
@@ -86,6 +84,6 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {}
 }

@@ -73,8 +73,8 @@ export class RegisterFormComponent {
     this.hide = false;
   }
 
-  private async serviceRegister(object: registerSend) {
-    await this.store.dispatch(registerUser({ user: object }));
+  private serviceRegister(object: registerSend) {
+    this.store.dispatch(registerUser({ user: object }));
   }
 
   addMarker(event: google.maps.MapMouseEvent) {
