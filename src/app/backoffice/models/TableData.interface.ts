@@ -12,7 +12,7 @@ export interface GenericData{
   order?: number,
   image?: string,
   email?: string,
-  created_at?: any,
+  created_at?: Date,
 }
 
 export interface Columns{

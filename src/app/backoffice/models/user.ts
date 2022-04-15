@@ -6,9 +6,9 @@ export class User {
   password!: string;
   role_id!: number;
   remember_token!: string;
-  created_at!: string;
-  updated_at!: string;
-  deleted_at!: string;
+  created_at!: Date;
+  updated_at!: Date;
+  deleted_at!: Date;
   group_id!: number;
   latitude!: number;
   longitude!: number;
