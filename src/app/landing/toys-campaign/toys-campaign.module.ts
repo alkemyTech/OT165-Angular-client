@@ -6,7 +6,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { SharedModule } from "src/app/shared/shared.module";
 import { FooterComponent } from "./components/footer/footer.component";
 import { ToysPage } from "./toys-page/toys-page.component";
-import { PublicModule } from "src/app/public/public.module";
+import { CarouselModule } from "src/app/public/components/carousel/carousel.module";
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { PublicModule } from "src/app/public/public.module";
     CommonModule,
     ToysCampaignRoutingModule,
     SharedModule,
-    PublicModule
+    CarouselModule
   ],
 })
 export class ToysCampaignModule {}

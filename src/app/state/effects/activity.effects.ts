@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, ofType, createEffect } from "@ngrx/effects";
-import { EMPTY } from "rxjs";
+import { EMPTY, of } from "rxjs";
 import { catchError, exhaustMap, map, mergeMap, tap } from "rxjs/operators";
 import { ActivitiesService } from "src/app/backoffice/services/activities/activities.service";
+import { DialogService } from "src/app/shared/components/dialog/dialog.service";
 import {
   addActivity,
   addActivitySuccess,
@@ -27,7 +28,14 @@ export class ActivityEffects {
       exhaustMap(() =>
         this.activitiesService.getActivities().pipe(
           map((res) => getActivitiesSuccess({ activities: res })),
-          catchError(() => EMPTY)
+          catchError(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Error en el servidor",
+              detail: "No se pudo obtener el listado de Actividades",
+            });
+            return of({ type: "[Error Activities] Activities" });
+          })
         )
       )
     )
@@ -51,7 +59,21 @@ export class ActivityEffects {
       mergeMap(({ id }) =>
         this.activitiesService.deleteActivity(id).pipe(
           map(() => deleteActivitySuccess({ id })),
-          catchError(() => EMPTY)
+          tap(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Eliminó",
+              detail: "Se  eliminó la Actividad",
+            });
+          }),
+          catchError(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Error en el servidor",
+              detail: "No se pudo eliminar la Actividad",
+            });
+            return of({ type: "[Error Activities] Activities" });
+          })
         )
       )
     )
@@ -74,12 +96,23 @@ export class ActivityEffects {
       ofType(addActivity),
       mergeMap(({ data }) =>
         this.activitiesService.createActivity(data).pipe(
-          map(
-            (res) => addActivitySuccess({ data: res }),
-            alert("Your activity is created succesfully")
-          ),
-          tap(() => this.router.navigateByUrl("/backoffice/actividades")),
-          catchError(() => EMPTY)
+          map((res) => addActivitySuccess({ data: res })),
+          tap(() => {
+            this.dialogService.add({
+              type: "success",
+              title: "Añadida",
+              detail: "¡Has creado un nuevo Actividad!",
+            });
+            this.router.navigateByUrl("/backoffice/actividades");
+          }),
+          catchError(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Error en el servidor",
+              detail: "No se pudo añadir la Actividad",
+            });
+            return of({ type: "[Error Activities] Activities" });
+          })
         )
       )
     )
@@ -90,12 +123,23 @@ export class ActivityEffects {
       ofType(updateActivity),
       mergeMap(({ id, data }) =>
         this.activitiesService.updateActivity(id, data).pipe(
-          map(
-            (res) => updateActivitySuccess({ id, data: res }),
-            alert("Your activity data was updated succesfully")
-          ),
-          tap(() => this.router.navigateByUrl("/backoffice/actividades")),
-          catchError(() => EMPTY)
+          map((res) => updateActivitySuccess({ id, data: res })),
+          tap(() => {
+            this.dialogService.add({
+              type: "success",
+              title: "Editada",
+              detail: "¡Has editado una Actividad!",
+            });
+            this.router.navigateByUrl("/backoffice/actividades");
+          }),
+          catchError(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Error en el servidor",
+              detail: "No se pudo editar la Actividad",
+            });
+            return of({ type: "[Error Activities] Activities" });
+          })
         )
       )
     )
@@ -104,6 +148,7 @@ export class ActivityEffects {
   constructor(
     private router: Router,
     private actions$: Actions,
-    private activitiesService: ActivitiesService
+    private activitiesService: ActivitiesService,
+    private dialogService: DialogService
   ) {}
 }

@@ -111,26 +111,37 @@
       <div class="map-field">
         <label for="address" class="block">Dirección</label>
         <div class="map-container">
-          <google-map 
-                  id="address" 
-                  height="300px" 
-                  [zoom]="4" 
-                  width="100%" 
-                  [options]="mapOptions"
-                  (mapClick)="addMarker($event)">
-            <map-marker                      
-                    [position]="markerPosition!">
-            </map-marker>            
-        </google-map>
+          <google-map
+            id="address"
+            height="300px"
+            [zoom]="4"
+            width="100%"
+            [options]="mapOptions"
+            (mapClick)="addMarker($event)"
+          >
+            <map-marker [position]="markerPosition!"> </map-marker>
+          </google-map>
         </div>
         <small
-                    *ngIf="address?.hasError('required')"
-                    id="password1-help"
-                    class="p-error block"
-                    >Debe marcar una dirección en el mapa.
-        </small>        
+          *ngIf="address?.hasError('required')"
+          id="password1-help"
+          class="p-error block"
+          >Debe marcar una dirección en el mapa.
+        </small>
       </div>
-
+      <div
+        (click)="hide = false"
+        class="row d-flex align-items-center justify-content-center"
+      >
+        <div *ngIf="accept; then checked; else empty"></div>
+        <ng-template #checked>
+          <input type="checkbox" id="flexCheckChecked" checked />
+        </ng-template>
+        <ng-template #empty>
+          <input type="checkbox" id="flexCheckChecked" />
+        </ng-template>
+        <a (click)="hide = false">leer <strong>Terminos y condiciones</strong></a>
+      </div>
       <button
         (click)="register($event)"
         pButton
@@ -143,3 +154,15 @@
     </form>
   </main>
 </div>
+
+<div *ngIf="hide; else show"></div>
+<ng-template #show>
+  <div id="pdf" class="row justify-content-center align-items-center">
+    <div class="col col-sm-8">
+      <app-termsandconditions
+        (accept)="accept = $event"
+        (hide)="hide = $event"
+      ></app-termsandconditions>
+    </div>
+  </div>
+</ng-template>

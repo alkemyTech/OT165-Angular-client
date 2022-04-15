@@ -1,0 +1,35 @@
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Términos y condiciones</h5>
+      <button type="button" class="btn-close" (click)="close()"></button>
+    </div>
+    <div class="modal-body">
+      <pdf-viewer
+        id="pdf-viewer"
+        [src]="pdfSrc"
+        [render-text]="false"
+        [original-size]="false"
+        [fit-to-page]="false"
+      ></pdf-viewer>
+    </div>
+    <div class="modal-footer">
+      <button
+        (click)="close()"
+        pButton
+        pRipple
+        type="button"
+        label="Cancelar"
+        class="warning me-2"
+      ></button>
+      <button
+        (click)="agree()"
+        pButton
+        pRipple
+        type="button"
+        label="Aceptar"
+        class="primary"
+      ></button>
+    </div>
+  </div>
+</div>

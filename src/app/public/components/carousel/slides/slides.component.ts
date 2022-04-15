@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Slide } from 'src/app/backoffice/models/slide.interface';
 
 @Component({
   selector: 'app-slides',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SlidesComponent implements OnInit {
 
-  @Input() item: any
+  @Input() item!: Slide
 
   constructor() { }
 
