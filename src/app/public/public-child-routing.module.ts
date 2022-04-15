@@ -10,6 +10,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
+import { UsersGuard } from "../guards/users/users.guard";
 
 const childRoutes: Routes = [
   {
@@ -47,7 +48,7 @@ const childRoutes: Routes = [
   {
     path: "login",
     component: LoginFormComponent,
-    pathMatch: "full",
+    canActivate: [UsersGuard]    
   },
   {
     path: "registro",
