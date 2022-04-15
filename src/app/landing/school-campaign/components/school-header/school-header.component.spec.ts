@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BackofficeComponent } from './backoffice.component';
+import { SchoolHeaderComponent } from './school-header.component';
 
-describe('BackofficeComponent', () => {
-  let component: BackofficeComponent;
-  let fixture: ComponentFixture<BackofficeComponent>;
+describe('SchoolHeaderComponent', () => {
+  let component: SchoolHeaderComponent;
+  let fixture: ComponentFixture<SchoolHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BackofficeComponent ]
+      declarations: [ SchoolHeaderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BackofficeComponent);
+    fixture = TestBed.createComponent(SchoolHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

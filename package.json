@@ -30,6 +30,8 @@
     "bootstrap-icons": "^1.8.1",
     "ckeditor4-angular": "^3.0.0",
     "leaflet": "^1.7.1",
+    "ng2-pdf-viewer": "^9.0.0",
+    "ngx-twitter-timeline": "^0.1.5",
     "primeicons": "^5.0.0",
     "primeng": "^13.3.0",
     "rxjs": "~6.6.0",

@@ -8,7 +8,7 @@ import { DialogService } from '../dialog.service';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
-export class DialogComponent implements OnInit, OnDestroy {
+export class DialogComponent implements OnInit {
 
   subscription: Subscription = new Subscription();
   messages: Message[] = [];

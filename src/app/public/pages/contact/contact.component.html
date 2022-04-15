@@ -1,8 +1,11 @@
 <app-dialog></app-dialog>
-<app-title
-  title="Formulario de Contacto"
-  imagePath="/assets/images/image11.jpg"
-></app-title>
+<app-image-curved
+  url="/assets/images/image11.jpg"
+  title="Contactate con Somos Más"
+  [text]="subtitle"
+  [opacity]="0.4"
+>
+</app-image-curved>
 
 <div class="container">
   <div class="row justify-content-center">
@@ -97,4 +100,8 @@
       </div>
     </form>
   </div>
+</div>
+
+<div 
+  id="map">
 </div>

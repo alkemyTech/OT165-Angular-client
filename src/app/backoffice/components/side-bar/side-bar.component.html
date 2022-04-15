@@ -1,0 +1,14 @@
+<app-header (openBar)="menuBtnChange()"></app-header>
+
+<div [ngClass]="{'sidebar': true, 'open': isOpen}">
+  <ul class="nav-list">
+    <li *ngFor="let item of itemsList">
+      <a [routerLink]="[item.path]">
+        <i class="{{item.icon}}"></i>
+        <span class="links_name">{{item.title}}</span>
+      </a>
+      <span class="tooltip">{{item.title}}</span>
+    </li>
+
+  </ul>
+</div>

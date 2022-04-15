@@ -10,12 +10,13 @@ import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ProgressBarModule } from 'primeng/progressbar';
-import { NavComponent } from "./components/nav/nav.component";
-import { FooterComponent } from "./components/footer/footer.component";
+import { NavComponent } from './components/nav/nav.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { ConfirmDialogComponent } from './components/dialog/confirm-dialog.component';
 import { ProgressBarComponent } from './components/progressBar/progress-bar.component';
 import { MessageComponent } from './components/dialog/message/message.component';
 import { DialogComponent } from './components/dialog/dialog/dialog.component';
+import { NotFoundComponent } from './components/notFound/not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { DialogComponent } from './components/dialog/dialog/dialog.component';
     NavComponent,
     FooterComponent,
     ConfirmDialogComponent,
-    ProgressBarComponent,   
+    ProgressBarComponent,
     MessageComponent,
-    DialogComponent
+    DialogComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { DialogComponent } from './components/dialog/dialog/dialog.component';
     ConfirmDialogModule,
   ],
   exports: [
+    MessageComponent,
     LogoComponent,
     TitleComponent,
     CardComponent,
@@ -45,7 +48,8 @@ import { DialogComponent } from './components/dialog/dialog/dialog.component';
     FooterComponent,
     ProgressBarComponent,
     DialogComponent,
-    ConfirmDialogComponent
-  ]
+    ConfirmDialogComponent,
+    NotFoundComponent,
+  ],
 })
 export class SharedModule {}

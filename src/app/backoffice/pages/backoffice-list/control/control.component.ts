@@ -11,9 +11,6 @@ export class ControlComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    let p = <HTMLParagraphElement>document.getElementsByClassName("icon")[this.control.id-1];  
-    p.insertAdjacentHTML("afterbegin", this.control.icon);
-
     document.querySelectorAll(".bi").forEach((value) =>{        
       value.setAttribute("style", "border-radius: 50%");
     })

@@ -67,6 +67,7 @@ export class AuthService {
   }
   // Firebase Logout
   public SignOut(): Promise<any> {
+    this.userLoged.next(false)
     return this.afAuth.signOut().then(() => {
       this.router.navigateByUrl("home");
     });

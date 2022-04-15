@@ -1,18 +1,18 @@
-<div class="container">
-  <app-carousel></app-carousel>
-</div>
+<app-dialog></app-dialog>
+<app-progress-bar [isLoading]="isLoading"></app-progress-bar>
+<app-carousel [items]="slides"></app-carousel>
 
-<div class="mt-5">
-        <div class="fs-1 text-center">
-            <p>{{ welcome }}</p>
-        </div>
-</div>
+<section class="mt-5 mb-5 fadeIn second">
+  <div class="fs-3 text-center">
+    <p>{{ welcome }}</p>
+  </div>
+</section>
 
-<div class="mt-3">
-        <div class="text-center">
-            <p>Últimas novedades</p>
-        </div>
-</div>
-<div class="container content-fluid">
+<section>
+  <div class="mt-3 text-center fadeIn third">
+      <h2>Últimas novedades</h2>
+  </div>
+  <div class="container content-fluid">
     <app-listnews></app-listnews>
-</div>
+  </div>
+</section>

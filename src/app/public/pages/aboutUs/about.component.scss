@@ -1,10 +1,35 @@
 .about-text {
-    font-size: 20px;
-    font-weight: 300;
+  font-size: 20px;
+  font-weight: 300;
+}
+.tw-container {
+  width: 50%;
 }
 
+h3 {
+  font-size: 35px;
+}
+.section-color {
+  background-color: white;
+  padding: 100px 0;
+}
+.section-tweets {
+  padding: 100px 0;
+}
+hr {
+  width: 20%;
+  height: 3px;
+  opacity: 100%;
+  background-color: black;
+}
+.title-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 @media (min-width: 768px) {
-    .about-text {
-        font-size: 30px;
-    }
+  .about-text {
+    font-size: 30px;
+  }
 }
