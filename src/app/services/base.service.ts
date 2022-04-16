@@ -15,8 +15,8 @@ export class BaseService<S> {
     this.http = http;
   }
 
-  getAll(): Observable<S[]> {
-    return <Observable<S[]>>this.http.get(`${this.url}`).pipe(
+  getAll(key: string = ''): Observable<S[]> {
+    return <Observable<S[]>>this.http.get(`${this.url}?search=${key}`).pipe(
       map((res: any) => {
         return res.data;
       })

@@ -1,7 +1,6 @@
 import { Component, Input } from "@angular/core";
 import {
   Columns,
-  TableData,
 } from "src/app/backoffice/models/TableData.interface";
 
 @Component({
