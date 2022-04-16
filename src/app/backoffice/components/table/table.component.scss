@@ -1,10 +1,18 @@
 .wrapper {
+  position: relative;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     max-width: 1200px;
     margin: auto;
-    padding: 100px 20px 20px 20px;
+    padding: 20px 20px 20px 20px;
+    .finder {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      z-index: 1000
+    }
     .description{
       overflow: hidden;
       max-width: 500px;
@@ -28,5 +36,13 @@
           border-radius: 5px;
         }
     }
+    .buttons > * {
+      margin: 0 5px;
+    }
   }
-  
+
+  @media screen and (min-width: 600px) {
+    .wrapper .finder {
+      display: inline-block;
+    }
+  }

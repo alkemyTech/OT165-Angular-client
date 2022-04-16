@@ -16,4 +16,5 @@ export interface ActivityState {
   error: "";
   activity: ReadonlyArray<IActivity>;
   activities: ReadonlyArray<IActivity>;
+  loading: boolean;
 }
