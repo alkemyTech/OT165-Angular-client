@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
@@ -16,18 +16,22 @@ export class AuthGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {
     this.auth$ = this.store.select(selectUserToken);
     this.auth$.subscribe(el => {
       this.token = el;
-      console.log(el);
     })
   }
 
   canActivate(): boolean {
-    // this.authService.getUserLoged()
-    return true;
+    if(this.authService.isTokenValid()) {
+      return true;
+    } else {
+      this.router.navigate(['home']);
+      return false;
+    }
   }
   
 }

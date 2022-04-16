@@ -10,6 +10,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { GoogleAuthProvider, UserCredential } from "firebase/auth";
 
 import { Router } from "@angular/router";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: "root",
@@ -21,7 +22,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private jwt: JwtHelperService
   ) {}
 
   public get getUserLoged(): Observable<any>{
@@ -36,6 +38,15 @@ export class AuthService {
   public registerUserAPI(user: registerSend): Observable<RegisterResponse> {
     this.url_API = environment.BASE_URL_API + "register";
     return this.http.post<RegisterResponse>(`${this.url_API}`, user);
+  }
+
+  public isTokenValid():boolean {
+    let token = localStorage.getItem('token') ?? '';
+    if(this.jwt.isTokenExpired(token) || token === undefined) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   // Firebase signInWithRedirect

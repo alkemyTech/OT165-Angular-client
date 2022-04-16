@@ -31,6 +31,7 @@ import { SlidesEffects } from "./state/effects/slides.effects";
 import { CategoryEffects } from "./state/effects/category.effects";
 import { MembersEffects } from "./state/effects/members.effects";
 import { ToysCampaignModule } from "./landing/toys-campaign/toys-campaign.module";
+import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
 
 @NgModule({
   declarations: [AppComponent],
@@ -64,7 +65,10 @@ import { ToysCampaignModule } from "./landing/toys-campaign/toys-campaign.module
     provideAuth(() => getAuth()),
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [],
+  providers: [
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    JwtHelperService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

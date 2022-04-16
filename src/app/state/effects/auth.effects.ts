@@ -16,6 +16,9 @@ export class AuthEffects {
       mergeMap((action) =>
         this.authService.loginAPI(action.user).pipe(
           map((user: LoginResponse) => {
+            if (user.data?.token){
+              localStorage.setItem("token", user.data?.token);
+            }
             return {
               type: "[Login Page] Login success",
               user: {
@@ -46,13 +49,18 @@ export class AuthEffects {
       }),
       mergeMap((action) =>
         this.authService.getUserLoged.pipe(
-          map((user) => ({
-            type: "[Login Page] Login Google success",
-            user: {
-              success: true,
-              user: user,
-            },
-          }))
+          map((user) => {
+            if (user.data?.token){
+              localStorage.setItem("token", user.data?.token);
+            }
+            return {
+              type: "[Login Page] Login Google success",
+              user: {
+                success: true,
+                user: user,
+              },
+            };
+          })
         )
       )
     )
