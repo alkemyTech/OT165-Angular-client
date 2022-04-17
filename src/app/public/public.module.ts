@@ -2,7 +2,6 @@
 import { AboutComponent } from "./pages/aboutUs/about.component";
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { ActivityCardComponent } from "./pages/activities/activity-card/activity-card.component";
-import { ActivityFormComponent } from "./pages/activities/activity-form.component";
 import { ButtonModule } from "primeng/button";
 import { ContactComponent } from "./pages/contact/contact.component";
 import { DetailComponent } from "./pages/activities/details/detail.component";
@@ -35,7 +34,6 @@ import { NgxTwitterTimelineModule } from "ngx-twitter-timeline";
 
 @NgModule({
   declarations: [
-    ActivityFormComponent,
     HomeComponent,
     PublicComponent,
     ListnewsComponent,
