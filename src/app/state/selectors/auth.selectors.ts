@@ -11,5 +11,5 @@ export const selectUserData = createSelector(
 
 export const selectUserToken = createSelector(
   selectUserFeature,
-  () => localStorage.getItem('token')
+  (state: UserState) => state.user?.token
 );

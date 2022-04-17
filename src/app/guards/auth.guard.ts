@@ -11,7 +11,7 @@ import { selectUserToken } from '../state/selectors/auth.selectors';
 })
 export class AuthGuard implements CanActivate {
 
-  auth$: Observable<any> = new Observable();
+  token$: Observable<any> = new Observable();
   token!: string;
 
   constructor(
@@ -19,17 +19,17 @@ export class AuthGuard implements CanActivate {
     private store: Store<AppState>,
     private router: Router
   ) {
-    this.auth$ = this.store.select(selectUserToken);
-    this.auth$.subscribe(el => {
+    this.token$ = this.store.select(selectUserToken);
+    this.token$.subscribe(el => {
       this.token = el;
     })
   }
 
   canActivate(): boolean {
-    if(this.authService.isTokenValid()) {
+    if(this.authService.isTokenValid(this.token)) {
       return true;
     } else {
-      this.router.navigate(['home']);
+      this.router.navigateByUrl('home');
       return false;
     }
   }

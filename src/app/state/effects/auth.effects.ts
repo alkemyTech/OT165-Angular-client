@@ -2,11 +2,16 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
-import { map, mergeMap, catchError, tap } from "rxjs/operators";
+import { map, mergeMap, catchError, tap, exhaustMap } from "rxjs/operators";
 import { AuthService } from "src/app/services/auth/auth.service";
 import { LoginResponse } from "src/app/shared/models/auth/loginResponse.interface";
 import { RegisterResponse } from "src/app/shared/models/auth/registerResponse.interface";
-import { loginGoogle, loginUser, registerUser } from "../actions/auth.actions";
+import {
+  loginGoogle,
+  loginUser,
+  logOut,
+  registerUser,
+} from "../actions/auth.actions";
 
 @Injectable()
 export class AuthEffects {
@@ -16,9 +21,6 @@ export class AuthEffects {
       mergeMap((action) =>
         this.authService.loginAPI(action.user).pipe(
           map((user: LoginResponse) => {
-            if (user.data?.token){
-              localStorage.setItem("token", user.data?.token);
-            }
             return {
               type: "[Login Page] Login success",
               user: {
@@ -28,6 +30,11 @@ export class AuthEffects {
             };
           }),
           tap((action) => {
+            let userLogin = {
+              success: action.user.success,
+              user: action.user.user,
+            };
+            localStorage.setItem("userLogin", JSON.stringify(userLogin));
             if (action.user.success && action.user.user?.user?.role_id == 2) {
               this.router.navigateByUrl("backoffice");
             } else if (action.user.user?.user?.role_id == 1) {
@@ -50,9 +57,6 @@ export class AuthEffects {
       mergeMap((action) =>
         this.authService.getUserLoged.pipe(
           map((user) => {
-            if (user.data?.token){
-              localStorage.setItem("token", user.data?.token);
-            }
             return {
               type: "[Login Page] Login Google success",
               user: {
@@ -87,6 +91,16 @@ export class AuthEffects {
         )
       )
     )
+  );
+
+  logOut$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(logOut),
+      tap(() => {
+        localStorage.removeItem('userLogin');
+        this.router.navigateByUrl('home');
+      })
+    ), {dispatch: false}
   );
 
   constructor(

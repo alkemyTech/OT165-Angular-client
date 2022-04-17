@@ -20,7 +20,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { metaReducers } from "./state/reducers";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
-import { REDUCERS } from "./state/app.state";
+import { persistToken, REDUCERS } from "./state/app.state";
 import { AuthEffects } from "./state/effects/auth.effects";
 import { ActivityEffects } from "./state/effects/activity.effects";
 import { UsersEffects } from "src/app/state/effects/users.effects";
@@ -58,7 +58,7 @@ import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
       ActivityEffects,
     ]),
     StoreModule.forRoot(REDUCERS, {
-      metaReducers,
+      metaReducers: [persistToken],
     }),
     StoreDevtoolsModule.instrument({ name: "test redux" }),
     provideFirebaseApp(() => initializeApp(environment.firebase)),

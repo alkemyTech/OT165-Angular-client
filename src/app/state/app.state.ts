@@ -1,6 +1,6 @@
 import { CategoryState } from "src/app/state/reducers/category.reducer";
 import { categoryReducer } from "./reducers/category.reducer";
-import { ActionReducerMap } from "@ngrx/store";
+import { ActionReducer, ActionReducerMap } from "@ngrx/store";
 import { ActivityState } from "../shared/models/Activity";
 import { UserState } from "../shared/models/auth/userState.interface";
 import { activityReducer } from "./reducers/activity.reducers";
@@ -11,6 +11,7 @@ import { loginReducer, registerReducer } from "./reducers/auth.reducers";
 import { usersReducer } from "./reducers/users.reducers";
 import { MemberState } from '../shared/models/membersState.interface';
 import { membersReducer } from './reducers/member.reducer';
+import { logOut } from "./actions/auth.actions";
 
 export interface AppState {
   userLogin: UserState;
@@ -32,3 +33,14 @@ export const REDUCERS: ActionReducerMap<AppState> = {
   members: membersReducer,
 }
 
+export const persistToken = (reducer: ActionReducer<any>): ActionReducer<any> => {
+  return (state, action) => {
+    if (state?.userLogin.success === false) {
+      let localStorageData = localStorage.getItem('userLogin');
+      if (localStorageData){
+        return reducer({...state, userLogin: JSON.parse(localStorageData)}, action);
+      }
+    }
+    return reducer(state, action);
+  };
+}

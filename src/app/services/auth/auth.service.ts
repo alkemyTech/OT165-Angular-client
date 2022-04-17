@@ -40,15 +40,6 @@ export class AuthService {
     return this.http.post<RegisterResponse>(`${this.url_API}`, user);
   }
 
-  public isTokenValid():boolean {
-    let token = localStorage.getItem('token') ?? '';
-    if(this.jwt.isTokenExpired(token) || token === undefined) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   // Firebase signInWithRedirect
   private async OAuthProvider(provider: any): Promise<any> {
     return await this.afAuth
@@ -83,4 +74,14 @@ export class AuthService {
       this.router.navigateByUrl("home");
     });
   }
+
+  // Token validator
+  public isTokenValid(token: string):boolean {
+    if(this.jwt.isTokenExpired(token) || token === undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
 }
