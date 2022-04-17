@@ -1,6 +1,6 @@
 import { CategoryState } from "src/app/state/reducers/category.reducer";
 import { categoryReducer } from "./reducers/category.reducer";
-import { ActionReducer, ActionReducerMap } from "@ngrx/store";
+import { ActionReducer, ActionReducerMap, MetaReducer } from "@ngrx/store";
 import { ActivityState } from "../shared/models/Activity";
 import { UserState } from "../shared/models/auth/userState.interface";
 import { activityReducer } from "./reducers/activity.reducers";
@@ -23,16 +23,6 @@ export interface AppState {
   category: CategoryState;
 }
 
-export const REDUCERS: ActionReducerMap<AppState> = {
-  userLogin: loginReducer,
-  userRegister: registerReducer,
-  slide: slideReducer,
-  users: usersReducer,
-  category: categoryReducer,
-  activities: activityReducer,
-  members: membersReducer,
-}
-
 export const persistToken = (reducer: ActionReducer<any>): ActionReducer<any> => {
   return (state, action) => {
     if (state?.userLogin.success === false) {
@@ -44,3 +34,15 @@ export const persistToken = (reducer: ActionReducer<any>): ActionReducer<any> =>
     return reducer(state, action);
   };
 }
+
+export const REDUCERS: ActionReducerMap<AppState> = {
+  userLogin: loginReducer,
+  userRegister: registerReducer,
+  slide: slideReducer,
+  users: usersReducer,
+  category: categoryReducer,
+  activities: activityReducer,
+  members: membersReducer,
+}
+
+export const METAREDUCERS: MetaReducer<any>[] = [persistToken];

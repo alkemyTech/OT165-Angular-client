@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
-import { map, mergeMap, catchError, tap, exhaustMap } from "rxjs/operators";
+import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { AuthService } from "src/app/services/auth/auth.service";
 import { LoginResponse } from "src/app/shared/models/auth/loginResponse.interface";
 import { RegisterResponse } from "src/app/shared/models/auth/registerResponse.interface";
@@ -64,6 +64,13 @@ export class AuthEffects {
                 user: user,
               },
             };
+          }),
+          tap((action) => {
+            let userLogin = {
+              success: action.user.success,
+              user: action.user.user,
+            };
+            localStorage.setItem("userLogin", JSON.stringify(userLogin));
           })
         )
       )

@@ -3,6 +3,7 @@ import { CanActivate, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
+import { logOut } from '../state/actions/auth.actions';
 import { AppState } from '../state/app.state';
 import { selectUserToken } from '../state/selectors/auth.selectors';
 
@@ -29,7 +30,8 @@ export class AuthGuard implements CanActivate {
     if(this.authService.isTokenValid(this.token)) {
       return true;
     } else {
-      this.router.navigateByUrl('home');
+      this.store.dispatch(logOut());
+      this.router.navigateByUrl('login');
       return false;
     }
   }
