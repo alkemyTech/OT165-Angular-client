@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth/auth.service';
-import { logOut } from '../state/actions/auth.actions';
-import { AppState } from '../state/app.state';
-import { selectUserToken } from '../state/selectors/auth.selectors';
+import { AuthService } from '../../services/auth/auth.service';
+import { logOut } from '../../state/actions/auth.actions';
+import { AppState } from '../../state/app.state';
+import { selectUserToken } from '../../state/selectors/auth.selectors';
 
 @Injectable({
   providedIn: 'root'

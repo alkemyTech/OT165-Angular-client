@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AuthGuard } from "../guards/auth.guard";
+import { AuthGuard } from "../guards/auth/auth.guard";
 
 //Own Component
 import { BackofficeComponent } from "./backoffice.component";
