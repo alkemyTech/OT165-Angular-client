@@ -1,5 +1,9 @@
-<app-table
-  [items]="tableActivities"
-  [columns]="titlesCol"
-  (deleteItemById)="deleteUser($event)"
-></app-table>
+<main>
+  <app-table
+    [items]="tableActivities"
+    [columns]="titlesCol"
+    (deleteItemById)="deleteUser($event)"
+    (keyword)="filterDebounce($event)"
+    [isLoading]="isLoading"
+  ></app-table>
+</main>

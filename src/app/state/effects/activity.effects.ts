@@ -14,6 +14,8 @@ import {
   getActivitiesSuccess,
   getActivity,
   getActivitySuccess,
+  getSpecificActivities,
+  getSpecificActivitiesSuccess,
   updateActivity,
   updateActivitySuccess,
 } from "../actions/activity.actions";
@@ -34,6 +36,18 @@ export class ActivityEffects {
             });
             return of({ type: "[Error Activities] Activities" });
           })
+        )
+      )
+    )
+  );
+
+  loadSpecificActivities$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getSpecificActivities),
+      mergeMap(({ key }) =>
+        this.activitiesService.getActivities(key).pipe(
+          map((res) => getSpecificActivitiesSuccess({ activities: res })),
+          catchError(() => EMPTY)
         )
       )
     )
