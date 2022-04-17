@@ -35,7 +35,7 @@ export class UsersGuard implements CanActivate {
     if (user == undefined && token == undefined) {
       return true;
     }
-    console.log('User has already logged')
+    
     this.router.navigate(["home"]);
     return false;
   }
