@@ -10,6 +10,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { GoogleAuthProvider, UserCredential } from "firebase/auth";
 
 import { Router } from "@angular/router";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: "root",
@@ -21,7 +22,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private jwt: JwtHelperService
   ) {}
 
   public get getUserLoged(): Observable<any>{
@@ -72,4 +74,10 @@ export class AuthService {
       this.router.navigateByUrl("home");
     });
   }
+
+  // Token validator
+  public isTokenValid(token: string):boolean {
+    return this.jwt.isTokenExpired(token) || token === undefined;
+  }
+
 }
