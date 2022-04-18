@@ -1,10 +1,10 @@
-<p-toast></p-toast>
-<app-skeleton *ngIf="skeleton" [columns]="titlesCol"></app-skeleton>
-<app-table
-  *ngIf="!skeleton"
-  [items]="tableCategories"
-  [columns]="titlesCol"
-  (deleteItemById)="deleteCategory($event)"
-  (keyword)="debounce($event)"
->
-</app-table>
+<main>
+  <app-table
+    *ngIf="!skeleton"
+    [items]="tableCategories"
+    [columns]="titlesCol"
+    (deleteItemById)="deleteCategory($event)"
+    (keyword)="debounce($event)"
+  >
+  </app-table>
+</main>
