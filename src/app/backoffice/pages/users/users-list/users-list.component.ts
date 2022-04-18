@@ -1,3 +1,4 @@
+import { filterUserByName } from './../../../../state/selectors/users.selectors';
 import { debounceTime } from 'rxjs/operators';
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -26,7 +27,7 @@ export class UsersListComponent implements OnInit{
   ];  
   loading$:Observable<boolean> = new Observable();
   users$: Observable<User[]> = new Observable();
-  key: Subject<any> = new Subject();
+  subject: Subject<any> = new Subject();
 
   constructor(private userService: UserService, private store: Store<AppState>) {          
     this.loading$ = this.store.select(selectLoading);
@@ -38,8 +39,8 @@ export class UsersListComponent implements OnInit{
     this.users$.subscribe( response => {
       this.loadTable(response);
     })
-    this.key.pipe(debounceTime(500)).subscribe((res) => {
-      this.search(res)
+    this.subject.pipe(debounceTime(700)).subscribe((res) => {
+      this.search(res)      
     })      
   }
 
@@ -57,19 +58,19 @@ export class UsersListComponent implements OnInit{
   deleteUser(id: number) {
     this.store.dispatch(deleteUser({id: id}));    
   }
-
+  debounce(key: string) {
+    this.subject.next(key)
+  }
   search(key: any) {
     if(key.length >= 2) {
-      this.userService.getAll(key).subscribe({
-        next: (res) => {
-          this.loadTable(res)          
-        }
+      this.users$ = this.store.select(filterUserByName(key));
+      this.users$.subscribe((res) => {
+        this.loadTable(res);
       })
     } else {
-      this.userService.getAll().subscribe({
-        next: (res) => {
-          this.loadTable(res)          
-        }
+      this.users$ = this.store.select(selectUsersList);
+      this.users$.subscribe((res) => {
+        this.loadTable(res);
       })
     } 
   }
