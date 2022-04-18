@@ -17,10 +17,9 @@ import { PublicModule } from "./public/public.module";
 import { SchoolCampaignModule } from './landing/school-campaign/school-campaign.module';
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
-import { metaReducers } from "./state/reducers";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
-import { REDUCERS } from "./state/app.state";
+import { REDUCERS, METAREDUCERS } from "./state/app.state";
 import { AuthEffects } from "./state/effects/auth.effects";
 import { ActivityEffects } from "./state/effects/activity.effects";
 import { UsersEffects } from "src/app/state/effects/users.effects";
@@ -31,6 +30,7 @@ import { SlidesEffects } from "./state/effects/slides.effects";
 import { CategoryEffects } from "./state/effects/category.effects";
 import { MembersEffects } from "./state/effects/members.effects";
 import { ToysCampaignModule } from "./landing/toys-campaign/toys-campaign.module";
+import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
 
 @NgModule({
   declarations: [AppComponent],
@@ -57,14 +57,17 @@ import { ToysCampaignModule } from "./landing/toys-campaign/toys-campaign.module
       ActivityEffects,
     ]),
     StoreModule.forRoot(REDUCERS, {
-      metaReducers,
+      metaReducers: METAREDUCERS
     }),
     StoreDevtoolsModule.instrument({ name: "test redux" }),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [],
+  providers: [
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    JwtHelperService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

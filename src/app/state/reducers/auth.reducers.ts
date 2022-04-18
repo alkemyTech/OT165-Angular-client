@@ -14,7 +14,7 @@ export const loginReducer = createReducer(
         return state = {...newState.user} 
     }),
     on(actions.logOut,  state => {
-        return state = { success: false }
+        return state = { success: false, user: {} }
     }),
     /* login google */
     on(actions.loginGoogle, state => {

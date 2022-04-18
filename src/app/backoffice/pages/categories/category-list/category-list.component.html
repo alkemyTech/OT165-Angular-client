@@ -5,5 +5,6 @@
   [items]="tableCategories"
   [columns]="titlesCol"
   (deleteItemById)="deleteCategory($event)"
+  (keyword)="debounce($event)"
 >
 </app-table>
