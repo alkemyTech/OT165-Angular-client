@@ -1,4 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { logOut } from 'src/app/state/actions/auth.actions';
+import { AppState } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +12,16 @@ export class HeaderComponent {
 
   @Output() openBar: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private store: Store<AppState>
+  ) { }
 
   toggleOpenBar() {
     this.openBar.emit();
   }
 
   logOut() {
-    //here should be the service called
+    this.store.dispatch(logOut())
   }
 
 }
