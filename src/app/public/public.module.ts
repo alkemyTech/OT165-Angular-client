@@ -12,7 +12,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { ImageCurvedComponent } from "./components/image-curved/image-curved.component";
 import { InputNumberModule } from "primeng/inputnumber";
 import { InputTextModule } from "primeng/inputtext";
-import { ListnewsComponent } from "./components/listnews/listnews.component";
+import { ListnewsComponent } from "./components/listNews/listnews.component";
 import { PublicComponent } from "./public.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SliderComponent } from "./components/slider/slider.component";
