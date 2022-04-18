@@ -33,7 +33,8 @@ export class MembersListComponent implements OnInit {
   ];
   loading$: Observable<boolean> = new Observable();
   members$: Observable<Member[]> = new Observable();
-  key!: string;
+
+  key: Subject<any> = new Subject<any>();
 
   constructor(
     private store: Store<AppState>,
@@ -41,35 +42,44 @@ export class MembersListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.key
+      .pipe(debounceTime(500))
+      .subscribe((letters: string) => this.searchMembers(letters));
+
     this.loading$ = this.store.select(selectLoading);
     this.store.dispatch(loadMembers());
     this.members$ = this.store.select(selectMembersList);
-    this.getMembers();
-  }
-
-  getMembers() {
     this.members$.subscribe((res) => {
-      this.tableMembers = {
-        createPath: "/backoffice/members/crear",
-        editPath: "/backoffice/members/editar",
-        title: "Miembros",
-        data: res,
-      };
+      this.getMembers(res);
     });
   }
 
+  getMembers(data: Member[]) {
+    this.tableMembers = {
+      createPath: "/backoffice/members/crear",
+      editPath: "/backoffice/members/editar",
+      title: "Miembros",
+      data,
+    };
+  }
+
   deleteMember(id: number) {
-    this.store.dispatch(deleteMember({ id: id }));
+    this.store.dispatch(deleteMember({ id }));
   }
 
-  debounce(e: any) {
-    this.key = e;
-    console.log(this.key);
+  debounce(letters: string) {
+    this.key.next(letters);
   }
 
-  searchMembers(key: any) {
+  searchMembers(key: string) {
     if (key.length <= 2) {
-      this.membersService.getAll().subscribe((res) => {});
+      this.membersService.getAll().subscribe((res) => {
+        this.getMembers(res);
+      });
+    } else {
+      this.membersService.getAll(key).subscribe((res) => {
+        this.getMembers(res);
+      });
     }
   }
 }
