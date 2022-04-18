@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { createEffect, Actions, ofType } from "@ngrx/effects";
+import { EMPTY } from "rxjs";
 import {
   catchError,
   concatMap,
   exhaustMap,
   map,
   mergeMap,
-} from 'rxjs/operators';
-import { MemberService } from 'src/app/backoffice/services/members/member.service';
+  tap,
+} from "rxjs/operators";
+import { MemberService } from "src/app/backoffice/services/members/member.service";
 import {
   addMember,
   addedMember,
@@ -18,13 +20,14 @@ import {
   loadMembers,
   editMember,
   editedMember,
-} from '../actions/members.actions';
+} from "../actions/members.actions";
 
 @Injectable()
 export class MembersEffects {
   constructor(
     private action$: Actions,
-    private membersService: MemberService
+    private membersService: MemberService,
+    private router: Router
   ) {}
 
   loadMembers$ = createEffect(() =>
@@ -55,9 +58,13 @@ export class MembersEffects {
     this.action$.pipe(
       ofType(editMember),
       concatMap(({ member }) =>
-        this.membersService
-          .putById(member.id!, member)
-          .pipe(map((editedMembers) => editedMember({ member: editedMembers })))
+        this.membersService.putById(member.id!, member).pipe(
+          map((editedMembers) => editedMember({ member: editedMembers })),
+          tap(() => {
+            this.router.navigateByUrl("/backoffice/members");
+          }),
+          catchError(() => EMPTY)
+        )
       )
     )
   );
@@ -68,6 +75,9 @@ export class MembersEffects {
       concatMap(({ member }) =>
         this.membersService.post(member).pipe(
           map((member) => addedMember({ member: member })),
+          tap(() => {
+            this.router.navigateByUrl("/backoffice/members");
+          }),
           catchError(() => EMPTY)
         )
       )
