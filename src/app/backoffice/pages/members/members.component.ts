@@ -1,45 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Store } from '@ngrx/store';
-import { RxwebValidators } from '@rxweb/reactive-form-validators';
-import { Member } from 'src/app/shared/models/Member';
-import { addMember, editMember } from 'src/app/state/actions/members.actions';
-import { AppState } from 'src/app/state/app.state';
-import { ActivatedRoute } from '@angular/router';
-import { MemberService } from 'src/app/backoffice/services/members/member.service';
-import { Observable } from 'rxjs';
-import { selectMember } from 'src/app/state/selectors/members.selectors';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { Store } from "@ngrx/store";
+import { RxwebValidators } from "@rxweb/reactive-form-validators";
+import { Member } from "src/app/shared/models/Member";
+import { addMember, editMember } from "src/app/state/actions/members.actions";
+import { AppState } from "src/app/state/app.state";
+import { ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs";
+import { selectMember } from "src/app/state/selectors/members.selectors";
 
 @Component({
-  selector: 'app-members',
-  templateUrl: './members.component.html',
-  styleUrls: ['./members.component.scss'],
+  selector: "app-members",
+  templateUrl: "./members.component.html",
+  styleUrls: ["./members.component.scss"],
 })
 export class MembersComponent implements OnInit {
-  public image!: string | SafeResourceUrl;
+  public image!: string;
 
-  reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  reg = "(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?";
 
   member = <Member>{};
 
-  title: string = '';
-  button: string = '';
+  title: string = "";
+  button: string = "";
   id: number = 0;
-  file: string = '';
+  file: string = "";
 
   form = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(4)]],
-    description: ['', [Validators.required]],
+    name: ["", [Validators.required, Validators.minLength(4)]],
+    description: ["", [Validators.required]],
     image: [
-      '',
+      "",
       [
         Validators.required,
-        RxwebValidators.extension({ extensions: ['png', 'jpg'] }),
+        RxwebValidators.extension({ extensions: ["png", "jpg"] }),
       ],
     ],
-    facebookUrl: ['', [Validators.required, Validators.pattern(this.reg)]],
-    linkedinUrl: ['', [Validators.required, Validators.pattern(this.reg)]],
+    facebookUrl: ["", [Validators.required, Validators.pattern(this.reg)]],
+    linkedinUrl: ["", [Validators.required, Validators.pattern(this.reg)]],
   });
   loading$: Observable<boolean> = new Observable();
   members$: Observable<Member | undefined> = new Observable();
@@ -47,20 +45,19 @@ export class MembersComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
-    private activatedRoute: ActivatedRoute,
-    private memberService: MemberService
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     let id = this.activatedRoute.snapshot.params.id;
     if (id) {
-      this.title = 'Editar';
-      this.button = 'Guardar cambios';
+      this.title = "Editar";
+      this.button = "Guardar cambios";
       this.id = id;
       this.getMember(id);
     } else {
-      this.title = 'Crear';
-      this.button = 'Crear usuario';
+      this.title = "Crear";
+      this.button = "Crear usuario";
     }
   }
 
@@ -90,7 +87,7 @@ export class MembersComponent implements OnInit {
     let pattern = /image-*/;
     let reader = new FileReader();
     if (!file.type.match(pattern)) {
-      alert('invalid format');
+      alert("invalid format");
       return;
     }
     reader.onload = this._handleReaderLoaded.bind(this);
@@ -107,7 +104,9 @@ export class MembersComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       if (this.id != 0) {
-        this.store.dispatch(editMember({ member: this.form.value }));
+        delete this.form.value.image;
+        console.log(this.form.value);
+        this.store.dispatch(editMember({id :this.id, member: this.form.value }));
       } else {
         this.store.dispatch(addMember({ member: this.form.value }));
       }

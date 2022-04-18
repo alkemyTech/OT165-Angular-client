@@ -57,8 +57,8 @@ export class MembersEffects {
   editMember$ = createEffect(() =>
     this.action$.pipe(
       ofType(editMember),
-      concatMap(({ member }) =>
-        this.membersService.putById(member.id!, member).pipe(
+      concatMap(({ id, member }) =>
+        this.membersService.putById(id, member).pipe(
           map((editedMembers) => editedMember({ member: editedMembers })),
           tap(() => {
             this.router.navigateByUrl("/backoffice/members");
