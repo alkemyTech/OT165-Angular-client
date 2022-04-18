@@ -16,8 +16,7 @@ export class NavComponent {
   isLogged: boolean = false;
   constructor(private store: Store<AppState>, private authService: AuthService) {
     this.userLoged$ = this.store.select(selectUserData);
-    this.userLoged$.subscribe(res => { 
-      console.log('status', res)     
+    this.userLoged$.subscribe(res => {            
       if(res != undefined){
         this.isLogged = true;
       }
