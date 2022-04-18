@@ -1,6 +1,7 @@
+import { debounceTime } from 'rxjs/operators';
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import {
   Columns,  
   TableData,
@@ -9,7 +10,7 @@ import { User } from "src/app/backoffice/models/user";
 import { UserService } from "src/app/services/auth/user.service";
 import { deleteUser, getUsers } from "src/app/state/actions/users.actions";
 import { AppState } from "src/app/state/app.state";
-import { filterUserByName, selectLoading, selectUsersList } from "src/app/state/selectors/users.selectors";
+import { selectLoading, selectUsersList } from "src/app/state/selectors/users.selectors";
 
 @Component({
   selector: "app-users-list",
@@ -25,8 +26,9 @@ export class UsersListComponent implements OnInit{
   ];  
   loading$:Observable<boolean> = new Observable();
   users$: Observable<User[]> = new Observable();
+  key: Subject<any> = new Subject();
 
-  constructor(private servicioUser: UserService, private store: Store<AppState>) {          
+  constructor(private userService: UserService, private store: Store<AppState>) {          
     this.loading$ = this.store.select(selectLoading);
     this.store.dispatch(getUsers());
   }
@@ -35,6 +37,9 @@ export class UsersListComponent implements OnInit{
     this.users$ = this.store.select(selectUsersList);
     this.users$.subscribe( response => {
       this.loadTable(response);
+    })
+    this.key.pipe(debounceTime(500)).subscribe((res) => {
+      this.search(res)
     })      
   }
 
@@ -55,14 +60,16 @@ export class UsersListComponent implements OnInit{
 
   search(key: any) {
     if(key.length >= 2) {
-      this.users$ = this.store.select(filterUserByName(key));
-      this.users$.subscribe(response => {
-        this.loadTable(response)
+      this.userService.getAll(key).subscribe({
+        next: (res) => {
+          this.loadTable(res)          
+        }
       })
     } else {
-      this.users$ = this.store.select(selectUsersList);
-      this.users$.subscribe(response => {
-        this.loadTable(response)
+      this.userService.getAll().subscribe({
+        next: (res) => {
+          this.loadTable(res)          
+        }
       })
     } 
   }
