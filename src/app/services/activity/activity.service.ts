@@ -14,6 +14,10 @@ export class ActivityService extends BaseService<IActivity> {
     super(http, environment.API_URL_ACTIVITIES);
   }
 
+  getSearchActivities(data: any): Observable<IActivity[]> {
+    return super.getSearch(data);
+  }
+
   getActivities(): Observable<IActivity[]> {
     return super.getAll();
   }

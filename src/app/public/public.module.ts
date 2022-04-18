@@ -4,6 +4,7 @@ import { ActivitiesListComponent } from "./pages/activities/activities-list/acti
 import { ActivityCardComponent } from "./pages/activities/activity-card/activity-card.component";
 import { ActivityFormComponent } from "./pages/activities/activity-form.component";
 import { ButtonModule } from "primeng/button";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { ContactComponent } from "./pages/contact/contact.component";
 import { DetailComponent } from "./pages/activities/details/detail.component";
 import { DonationAmountComponent } from "./pages/donations/donation-amount/donation-amount.component";
@@ -32,9 +33,12 @@ import { GoogleMapsModule } from "@angular/google-maps";
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { PdfViewerModule } from "ng2-pdf-viewer";
 import { NgxTwitterTimelineModule } from "ngx-twitter-timeline";
+import { InputSearchComponent } from './components/input-search/input-search.component';
+import { SpinnerComponent } from "../shared/components/spinner/spinner.component";
 
 @NgModule({
   declarations: [
+    SpinnerComponent,
     ActivityFormComponent,
     HomeComponent,
     PublicComponent,
@@ -52,9 +56,11 @@ import { NgxTwitterTimelineModule } from "ngx-twitter-timeline";
     LoginFormComponent,
     RegisterFormComponent,
     TermsandconditionsComponent,
+    InputSearchComponent,
   ],
   exports: [CarouselModule],
   imports: [
+    ProgressSpinnerModule,
     CarouselModule,
     CommonModule,
     SharedModule,

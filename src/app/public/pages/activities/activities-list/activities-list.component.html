@@ -7,14 +7,19 @@
   [opacity]="0.2"
 >
 </app-image-curved>
+<app-input-search (searched)="search($event)"></app-input-search>
 <div class="container-fluid">
     <section>
-        <div class="activities-info">
+        <div *ngIf="filteredActivities.length" class="activities-info">
             <h2>Conocé nuestras actividades</h2>
+        </div>
+        <div *ngIf="!filteredActivities.length" class="activities-info">
+            <h2>No hay nada para mostrar</h2>
         </div>
     </section>
     <section>
-        <div class="activities-list">
+        <app-spinner *ngIf="spinnerService.loading$ | async"></app-spinner>
+        <div class="activities-list" *ngIf="filteredActivities">
             <app-card routerLink="/actividades/{{activity.id}}" *ngFor="let activity of filteredActivities" 
                       title={{activity.name}} 
                       description={{activity.description}} 
