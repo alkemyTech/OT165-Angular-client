@@ -9,7 +9,7 @@ import { User } from "src/app/backoffice/models/user";
 import { UserService } from "src/app/services/auth/user.service";
 import { deleteUser, getUsers } from "src/app/state/actions/users.actions";
 import { AppState } from "src/app/state/app.state";
-import { selectLoading, selectUsersList } from "src/app/state/selectors/users.selectors";
+import { filterUserByName, selectLoading, selectUsersList } from "src/app/state/selectors/users.selectors";
 
 @Component({
   selector: "app-users-list",
@@ -51,5 +51,19 @@ export class UsersListComponent implements OnInit{
 
   deleteUser(id: number) {
     this.store.dispatch(deleteUser({id: id}));    
+  }
+
+  search(key: any) {
+    if(key.length >= 2) {
+      this.users$ = this.store.select(filterUserByName(key));
+      this.users$.subscribe(response => {
+        this.loadTable(response)
+      })
+    } else {
+      this.users$ = this.store.select(selectUsersList);
+      this.users$.subscribe(response => {
+        this.loadTable(response)
+      })
+    } 
   }
 }

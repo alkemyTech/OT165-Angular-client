@@ -3,5 +3,6 @@
   [items]="tableUsers"
   [columns]="titlesCol"
   (deleteItemById)="deleteUser($event)"
+  (keyword)="search($event)"
 >
 </app-table>
