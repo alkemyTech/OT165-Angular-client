@@ -35,6 +35,9 @@ export class AuthEffects {
               user: action.user.user,
             };
             localStorage.setItem("userLogin", JSON.stringify(userLogin));
+            if (userLogin.user?.token) {
+              localStorage.setItem("token", userLogin.user?.token)
+            };
             if (action.user.success && action.user.user?.user?.role_id == 2) {
               this.router.navigateByUrl("backoffice");
             } else if (action.user.user?.user?.role_id == 1) {
@@ -71,6 +74,9 @@ export class AuthEffects {
               user: action.user.user,
             };
             localStorage.setItem("userLogin", JSON.stringify(userLogin));
+            if (userLogin.user?.token) {
+              localStorage.setItem("token", userLogin.user?.token)
+            };
           })
         )
       )
@@ -105,6 +111,7 @@ export class AuthEffects {
       ofType(logOut),
       tap(() => {
         localStorage.removeItem('userLogin');
+        localStorage.removeItem('token');
         this.router.navigateByUrl('home');
       })
     ), {dispatch: false}

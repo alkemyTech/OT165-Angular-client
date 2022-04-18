@@ -77,11 +77,7 @@ export class AuthService {
 
   // Token validator
   public isTokenValid(token: string):boolean {
-    if(this.jwt.isTokenExpired(token) || token === undefined) {
-      return false;
-    } else {
-      return true;
-    }
+    return this.jwt.isTokenExpired(token) || token === undefined;
   }
 
 }
