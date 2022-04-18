@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { createEffect, Actions, ofType } from "@ngrx/effects";
-import { of } from "rxjs";
+import { EMPTY, of } from "rxjs";
 import { catchError, exhaustMap, map, mergeMap, tap } from "rxjs/operators";
 import { SlideService } from "src/app/backoffice/services/slides/slide.service";
 import { DialogService } from "src/app/shared/components/dialog/dialog.service";
@@ -30,6 +30,18 @@ export class SlidesEffects {
             });
             return of({ type: "[Error Slides] Slides" });
           })
+        )
+      )
+    )
+  );
+
+  loadSpecificSlides$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.getSpecificSlides),
+      mergeMap(({ key }) =>
+        this.slideService.getListOfSlides(key).pipe(
+          map((res) => actions.getSpecificSlidesSuccess({ slides: res })),
+          catchError(() => EMPTY)
         )
       )
     )
