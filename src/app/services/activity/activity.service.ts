@@ -18,8 +18,8 @@ export class ActivityService extends BaseService<IActivity> {
     return super.getSearch(data);
   }
 
-  getActivities(): Observable<IActivity[]> {
-    return super.getAll();
+  getActivities(key: string = ''): Observable<IActivity[]> {
+    return super.getAll(key);
   }
 
   getActivity(id: number): Observable<IActivity> {

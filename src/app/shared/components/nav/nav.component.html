@@ -61,15 +61,6 @@
             data-bs-toggle="collapse"
             class="underlineHover"
             type="button"
-            >Testimonios</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            data-bs-target=".navbar-collapse.show"
-            data-bs-toggle="collapse"
-            class="underlineHover"
-            type="button"
             routerLink="contacto"
             >Contacto</a
           >
@@ -103,6 +94,16 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item" *ngIf="(userLoged$ | async)?.role_id == 1 || (userLoged$ | async)?.role_id == 2">
+          <a
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
+            type="button"
+            routerLink="backoffice"
+            >Backoffice</a
+          >
+        </li>
       </ul>
       <div class="d-flex" *ngIf="!(userLoged$ | async)">
         <button
@@ -116,7 +117,7 @@
           type="button"
           routerLink="login"
         ></button>
-        <button
+        <button *ngIf="(userLoged$ | async)?.role_id == 1 || (userLoged$ | async)?.role_id == 2"
           aria-current="page"
           data-bs-toggle="collapse"
           data-bs-target=".navbar-collapse.show"

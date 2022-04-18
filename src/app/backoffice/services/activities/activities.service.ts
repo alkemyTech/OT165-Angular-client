@@ -13,8 +13,8 @@ export class ActivitiesService extends BaseService<Activity> {
     super(http, environment.API_URL_ACTIVITIES);
   }
 
-  public getActivities(): Observable<Activity[]> {
-    return super.getAll();
+  public getActivities(key: string = ''): Observable<Activity[]> {
+    return super.getAll(key);
   }
 
   public createActivity(activity: any): Observable<any> {

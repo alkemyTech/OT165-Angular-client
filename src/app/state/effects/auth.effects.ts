@@ -9,6 +9,7 @@ import { RegisterResponse } from "src/app/shared/models/auth/registerResponse.in
 import {
   loginGoogle,
   loginUser,
+  logOut,
   registerUser,
 } from "../actions/auth.actions";
 
@@ -19,18 +20,28 @@ export class AuthEffects {
       ofType(loginUser),
       mergeMap((action) =>
         this.authService.loginAPI(action.user).pipe(
-          map((user: LoginResponse) => ({
-            type: "[Login Page] Login success",
-            user: {
-              success: user.success,
-              user: user.data,
-            },
-          })),
+          map((user: LoginResponse) => {
+            return {
+              type: "[Login Page] Login success",
+              user: {
+                success: user.success,
+                user: user.data,
+              },
+            };
+          }),
           tap((action) => {
+            let userLogin = {
+              success: action.user.success,
+              user: action.user.user,
+            };
+            localStorage.setItem("userLogin", JSON.stringify(userLogin));
+            if (userLogin.user?.token) {
+              localStorage.setItem("token", userLogin.user?.token)
+            };
             if (action.user.success && action.user.user?.user?.role_id == 2) {
-              this.router.navigateByUrl('backoffice');
-            }else if (action.user.user?.user?.role_id == 1) {
-              this.router.navigateByUrl('home');
+              this.router.navigateByUrl("backoffice");
+            } else if (action.user.user?.user?.role_id == 1) {
+              this.router.navigateByUrl("home");
             }
           }),
           catchError(() => of({ type: "[Login Page] Login Error" }))
@@ -43,18 +54,30 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(loginGoogle),
       tap(() => {
-         this.authService.SigninWithGoogle()
-         this.router.navigateByUrl('home')
+        this.authService.SigninWithGoogle();
+        this.router.navigateByUrl("home");
       }),
       mergeMap((action) =>
         this.authService.getUserLoged.pipe(
-          map((user) => ({
-            type: "[Login Page] Login Google success",
-            user: {
-              success: true,
-              user: user,
-            },
-          }))
+          map((user) => {
+            return {
+              type: "[Login Page] Login Google success",
+              user: {
+                success: true,
+                user: user,
+              },
+            };
+          }),
+          tap((action) => {
+            let userLogin = {
+              success: action.user.success,
+              user: action.user.user,
+            };
+            localStorage.setItem("userLogin", JSON.stringify(userLogin));
+            if (userLogin.user?.token) {
+              localStorage.setItem("token", userLogin.user?.token)
+            };
+          })
         )
       )
     )
@@ -83,9 +106,20 @@ export class AuthEffects {
     )
   );
 
+  logOut$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(logOut),
+      tap(() => {
+        localStorage.removeItem('userLogin');
+        localStorage.removeItem('token');
+        this.router.navigateByUrl('home');
+      })
+    ), {dispatch: false}
+  );
+
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {}
 }

@@ -29,7 +29,8 @@
           type="password"
           aria-describedby="password-help" 
           [ngClass]="{'ng-invalid ng-dirty': password?.touched && password?.errors}"
-          pInputText />
+          pInputText 
+          (keyup.enter)="login($event)"/>
         <small
           *ngIf="password?.touched && password?.hasError('required')"
           id="password-help"
