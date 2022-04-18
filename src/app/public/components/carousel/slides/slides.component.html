@@ -1,5 +1,5 @@
 <img src="{{item.image}}" class="d-block img-fluid" alt="Random first slide">
 <div class="carousel-caption  d-block img-fluid">
-    <h2>{{item['name']}}</h2>
-    <p>{{item['description']}}</p>
+    <h2>{{item.name}}</h2>
+    <div [innerHTML]="item.description"></div>
 </div>
