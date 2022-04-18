@@ -21,6 +21,7 @@ import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { LoginFormComponent } from "./pages/auth/login-form/login-form.component";
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { TermsandconditionsComponent } from "./components/termsandconditions/termsandconditions.component";
+import { SwiperModule } from 'swiper/angular';
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
@@ -60,6 +61,7 @@ import { SpinnerComponent } from "../shared/components/spinner/spinner.component
   ],
   exports: [CarouselModule],
   imports: [
+    SwiperModule,
     ProgressSpinnerModule,
     CarouselModule,
     CommonModule,

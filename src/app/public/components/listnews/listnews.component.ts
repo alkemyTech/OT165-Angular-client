@@ -1,19 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { News } from "src/app/backoffice/models/news";
-import { NewsService } from "src/app/backoffice/services/news/news.service";
 
 @Component({
   selector: "app-listnews",
   templateUrl: "./listnews.component.html",
   styleUrls: ["./listnews.component.scss"],
 })
-export class ListnewsComponent implements OnInit {
-  public news!: News[]
-  constructor(private newService: NewsService) {}
+export class ListnewsComponent {
+  @Input() news!: News
 
-  ngOnInit(): void {
-    this.newService.getAll().subscribe(res =>{
-      this.news = res
-    })
-  }
+  constructor() {console.log(this.news)}
 }

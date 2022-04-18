@@ -1,9 +1,9 @@
-<section class="wrapper">
-  <div *ngFor="let n of news">
+<section class="wrapper" *ngIf="news">
+  <div >
     <app-card
-      [title]="n.name"
-      [imageSrc]="n.image"
-      [description]="n.content"
+      [title]="news.name"
+      [imageSrc]="news.image"
+      [description]="news.content"
     ></app-card>
   </div>
 </section>

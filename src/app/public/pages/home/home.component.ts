@@ -7,13 +7,22 @@ import { selectSlidesListWithOrder } from "src/app/state/selectors/slides.select
 import * as actions from "src/app/state/actions/slides.actions";
 import { DialogService } from "src/app/shared/components/dialog/dialog.service";
 import { DOCUMENT } from "@angular/common";
+import { A11y, Navigation, Pagination, Scrollbar, SwiperOptions } from "swiper";
+import SwiperCore from 'swiper';
+import { NewsService } from "src/app/backoffice/services/news/news.service";
+import { News } from "src/app/backoffice/models/news";
 
+// install Swiper modules
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
+
+
+  news: News[] = []
   isLoading!: boolean;
   slides$: Observable<Slide[]> = new Observable();
   slides: Slide[] = [];
@@ -25,12 +34,14 @@ export class HomeComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private dialogService: DialogService,
+    private newService: NewsService,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.store.dispatch(actions.getSlides());
   }
 
   ngOnInit(): void {
+    this.getNews();
     this.isLoading = true;
     this.getSlides();
   }
@@ -50,6 +61,13 @@ export class HomeComponent implements OnInit {
         });
       }
     );
+  }
+
+  getNews(){
+    this.newService.getAll().subscribe(res =>{
+      this.news = res;
+      console.log(this.news.length)
+    })
   }
 
   @HostListener('window:scroll', [])
