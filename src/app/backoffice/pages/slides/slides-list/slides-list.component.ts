@@ -34,7 +34,6 @@ export class SlidesListComponent implements OnInit {
     data: []
   };
 
-  skeleton: boolean = true;
   isLoading$!: Observable<boolean>;
   slides$: Observable<Slide[]> = new Observable();
 
@@ -44,9 +43,6 @@ export class SlidesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading$ = this.store.select(selectLoading);
-    this.isLoading$.subscribe((isLoading) => {
-      this.skeleton = isLoading;
-    });
     this.slides$ = this.store.select(selectSlidesListWithOrder);
     this.slides$.subscribe((response) => {
       this.items = {...this.items, data: response}
