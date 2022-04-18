@@ -35,6 +35,7 @@ export class CategoryEffects {
             this.categoryService.post(category).pipe(
                 map((newCategory) => createCategorySuccess({category: newCategory})),
                 tap(() => {
+                  this.dialogService.deleteAll();
                   this.dialogService.add({
                     type: "success",
                     title: "Añadida",
@@ -59,6 +60,7 @@ export class CategoryEffects {
             this.categoryService.putById(category.id!, category).pipe(
                 map((updatedCategory) => editCategorySuccess({category: updatedCategory})),
                 tap(() => {
+                  this.dialogService.deleteAll();
                   this.dialogService.add({
                     type: "success",
                     title: "Editada",
