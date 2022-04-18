@@ -29,7 +29,7 @@ export class UsersListComponent implements OnInit{
   users$: Observable<User[]> = new Observable();
   subject: Subject<any> = new Subject();
 
-  constructor(private userService: UserService, private store: Store<AppState>) {          
+  constructor(private store: Store<AppState>) {          
     this.loading$ = this.store.select(selectLoading);
     this.store.dispatch(getUsers());
   }
