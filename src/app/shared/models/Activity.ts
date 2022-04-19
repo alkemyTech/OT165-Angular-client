@@ -13,7 +13,7 @@ export interface IActivity {
 }
 
 export interface ActivityState {
-  error: "";
+  error: string;
   activity: ReadonlyArray<IActivity>;
   activities: ReadonlyArray<IActivity>;
   loading: boolean;
