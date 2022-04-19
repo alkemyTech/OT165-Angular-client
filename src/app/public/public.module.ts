@@ -23,7 +23,6 @@ import { TermsandconditionsComponent } from "./components/termsandconditions/ter
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
-import { CarouselModule } from "./components/carousel/carousel.module";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -53,9 +52,8 @@ import { NgxTwitterTimelineModule } from "ngx-twitter-timeline";
     RegisterFormComponent,
     TermsandconditionsComponent,
   ],
-  exports: [CarouselModule],
+  exports: [],
   imports: [
-    CarouselModule,
     CommonModule,
     SharedModule,
     RouterModule,

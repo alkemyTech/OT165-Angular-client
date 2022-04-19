@@ -55,7 +55,7 @@ export class BackofficeListComponent{
       {
         id: 8,
         title: "Miembros",
-        path: '/backoffice',
+        path: '/backoffice/members',
         icon: `pi pi-id-card`
       }
     ]    

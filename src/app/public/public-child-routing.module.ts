@@ -11,6 +11,7 @@ import { LoginFormComponent } from "./pages/auth/login-form/login-form.component
 import { RegisterFormComponent } from "./pages/auth/register-form/register-form.component";
 import { ThanksComponent } from "./pages/donations/thanks/thanks.component";
 import { UsersGuard } from "../guards/users/users.guard";
+import {RegisterGuard} from "../guards/register/register.guard";
 
 const childRoutes: Routes = [
   {
@@ -53,7 +54,7 @@ const childRoutes: Routes = [
   {
     path: "registro",
     component: RegisterFormComponent,
-    pathMatch: "full",
+    canActivate: [RegisterGuard]
   },
   {
     path: "",

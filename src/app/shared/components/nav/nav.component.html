@@ -129,7 +129,7 @@
           routerLink="registro"
         ></button>
       </div>
-      <div *ngIf="userLoged$ | async as user">
+      <div *ngIf="isLogged">
         <button
           class="me-1 mb-1 warning"
           aria-current="page"

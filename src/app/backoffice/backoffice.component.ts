@@ -69,7 +69,7 @@ export class BackofficeComponent {
       {
         id: 9,
         title: "Miembros",
-        path: '/backoffice-list',
+        path: '/backoffice/members',
         icon: `pi pi-id-card`
       },
     ]
