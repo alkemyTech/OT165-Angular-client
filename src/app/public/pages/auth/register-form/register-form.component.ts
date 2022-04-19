@@ -73,7 +73,7 @@ export class RegisterFormComponent {
     this.hide = false;
   }
 
-  private serviceRegister(object: registerSend) {
+  serviceRegister(object: registerSend) {
     this.store.dispatch(registerUser({ user: object }));
   }
 
