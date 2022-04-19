@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { of } from "rxjs";
+import { EMPTY, of } from "rxjs";
 import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { AuthService } from "src/app/services/auth/auth.service";
 import { LoginResponse } from "src/app/shared/models/auth/loginResponse.interface";
@@ -53,31 +53,20 @@ export class AuthEffects {
   loginUserGoogle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginGoogle),
-      tap(() => {
+      tap(() => { 
         this.authService.SigninWithGoogle();
-        this.router.navigateByUrl("home");
+        // this.router.navigateByUrl("home");
       }),
       mergeMap((action) =>
         this.authService.getUserLoged.pipe(
           map((user) => {
+            let userLogin = localStorage.getItem('userLogin');
             return {
               type: "[Login Page] Login Google success",
-              user: {
-                success: true,
-                user: user,
-              },
+              user: userLogin,
             };
           }),
-          tap((action) => {
-            let userLogin = {
-              success: action.user.success,
-              user: action.user.user,
-            };
-            localStorage.setItem("userLogin", JSON.stringify(userLogin));
-            if (userLogin.user?.token) {
-              localStorage.setItem("token", userLogin.user?.token)
-            };
-          })
+          catchError(() => EMPTY)
         )
       )
     )

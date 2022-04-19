@@ -42,42 +42,53 @@ export class AuthService {
 
   // Firebase signInWithRedirect
   private async OAuthProvider(provider: any): Promise<any> {
-    return await this.afAuth
-      .signInWithRedirect(provider)
+    return await this.afAuth.signInWithRedirect(provider);
   }
   // Firebase Google Sign-in
   public async SigninWithGoogle(): Promise<any> {
-    await this.OAuthProvider(new GoogleAuthProvider())
+    await this.OAuthProvider(new GoogleAuthProvider());
   }
 
-  public resultsUserGoogle(): Observable<any>{
+  public resultsUserGoogle(): Observable<any> {
     this.afAuth.getRedirectResult().then((credentials: any) => {
       if (credentials.user) {
-        const userGoogle = this.setUserGoogle(credentials.user)
-        this.userLoged.next(userGoogle)
+        const userGoogle = this.setUserGoogle(credentials.user);
+        this.userLoged.next(userGoogle);
+        this.afAuth.idToken.subscribe(token => {
+          let object = {
+            success: true,
+            user: {
+              token: token,
+              user: {...userGoogle, role_id: 2},
+            },
+          };
+          localStorage.setItem("userLogin", JSON.stringify(object));
+          if (token) {
+            localStorage.setItem("token", token);
+          }
+        })
       }
-    })
-    return this.userLoged.asObservable()
+    });
+    return this.userLoged.asObservable();
   }
 
-  private setUserGoogle(user: any){
+  private setUserGoogle(user: any) {
     return {
       name: user.displayName,
       email: user.email,
-      photoProfile: user.photoURL
-    }
+      photoProfile: user.photoURL,
+    };
   }
   // Firebase Logout
   public SignOut(): Promise<any> {
-    this.userLoged.next(false)
+    this.userLoged.next(false);
     return this.afAuth.signOut().then(() => {
       this.router.navigateByUrl("home");
     });
   }
 
   // Token validator
-  public isTokenValid(token: string):boolean {
-    return (!this.jwt.isTokenExpired(token) && token !== undefined);
+  public isTokenValid(token: string): boolean {
+    return !this.jwt.isTokenExpired(token) && token !== undefined;
   }
-
 }
