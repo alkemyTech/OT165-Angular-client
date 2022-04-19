@@ -11,6 +11,18 @@ export class ContentComponent implements OnInit {
   place!: string;
   countdown!: any;
 
+  items: any[] = [
+    {
+      title: "Campaña de Juguetes",
+      description: "Recolección de juguetes para los festejos navideños",
+      image: "https://i0.wp.com/serranojaimeconsultores.com/wp-content/uploads/2018/03/ong-2.jpg?fit=1024%2C682&ssl=1",
+    },
+    {
+      title: "Ayudemos a los niños",
+      description: "Te invitamos a colaborar para que todos los niños tengan las mismas oportunidades",
+      image: "https://educowebmedia.blob.core.windows.net/educowebmedia/educospain/media/images/blog/ong-y-ods.jpg",
+    },
+  ]
   constructor() {}
 
   ngOnInit(): void {
