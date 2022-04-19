@@ -33,8 +33,8 @@ export class SlideService extends BaseService<any> {
     return this.deleteById(id);
   }
 
-  public getListOfSlides() {
-    return this.getAll();
+  public getListOfSlides(key: string = ''): Observable<Slide[]> {
+    return this.getAll(key);
   }
 
   public updateOrderOfSlide(slide: any) {

@@ -11,12 +11,29 @@ export class ContentComponent implements OnInit {
   place!: string;
   countdown!: any;
 
+  items: any[] = [
+    {
+      title: "Campaña Escolar",
+      description:
+        "Recolección de utiles escolares para ayudar a nuestros chicos",
+      image:
+        "https://www.fundacionmapfre.org/media/educacion-divulgacion/covid-19/otras-acciones/apoyo-escolar-1194x585-1.jpg",
+    },
+    {
+      title: "Ayudemos a los niños",
+      description:
+        "Te invitamos a colaborar para que todos los niños tengan las mismas oportunidades",
+      image:
+        "https://blogs.ibo.org/files/2020/06/PYP-Feat-1200x800-1.jpg",
+    },
+  ];
   constructor() {}
 
   ngOnInit(): void {
-    this.description = "Somos Más genera todos los años una campaña con el objetivo de recolectar materiales escolares para ayudar a los chicos y chicas de la comunidad en el inicio del nuevo ciclo lectivo.";
+    this.description =
+      "Somos Más genera todos los años una campaña con el objetivo de recolectar materiales escolares para ayudar a los chicos y chicas de la comunidad en el inicio del nuevo ciclo lectivo.";
     this.place = "Paraguay 733, Ciudad Autónoma de Buenos Aires";
-    this.date = new Date(2022, 3, 28, 13, 15);    
+    this.date = new Date(2022, 3, 28, 13, 15);
     this.countdown = this.getTime();
   }
 

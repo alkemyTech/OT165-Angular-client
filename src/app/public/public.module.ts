@@ -25,7 +25,6 @@ import { SwiperModule } from 'swiper/angular';
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
-import { CarouselModule } from "./components/carousel/carousel.module";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -36,6 +35,7 @@ import { PdfViewerModule } from "ng2-pdf-viewer";
 import { NgxTwitterTimelineModule } from "ngx-twitter-timeline";
 import { InputSearchComponent } from './components/input-search/input-search.component';
 import { SpinnerComponent } from "../shared/components/spinner/spinner.component";
+import { CarouselModule } from "../shared/modules/carousel/carousel.module";
 
 @NgModule({
   declarations: [
@@ -59,7 +59,7 @@ import { SpinnerComponent } from "../shared/components/spinner/spinner.component
     TermsandconditionsComponent,
     InputSearchComponent,
   ],
-  exports: [CarouselModule],
+  exports: [],
   imports: [
     SwiperModule,
     ProgressSpinnerModule,
