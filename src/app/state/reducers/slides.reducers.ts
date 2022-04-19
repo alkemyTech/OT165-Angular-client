@@ -13,6 +13,13 @@ export const slideReducer = createReducer(
   on(actions.getSlidesSuccess, (state, { slides }) => {
     return { ...state, loading: false, slides: slides };
   }),
+  
+  on(actions.getSpecificSlides, (state) => {
+    return { ...state, loading: true };
+  }),
+  on(actions.getSpecificSlidesSuccess, (state, { slides }) => {
+    return { ...state, slides: slides, loading: false };
+  }),
 
   //CREATE SLIDE
   on(actions.createSlide, (state) => {
