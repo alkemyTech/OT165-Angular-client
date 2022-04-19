@@ -1,12 +1,20 @@
-import { AppState } from "./../../../../state/app.state";
-import { selectCategories } from "./../../../../state/selectors/category.selectors";
-import { MessageService } from "primeng/api";
-import { Component, OnInit } from "@angular/core";
-import { Category } from "src/app/shared/models/Category";
-import { Columns, TableData } from 'src/app/backoffice/models/TableData.interface';
+import { AppState } from './../../../../state/app.state';
+import { selectCategories } from './../../../../state/selectors/category.selectors';
+import { MessageService } from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/shared/models/Category';
+import {
+  Columns,
+  TableData,
+} from 'src/app/backoffice/models/TableData.interface';
 import { Store } from '@ngrx/store';
-import { deleteCategory, getCategories } from 'src/app/state/actions/category.actions';
-import { Observable } from "rxjs";
+import {
+  deleteCategory,
+  getCategories,
+} from 'src/app/state/actions/category.actions';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
   selector: 'app-category-list',
@@ -24,9 +32,12 @@ export class CategoryListComponent implements OnInit {
   ];
   skeleton!: boolean;
 
-  constructor(private store: Store<AppState>) {
-              
-  }
+  key: Subject<any> = new Subject<any>();
+
+  constructor(
+    private store: Store<AppState>,
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit(): void {
     this.skeleton = true;
@@ -35,7 +46,11 @@ export class CategoryListComponent implements OnInit {
     this.categoriesObservable.subscribe((res) => {
       this.loadTable(res);
       this.skeleton = false;
-    })
+    });
+    //Debounce
+    this.key
+      .pipe(debounceTime(500))
+      .subscribe((res) => this.searchCategories(res));
   }
 
   getCategories() {
@@ -44,9 +59,9 @@ export class CategoryListComponent implements OnInit {
   loadTable(response: Category[]) {
     this.categoriesData = JSON.parse(JSON.stringify(response));
     this.tableCategories = {
-      createPath: "/backoffice/categorias/crear",
-      editPath: "/backoffice/categorias/editar",
-      title: "Categorias",
+      createPath: '/backoffice/categorias/crear',
+      editPath: '/backoffice/categorias/editar',
+      title: 'Categorias',
       data: this.categoriesData,
     };
   }
@@ -54,5 +69,17 @@ export class CategoryListComponent implements OnInit {
     this.skeleton = true;
     this.store.dispatch(deleteCategory({ id: e }));
     this.skeleton = false;
+  }
+  debounce(e: any) {
+    this.key.next(e);
+  }
+  searchCategories(key: any) {
+    if (key.length <= 2) {
+      this.categoryService.getAll().subscribe((res) => this.loadTable(res));
+    } else {
+      this.categoryService
+        .getCategories(key)
+        .subscribe((res) => this.loadTable(res));
+    }
   }
 }
