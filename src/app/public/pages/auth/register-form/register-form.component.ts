@@ -29,12 +29,12 @@ export class RegisterFormComponent {
       validator: checkPasswords("password1", "password2"),
     }
   );
-  mapOptions: google.maps.MapOptions = {
+  mapOptions: any = {
     mapTypeId: "hybrid",
     center: { lat: -38.416097, lng: -63.616672 },
     disableDoubleClickZoom: false,
   };
-  markerPosition!: google.maps.LatLngLiteral | undefined;
+  markerPosition!: any;
 
   constructor(private store: Store<any>, private fb: FormBuilder) {}
 
@@ -77,7 +77,7 @@ export class RegisterFormComponent {
     this.store.dispatch(registerUser({ user: object }));
   }
 
-  addMarker(event: google.maps.MapMouseEvent) {
+  addMarker(event: any) {
     this.markerPosition = event.latLng?.toJSON();
     this.form.patchValue({
       address: `${this.markerPosition!.lat}, ${this.markerPosition!.lng}`,
