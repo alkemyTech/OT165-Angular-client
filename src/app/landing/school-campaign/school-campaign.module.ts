@@ -1,11 +1,11 @@
-import { SchoolHeaderComponent } from './components/school-header/school-header.component';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SchoolHeaderComponent } from "./components/school-header/school-header.component";
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { SchoolCampaignRoutingModule } from './school-campaign-routing.module';
-import { SchoolCampaignComponent } from './school-campaign.component';
-import { ContentComponent } from './components/content/content.component';
-import { SchoolFooterComponent } from './components/school-footer/school-footer.component';
+import { SchoolCampaignComponent } from "./school-campaign.component";
+import { ContentComponent } from "./components/content/content.component";
+import { SchoolFooterComponent } from "./components/school-footer/school-footer.component";
+import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -14,6 +14,6 @@ import { SchoolFooterComponent } from './components/school-footer/school-footer.
     SchoolHeaderComponent,
     SchoolFooterComponent,
   ],
-  imports: [CommonModule, SchoolCampaignRoutingModule],
+  imports: [CommonModule,SharedModule],
 })
 export class SchoolCampaignModule {}

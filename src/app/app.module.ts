@@ -41,6 +41,7 @@ import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
     AppRoutingModule,
     HttpClientModule,
     BackOfficeModule,
+    PublicModule,
     SchoolCampaignModule,
     ButtonModule,
     InputTextareaModule,

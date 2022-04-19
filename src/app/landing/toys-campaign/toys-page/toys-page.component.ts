@@ -19,12 +19,12 @@ export class ToysPage implements OnInit {
     {
       title: "Campaña de Juguetes",
       description: "Recolección de juguetes para los festejos navideños",
-      img: "https://i0.wp.com/serranojaimeconsultores.com/wp-content/uploads/2018/03/ong-2.jpg?fit=1024%2C682&ssl=1",
+      image: "https://i0.wp.com/serranojaimeconsultores.com/wp-content/uploads/2018/03/ong-2.jpg?fit=1024%2C682&ssl=1",
     },
     {
       title: "Ayudemos a los niños",
       description: "Te invitamos a colaborar para que todos los niños tengan las mismas oportunidades",
-      img: "https://educowebmedia.blob.core.windows.net/educowebmedia/educospain/media/images/blog/ong-y-ods.jpg",
+      image: "https://educowebmedia.blob.core.windows.net/educowebmedia/educospain/media/images/blog/ong-y-ods.jpg",
     },
   ]
 
