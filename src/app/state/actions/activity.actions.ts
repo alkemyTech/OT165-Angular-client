@@ -18,12 +18,12 @@ export const getActivitiesSuccess = createAction(
 );
 
 export const getSpecificActivities = createAction(
-  "[Activity] Get activities",
+  "[Activity] Get Specific activities",
   props<{ key: string }>()  
 );
 
 export const getSpecificActivitiesSuccess = createAction(
-  "[Activity] Get activities success",
+  "[Activity] Get Specific activities success",
   props<{ activities: IActivity[] }>()
 );
 

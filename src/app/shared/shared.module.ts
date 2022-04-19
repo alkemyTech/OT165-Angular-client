@@ -17,6 +17,7 @@ import { ProgressBarComponent } from './components/progressBar/progress-bar.comp
 import { MessageComponent } from './components/dialog/message/message.component';
 import { DialogComponent } from './components/dialog/dialog/dialog.component';
 import { NotFoundComponent } from './components/notFound/not-found.component';
+import {CarouselModule} from './modules/carousel/carousel.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NotFoundComponent } from './components/notFound/not-found.component';
     NotFoundComponent,
   ],
   imports: [
+    CarouselModule,
     CommonModule,
     RouterModule,
     ButtonModule,
@@ -41,6 +43,7 @@ import { NotFoundComponent } from './components/notFound/not-found.component';
   ],
   exports: [
     MessageComponent,
+    CarouselModule,
     LogoComponent,
     TitleComponent,
     CardComponent,

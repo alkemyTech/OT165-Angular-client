@@ -83,7 +83,6 @@ export class OrganizationFormComponent implements OnInit {
   _handleReaderLoaded(e: any) {
     let reader = e.target;
     this.file = reader.result;
-    console.log("image Src", this.file);
     this.form.patchValue({ image: this.file });
   }
 

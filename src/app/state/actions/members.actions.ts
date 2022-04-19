@@ -20,7 +20,7 @@ export const deletedMember = createAction(
 
 export const editMember = createAction(
   '[Members List] Edit members',
-  props<{ member: Member }>()
+  props<{ id:number, member: Member }>()
 );
 
 export const editedMember = createAction(
