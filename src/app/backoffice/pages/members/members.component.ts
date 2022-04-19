@@ -105,7 +105,6 @@ export class MembersComponent implements OnInit {
     if (this.form.valid) {
       if (this.id != 0) {
         delete this.form.value.image;
-        console.log(this.form.value);
         this.store.dispatch(editMember({id :this.id, member: this.form.value }));
       } else {
         this.store.dispatch(addMember({ member: this.form.value }));
