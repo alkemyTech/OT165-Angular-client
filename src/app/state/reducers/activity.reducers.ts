@@ -40,7 +40,7 @@ export const activityReducer = createReducer(
 
   //Get Specific Activities-------------------------------------
   on(getSpecificActivities, (state) => {
-    return { ...state, activity: [], loading: true };
+    return { ...state, loading: true };
   }),
   on(getSpecificActivitiesSuccess, (state, { activities }) => {
     return { ...state, activities: activities, loading: false };

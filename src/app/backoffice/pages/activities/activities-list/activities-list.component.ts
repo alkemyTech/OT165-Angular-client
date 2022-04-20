@@ -47,11 +47,11 @@ export class ActivitiesListComponent implements OnInit {
     this.isLoading$.subscribe((isLoading) => {
       this.isLoading = isLoading;
     });
-    this.store.dispatch(getActivities());
     this.activities$ = this.store.select(selectListActivities);
     this.activities$.subscribe((response) => {
       this.refreshData(response);
     });
+    this.store.dispatch(getActivities());
     this.subject.pipe(debounceTime(700))
     .subscribe((key: string) => {
       this.filter(key);
@@ -62,20 +62,11 @@ export class ActivitiesListComponent implements OnInit {
     this.tableActivities = {...this.tableActivities, data: data};
   }
 
-  showActivities(data: any) {
-    this.tableActivities = {
-      createPath: "/backoffice/actividades/crear/",
-      editPath: "/backoffice/actividades/editar/",
-      title: "Actividad",
-      data: data,
-    };
-  }
-
-  deleteUser(event: number) {
+  deleteActivity(event: number) {
     this.store.dispatch(deleteActivity({ id: event }));
   }
 
-  filterDebounce(key: string) {
+  debounce(key: string) {
     this.subject.next(key);
   }
 

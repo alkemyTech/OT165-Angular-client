@@ -95,7 +95,6 @@ export class ActivityFormComponent implements OnInit {
     if (this.activityForm.valid) {
       this.store.dispatch(addActivity({ data: this.activityForm.value }));
       this.image = "";
-      this.activityForm.reset();
     }
   }
 

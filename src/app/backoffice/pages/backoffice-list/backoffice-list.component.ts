@@ -27,35 +27,29 @@ export class BackofficeListComponent{
         title: "Categorías",
         path: '/backoffice/categorias',
         icon: `pi pi-list`
-      },
+      },      
       {
         id: 4,
-        title: "Testimonios",
-        path: '/backoffice',
-        icon: `pi pi-comment`
-      },
-      {
-        id: 5,
         title: "Organización",
         path: '/backoffice/organization',
         icon: `pi pi-briefcase`
       },
       {
-        id: 6,
+        id: 5,
         title: "Slides",
         path: '/backoffice/slides',
         icon: `pi pi-images`
       },
       {
-        id: 7,
+        id: 6,
         title: "Usuarios",
         path: '/backoffice/usuarios',
         icon: `pi pi-users`
       },
       {
-        id: 8,
+        id: 7,
         title: "Miembros",
-        path: '/backoffice',
+        path: '/backoffice/members',
         icon: `pi pi-id-card`
       }
     ]    

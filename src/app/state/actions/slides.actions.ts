@@ -14,6 +14,16 @@ export const getSlidesSuccess = createAction(
   props<{ slides: Slide[] }>()
 );
 
+export const getSpecificSlides = createAction(
+  "[Slides] Get specific slides",
+  props<{ key: string }>()
+);
+
+export const getSpecificSlidesSuccess = createAction(
+  "[Slides] Get specific slides success",
+  props<{ slides: Slide[] }>()
+);
+
 export const getOneSlide = createAction(
   "[Get Slide] Slides",
   props<{ id: number }>()
@@ -35,7 +45,8 @@ export const createSlideSuccess = createAction(
 );
 
 export const updateSlide = createAction(
-  "[Update Slide] Slides"
+  "[Update Slide] Slides",
+  props<{ id: number, slide: Slide }>()
 );
 
 export const updateSlideSuccess = createAction(

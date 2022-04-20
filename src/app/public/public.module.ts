@@ -22,7 +22,6 @@ import { TermsandconditionsComponent } from "./components/termsandconditions/ter
 
 //Own Modules
 import { SharedModule } from "../shared/shared.module";
-import { CarouselModule } from "./components/carousel/carousel.module";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -31,6 +30,7 @@ import { GoogleMapsModule } from "@angular/google-maps";
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { PdfViewerModule } from "ng2-pdf-viewer";
 import { NgxTwitterTimelineModule } from "ngx-twitter-timeline";
+import { DonationSectionComponent } from './components/donation-section/donation-section.component';
 
 @NgModule({
   declarations: [
@@ -50,10 +50,10 @@ import { NgxTwitterTimelineModule } from "ngx-twitter-timeline";
     LoginFormComponent,
     RegisterFormComponent,
     TermsandconditionsComponent,
+    DonationSectionComponent,
   ],
-  exports: [CarouselModule],
+  exports: [],
   imports: [
-    CarouselModule,
     CommonModule,
     SharedModule,
     RouterModule,

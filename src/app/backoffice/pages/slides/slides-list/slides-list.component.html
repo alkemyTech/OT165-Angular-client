@@ -1,9 +1,7 @@
-<main>
-  <app-skeleton *ngIf="skeleton" [columns]="titlesCol"></app-skeleton>
-  <app-table
-    *ngIf="!skeleton"
-    [items]="items"
-    [columns]="titlesCol"
-    (deleteItemById)="deleteSlides($event)"
-  ></app-table>
-</main>
+<app-table    
+  [items]="items"
+  [columns]="titlesCol"
+  (deleteItemById)="deleteSlides($event)"
+  (keyword)="filterDebounce($event)"
+  [isLoading]="(isLoading$ | async) ?? true"
+></app-table>
