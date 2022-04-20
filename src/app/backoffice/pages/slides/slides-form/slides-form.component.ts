@@ -82,22 +82,7 @@ export class SlidesFormComponent implements OnInit {
     } else {
       slideUpdatedNoIMG = this.setSlideEdit(this.datos.value);
     }
-    this.slideService.upDateSlides(this.id, slideUpdatedNoIMG).subscribe(
-      (res: SlideResponse) => {
-        if (res.success) {
-          this.stateRes = true;
-          this.header = "Listo!";
-          this.textModal = "¡Has editado un Slide!";
-          this.showModalDialog();
-        }
-      },
-      (error) => {
-        this.stateRes = false;
-        this.header = "Error";
-        this.textModal = "Ha ocurrido un error, vuelve a intentarlo";
-        this.showModalDialog();
-      }
-    );
+    this.store.dispatch(actions.updateSlide({id: this.id, slide: slideUpdatedNoIMG}))
   }
 
   public createSlide() {
