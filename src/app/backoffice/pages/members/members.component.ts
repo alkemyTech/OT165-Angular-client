@@ -57,7 +57,7 @@ export class MembersComponent implements OnInit {
       this.getMember(id);
     } else {
       this.title = "Crear";
-      this.button = "Crear usuario";
+      this.button = "Crear miembro";
     }
   }
 
