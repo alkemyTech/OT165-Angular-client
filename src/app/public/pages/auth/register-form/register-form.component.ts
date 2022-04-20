@@ -4,7 +4,6 @@ import { Store } from "@ngrx/store";
 import { registerSend } from "src/app/shared/models/auth/registerSend.interface";
 import { registerUser } from "src/app/state/actions/auth.actions";
 import { checkPattern, checkPasswords } from "../custom.validators";
-
 @Component({
   selector: "app-register-form",
   templateUrl: "./register-form.component.html",
@@ -29,12 +28,12 @@ export class RegisterFormComponent {
       validator: checkPasswords("password1", "password2"),
     }
   );
-  mapOptions: any = {
+  mapOptions: google.maps.MapOptions = {
     mapTypeId: "hybrid",
     center: { lat: -38.416097, lng: -63.616672 },
     disableDoubleClickZoom: false,
   };
-  markerPosition!: any;
+  markerPosition!: google.maps.LatLngLiteral | undefined;
 
   constructor(private store: Store<any>, private fb: FormBuilder) {}
 
@@ -77,7 +76,7 @@ export class RegisterFormComponent {
     this.store.dispatch(registerUser({ user: object }));
   }
 
-  addMarker(event: any) {
+  addMarker(event: google.maps.MapMouseEvent) {
     this.markerPosition = event.latLng?.toJSON();
     this.form.patchValue({
       address: `${this.markerPosition!.lat}, ${this.markerPosition!.lng}`,

@@ -37,19 +37,13 @@ describe("NewsFormComponent", () => {
   it("Debe retornar formulario invalido", () => {
     fixture = TestBed.createComponent(NewsFormComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
-
     const form = component.newsForm;
-    const name = component.newsForm.controls["name"];
-    name.setValue("nacho");
-    //con campos incompletos debe ser invalido
-    expect(form.invalid).toBeTrue(); //TODO:
+    expect(form.invalid).toBeTrue();
   });
 
   it("Debe retornar formulario valido", () => {
     fixture = TestBed.createComponent(NewsFormComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
 
     const form = component.newsForm;
     const name = component.newsForm.controls["name"];
@@ -58,15 +52,12 @@ describe("NewsFormComponent", () => {
     content.setValue("un contenido")
     name.setValue("nacho");
     image.setValue("http://image.url.png")
-    //TODO: true
     expect(form.valid).toBeTrue();
   });
 
   it("Boton debe estar desactivado", () => {
     fixture = TestBed.createComponent(NewsFormComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
-
     const button = fixture.debugElement.query(By.css('button'))
     expect(button.nativeElement.disabled).toBeFalse()
   });
@@ -74,7 +65,6 @@ describe("NewsFormComponent", () => {
   it("El formulario debe ser de actulizacion", () => {
     fixture = TestBed.createComponent(NewsFormComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
     component.paramID = 10;
     component.ngOnInit();
     expect(component.actionType).toEqual("Editar")
@@ -83,7 +73,6 @@ describe("NewsFormComponent", () => {
   it("El formulario debe ser de creacion", () => {
     fixture = TestBed.createComponent(NewsFormComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
     component.ngOnInit();
     expect(component.actionType).toEqual("Crear")
   });
