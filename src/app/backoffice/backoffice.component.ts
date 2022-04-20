@@ -41,33 +41,27 @@ export class BackofficeComponent {
         title: "Categorías",
         path: '/backoffice/categorias',
         icon: `pi pi-list`
-      },
+      },      
       {
         id: 5,
-        title: "Testimonios",
-        path: '/backoffice',
-        icon: `pi pi-comment`
-      },
-      {
-        id: 6,
         title: "Organización",
         path: '/backoffice/organization',
         icon: `pi pi-briefcase`
       },
       {
-        id: 7,
+        id: 6,
         title: "Slides",
         path: '/backoffice/slides',
         icon: `pi pi-images`
       },
       {
-        id: 8,
+        id: 7,
         title: "Usuarios",
         path: '/backoffice/usuarios',
         icon: `pi pi-users`
       },
       {
-        id: 9,
+        id: 8,
         title: "Miembros",
         path: '/backoffice/members',
         icon: `pi pi-id-card`
