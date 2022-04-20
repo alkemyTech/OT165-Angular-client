@@ -57,8 +57,8 @@ export class SlidesEffects {
           }),
           tap(() => {
             this.dialogService.add({
-              type: "success",
-              title: "Slide eliminada",
+              type: "error",
+              title: "Eliminada",
               detail: "La slide se eliminó correctamente",
             });
           }),
@@ -67,6 +67,34 @@ export class SlidesEffects {
               type: "error",
               title: "Error del servidor",
               detail: "No pudo eliminarse la slide",
+            });
+            return of({ type: "[Error Slides] Slides" });
+          })
+        )
+      )
+    )
+  );
+
+  updateSlide$ = createEffect(() => 
+    this.actions$.pipe(
+      ofType(actions.updateSlide),
+      mergeMap(({id, slide}) => 
+        this.slideService.upDateSlides(id, slide).pipe(
+          map(() => actions.updateSlideSuccess({id: id, slide: slide})),
+          tap(() => {
+            this.dialogService.deleteAll();
+            this.router.navigateByUrl('backoffice/slides');
+            this.dialogService.add({
+              type: "success",
+              title: "Actualizada",
+              detail: "La slide se actualizó correctamente",
+            });
+          }),
+          catchError(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Error del servidor",
+              detail: "No pudo actualizarse la slide",
             });
             return of({ type: "[Error Slides] Slides" });
           })

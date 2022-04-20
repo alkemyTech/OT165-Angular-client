@@ -1,21 +1,34 @@
 import { Injectable } from "@angular/core";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { of } from "rxjs";
-import { map, mergeMap, catchError, tap } from "rxjs/operators";
+import { Action } from "@ngrx/store";
+import { EMPTY, forkJoin, from, Observable, of } from "rxjs";
+import {
+  map,
+  mergeMap,
+  catchError,
+  tap,
+  switchMap,
+  concatMap,
+} from "rxjs/operators";
 import { AuthService } from "src/app/services/auth/auth.service";
 import { LoginResponse } from "src/app/shared/models/auth/loginResponse.interface";
 import { RegisterResponse } from "src/app/shared/models/auth/registerResponse.interface";
+import { UserState } from "src/app/shared/models/auth/userState.interface";
 import {
+  logedGoogle,
+  loginError,
   loginGoogle,
   loginUser,
   logOut,
+  logOutSuccess,
   registerUser,
 } from "../actions/auth.actions";
 
 @Injectable()
 export class AuthEffects {
-  loginUser$ = createEffect(() =>
+  loginUser$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(loginUser),
       mergeMap((action) =>
@@ -36,8 +49,8 @@ export class AuthEffects {
             };
             localStorage.setItem("userLogin", JSON.stringify(userLogin));
             if (userLogin.user?.token) {
-              localStorage.setItem("token", userLogin.user?.token)
-            };
+              localStorage.setItem("token", userLogin.user?.token);
+            }
             if (action.user.success && action.user.user?.user?.role_id == 2) {
               this.router.navigateByUrl("backoffice");
             } else if (action.user.user?.user?.role_id == 1) {
@@ -50,40 +63,27 @@ export class AuthEffects {
     )
   );
 
-  loginUserGoogle$ = createEffect(() =>
+  loginUserGoogle$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(loginGoogle),
-      tap(() => {
-        this.authService.SigninWithGoogle();
-        this.router.navigateByUrl("home");
+      switchMap(() => {
+        return from(this.authService.googleLogin());
       }),
-      mergeMap((action) =>
-        this.authService.getUserLoged.pipe(
-          map((user) => {
-            return {
-              type: "[Login Page] Login Google success",
-              user: {
-                success: true,
-                user: user,
-              },
-            };
-          }),
-          tap((action) => {
-            let userLogin = {
-              success: action.user.success,
-              user: action.user.user,
-            };
-            localStorage.setItem("userLogin", JSON.stringify(userLogin));
-            if (userLogin.user?.token) {
-              localStorage.setItem("token", userLogin.user?.token)
-            };
-          })
-        )
-      )
+      concatMap((credential) => {
+        return forkJoin([of(credential), from(credential.user.getIdToken())]);
+      }),
+      map(([credential, token]: any) => {
+        let user: UserState = this.authService.setUserGoogle(credential, token);
+        localStorage.setItem("userLogin", JSON.stringify(user));
+        localStorage.setItem("token", token);
+        this.router.navigateByUrl('/backoffice')
+        return logedGoogle({ user });
+      }),
+      catchError(() => of(loginError))
     )
   );
 
-  registerUser$ = createEffect(() =>
+  registerUser$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(registerUser),
       mergeMap((action) =>
@@ -106,15 +106,20 @@ export class AuthEffects {
     )
   );
 
-  logOut$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(logOut),
-      tap(() => {
-        localStorage.removeItem('userLogin');
-        localStorage.removeItem('token');
-        this.router.navigateByUrl('home');
-      })
-    ), {dispatch: false}
+  logOut$: Observable<Action> = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(logOut),
+        tap(() => {
+          this.authService.signOutGoogle();
+          localStorage.removeItem("userLogin");
+          localStorage.removeItem("token");
+          this.router.navigateByUrl("home");
+        }),
+        map(() => logOutSuccess),
+        catchError(() => of(loginError))
+      ),
+    { dispatch: false }
   );
 
   constructor(

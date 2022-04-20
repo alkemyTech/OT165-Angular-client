@@ -31,6 +31,10 @@ export const logOut = createAction(
   "[Login Page] Logout",
 );
 
+export const logOutSuccess = createAction(
+  "[Login Page] Logout Success",
+);
+
 /* Register Actions */
 export const registerUser = createAction(
   "[Register Page] Register",
