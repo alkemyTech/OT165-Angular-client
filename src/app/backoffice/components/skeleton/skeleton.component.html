@@ -1,13 +1,11 @@
 <div class="card">
   <p-toolbar styleClass="mb-4">
     <div class="ui-toolbar-group-left">
-      <button
-        pButton
-        pRipple
-        label="Nuevo"
-        icon="pi pi-plus"
-        class="p-button-success mr-2"
-      ></button>
+      <div class="ui-toolbar-group-left">
+        <button          
+          class="btn btn-success mr-2"          
+        ><i class="pi pi-plus"></i> Nuevo</button>
+      </div>
     </div>
   </p-toolbar>
   <p-table
@@ -44,8 +42,8 @@
           <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
         </td>
         <td class="buttons">
-          <p-skeleton shape="circle" size="3rem" styleClass="mr-2"></p-skeleton>
-          <p-skeleton shape="circle" size="3rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton shape="square" size="3rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton shape="square" size="3rem" styleClass="mr-2"></p-skeleton>
         </td>
       </tr>
     </ng-template>

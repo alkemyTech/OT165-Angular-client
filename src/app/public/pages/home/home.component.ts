@@ -37,13 +37,13 @@ export class HomeComponent implements OnInit {
     this.slides$.subscribe(
       (response) => {
         this.slides = response;
-        this.isLoading = false;
+        this.isLoading = false;        
       },
       () => {
         this.dialogService.add({
           type: "error",
           title: "Contenido no encontrado",
-          detail: "No se ha encontrado el contenido",
+          detail: "Ocurrió un error al cargar el contenido.",
         });
       }
     );
