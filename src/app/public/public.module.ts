@@ -36,6 +36,7 @@ import { NgxTwitterTimelineModule } from "ngx-twitter-timeline";
 import { InputSearchComponent } from './components/input-search/input-search.component';
 import { SpinnerComponent } from "../shared/components/spinner/spinner.component";
 import { CarouselModule } from "../shared/modules/carousel/carousel.module";
+import { DonationSectionComponent } from './components/donation-section/donation-section.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { CarouselModule } from "../shared/modules/carousel/carousel.module";
     RegisterFormComponent,
     TermsandconditionsComponent,
     InputSearchComponent,
+    DonationSectionComponent,
   ],
   exports: [],
   imports: [

@@ -1,9 +1,7 @@
-<main>  
-  <app-table    
-    [items]="items"
-    [columns]="titlesCol"
-    (deleteItemById)="deleteSlides($event)"
-    (keyword)="filterDebounce($event)"
-    [isLoading]="skeleton"
-  ></app-table>
-</main>
+<app-table    
+  [items]="items"
+  [columns]="titlesCol"
+  (deleteItemById)="deleteSlides($event)"
+  (keyword)="filterDebounce($event)"
+  [isLoading]="(isLoading$ | async) ?? true"
+></app-table>
