@@ -11,14 +11,10 @@
   <div *ngIf="!isLoading" class="card">
     <p-toolbar styleClass="mb-4">
       <div class="ui-toolbar-group-left">
-        <button
-          pButton
-          pRipple
-          label="Nuevo {{ items.title }}"
-          icon="pi pi-plus"
-          class="p-button-success mr-2"
+        <button          
+          class="btn btn-success mr-2"
           [routerLink]="[items.createPath]"
-        ></button>
+        ><i class="pi pi-plus"></i> Nuevo {{ items.title }}</button>
       </div>
     </p-toolbar>
 
@@ -78,20 +74,14 @@
             </ng-container>
             <td></td>
             <td class="buttons">
-              <button
-                pButton
-                pRipple
-                icon="pi pi-pencil"
-                class="p-button-rounded p-button-success mr-2"
+              <button                
+                class="btn primary mr-2"
                 [routerLink]="[items.editPath, item.id]"
-              ></button>
-              <button
-                pButton
-                pRipple
-                icon="pi pi-trash"
-                class="p-button-rounded p-button-warning"
+              ><i class="pi pi-pencil"></i></button>
+              <button                
+                class="btn danger"
                 (click)="openDialog(item.id ?? 0, 'Deseas eliminar '+item.name+'?')"
-              ></button>
+              ><i class="pi pi-trash"></i></button>
             </td>
           </tr>
         </ng-template>
