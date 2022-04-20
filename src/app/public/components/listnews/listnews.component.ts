@@ -9,5 +9,5 @@ import { News } from "src/app/backoffice/models/news";
 export class ListnewsComponent {
   @Input() news!: News
 
-  constructor() {console.log(this.news)}
+  constructor() {}
 }
