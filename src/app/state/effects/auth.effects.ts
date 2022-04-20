@@ -76,6 +76,7 @@ export class AuthEffects {
         let user: UserState = this.authService.setUserGoogle(credential, token);
         localStorage.setItem("userLogin", JSON.stringify(user));
         localStorage.setItem("token", token);
+        this.router.navigateByUrl('/backoffice')
         return logedGoogle({ user });
       }),
       catchError(() => of(loginError))

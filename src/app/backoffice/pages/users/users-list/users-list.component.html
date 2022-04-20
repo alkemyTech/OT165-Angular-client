@@ -1,9 +1,7 @@
-<main>
-  <app-table
-    *ngIf="!(loading$ | async)"
-    [items]="tableUsers"
-    [columns]="titlesCol"
-    (deleteItemById)="deleteUser($event)"
-  >
-  </app-table>
-</main>
+<app-table
+  *ngIf="!(loading$ | async)"
+  [items]="tableUsers"
+  [columns]="titlesCol"
+  (deleteItemById)="deleteUser($event)"
+>
+</app-table>
