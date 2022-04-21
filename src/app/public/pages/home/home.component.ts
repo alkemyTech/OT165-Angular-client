@@ -6,6 +6,8 @@ import { AppState } from "src/app/state/app.state";
 import { selectSlidesListWithOrder } from "src/app/state/selectors/slides.selectors";
 import * as actions from "src/app/state/actions/slides.actions";
 import { DialogService } from "src/app/shared/components/dialog/dialog.service";
+import { Organization } from "src/app/backoffice/models/organization";
+import { OrganizationService } from "src/app/services/organization/organization.service";
 import { DOCUMENT } from "@angular/common";
 import { A11y, Navigation, Pagination, Scrollbar, SwiperOptions } from "swiper";
 import SwiperCore from 'swiper';
@@ -26,14 +28,13 @@ export class HomeComponent implements OnInit {
   isLoading!: boolean;
   slides$: Observable<Slide[]> = new Observable();
   slides: Slide[] = [];
+  organization!: Organization;
   public showButton = false;
-
-  public welcome: string =
-    "En Somos Más trabajamos con los chicos y chicas, mamás y papás, abuelos y vecinos del barrio generando procesos de crecimiento y inserción social.";
 
   constructor(
     private store: Store<AppState>,
     private dialogService: DialogService,
+    private organizationService: OrganizationService,
     private newService: NewsService,
     @Inject(DOCUMENT) private document: Document
   ) {
@@ -41,6 +42,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.organizationService.getOrganization().subscribe((res: Organization) => {
+      this.organization = res;
+    })
     this.getNews();
     this.isLoading = true;
     this.getSlides();

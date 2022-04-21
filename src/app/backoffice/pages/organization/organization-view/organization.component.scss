@@ -1,5 +1,5 @@
 .header {
-  padding-top: 24px;
+    padding-top: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,7 +7,7 @@
 }
 
 .container-fluid {
-    padding: 0 20px;
+    padding: 20px;
 }
 
 h1 {
@@ -27,7 +27,8 @@ h1 {
     padding: 10px;
     border-radius: 6px;
     min-height: 46px;
-    background-color: #0000000f
+    background-color: #0000000f;
+    overflow: hidden;
 }
 
 .text-container p {
@@ -41,6 +42,6 @@ h1 {
 
 @media (min-width: 768px) {
     .container-fluid {
-        padding: 0 30px;
+        padding: 0 30px 20px;
     }
 }

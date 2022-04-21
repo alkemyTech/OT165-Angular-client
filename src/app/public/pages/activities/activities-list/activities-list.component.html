@@ -8,10 +8,10 @@
 >
 </app-image-curved>
 <app-input-search (searched)="search($event)"></app-input-search>
-<div class="container-fluid">
+<div class="container-fluid fadeIn first">
     <section>
         <div *ngIf="filteredActivities.length" class="activities-info">
-            <h2>conocé más de nuestras actividades</h2>
+            <h2>Conocé más de nuestras actividades</h2>
         </div>
         <div *ngIf="!filteredActivities.length" class="activities-info">
             <h2>No hay nada para mostrar</h2>
