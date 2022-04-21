@@ -95,10 +95,7 @@ describe("ActivityFormComponent", () => {
   it("[Form Check] if form is valid, it should create and add a success message", inject(
     [DialogService],
     (dialogService: DialogService) => {
-      dialogService.messagesObservable.subscribe((el: any) => {
-        console.log("llegué acá");
-        console.log(el);
-      });
+      component.ngOnInit();
       expect(component.activityForm.invalid).toBeTruthy();
       component.activityForm.setValue({
         name: "Actividad de prueba",
@@ -107,7 +104,7 @@ describe("ActivityFormComponent", () => {
       });
       fixture.detectChanges();
       component.createActivity();
-      // fixture.detectChanges();
+      fixture.detectChanges();
 
       dialogService.messagesObservable.subscribe((el) => {
         console.log(el);
