@@ -9,6 +9,7 @@ import {
   loadMembers,
   editMember,
   editedMember,
+  errorMember,
 } from '../actions/members.actions';
 
 export const initialState: MemberState = { loading: false, members: [] };
@@ -59,6 +60,13 @@ export const membersReducer = createReducer(
       ...state,
       loading: false,
       users: updatedMembers,
+    };
+  }),
+
+  on(errorMember, (state) => {
+    return {
+      ...state,
+      loading: false
     };
   })
 );
