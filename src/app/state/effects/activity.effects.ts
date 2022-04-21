@@ -98,6 +98,7 @@ export class ActivityEffects {
         this.activitiesService.createActivity(data).pipe(
           map((res) => addActivitySuccess({ data: res })),
           tap(() => {
+            this.dialogService.deleteAll();
             this.dialogService.add({
               type: "success",
               title: "Añadida",
@@ -125,6 +126,7 @@ export class ActivityEffects {
         this.activitiesService.updateActivity(id, data).pipe(
           map((res) => updateActivitySuccess({ id, data: res })),
           tap(() => {
+            this.dialogService.deleteAll();
             this.dialogService.add({
               type: "success",
               title: "Editada",

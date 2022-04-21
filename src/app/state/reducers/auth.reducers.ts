@@ -17,11 +17,11 @@ export const loginReducer = createReducer(
         return state = { success: false, user: {} }
     }),
     /* login google */
-    on(actions.loginGoogle, state => {
+    on(actions.loginGoogle, state => { //Este no es necesario porque el estado no cambia
         return {...state}
     }),
-    on(actions.logedGoogle,  (state, newState) => {
-        return  state = {...newState.user} 
+    on(actions.logedGoogle,  (state, { user }) => {
+        return  state = user; 
     }),
   );
 

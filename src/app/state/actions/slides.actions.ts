@@ -45,7 +45,8 @@ export const createSlideSuccess = createAction(
 );
 
 export const updateSlide = createAction(
-  "[Update Slide] Slides"
+  "[Update Slide] Slides",
+  props<{ id: number, slide: Slide }>()
 );
 
 export const updateSlideSuccess = createAction(

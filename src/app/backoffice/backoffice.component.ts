@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { AppState } from 'src/app/state/app.state';
-import { selectUserData } from 'src/app/state/selectors/auth.selectors';
 
 @Component({
   selector: 'app-backoffice',
@@ -16,7 +12,7 @@ export class BackofficeComponent {
   userLog = {}
   userLoged$!: Observable<any>;
 
-  constructor(private authService: AuthService, private store: Store<AppState>) {
+  constructor() {
     this.dashboard = [
       {
         id: 1,
@@ -41,54 +37,32 @@ export class BackofficeComponent {
         title: "Categorías",
         path: '/backoffice/categorias',
         icon: `pi pi-list`
-      },
+      },      
       {
         id: 5,
-        title: "Testimonios",
-        path: '/backoffice',
-        icon: `pi pi-comment`
-      },
-      {
-        id: 6,
         title: "Organización",
         path: '/backoffice/organization',
         icon: `pi pi-briefcase`
       },
       {
-        id: 7,
+        id: 6,
         title: "Slides",
         path: '/backoffice/slides',
         icon: `pi pi-images`
       },
       {
-        id: 8,
+        id: 7,
         title: "Usuarios",
         path: '/backoffice/usuarios',
         icon: `pi pi-users`
       },
       {
-        id: 9,
+        id: 8,
         title: "Miembros",
         path: '/backoffice/members',
         icon: `pi pi-id-card`
       },
     ]
-    this.checkUserLogin();
-        
-  }
-
-  private checkUserLogin(){
-    this.authService.resultsUserGoogle().subscribe( (res) =>{
-      this.userLog = res
-      if (!res) {
-        this.authService.getUserLoged.subscribe(res => {
-          this.userLoged$ = this.store.select(selectUserData)
-          this.userLoged$.subscribe((res) => {
-            this.userLog = res
-          })
-        })
-      }
-    }) 
   }
 
 }

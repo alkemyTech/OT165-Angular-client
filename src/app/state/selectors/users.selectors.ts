@@ -21,3 +21,10 @@ export const selectUser = (id: number) => createSelector(
     return state.users.find((user: User) => user.id == id)
   }
 )
+
+export const filterUserByName = (key: string) => createSelector(
+  selectUsersFeature,
+  (state: UsersState) => {
+    return state.users.filter((user: User) => user.name.toLowerCase().includes(key.toLowerCase()))
+  }
+)
