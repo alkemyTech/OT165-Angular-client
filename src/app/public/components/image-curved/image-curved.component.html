@@ -5,8 +5,6 @@
     <h1 [ngStyle]="{'color': textColor}">
       {{ title }}
     </h1>
-    <p [ngStyle]="{'color': textColor}">
-      {{ text }}
-    </p>
+    <div [ngStyle]="{'color': textColor}" class="centered" [innerHTML]="text"></div>
   </div>
 </section>

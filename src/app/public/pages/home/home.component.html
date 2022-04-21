@@ -2,9 +2,10 @@
 <app-progress-bar [isLoading]="isLoading"></app-progress-bar>
 <app-carousel [items]="slides"></app-carousel>
 
-<section class="mt-5 mb-5 fadeIn second">
-  <div class="fs-3 text-center">
-    <p>{{ welcome }}</p>
+<section class="description-section">
+  <div class="text-center">
+    <h2>Sobre Nosotros</h2>
+    <p class="description">{{ organization.long_description }}</p>
   </div>
 </section>
 

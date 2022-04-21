@@ -6,6 +6,8 @@ import { AppState } from "src/app/state/app.state";
 import { selectSlidesListWithOrder } from "src/app/state/selectors/slides.selectors";
 import * as actions from "src/app/state/actions/slides.actions";
 import { DialogService } from "src/app/shared/components/dialog/dialog.service";
+import { Organization } from "src/app/backoffice/models/organization";
+import { OrganizationService } from "src/app/services/organization/organization.service";
 
 @Component({
   selector: "app-home",
@@ -16,18 +18,20 @@ export class HomeComponent implements OnInit {
   isLoading!: boolean;
   slides$: Observable<Slide[]> = new Observable();
   slides: Slide[] = [];
-
-  public welcome: string =
-    "En Somos Más trabajamos con los chicos y chicas, mamás y papás, abuelos y vecinos del barrio generando procesos de crecimiento y inserción social.";
+  organization!: Organization;
 
   constructor(
     private store: Store<AppState>,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private organizationService: OrganizationService
   ) {
     this.store.dispatch(actions.getSlides());
   }
 
   ngOnInit(): void {
+    this.organizationService.getOrganization().subscribe((res: Organization) => {
+      this.organization = res;
+    })
     this.isLoading = true;
     this.getSlides();
   }
