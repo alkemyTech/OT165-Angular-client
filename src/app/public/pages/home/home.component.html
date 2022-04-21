@@ -2,10 +2,10 @@
 <app-progress-bar [isLoading]="isLoading"></app-progress-bar>
 <app-carousel [items]="slides"></app-carousel>
 
-<section class="description-section">
+<section class="description-section fadeIn second">
   <div class="text-center">
     <h2>Sobre Nosotros</h2>
-    <p class="description">{{ organization.long_description }}</p>
+    <div class="description" [innerHTML]="organization.short_description"></div>
   </div>
 </section>
 
