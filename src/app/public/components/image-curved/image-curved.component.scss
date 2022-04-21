@@ -153,3 +153,10 @@ p {
 h1 {
   margin-bottom: 24px;
 }
+.centered {
+  display: flex;
+  justify-content: center;
+  & > * {
+    text-align: center;
+  }
+}
