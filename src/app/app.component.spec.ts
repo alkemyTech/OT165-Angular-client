@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -7,6 +9,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [HttpClientTestingModule, HttpClientModule]
     }).compileComponents();
   });
 
@@ -15,6 +18,7 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
+
 
 
   it('should render title', () => {

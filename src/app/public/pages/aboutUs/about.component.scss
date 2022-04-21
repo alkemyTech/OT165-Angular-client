@@ -1,6 +1,14 @@
-.about-text {
-  font-size: 20px;
-  font-weight: 300;
+.description-section {
+  padding: 24px 10%;
+  margin: 0;
+}
+
+.decription {
+  padding-top: 24px;
+}
+h2 {
+  color: var(--primary-text);
+  padding-bottom: 12px;
 }
 
 .tw-container {
@@ -11,15 +19,8 @@ h3 {
   font-size: 35px;
 }
 
-.section-color, .section-tweets{  
-  padding: 5% 0;
-}
-
-hr {
-  width: 20%;
-  height: 3px;
-  opacity: 100%;
-  background-color: black;
+.section-tweets{  
+  padding: 24px 0;
 }
 
 .title-text {
