@@ -7,18 +7,20 @@
     align-items: center;
     justify-content: center;
   }
+  .d-flex {
+    justify-content: center;
+  }
 }
 a {
   color: black;
   text-decoration: none;
-  margin: 0 18px 0 18px;
-  padding: 5px;
+  margin: 0 10px;
+  padding: 0;
   font-weight: bold;
   text-shadow: 0px 6px 20px #4960a1;
 }
 .dropBox {
   position: relative;
-  margin-top: 4px;
   .dropdown {
     padding: 0;
     z-index: 3;
@@ -26,10 +28,10 @@ a {
     position: absolute; /*WITH RESPECT TO PARENT*/
     display: none;
     border-radius: 8px;
-    top: 35px;
+    top: 28px;
     li {
       list-style: none;
-      padding: 0.5em 1em;
+      padding: 8px 12px;
       width: 8em;
       text-align: center;
       img {

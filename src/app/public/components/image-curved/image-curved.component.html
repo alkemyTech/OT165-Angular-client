@@ -2,11 +2,9 @@
   <img [src]="url" alt="photo" [ngStyle]="{'brightness': 0.7}" />
   <div class="opacity" [ngStyle]="{'opacity': opacity}"></div>
   <div class="text-content">
-    <h1 [ngStyle]="{'color': textColor}">
+    <h3 [ngStyle]="{'color': textColor}">
       {{ title }}
-    </h1>
-    <p [ngStyle]="{'color': textColor}">
-      {{ text }}
-    </p>
+    </h3>
+    <div [ngStyle]="{'color': textColor}" class="centered" [innerHTML]="text"></div>
   </div>
 </section>

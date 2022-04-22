@@ -1,7 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+/* swiper */
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+/*bootstrap */
 @import "~bootstrap/scss/bootstrap";
 /* Fonts */
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 * {
     font-family: "Poppins", sans-serif;
@@ -39,6 +42,7 @@ html, body {
 
 /* forms */
 #formContent {
+  margin-top: 40px;
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
@@ -54,13 +58,13 @@ html, body {
 :root {
     --primary: #9AC9FB;
     --primary-text: rgb(104, 177, 254);
-    --primary-background: rgba(188, 220, 254, 0.8);
+    --primary-background: rgba(188, 220, 254, 0.9);
     --danger: #DB5752;
     --danger-text: #DB5752;
-    --danger-background: rgba(243, 166, 163, 0.8);
+    --danger-background: rgba(243, 166, 163, 0.9);
     --warning: #FAFA88;
     --warning-text: rgb(152, 152, 57);
-    --warning-background: rgba(255, 255, 173, 0.8);
+    --warning-background: rgba(255, 255, 173, 0.9);
     --app-text-color: #000000;
     background: aliceblue;
 }

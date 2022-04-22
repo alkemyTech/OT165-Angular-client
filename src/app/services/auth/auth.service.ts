@@ -1,34 +1,28 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { from, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { LoginResponse } from "src/app/shared/models/auth/loginResponse.interface";
 import { loginSend } from "src/app/shared/models/auth/loginSend.interface";
 import { RegisterResponse } from "src/app/shared/models/auth/registerResponse.interface";
 import { registerSend } from "src/app/shared/models/auth/registerSend.interface";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { GoogleAuthProvider, UserCredential } from "firebase/auth";
+import firebase from 'firebase/compat/app';
 
-import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { UserState } from "src/app/shared/models/auth/userState.interface";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
   private url_API = "";
-  private userLoged: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(
     private afAuth: AngularFireAuth,
     private http: HttpClient,
-    private router: Router,
     private jwt: JwtHelperService
   ) {}
-
-  public get getUserLoged(): Observable<any>{
-    return this.userLoged.asObservable()
-  }
 
   public loginAPI(user: loginSend): Observable<LoginResponse> {
     this.url_API = environment.BASE_URL_API + "login";
@@ -40,44 +34,34 @@ export class AuthService {
     return this.http.post<RegisterResponse>(`${this.url_API}`, user);
   }
 
-  // Firebase signInWithRedirect
-  private async OAuthProvider(provider: any): Promise<any> {
-    return await this.afAuth
-      .signInWithRedirect(provider)
-  }
-  // Firebase Google Sign-in
-  public async SigninWithGoogle(): Promise<any> {
-    await this.OAuthProvider(new GoogleAuthProvider())
+  public googleLogin(): Promise<any> {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return this.afAuth.signInWithPopup(provider);
   }
 
-  public resultsUserGoogle(): Observable<any>{
-    this.afAuth.getRedirectResult().then((credentials: any) => {
-      if (credentials.user) {
-        const userGoogle = this.setUserGoogle(credentials.user)
-        this.userLoged.next(userGoogle)
+  public setUserGoogle(credential:any, token: string) {
+    let user: UserState = {
+      success: true,
+      user: {
+        token: token,
+        user: {
+          name: credential.user.displayName,
+          email: credential.user.email,
+          profile_image: credential.user.photoURL,
+          role_id: 1
+        }
       }
-    })
-    return this.userLoged.asObservable()
+    }
+    return user;
   }
 
-  private setUserGoogle(user: any){
-    return {
-      name: user.displayName,
-      email: user.email,
-      photoProfile: user.photoURL
-    }
-  }
-  // Firebase Logout
-  public SignOut(): Promise<any> {
-    this.userLoged.next(false)
-    return this.afAuth.signOut().then(() => {
-      this.router.navigateByUrl("home");
-    });
+  //Firebase Logout
+  public signOutGoogle(): Observable<any> {
+    return from(this.afAuth.signOut());
   }
 
   // Token validator
-  public isTokenValid(token: string):boolean {
-    return (!this.jwt.isTokenExpired(token) && token !== undefined);
+  public isTokenValid(token: string): boolean {
+    return !this.jwt.isTokenExpired(token) && token !== undefined;
   }
-
 }

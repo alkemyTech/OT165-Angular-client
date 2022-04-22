@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { AuthService } from "src/app/services/auth/auth.service";
+import { User } from "src/app/backoffice/models/user";
 import { logOut } from "src/app/state/actions/auth.actions";
 import { AppState } from "src/app/state/app.state";
 import { selectUserData } from "src/app/state/selectors/auth.selectors";
@@ -12,20 +12,15 @@ import { selectUserData } from "src/app/state/selectors/auth.selectors";
   styleUrls: ["./nav.component.scss"],
 })
 export class NavComponent {
+  user!: User;
   userLoged$: Observable<any>;
   isLogged: boolean = false;
-  constructor(private store: Store<AppState>, private authService: AuthService) {
+  constructor(private store: Store<AppState>) {
     this.userLoged$ = this.store.select(selectUserData);
     this.userLoged$.subscribe(res => {            
       if(res != undefined){
         this.isLogged = true;
-      }
-    })
-
-    this.authService.resultsUserGoogle().subscribe(res => {
-      if (res) {        
-        this.userLoged$ = this.authService.getUserLoged
-        this.isLogged = true        
+        this.user = res.user
       }
     })
   }
@@ -33,6 +28,5 @@ export class NavComponent {
   public logOut() {
     this.isLogged = false;
     this.store.dispatch(logOut());
-    this.authService.SignOut();
   }
 }
