@@ -13,7 +13,7 @@ import { MembersEffects } from 'src/app/state/effects/members.effects';
 
 import { MembersComponent } from './members.component';
 
-fdescribe('TEST del componente "MembersComponent"', () => {
+fdescribe('MembersComponent', () => {
   let component: MembersComponent;
   let fixture: ComponentFixture<MembersComponent>;
 
