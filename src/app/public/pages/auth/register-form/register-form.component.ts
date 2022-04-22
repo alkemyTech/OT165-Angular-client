@@ -4,6 +4,8 @@ import { Store } from "@ngrx/store";
 import { registerSend } from "src/app/shared/models/auth/registerSend.interface";
 import { registerUser } from "src/app/state/actions/auth.actions";
 import { checkPattern, checkPasswords } from "../custom.validators";
+import { GoogleMap } from "@angular/google-maps";
+
 @Component({
   selector: "app-register-form",
   templateUrl: "./register-form.component.html",
@@ -12,6 +14,7 @@ import { checkPattern, checkPasswords } from "../custom.validators";
 export class RegisterFormComponent {
   hide: boolean = true;
   accept: boolean = false;
+  google!: GoogleMap
 
   form = this.fb.group(
     {

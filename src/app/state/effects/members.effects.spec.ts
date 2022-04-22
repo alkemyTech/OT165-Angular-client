@@ -10,7 +10,7 @@ import { TestScheduler } from 'rxjs/testing';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-fdescribe('MembersEffects', () => {    
+describe('MembersEffects', () => {    
     const initialState = { loading: false, members: [] };
     const membersService = jasmine.createSpyObj('MemberService', [
         'putById',
@@ -45,7 +45,7 @@ fdescribe('MembersEffects', () => {
         });
     });    
 
-    fit('Debe existir el servicio "MembersEffects"', () => {
+    it('Debe existir el servicio "MembersEffects"', () => {
         expect(effects).toBeTruthy();
     });
 })
