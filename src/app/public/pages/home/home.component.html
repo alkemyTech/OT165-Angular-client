@@ -5,53 +5,49 @@
 <section class="description-section fadeIn second">
   <div class="text-center">
     <h2>Sobre Nosotros</h2>
-    <div class="description" [innerHTML]="organization.short_description"></div>
+    <div
+      class="description"
+      [innerHTML]="organization?.short_description"
+    ></div>
   </div>
 </section>
 
 <section>
   <div class="mt-3 text-center fadeIn third">
-      <h2>Últimas novedades</h2>
+    <h2>Últimas novedades</h2>
   </div>
-  <div class="container content-fluid mt-5 mb-5">
-    <swiper
-    *ngIf="news.length"
-    [slidesPerView]="4"
-    [spaceBetween]="10"
-    [navigation]="true"
-    [pagination]="{ clickable: true }"
-    [scrollbar]="{ draggable: true }"
-  >
-    <ng-template swiperSlide *ngFor="let n of news">
-      <app-listnews [news]="n"></app-listnews
-    ></ng-template>
-  </swiper>
+  <div class="container content-fluid mb-5">
+    <swiper *ngIf="news.length" [config]="swiperConfig">
+      <ng-template swiperSlide *ngFor="let n of news">
+        <app-listnews [news]="n"></app-listnews
+      ></ng-template>
+    </swiper>
   </div>
 </section>
 
 <app-donation-section></app-donation-section>
 
-<section class="section-campaign">
-  <div class="fs-3 text-center">
-    <h2>Campañas</h2>
-  </div>
-  <div class="container-campaign">
-    <div class="card" [routerLink]="['/toys-campaign']">
-      <img
-        class="logo"
-        src="../../../../assets/images/campana-juguetes.png"
-        alt=""
-      />
+  <section class="section-campaign">
+    <div class="fs-3 text-center">
+      <h2>Campañas</h2>
     </div>
-    <div class="card" [routerLink]="['/school-campaign']">
-      <img
-        class="logo"
-        src="../../../../assets/images/school-logo.png"
-        alt=""
-      />
+    <div class="container-campaign">
+      <div class="card" [routerLink]="['/toys-campaign']">
+        <img
+          class="logo"
+          src="../../../../assets/images/campana-juguetes.png"
+          alt=""
+        />
+      </div>
+      <div class="card" [routerLink]="['/school-campaign']">
+        <img
+          class="logo"
+          src="../../../../assets/images/school-logo.png"
+          alt=""
+        />
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 <button (click)="onScrollTop()" *ngIf="showButton" class="btn-scrollTop">
   <svg
