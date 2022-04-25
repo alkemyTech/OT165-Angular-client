@@ -57,14 +57,14 @@ html, body {
 
 :root {
     --primary: #9AC9FB;
-    --primary-text: rgb(104, 177, 254);
-    --primary-background: rgba(188, 220, 254, 0.9);
+    --primary-text: rgb(66, 119, 177);
+    --primary-background: rgba(188, 220, 254, 1);
     --danger: #DB5752;
-    --danger-text: #DB5752;
-    --danger-background: rgba(243, 166, 163, 0.9);
+    --danger-text: #b9433e;
+    --danger-background: rgba(243, 166, 163, 1);
     --warning: #FAFA88;
-    --warning-text: rgb(152, 152, 57);
-    --warning-background: rgba(255, 255, 173, 0.9);
+    --warning-text: rgb(134, 134, 48);
+    --warning-background: rgba(255, 255, 173, 1);
     --app-text-color: #000000;
     background: aliceblue;
 }
