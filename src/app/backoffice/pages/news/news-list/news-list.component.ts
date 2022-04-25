@@ -39,20 +39,4 @@ export class NewsListComponent implements OnInit {
     this.tableNews = {...this.tableNews, data: data};
   }
 
-  // deleteActivity(event: number) {
-  //   this.store.dispatch(deleteActivity({ id: event }));
-  // }
-
-  // debounce(key: string) {
-  //   this.subject.next(key);
-  // }
-
-  // filter(e: string) {
-  //   if (e.length > 2) {
-  //     this.store.dispatch(getSpecificActivities({ key: e }));
-  //   } else {
-  //     this.store.dispatch(getActivities());
-  //   }
-  // }
-
 }
