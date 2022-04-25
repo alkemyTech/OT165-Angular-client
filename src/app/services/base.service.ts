@@ -15,6 +15,14 @@ export class BaseService<S> {
     this.http = http;
   }
 
+  getSearch(data: any): Observable<S[]> {
+    return <Observable<S[]>>this.http.get(`${this.url}?search=${data}`).pipe(
+      map((res: any) => {
+        return res.data;
+      })
+    );
+  }
+
   getAll(key: string = ''): Observable<S[]> {
     return <Observable<S[]>>this.http.get(`${this.url}?search=${key}`).pipe(
       map((res: any) => {
@@ -26,7 +34,7 @@ export class BaseService<S> {
   getById(id: number): Observable<S> {
     return <Observable<S>>this.http.get(`${this.url}/${id}`).pipe(
       map((res: any) => {
-        return res.data;
+        return res;
       })
     );
   }
