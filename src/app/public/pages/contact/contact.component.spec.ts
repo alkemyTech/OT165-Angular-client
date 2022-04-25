@@ -1,36 +1,36 @@
+import { Observable, of, throwError } from 'rxjs';
 import { Contact } from './../../../shared/models/contact';
 import { ContactService } from './../../services/contact/contact.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ContactComponent } from './contact.component';
 import { By } from '@angular/platform-browser';
 
+
 fdescribe('ContactComponent', () => {
   let component: ContactComponent;
-  let fixture: ComponentFixture<ContactComponent>;
-  let service: ContactService;
-  let httpTestingController: HttpTestingController;
-
-  beforeEach(async () => {
+  let fixture: ComponentFixture<ContactComponent>;  
+  let contactService: any;
+ 
+  beforeEach(async () => {     
     await TestBed.configureTestingModule({
       imports: [FormsModule, 
                 ReactiveFormsModule,                 
                 HttpClientTestingModule],
       declarations: [ ContactComponent ],
-      providers: [ContactService]      
+      providers: []      
     })
-    .compileComponents();
+    .compileComponents();    
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ContactComponent);
-    component = fixture.componentInstance;
-    httpTestingController = TestBed.inject(HttpTestingController)
-    service = TestBed.inject(ContactService)
+    component = fixture.componentInstance;    
     fixture.detectChanges();
+    contactService = TestBed.inject(ContactService)
   });
   
   it('should create contact component', () => {
@@ -69,21 +69,41 @@ fdescribe('ContactComponent', () => {
     submitButton.nativeElement.click();
     expect(submitButton.properties['disabled']).toBeTrue();
   })
-  it('should make correct HTTP request to contact /POST', (done: DoneFn) => {    
-    const mockContact: Contact = {
-      name: 'Franco',
-      phone: '42314235',
-      email: 'pipio@gmail.com',
-      message: 'Hola, quiero donar'
+  it('should show error message if EMAIL INPUT is touched and not filled', () => {
+    const email = component.contactForm.controls['email'];
+    email.markAsTouched()
+    fixture.detectChanges();        
+    const emailError = fixture.debugElement.query(By.css('.p-error'));    
+    expect(emailError).toBeTruthy();
+  })
+  it('should show error message if NAME INPUT is touched and not filled', () => {
+    const name = component.contactForm.controls['name'];
+    name.markAsTouched()
+    fixture.detectChanges();        
+    const nameError = fixture.debugElement.query(By.css('.p-error'));    
+    expect(nameError).toBeTruthy();
+  })
+  it('should show error message if MESSAGE INPUT is touched and not filled', () => {
+    const message = component.contactForm.controls['message'];
+    message.markAsTouched()
+    fixture.detectChanges();        
+    const messageError = fixture.debugElement.query(By.css('.p-error'));    
+    expect(messageError).toBeTruthy();
+  })
+  it('should make Http POST request and receive success', () => {
+    const mySpy = spyOn(contactService, 'createContact').and.returnValue({subscribe: (res: any) => {
+      expect(res).toBeTruthy();
     }
-    service.post(mockContact).subscribe((res) => {  
-      console.log(res)    
-      expect(res).toBeUndefined();      
-      done();      
-    }, err => {
-      expect(err.errors).toBeTruthy();
-    })
-    const req = httpTestingController.expectOne(request => request.method === 'POST');
-    req.flush(mockContact);
+  })   
+    component.sendMessage();
+    expect(mySpy).toHaveBeenCalledTimes(1)   
+  })
+  it('should make Http POST request and receive error', () => {
+    const mySpy = spyOn(contactService, 'createContact').and
+     .returnValue(throwError({message: 'Error'})) 
+    
+    component.sendMessage();   
+    console.log(mySpy)
+    expect(mySpy).toThrowError(); 
   })
 });

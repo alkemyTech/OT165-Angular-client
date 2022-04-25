@@ -53,7 +53,7 @@ export class BaseService<S> {
 
   post(object: S): Observable<S> {
     return <Observable<S>>this.http.post(`${this.url}`, object).pipe(
-      map((res: any) => {
+      map((res: any) => {        
         return res.data;
       })
     );
