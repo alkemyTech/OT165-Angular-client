@@ -35,6 +35,10 @@ h1 {
     margin: 0;
 }
 
+:host ::ng-deep p { 
+  margin: 0;
+}
+
 .text-container img {
     border: 1px solid #00000047;
     width: 60%;
