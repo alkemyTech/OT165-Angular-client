@@ -1,8 +1,6 @@
 import {
   ComponentFixture,
-  inject,
   TestBed,
-  waitForAsync,
 } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 
@@ -11,14 +9,15 @@ import { FormBuilder } from "@angular/forms";
 import { StoreModule } from "@ngrx/store";
 import { activityReducer } from "src/app/state/reducers/activity.reducers";
 import { SharedModule } from "src/app/shared/shared.module";
-import { provideMockStore } from "@ngrx/store/testing";
+import { MockStore, provideMockStore } from "@ngrx/store/testing";
 import { ActivityState } from "src/app/shared/models/Activity";
 import { DialogService } from "src/app/shared/components/dialog/dialog.service";
+import { addActivity } from "src/app/state/actions/activity.actions";
 
 describe("ActivityFormComponent", () => {
   let component: ActivityFormComponent;
   let fixture: ComponentFixture<ActivityFormComponent>;
-  let dialogService: any;
+  let store: MockStore;
   const initialState: ActivityState = {
     activities: [],
     activity: [],
@@ -37,7 +36,6 @@ describe("ActivityFormComponent", () => {
       providers: [
         FormBuilder,
         provideMockStore({ initialState }),
-        DialogService,
       ],
     }).compileComponents();
   });
@@ -45,6 +43,8 @@ describe("ActivityFormComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ActivityFormComponent);
     component = fixture.componentInstance;
+    store = TestBed.inject(MockStore);
+    spyOn(store, 'dispatch');
     fixture.detectChanges();
   });
 
@@ -92,24 +92,17 @@ describe("ActivityFormComponent", () => {
     expect(image.errors).toBeNull();
   });
 
-  it("[Form Check] if form is valid, it should create and add a success message", inject(
-    [DialogService],
-    (dialogService: DialogService) => {
-      component.ngOnInit();
-      expect(component.activityForm.invalid).toBeTruthy();
-      component.activityForm.setValue({
-        name: "Actividad de prueba",
-        description: "<p>Descripci&oacute;n de prueba</p>",
-        image: "data:image/png;base64,iVBORw0KGgoNjgCzQg8BVlWbJQ8EukRABNjjKo",
-      });
-      fixture.detectChanges();
-      component.createActivity();
-      fixture.detectChanges();
+  it("[Redux Check] should call addActivity action", () => {
+    expect(component.activityForm.invalid).toBeTruthy();
+    component.activityForm.setValue({
+      name: "Actividad de prueba",
+      description: "<p>Descripci&oacute;n de prueba</p>",
+      image: "data:image/png;base64,iVBORw0KGgoNjgCzQg8BVlWbJQ8EukRABNjjKo",
+    });
+    component.createActivity();
+    const action = addActivity({data: component.activityForm.value});
+    expect(store.dispatch).toHaveBeenCalledWith(action);
+  });
 
-      dialogService.messagesObservable.subscribe((el) => {
-        console.log(el);
-        expect(el[0].type).toEqual("success");
-      });
-    }
-  ));
 });
+
