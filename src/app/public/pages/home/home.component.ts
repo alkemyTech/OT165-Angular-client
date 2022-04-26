@@ -10,7 +10,7 @@ import { Organization } from "src/app/backoffice/models/organization";
 import { OrganizationService } from "src/app/services/organization/organization.service";
 import { DOCUMENT } from "@angular/common";
 import { A11y, Navigation, Pagination, Scrollbar, SwiperOptions } from "swiper";
-import SwiperCore from 'swiper';
+import SwiperCore from "swiper";
 import { NewsService } from "src/app/backoffice/services/news/news.service";
 import { News } from "src/app/backoffice/models/news";
 
@@ -22,9 +22,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-
-
-  news: News[] = []
+  news: News[] = [];
   isLoading!: boolean;
   slides$: Observable<Slide[]> = new Observable();
   slides: Slide[] = [];
@@ -42,9 +40,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.organizationService.getOrganization().subscribe((res: Organization) => {
-      this.organization = res;
-    })
+    this.organizationService
+      .getOrganization()
+      .subscribe((res: Organization) => {
+        this.organization = res;
+      });
     this.getNews();
     this.isLoading = true;
     this.getSlides();
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
     this.slides$.subscribe(
       (response) => {
         this.slides = response;
-        this.isLoading = false;        
+        this.isLoading = false;
       },
       () => {
         this.dialogService.add({
@@ -67,14 +67,13 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  getNews(){
-    this.newService.getAll().subscribe(res =>{
+  getNews() {
+    this.newService.getAll().subscribe((res) => {
       this.news = res;
-      console.log(this.news.length)
-    })
+    });
   }
 
-  @HostListener('window:scroll', [])
+  @HostListener("window:scroll", [])
   onWindowScroll(): void {
     const yOffSet = window.pageYOffset;
     if (
@@ -96,7 +95,26 @@ export class HomeComponent implements OnInit {
   onScrollTop(): void {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
-    })
+      behavior: "smooth",
+    });
   }
+  swiperConfig: any = {
+    navigation: "true",
+    pagination: "{ clickable: true }",
+    scrollbar: "{ draggable: true }",
+    breakpoints: {
+      425: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+      1440: {
+        slidesPerView: 5,
+      },
+    },
+  };
 }
