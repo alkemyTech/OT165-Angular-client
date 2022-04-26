@@ -29,7 +29,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.subscription = this.activatedRoute.params.subscribe((params) => {
       this.service.getActivity(params.id).subscribe({
         next: (res:any) => {
-          this.activity = res.data;
+          this.activity = res;
           this.isLoading = false;
         },
         error: (error) => {
