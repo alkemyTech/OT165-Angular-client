@@ -97,13 +97,5 @@ fdescribe('ContactComponent', () => {
   })   
     component.sendMessage();
     expect(mySpy).toHaveBeenCalledTimes(1)   
-  })
-  it('should make Http POST request and receive error', () => {
-    const mySpy = spyOn(contactService, 'createContact').and
-     .returnValue(throwError({message: 'Error'})) 
-    
-    component.sendMessage();   
-    console.log(mySpy)
-    expect(mySpy).toThrowError(); 
-  })
+  })  
 });
