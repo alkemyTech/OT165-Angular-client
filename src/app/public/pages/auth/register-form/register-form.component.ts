@@ -4,6 +4,8 @@ import { Store } from "@ngrx/store";
 import { registerSend } from "src/app/shared/models/auth/registerSend.interface";
 import { registerUser } from "src/app/state/actions/auth.actions";
 import { checkPattern, checkPasswords } from "../custom.validators";
+import { google } from "google-maps";
+
 @Component({
   selector: "app-register-form",
   templateUrl: "./register-form.component.html",
