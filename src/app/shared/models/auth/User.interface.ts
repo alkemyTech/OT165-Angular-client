@@ -14,6 +14,6 @@ export interface User {
     group_id?:          null;
     latitude?:          null;
     longitude?:         null;
-    address?:           null;
+    address?:           null | string;
     profile_image?:     string;
 }

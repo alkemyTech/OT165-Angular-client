@@ -57,7 +57,7 @@ export class AuthEffects {
               this.router.navigateByUrl("home");
             }
           }),
-          catchError(() => of({ type: "[Login Page] Login Error" }))
+          catchError(() => of({ type: "[Login Page] Login Error"}))
         )
       )
     )
@@ -76,7 +76,7 @@ export class AuthEffects {
         let user: UserState = this.authService.setUserGoogle(credential, token);
         localStorage.setItem("userLogin", JSON.stringify(user));
         localStorage.setItem("token", token);
-        this.router.navigateByUrl('/backoffice')
+        this.router.navigateByUrl("/backoffice");
         return logedGoogle({ user });
       }),
       catchError(() => of(loginError))
@@ -95,12 +95,8 @@ export class AuthEffects {
               user: user.data,
             },
           })),
-          tap((action) => {
-            if (action.user.success) {
-              this.router.navigateByUrl("login");
-            }
-          }),
-          catchError(() => of({ type: "[Register Page] Register Error" }))
+          tap(() => this.router.navigateByUrl("/login")),
+          catchError(() => of({ type: "[Register Page] Register Error" })),
         )
       )
     )
