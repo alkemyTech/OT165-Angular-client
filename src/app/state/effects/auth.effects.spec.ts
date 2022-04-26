@@ -14,7 +14,7 @@ import { TestScheduler } from "rxjs/testing";
 import { Router } from "@angular/router";
 import { UserState } from "src/app/shared/models/auth/userState.interface";
 
-fdescribe("RegisterEffects", () => {
+fdescribe("Auth Effects", () => {
   const initialState = { success: false, user: {} };
   const authService = jasmine.createSpyObj("AuthService", ["registerUserAPI"]);
 
@@ -44,11 +44,11 @@ fdescribe("RegisterEffects", () => {
     });
   });
 
-  it("deberia crear", () => {
-    expect(effects).toBeTruthy();
-  });
 
   fdescribe("registerUser", () => {
+  it("AuthEffects es creado", () => {
+    expect(effects).toBeTruthy();
+  });
     it("se llama registerUser y retorna registeredUser", () => {
       const userMock = {
         name: "Olga",
