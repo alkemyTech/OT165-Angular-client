@@ -1,19 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
-} from "@angular/forms";
-import { Store } from "@ngrx/store";
-import { loginSend } from "src/app/shared/models/auth/loginSend.interface";
-import { loginGoogle, loginUser } from "../../../../state/actions/auth.actions";
-import { checkPattern } from "../custom.validators";
+} from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { loginSend } from 'src/app/shared/models/auth/loginSend.interface';
+import { loginGoogle, loginUser } from '../../../../state/actions/auth.actions';
+import { checkPattern } from '../custom.validators';
 
 @Component({
-  selector: "app-login-form",
-  templateUrl: "./login-form.component.html",
-  styleUrls: ["./login-form.component.scss"],
+  selector: 'app-login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
   formBuilder: FormBuilder = new FormBuilder();
@@ -25,19 +25,15 @@ export class LoginFormComponent implements OnInit {
     ],
   });
 
-  constructor(
-    private store: Store<any>,
-  ) {}
+  constructor(private store: Store<any>) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   get email(): AbstractControl | null {
-    return this.form.get("email");
+    return this.form.get('email');
   }
   get password(): AbstractControl | null {
-    return this.form.get("password");
+    return this.form.get('password');
   }
 
   public login(e: Event) {
@@ -47,17 +43,17 @@ export class LoginFormComponent implements OnInit {
       return;
     }
     let object: loginSend = {
-      email: this.form.get("email")?.value,
-      password: this.form.get("password")?.value,
+      email: this.form.get('email')?.value,
+      password: this.form.get('password')?.value,
     };
     this.serviceLogin(object);
   }
 
   public loginGoogle() {
-    this.store.dispatch(loginGoogle())
+    this.store.dispatch(loginGoogle());
   }
 
-  private async serviceLogin(object: loginSend) {
+  async serviceLogin(object: loginSend) {
     await this.store.dispatch(loginUser({ user: object }));
   }
 }
