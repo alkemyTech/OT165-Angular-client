@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { OrganizationService } from "src/app/services/organization/organization.service";
 import { Organization } from "../../../../shared/models/Organization";
 
