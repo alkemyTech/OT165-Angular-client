@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActivityFormComponent } from './activity-form.component';
+import { NewsListComponent } from './news-list.component';
 
-describe('ActivityFormComponent', () => {
-  let component: ActivityFormComponent;
-  let fixture: ComponentFixture<ActivityFormComponent>;
+describe('NewsListComponent', () => {
+  let component: NewsListComponent;
+  let fixture: ComponentFixture<NewsListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActivityFormComponent ]
+      declarations: [ NewsListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActivityFormComponent);
+    fixture = TestBed.createComponent(NewsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

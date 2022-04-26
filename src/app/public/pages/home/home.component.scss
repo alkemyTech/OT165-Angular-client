@@ -29,43 +29,28 @@ h2 {
       background-color: white;
       box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
       .logo{
-        width: 400px;
-        height: 400px;
+        width: 200px;
+        height: 200px;
         object-fit: contain;
-      }
-      &:hover{
-        box-shadow: 0 30px 60px 0 rgba(0, 60, 255, 0.3);
-        transition: all 0.5s ease-out;
-        cursor: pointer;
       }
     }
   }
 }
-
-button {
-  color: #fff;
-  border-radius: 14px;
-  margin-top: 80px;
-  background-color: var(--primary);
-  border: none;
-  padding: 10px 38px;
-  margin-left: 18px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: 15px;
-  &:hover {
-    background-color: rgb(0, 17, 248);
+  
+@media screen and (min-width: 992px) {
+  .section-campaign{
+    .container-campaign{
+      .card{
+        .logo{
+          width: 300px;
+          height: 300px;
+        }
+        &:hover{
+          box-shadow: 0 30px 60px 0 rgba(0, 60, 255, 0.3);
+          transition: all 0.5s ease-out;
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
-
-.btn-scrollTop {
-  width: 25px;
-  padding: 6px 52px 6px 6px;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border-radius: 50px;
-}
-  

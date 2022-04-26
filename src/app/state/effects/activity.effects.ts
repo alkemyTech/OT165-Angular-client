@@ -61,7 +61,7 @@ export class ActivityEffects {
           map(() => deleteActivitySuccess({ id })),
           tap(() => {
             this.dialogService.add({
-              type: "error",
+              type: "success",
               title: "Eliminó",
               detail: "Se  eliminó la Actividad",
             });

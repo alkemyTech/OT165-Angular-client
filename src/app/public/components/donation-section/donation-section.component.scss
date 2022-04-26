@@ -17,9 +17,8 @@
       align-items: center;
       justify-content: center;
       .column-donar {
-        .image {
-          width: 568px;
-          height: 517px;
+        img {
+          width: 400px;
         }
         .container-description {
           background-color: white;
@@ -41,11 +40,14 @@
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
+    .section-donar {
+        max-height: 200vh;
+    }
 }
 
 /* 320px — 480px: Mobile devices; 481px — 768px: iPads, Tablets*/
 @media (min-width: 320px) and (max-width: 768px) {
     .section-donar {
-        max-height: 200vw;
+        max-height: 200vh;
     }
   }

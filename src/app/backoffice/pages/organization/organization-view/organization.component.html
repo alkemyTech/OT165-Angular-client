@@ -23,18 +23,13 @@
       <div class="mt-3">
         <h6>Detalles</h6>
         <div class="text-container">
-          <p>
-            {{ organizationData.short_description }}
-          </p>
+          <div [innerHTML]="organizationData.short_description"></div>
         </div>
       </div>
 
       <div class="mt-3">
         <h6>Descripción</h6>
-        <div class="text-container">
-          <p>
-            {{ organizationData.long_description }}
-          </p>
+        <div class="text-container" [innerHTML]="organizationData.long_description">
         </div>
       </div>
 

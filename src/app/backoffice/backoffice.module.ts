@@ -46,6 +46,7 @@ import { TokenInterceptorService } from "./services/token-interceptor.service";
 import { SideBarComponent } from "./components/side-bar/side-bar.component";
 import { BackofficeListComponent } from "./pages/backoffice-list/backoffice-list.component";
 import { HeaderComponent } from "./components/header/header.component";
+import { NewsListComponent } from './pages/news/news-list/news-list.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { HeaderComponent } from "./components/header/header.component";
     SideBarComponent,
     HeaderComponent,
     MembersListComponent,
+    NewsListComponent,
   ],
   imports: [
     ButtonModule,
