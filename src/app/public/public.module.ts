@@ -2,7 +2,6 @@
 import { AboutComponent } from "./pages/aboutUs/about.component";
 import { ActivitiesListComponent } from "./pages/activities/activities-list/activities-list.component";
 import { ActivityCardComponent } from "./pages/activities/activity-card/activity-card.component";
-import { ActivityFormComponent } from "./pages/activities/activity-form.component";
 import { ButtonModule } from "primeng/button";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { ContactComponent } from "./pages/contact/contact.component";
@@ -41,7 +40,6 @@ import { DonationSectionComponent } from './components/donation-section/donation
 @NgModule({
   declarations: [
     SpinnerComponent,
-    ActivityFormComponent,
     HomeComponent,
     PublicComponent,
     ListnewsComponent,
