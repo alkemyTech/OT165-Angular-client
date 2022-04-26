@@ -17,6 +17,7 @@ import { SlidesListComponent } from './pages/slides/slides-list/slides-list.comp
 import { UserFormComponent } from './pages/users/user-form/user-form.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { MembersListComponent } from './pages/members/members-list/members-list.component';
+import { NewsListComponent } from './pages/news/news-list/news-list.component';
 
 const childRoutes: Routes = [
   { path: 'actividades', component: ActivitiesListComponent },
@@ -25,7 +26,7 @@ const childRoutes: Routes = [
   { path: 'categorias', component: CategoryListComponent },
   { path: 'categorias/crear', component: CategoriesFormComponent },
   { path: 'categorias/editar/:id', component: CategoriesFormComponent },
-  { path: 'novedades', component: NewsFormComponent },
+  { path: 'novedades', component: NewsListComponent },
   { path: 'novedades/:id', component: NewsFormComponent },
   { path: 'usuarios', component: UsersListComponent },
   { path: 'organization/edit', component: OrganizationFormComponent },

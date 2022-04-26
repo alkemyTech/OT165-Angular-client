@@ -7,7 +7,6 @@ import { RouterModule } from "@angular/router";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 
 //Others Modules
-import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { ButtonModule } from "primeng/button";
 import { CKEditorModule } from "ckeditor4-angular";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
@@ -44,10 +43,10 @@ import { MembersListComponent } from "./pages/members/members-list/members-list.
 
 import { SharedModule } from "../shared/shared.module";
 import { TokenInterceptorService } from "./services/token-interceptor.service";
-import { SpinnerComponent } from "./components/spinner/spinner.component";
 import { SideBarComponent } from "./components/side-bar/side-bar.component";
 import { BackofficeListComponent } from "./pages/backoffice-list/backoffice-list.component";
 import { HeaderComponent } from "./components/header/header.component";
+import { NewsListComponent } from './pages/news/news-list/news-list.component';
 
 @NgModule({
   declarations: [
@@ -69,14 +68,13 @@ import { HeaderComponent } from "./components/header/header.component";
     TestimonialFormComponent,
     UserFormComponent,
     UsersListComponent,
-    SpinnerComponent,
     SkeletonComponent,
     SideBarComponent,
     HeaderComponent,
     MembersListComponent,
+    NewsListComponent,
   ],
   imports: [
-    ProgressSpinnerModule,
     ButtonModule,
     CKEditorModule,
     CommonModule,

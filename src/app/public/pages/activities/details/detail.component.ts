@@ -28,8 +28,8 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.subscription = this.activatedRoute.params.subscribe((params) => {
       this.service.getActivity(params.id).subscribe({
-        next: (activity) => {
-          this.activity = activity;
+        next: (res:any) => {
+          this.activity = res.data;
           this.isLoading = false;
         },
         error: (error) => {

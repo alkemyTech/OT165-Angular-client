@@ -1,19 +1,58 @@
-<section>
-  <div class="image-div">
-    <img src="../../../../assets/images/image-donate.png" alt="">
-  </div>
-  <div class="text-div">
-    <h3>Doná</h3>
-    <p>En Somos Más, estamos convencidos que todos tenemos algo para compartir con los demás. Por eso, te invitamos a sumarte y ayudarnos a llevar asistencia, esperanza y oportunidades a todos los niños que están en situación de pobreza, para que logren transformar su realidad.</p>
-    <div class="confirmation-button">
-      <a
-        pButton
-        pRipple
-        type="button"
-        routerLink="/donar"
-        label="Doná"
-        class="danger"
-      ></a>
+<section class="section-donar fadeIn fourth">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="aliceblue"
+    viewBox="0 0 1000 100"
+    preserveAspectRatio="none"
+  >
+    <path
+      class="elementor-shape-fill"
+      d="M421.9,6.5c22.6-2.5,51.5,0.4,75.5,5.3c23.6,4.9,70.9,23.5,100.5,35.7c75.8,32.2,133.7,44.5,192.6,49.7
+    c23.6,2.1,48.7,3.5,103.4-2.5c54.7-6,106.2-25.6,106.2-25.6V0H0v30.3c0,0,72,32.6,158.4,30.5c39.2-0.7,92.8-6.7,134-22.4
+    c21.2-8.1,52.2-18.2,79.7-24.2C399.3,7.9,411.6,7.5,421.9,6.5z"
+    ></path>
+  </svg>
+  <div class="container-donar">
+    <div class="row-donar">
+      <div class="column-donar">
+        <div class="image">
+          <img
+            src="https://caritas.org.ar/wp-content/uploads/2021/07/como-donar.png"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="column-donar">
+        <div class="container-description" [routerLink]="['/donar']">
+          <h3>¿Cómo donar?</h3>
+          <p>
+            En Somos más, estamos convencidos que todos tenemos algo para
+            compartir con los demás. Por eso, te invitamos a sumarte y ayudarnos
+            a llevar asistencia, esperanza y oportunidades a quienes están en
+            situación de pobreza, para que logren transformar su realidad.
+          </p>
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Donar ahora"
+            class="p-button-raised p-button-danger"
+          ></button>
+        </div>
+      </div>
     </div>
   </div>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="aliceblue"
+    viewBox="0 0 1000 100"
+    preserveAspectRatio="none"
+  >
+    <path
+      class="elementor-shape-fill"
+      d="M790.5,93.1c-59.3-5.3-116.8-18-192.6-50c-29.6-12.7-76.9-31-100.5-35.9c-23.6-4.9-52.6-7.8-75.5-5.3
+    c-10.2,1.1-22.6,1.4-50.1,7.4c-27.2,6.3-58.2,16.6-79.4,24.7c-41.3,15.9-94.9,21.9-134,22.6C72,58.2,0,25.8,0,25.8V100h1000V65.3
+    c0,0-51.5,19.4-106.2,25.7C839.5,97,814.1,95.2,790.5,93.1z"
+    ></path>
+  </svg>
 </section>

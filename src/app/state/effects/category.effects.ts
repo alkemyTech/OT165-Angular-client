@@ -86,7 +86,7 @@ export class CategoryEffects {
                 map(() => { return deleteCategorySuccess({id: id})}), 
                 tap(() => {
                   this.dialogService.add({
-                    type: "error",
+                    type: "success",
                     title: "Eliminada",
                     detail: "¡Se ha eliminado la categoría!",
                   });

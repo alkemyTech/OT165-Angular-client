@@ -57,7 +57,7 @@ export class SlidesEffects {
           }),
           tap(() => {
             this.dialogService.add({
-              type: "error",
+              type: "success",
               title: "Eliminada",
               detail: "La slide se eliminó correctamente",
             });
@@ -109,17 +109,19 @@ export class SlidesEffects {
       mergeMap(({ slide }) =>
         this.slideService.createSlides(slide).pipe(
           map(() => {
+            return actions.createSlideSuccess({ slide: slide });
+          }),
+          tap(() => {
             this.dialogService.deleteAll();
             this.router.navigate(["/backoffice/slides"]);
             this.dialogService.add({
               type: "success",
               title: "Listo",
-              detail: "¡Has creado un nuevo Slide!",
+              detail: "¡Has creado una nueva Slide!",
             });
-            return actions.createSlideSuccess({ slide: slide });
           }),
-          tap(() => {}),
           catchError(() => {
+            this.dialogService.deleteAll();
             this.dialogService.add({
               type: "error",
               title: "Error en el servidor",
