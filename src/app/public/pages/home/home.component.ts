@@ -27,14 +27,12 @@ export class HomeComponent implements OnInit {
   slides$: Observable<Slide[]> = new Observable();
   slides: Slide[] = [];
   organization!: Organization;
-  public showButton = false;
 
   constructor(
     private store: Store<AppState>,
     private dialogService: DialogService,
     private organizationService: OrganizationService,
     private newService: NewsService,
-    @Inject(DOCUMENT) private document: Document
   ) {
     this.store.dispatch(actions.getSlides());
   }
@@ -73,31 +71,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  @HostListener("window:scroll", [])
-  onWindowScroll(): void {
-    const yOffSet = window.pageYOffset;
-    if (
-      (yOffSet ||
-        this.document.documentElement.scrollTop ||
-        this.document.body.scrollTop) > 500
-    ) {
-      this.showButton = true;
-    } else if (
-      this.showButton &&
-      (yOffSet ||
-        this.document.documentElement.scrollTop ||
-        this.document.body.scrollTop) < 500
-    ) {
-      this.showButton = false;
-    }
-  }
-
-  onScrollTop(): void {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }
   swiperConfig: any = {
     navigation: "true",
     pagination: "{ clickable: true }",
