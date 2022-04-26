@@ -16,7 +16,7 @@ export class BackofficeComponent {
     this.dashboard = [
       {
         id: 1,
-        title: "Backoffice",
+        title: "Home",
         path: '/backoffice',
         icon: `pi pi-id-card`
       },
