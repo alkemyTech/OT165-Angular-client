@@ -57,7 +57,7 @@ export class AuthEffects {
               this.router.navigateByUrl("home");
             }
           }),
-          catchError(() => of({ type: "[Login Page] Login Error"}))
+          catchError(() => of({ type: "[Login Page] Login Error" }))
         )
       )
     )
@@ -96,7 +96,7 @@ export class AuthEffects {
             },
           })),
           tap(() => this.router.navigateByUrl("/login")),
-          catchError(() => of({ type: "[Register Page] Register Error" })),
+          catchError(() => of({ type: "[Register Page] Register Error" }))
         )
       )
     )

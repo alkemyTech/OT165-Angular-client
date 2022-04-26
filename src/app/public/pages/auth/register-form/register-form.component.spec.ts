@@ -5,7 +5,7 @@ import { FormBuilder } from "@angular/forms";
 import { GoogleMapsModule } from "@angular/google-maps";
 import { registerUser } from "src/app/state/actions/auth.actions";
 
-fdescribe("Formulario registro", () => {
+describe("Formulario registro", () => {
   let component: RegisterFormComponent;
   let store: MockStore;
   let initialState = {
