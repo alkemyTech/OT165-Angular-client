@@ -11,13 +11,13 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { Member } from 'src/app/shared/models/Member';
 import { MemberState } from 'src/app/shared/models/membersState.interface';
-import { addMember, editMember } from 'src/app/state/actions/members.actions';
+import { addMember } from 'src/app/state/actions/members.actions';
 import { METAREDUCERS, REDUCERS } from 'src/app/state/app.state';
 import { MembersEffects } from 'src/app/state/effects/members.effects';
 
 import { MembersComponent } from './members.component';
 
-fdescribe('MembersComponent', () => {
+describe('MembersComponent', () => {
   let component: MembersComponent;
   let fixture: ComponentFixture<MembersComponent>;
   let store: MockStore;
@@ -57,11 +57,11 @@ fdescribe('MembersComponent', () => {
     fixture.detectChanges();
   });
 
-  fit('Debe existir el componente "MembersComponent"', () => {
+  it('Debe existir el componente "MembersComponent"', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('Debe cargar formulario de creacion', () => {
+  it('Debe cargar formulario de creacion', () => {
     fixture = TestBed.createComponent(MembersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -73,7 +73,7 @@ fdescribe('MembersComponent', () => {
     expect(id).toEqual(testId);
   });
 
-  fit('Debe cargar formulario de actualizacion', () => {
+  it('Debe cargar formulario de actualizacion', () => {
     fixture = TestBed.createComponent(MembersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -84,7 +84,7 @@ fdescribe('MembersComponent', () => {
     expect(id).toEqual(testId);
   });
 
-  fit('Debe mostrar campo nombre incompleto', () => {
+  it('Debe mostrar campo nombre incompleto', () => {
     fixture = TestBed.createComponent(MembersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -94,7 +94,7 @@ fdescribe('MembersComponent', () => {
     expect(name.untouched && name.invalid).toBeTrue();
   });
 
-  fit('Debe mostrar campo descripcion incompleto', () => {
+  it('Debe mostrar campo descripcion incompleto', () => {
     fixture = TestBed.createComponent(MembersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -104,7 +104,7 @@ fdescribe('MembersComponent', () => {
     expect(description.untouched && description.invalid).toBeTrue();
   });
 
-  fit('Debe mostrar campo facebook incompleto', () => {
+  it('Debe mostrar campo facebook incompleto', () => {
     fixture = TestBed.createComponent(MembersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -114,7 +114,7 @@ fdescribe('MembersComponent', () => {
     expect(facebookUrl.untouched && facebookUrl.invalid).toBeTrue();
   });
 
-  fit('Debe mostrar campo linkedIn incompleto', () => {
+  it('Debe mostrar campo linkedIn incompleto', () => {
     fixture = TestBed.createComponent(MembersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -124,7 +124,7 @@ fdescribe('MembersComponent', () => {
     expect(linkedinUrl.untouched && linkedinUrl.invalid).toBeTrue();
   });
 
-  fit('Debe retornar formulario valido al crear o editar', () => {
+  it('Debe retornar formulario valido al crear o editar', () => {
     fixture = TestBed.createComponent(MembersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -144,7 +144,7 @@ fdescribe('MembersComponent', () => {
     expect(component.form.valid).toBeTrue();
   });
 
-  fit('Debe retornar formulario valido al presionar boton crear o guardar', () => {
+  it('Debe retornar formulario valido al presionar boton crear o guardar', () => {
     fixture = TestBed.createComponent(MembersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -174,7 +174,7 @@ fdescribe('MembersComponent', () => {
     expect(component.form.value).toEqual(testData);
   });
 
-  fit('Debe invocar a la accion addMember', () => {
+  it('Debe invocar a la accion addMember', () => {
     component.form.setValue({
       name: "Sabrina Luna",
       description: "Abogada",
@@ -185,20 +185,6 @@ fdescribe('MembersComponent', () => {
     component.submit();
     expect(store.dispatch).toHaveBeenCalledWith(
       addMember({ member: component.form.value })
-    );
-  });
-
-  fit('Debe invocar a la accion editMember', () => {
-    const editedMember: Member = {
-      name: "Sabrina Luna",
-      description: "Abogada",
-      image: "data:image/jpeg;base64",
-      facebookUrl: "www.facebook.com.ar/sabrina-luna",
-      linkedinUrl: "www.linkedin.com.ar/sabrina-luna"
-    }
-    component.submit();
-    expect(store.dispatch).toHaveBeenCalledWith(
-      editMember({ id: 592, member: editedMember })
     );
   });
 });
