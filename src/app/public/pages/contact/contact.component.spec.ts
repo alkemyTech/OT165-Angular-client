@@ -10,7 +10,7 @@ import { ContactComponent } from './contact.component';
 import { By } from '@angular/platform-browser';
 
 
-fdescribe('ContactComponent', () => {
+describe('ContactComponent', () => {
   let component: ContactComponent;
   let fixture: ComponentFixture<ContactComponent>;  
   let contactService: any;
