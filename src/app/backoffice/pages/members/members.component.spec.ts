@@ -1,13 +1,17 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { Member } from 'src/app/shared/models/Member';
+import { MemberState } from 'src/app/shared/models/membersState.interface';
+import { addMember, editMember } from 'src/app/state/actions/members.actions';
 import { METAREDUCERS, REDUCERS } from 'src/app/state/app.state';
 import { MembersEffects } from 'src/app/state/effects/members.effects';
 
@@ -16,6 +20,11 @@ import { MembersComponent } from './members.component';
 fdescribe('MembersComponent', () => {
   let component: MembersComponent;
   let fixture: ComponentFixture<MembersComponent>;
+  let store: MockStore;
+  const initialState: MemberState = {
+    loading: false,
+    members: [],
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -34,7 +43,8 @@ fdescribe('MembersComponent', () => {
         ]),
         HttpClientModule
       ],
-      declarations: [ MembersComponent ]
+      declarations: [ MembersComponent ],
+      providers: [FormBuilder, provideMockStore({ initialState })]
     })
     .compileComponents();
   });
@@ -42,6 +52,8 @@ fdescribe('MembersComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MembersComponent);
     component = fixture.componentInstance;
+    store = TestBed.inject(MockStore);
+    spyOn(store, 'dispatch');
     fixture.detectChanges();
   });
 
@@ -160,5 +172,33 @@ fdescribe('MembersComponent', () => {
       linkedinUrl: "www.linkedin.com.ar/sabrina-luna"
     }
     expect(component.form.value).toEqual(testData);
+  });
+
+  fit('Debe invocar a la accion addMember', () => {
+    component.form.setValue({
+      name: "Sabrina Luna",
+      description: "Abogada",
+      image: "data:image/jpeg;base64",
+      facebookUrl: "www.facebook.com.ar/sabrina-luna",
+      linkedinUrl: "www.linkedin.com.ar/sabrina-luna"
+    });
+    component.submit();
+    expect(store.dispatch).toHaveBeenCalledWith(
+      addMember({ member: component.form.value })
+    );
+  });
+
+  fit('Debe invocar a la accion editMember', () => {
+    const editedMember: Member = {
+      name: "Sabrina Luna",
+      description: "Abogada",
+      image: "data:image/jpeg;base64",
+      facebookUrl: "www.facebook.com.ar/sabrina-luna",
+      linkedinUrl: "www.linkedin.com.ar/sabrina-luna"
+    }
+    component.submit();
+    expect(store.dispatch).toHaveBeenCalledWith(
+      editMember({ id: 592, member: editedMember })
+    );
   });
 });
