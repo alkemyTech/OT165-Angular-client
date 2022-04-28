@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { createEffect, Actions, ofType } from "@ngrx/effects";
-import { EMPTY } from "rxjs";
+import { EMPTY, of } from "rxjs";
 import {
   catchError,
   concatMap,
@@ -11,6 +11,7 @@ import {
   tap,
 } from "rxjs/operators";
 import { MemberService } from "src/app/backoffice/services/members/member.service";
+import { DialogService } from "src/app/shared/components/dialog/dialog.service";
 import {
   addMember,
   addedMember,
@@ -27,7 +28,8 @@ export class MembersEffects {
   constructor(
     private action$: Actions,
     private membersService: MemberService,
-    private router: Router
+    private router: Router,
+    private dialogService: DialogService,
   ) {}
 
   loadMembers$ = createEffect(() =>
@@ -36,7 +38,14 @@ export class MembersEffects {
       exhaustMap(() =>
         this.membersService.getMembers().pipe(
           map((members) => loadedMembers({ members: members })),
-          catchError(() => EMPTY)
+          catchError(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Error en el servidor",
+              detail: "No se pudo obtener el listado de miembros",
+            });
+            return of({ type: "[Error Member] Member" });
+          })
         )
       )
     )
@@ -48,7 +57,21 @@ export class MembersEffects {
       mergeMap(({ id }) =>
         this.membersService.deleteById(id).pipe(
           map(() => deletedMember({ id: id })),
-          catchError(() => EMPTY)
+          tap(() => {
+            this.dialogService.add({
+              type: "success",
+              title: "Miembro eliminada",
+              detail: "El miembro se eliminó correctamente",
+            });
+          }),
+          catchError(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Error del servidor",
+              detail: "No pudo eliminarse el miembro",
+            });
+            return of({ type: "[Error Member] Member" });
+          })
         )
       )
     )
@@ -63,7 +86,14 @@ export class MembersEffects {
           tap(() => {
             this.router.navigateByUrl("/backoffice/members");
           }),
-          catchError(() => EMPTY)
+          catchError(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Error del servidor",
+              detail: "No pudo modificar el miembro",
+            });
+            return of({ type: "[Error Member] Member" });
+          })
         )
       )
     )
@@ -78,7 +108,14 @@ export class MembersEffects {
           tap(() => {
             this.router.navigateByUrl("/backoffice/members");
           }),
-          catchError(() => EMPTY)
+          catchError(() => {
+            this.dialogService.add({
+              type: "error",
+              title: "Error en el servidor",
+              detail: "No se pudo crear el miembro",
+            });
+            return of({ type: "[Error Member] Member" });
+          })
         )
       )
     )

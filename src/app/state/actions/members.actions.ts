@@ -37,3 +37,7 @@ export const addedMember = createAction(
   '[Members List] Add members success',
   props<{ member: Member }>()
 );
+
+export const errorMember = createAction(
+  "[Error Member] Member"
+);

@@ -1,8 +1,10 @@
-<app-table
-  *ngIf="!(loading$ | async)"
-  [items]="tableMembers"
-  [columns]="titlesCol"
-  (deleteItemById)="deleteMember($event)"
-  (keyword)="debounce($event)"
->
-</app-table>
+<main>
+  <app-table
+    *ngIf="!(loading$ | async)"
+    [items]="tableMembers"
+    [columns]="titlesCol"
+    (deleteItemById)="deleteMember($event)"
+    (keyword)="debounce($event)"
+  >
+  </app-table>
+</main>

@@ -57,7 +57,7 @@ export class MembersComponent implements OnInit {
       this.getMember(id);
     } else {
       this.title = "Crear";
-      this.button = "Crear usuario";
+      this.button = "Crear miembro";
     }
   }
 
@@ -104,7 +104,9 @@ export class MembersComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       if (this.id != 0) {
-        delete this.form.value.image;
+        if(this.member.image == this.file){
+          delete this.form.value.image;
+        }        
         this.store.dispatch(editMember({id :this.id, member: this.form.value }));
       } else {
         this.store.dispatch(addMember({ member: this.form.value }));
